@@ -139,6 +139,15 @@ const Header = () => {
         li {
           margin: 0 10px;
         }
+
+        @media (max-width: 800px) {
+          .nav-container {
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 100px;
+          }
+        }
       `}</style>
     </header>
   );
