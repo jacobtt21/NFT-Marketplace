@@ -1,15 +1,19 @@
+import Link from 'next/link'
+
 export default function NFTCard({ nft }) {
   return (
     <>
       <div className="card">
-        <div className="nft-img-container">
-          <img
+        <Link href={nft.work}>
+          <div className="nft-img-container">
+            <img
             src={nft.image}
             width={300}
             className="nft-img"
             onError={(e) => (e.target.src = '/fallback.jpeg')}
-          />
-        </div>
+            />
+          </div>
+        </Link>
         <div className="name">{nft.name}</div>
       </div>
       <style>{`

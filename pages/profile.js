@@ -44,7 +44,7 @@ export default function Index() {
 
   return user ? (
     <div>
-      <h1>{user.email}'s NFTs</h1>
+      <h1>Your NFTs</h1>
       <Grid loading={loading} nfts={myNFTs} />
       <style>{`
         h1 {

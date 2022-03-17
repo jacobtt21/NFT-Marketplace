@@ -13,7 +13,9 @@ function Mint() {
   const [txPending, setTxPending] = useState(false);
   const [txHash, setTxHash] = useState(false);
   const [ipfsImageUrl, setIpfsImageUrl] = useState('');
+  const [ipfsWorkUrl, setIpfsWorkUrl] = useState('');
   const imageInputRef = useRef();
+  const workInputRef = useRef();
   const { createToast } = useToast();
 
   const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
@@ -26,8 +28,21 @@ function Mint() {
     const file = e.target.files[0];
     try {
       const ipfsData = await client.add(file);
-      const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
-      setIpfsImageUrl(url);
+      const urlImage = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
+      setIpfsImageUrl(urlImage);
+      console.log(urlImage);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function onWorkUpload(e) {
+    const file = e.target.files[0];
+    try {
+      const ipfsData = await client.add(file);
+      const urlWork = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
+      setIpfsWorkUrl(urlWork);
+      console.log(urlWork);
     } catch (error) {
       console.log(error);
     }
@@ -44,7 +59,7 @@ function Mint() {
       setTxHash();
 
       // Upload JSON data to IPFS (this is the NFT's tokenURI)
-      const data = JSON.stringify({ name, image: ipfsImageUrl });
+      const data = JSON.stringify({ name, image: ipfsImageUrl, work: ipfsWorkUrl });
       const ipfsData = await client.add(data);
       const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
 
@@ -135,14 +150,26 @@ function Mint() {
               onChange={(e) => setName(e.target.value)}
               value={name}
             />
+            <h1>Image (.jpg, .jpeg, .png)</h1>
             <input
               type="file"
+              label="Image (.jpg, .jpeg, .png)"
               onChange={onImageUpload}
               ref={imageInputRef}
               disabled={disabled}
             />
             {ipfsImageUrl && (
               <img className="image-preview" src={ipfsImageUrl} />
+            )}
+            <h1>Work (.pdf)</h1>
+            <input
+              type="file"
+              onChange={onWorkUpload}
+              ref={workInputRef}
+              disabled={disabled}
+            />
+            {ipfsWorkUrl && (
+              <img className="image-preview" src={ipfsWorkUrl} />
             )}
             <CallToAction
               color="primary"
