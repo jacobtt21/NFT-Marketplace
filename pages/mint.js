@@ -14,6 +14,7 @@ function Mint() {
   const [txHash, setTxHash] = useState(false);
   const [ipfsImageUrl, setIpfsImageUrl] = useState('');
   const [ipfsWorkUrl, setIpfsWorkUrl] = useState('');
+  const [amount, setAmount] = useState(1);
   const imageInputRef = useRef();
   const workInputRef = useRef();
   const { createToast } = useToast();
@@ -30,7 +31,6 @@ function Mint() {
       const ipfsData = await client.add(file);
       const urlImage = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
       setIpfsImageUrl(urlImage);
-      console.log(urlImage);
     } catch (error) {
       console.log(error);
     }
@@ -42,7 +42,6 @@ function Mint() {
       const ipfsData = await client.add(file);
       const urlWork = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
       setIpfsWorkUrl(urlWork);
-      console.log(urlWork);
     } catch (error) {
       console.log(error);
     }
@@ -50,32 +49,35 @@ function Mint() {
 
   // Mint NFT by sending tokenURI (IPFS URL) containing NFT metadata to smart contract
   const mintNFT = async () => {
-    setDisabled(true);
+    for (var i = 0; i < amount; ++i) {
+      setDisabled(true);
 
-    const errorsFound = await checkForErrors();
-    if (errorsFound) return setDisabled(false);
+      const errorsFound = await checkForErrors();
+      if (errorsFound) return setDisabled(false);
 
-    try {
-      setTxHash();
+      try {
+        setTxHash();
 
-      // Upload JSON data to IPFS (this is the NFT's tokenURI)
-      const data = JSON.stringify({ name, image: ipfsImageUrl, work: ipfsWorkUrl });
-      const ipfsData = await client.add(data);
-      const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
+        // Upload JSON data to IPFS (this is the NFT's tokenURI)
+        const data = JSON.stringify({ name, image: ipfsImageUrl, work: ipfsWorkUrl });
+        const ipfsData = await client.add(data);
+        const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
 
-      setTxPending(true);
+        setTxPending(true);
 
-      const receipt = await contract.methods
-        .createNFT(url)
-        .send({ from: user.publicAddress });
+        const receipt = await contract.methods
+          .createNFT(url)
+          .send({ from: user.publicAddress });
 
-      console.log(receipt);
-      setTxHash(receipt.transactionHash);
-      clearForm();
-    } catch (error) {
-      setDisabled(false);
-      console.log(error);
+        console.log(receipt);
+        setTxHash(receipt.transactionHash);
+        clearForm();
+      } catch (error) {
+        setDisabled(false);
+        console.log(error);
+      }
     }
+    setAmount(1);
   };
 
   const checkForErrors = async () => {
@@ -131,7 +133,9 @@ function Mint() {
     setTxPending(false);
     setName('');
     imageInputRef.current.value = '';
+    workInputRef.current.value = '';
     setIpfsImageUrl();
+    setIpfsWorkUrl();
   };
 
   return (
@@ -168,9 +172,14 @@ function Mint() {
               ref={workInputRef}
               disabled={disabled}
             />
-            {ipfsWorkUrl && (
-              <img className="image-preview" src={ipfsWorkUrl} />
-            )}
+            <TextField
+              disabled={disabled}
+              label="Amount"
+              placeholder="Amount"
+              type="number"
+              onChange={(e) => setAmount(e.target.value)}
+              value={amount}
+            />
             <CallToAction
               color="primary"
               size="sm"
@@ -180,7 +189,7 @@ function Mint() {
               Mint
             </CallToAction>
             <div style={{ marginTop: '30px' }}>
-              {txPending && 'Waiting confirmation...'}
+              {txPending && 'Minting in Progress, this may take a little while!'}
               {txHash && (
                 <>
                   <div>Transaction confirmed!</div>

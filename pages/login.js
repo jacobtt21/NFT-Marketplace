@@ -40,13 +40,6 @@ export default function Login() {
     setEmail(event.target.value);
   }, []);
 
-  const loginWithTwitter = async () => {
-    await magic.oauth.loginWithRedirect({
-      provider: 'twitter',
-      redirectURI: `${window.location.origin}/callback`,
-    });
-  };
-
   return (
     <div className="login-container">
       <h1>Sign up / Log in</h1>
@@ -66,10 +59,6 @@ export default function Login() {
       >
         Send Magic Link
       </CallToAction>
-      <div className="or-login-with">Or Log in With</div>
-      <div onClick={loginWithTwitter}>
-        <img src="/twitter.png" height={45} className="twitter-img" />
-      </div>
       <style>{`
         h1 {
           font-size: 20px;

@@ -32,7 +32,6 @@ export default function Index() {
       uriList.map(async (uri) => {
         const response = await fetch(uri);
         const data = await response.json();
-        console.log(data);
         nfts.push(data);
       })
     );
