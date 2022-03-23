@@ -4,7 +4,7 @@ import Header from './Header';
 const Layout = (props) => (
   <>
     <Head>
-      <title>Magic Eth Denver NFT</title>
+      <title>Oustro</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
