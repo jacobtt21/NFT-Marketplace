@@ -41,57 +41,61 @@ export default function Login() {
   }, []);
 
   return (
-    <div className="login-container">
-      <h1>Sign up / Log in</h1>
-      <TextField
-        type="email"
-        name="email"
-        required="required"
-        placeholder="Enter your email"
-        onChange={handleInputOnChange}
-        disabled={isLoggingIn}
-      />
-      <CallToAction
-        color="primary"
-        size="sm"
-        onClick={login}
-        disabled={isLoggingIn}
-      >
-        Send Magic Link
-      </CallToAction>
-      <style>{`
-        h1 {
-          font-size: 20px;
-          font-weight: bold;
-        }
-        .login-container {
-          width: 280px;
-          height: 280px;
-          margin: 0 auto;
-          padding: 20px;
-          border-radius: 8px;
-          border: 1px solid #f9f9f9;
-          box-shadow: rgba(0, 0, 0, 0.04) 0px 0px 16px;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-evenly;
-          align-items: center;
-        }
+    <div className='landing'>
+      <img src='/oustro_logo.svg' className='logo' />
+      <div className="login-container">
+        <TextField
+          type="email"
+          name="email"
+          required="required"
+          placeholder="Enter your email"
+          onChange={handleInputOnChange}
+          disabled={isLoggingIn}
+        />
+        <CallToAction
+          color="primary"
+          size="sm"
+          onClick={login}
+          disabled={isLoggingIn}
+        >
+        Let's Go!
+        </CallToAction>
+        <style>{`
+          h1 {
+            font-size: 20px;
+            font-weight: bold;
+          }
+          .login-container {
+            width: 280px;
+            height: 280px;
+            margin: 0 auto;
+            border-radius: 30px;
+            border: 1px solid #f9f9f9;
+            box-shadow: rgba(0, 0, 0, 0.04) 0px 0px 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+          }
 
-        .twitter-img {
-          border-radius: 50%;
-          border: 1px solid #fbfbfb;
-          cursor: pointer;
-        }
+          .twitter-img {
+            border-radius: 50%;
+            border: 1px solid #fbfbfb;
+            cursor: pointer;
+          }
 
-        .twitter-img:hover {
-          box-shadow: rgba(0, 0, 0, 0.03) 0px 0px 16px;
-        }
+          .twitter-img:hover {
+            box-shadow: rgba(0, 0, 0, 0.03) 0px 0px 16px;
+          }
 
-        .or-login-with {
-          color: gray;
-          font-size: 12px;
-        }
+          .or-login-with {
+            color: gray;
+            font-size: 12px;
+          }
+        `}</style>
+      </div>
+      <style jsx>{`
+        .landing{text-align:center;font-size:100px}.logo{max-width:90rem;text-align:center;max-height:90rem;margin:0 0}
       `}</style>
     </div>
   );

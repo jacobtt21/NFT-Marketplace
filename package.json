@@ -16,6 +16,7 @@
     "next": "10.0.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-drag-drop-files": "^2.3.4",
     "web3": "^1.7.0"
   },
   "devDependencies": {

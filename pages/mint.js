@@ -5,6 +5,7 @@ import { abi } from '../contracts/abi';
 import { create } from 'ipfs-http-client';
 import { TextField, CallToAction, useToast, TextButton } from '@magiclabs/ui';
 import Loading from '../components/Loading';
+import { FileUploader } from "react-drag-drop-files";
 
 function Mint() {
   const [user] = useContext(UserContext);
@@ -26,7 +27,7 @@ function Mint() {
 
   // Upload image to IPFS when uploaded by user
   async function onImageUpload(e) {
-    const file = e.target.files[0];
+    const file = e;
     try {
       const ipfsData = await client.add(file);
       const urlImage = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
@@ -37,11 +38,12 @@ function Mint() {
   }
 
   async function onWorkUpload(e) {
-    const file = e.target.files[0];
+    const file = e;
     try {
       const ipfsData = await client.add(file);
       const urlWork = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
       setIpfsWorkUrl(urlWork);
+      console.log(urlWork);
     } catch (error) {
       console.log(error);
     }
@@ -138,6 +140,9 @@ function Mint() {
     setIpfsWorkUrl();
   };
 
+  const fileTypesImage = ["JPG", "PNG"];
+  const fileTypesWork = ["PDF"];
+
   return (
     <div>
       {!user ? (
@@ -154,24 +159,7 @@ function Mint() {
               onChange={(e) => setName(e.target.value)}
               value={name}
             />
-            <h1>Image (.jpg, .jpeg, .png)</h1>
-            <input
-              type="file"
-              label="Image (.jpg, .jpeg, .png)"
-              onChange={onImageUpload}
-              ref={imageInputRef}
-              disabled={disabled}
-            />
-            {ipfsImageUrl && (
-              <img className="image-preview" src={ipfsImageUrl} />
-            )}
-            <h1>Work (.pdf)</h1>
-            <input
-              type="file"
-              onChange={onWorkUpload}
-              ref={workInputRef}
-              disabled={disabled}
-            />
+            <br />
             <TextField
               disabled={disabled}
               label="Amount"
@@ -180,6 +168,32 @@ function Mint() {
               onChange={(e) => setAmount(e.target.value)}
               value={amount}
             />
+            <br />
+            <br />
+            <p><b>Upload a thumbnail</b></p>
+            <br />
+                <FileUploader 
+                className="tnail"
+                handleChange={onImageUpload} 
+                ref={imageInputRef} 
+                name="file" 
+                types={fileTypesImage} />
+            {ipfsImageUrl && (
+              <>
+                <label for="image-preview"><b>Thumbnail Preview</b></label>
+                <img className="image-preview" src={ipfsImageUrl} />
+              </>
+            )}
+            <br />
+            <p><b>Upload your Work</b></p>
+            <br />
+            <FileUploader 
+            className="tnail2"
+              handleChange={onWorkUpload} 
+              ref={workInputRef} 
+              name="file" 
+              types={fileTypesWork} />
+            <br />
             <CallToAction
               color="primary"
               size="sm"
