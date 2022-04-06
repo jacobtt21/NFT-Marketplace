@@ -8,7 +8,6 @@ import Loading from '../components/Loading';
 import { FileUploader } from "react-drag-drop-files";
 
 function Mint() {
-  const destination = ''
   const [user] = useContext(UserContext);
   const [name, setName] = useState('');
   const [disabled, setDisabled] = useState(false);
@@ -16,9 +15,9 @@ function Mint() {
   const [txHash, setTxHash] = useState(false);
   const [ipfsImageUrl, setIpfsImageUrl] = useState('');
   const [ipfsWorkUrl, setIpfsWorkUrl] = useState('');
-  const [price, setPrice] = useState(0);
-  const imageInputRef = useRef();
-  const workInputRef = useRef();
+  const [price, setPrice] = useState();
+  var imageInputRef = useRef(null);
+  var workInputRef = useRef(null);
   const { createToast } = useToast();
 
   const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
@@ -66,8 +65,6 @@ function Mint() {
 
       setTxPending(true);
 
-      const amount = 0.0005;
-
       const payment = await web3.eth.sendTransaction({
         from: user.publicAddress,
         to: '0x4cB72Dca5C9299714bBf0D6D8F61d5B979a96940',
@@ -78,11 +75,10 @@ function Mint() {
         .createNFT(url, web3.utils.toWei(price))
         .send({ from: user.publicAddress });
 
-      console.log(receipt);
-      console.log(payment);
       setTxHash(receipt.transactionHash);
 
       clearForm();
+      console.log(receipt);
     } catch (error) {
       setDisabled(false);
       console.log(error);
@@ -143,10 +139,12 @@ function Mint() {
     setName('');
     setIpfsImageUrl();
     setIpfsWorkUrl();
-    setPrice(0);
+    setPrice('');
+    imageInputRef.current = '';
+    workInputRef.current = '';
   };
 
-  const fileTypesImage = ["JPG", "PNG"];
+  const fileTypesImage = ["JPG", "PNG", "JPEG"];
   const fileTypesWork = ["PDF"];
 
   return (
@@ -212,7 +210,7 @@ function Mint() {
               {txPending && 'Minting in Progress, this may take a little while!'}
               {txHash && (
                 <>
-                  <div>Yay! Transaction confirmed!</div>
+                  <div>Yay! Transaction confirmed! Be sure to Note down what the ID of this NFT is!</div>
                   <a
                     href={`https://ropsten.etherscan.io/tx/${txHash}`}
                     target="_blank"
