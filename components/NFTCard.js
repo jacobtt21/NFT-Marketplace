@@ -15,11 +15,13 @@ export default function NFTCard({ nft }) {
           </div>
         </Link>
         <div className="name">{nft.name}</div>
+        <div className="name">by</div>
+        <div className="name">{nft.creator.substring(0, 6)}..{nft.creator.substring(38)}</div>
       </div>
       <style>{`
         .card {
           border-radius: 8px;
-          padding: 20px;
+          padding: 15px;
           box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 16px,
             rgba(0, 0, 0, 0.05) 0px 0px 16px;
         }
@@ -46,7 +48,6 @@ export default function NFTCard({ nft }) {
 
         .name {
           margin-top: 10px;
-          font-weight: bold;
           text-align: center;
         }
       `}</style>

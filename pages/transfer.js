@@ -15,7 +15,9 @@ function Mint() {
   const [txHash, setTxHash] = useState(false);
   const [ipfsImageUrl, setIpfsImageUrl] = useState('');
   const [ipfsWorkUrl, setIpfsWorkUrl] = useState('');
+  const [amount, setAmount] = useState(1);
   const [price, setPrice] = useState(0);
+  const [other, setOther] = useState('');
   const { createToast } = useToast();
 
   const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
@@ -48,33 +50,36 @@ function Mint() {
 
   // Mint NFT by sending tokenURI (IPFS URL) containing NFT metadata to smart contract
   const mintNFT = async () => {
-    setDisabled(true);
+    for (var i = 0; i < amount; ++i) {
+      setDisabled(true);
 
-    const errorsFound = await checkForErrors();
-    if (errorsFound) return setDisabled(false);
+      const errorsFound = await checkForErrors();
+      if (errorsFound) return setDisabled(false);
 
-    try {
-      setTxHash();
+      try {
+        setTxHash();
 
-      // Upload JSON data to IPFS (this is the NFT's tokenURI)
-      const data = JSON.stringify({ name, image: ipfsImageUrl, work: ipfsWorkUrl, creator: user.publicAddress });
-      const ipfsData = await client.add(data);
-      const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
+        // Upload JSON data to IPFS (this is the NFT's tokenURI)
+        const data = JSON.stringify({ name, image: ipfsImageUrl, work: ipfsWorkUrl, creator: user.publicAddress });
+        const ipfsData = await client.add(data);
+        const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
 
-      setTxPending(true);
+        setTxPending(true);
 
-      const receipt = await contract.methods
-        .createNFT(url, price)
-        .send({ from: user.publicAddress });
+        const receipt = await contract.methods
+          .createNFT(url, price)
+          .send({ from: user.publicAddress });
 
-      console.log(receipt);
-      setTxHash(receipt.transactionHash);
+        console.log(receipt);
+        setTxHash(receipt.transactionHash);
 
-      clearForm();
-    } catch (error) {
-      setDisabled(false);
-      console.log(error);
+        clearForm();
+      } catch (error) {
+        setDisabled(false);
+        console.log(error);
+      }
     }
+    setAmount(1);
   };
 
   const checkForErrors = async () => {
@@ -105,6 +110,14 @@ function Mint() {
   const hasEnoughFunds = async () => {
     const gasLimit = await calculateGasFee();
     const weiBalance = await web3.eth.getBalance(user.publicAddress);
+    if (other) {
+      const weiBalance2 = await web3.eth.getBalance(other);
+      const ethBalance2 = web3.utils.fromWei(weiBalance2);
+      const gasFeeInWei2 = (await web3.eth.getGasPrice()) * gasLimit;
+      const gasFeeInEth2 = web3.utils.fromWei(gasFeeInWei2.toString());
+
+      if (ethBalance2 < gasFeeInEth2) return false;
+    }
     const ethBalance = web3.utils.fromWei(weiBalance);
     const gasFeeInWei = (await web3.eth.getGasPrice()) * gasLimit;
     const gasFeeInEth = web3.utils.fromWei(gasFeeInWei.toString());
@@ -132,6 +145,7 @@ function Mint() {
     setIpfsImageUrl();
     setIpfsWorkUrl();
     setPrice(0);
+    setOther('');
   };
 
   const fileTypesImage = ["JPG", "PNG"];
@@ -143,7 +157,7 @@ function Mint() {
         <Loading />
       ) : (
         <>
-          <h1>Create Your Own NFT</h1>
+          <h1>Transfer an NFT</h1>
           <div className="mint-container">
             <TextField
               disabled={disabled}
@@ -153,37 +167,16 @@ function Mint() {
               onChange={(e) => setName(e.target.value)}
               value={name}
             />
-
             <br />
-
-            <br />
-            <br />
-
-            <p><b>Upload a thumbnail * </b></p>
-            <br />
-            <FileUploader 
-            disabled={disabled}
-            handleChange={onImageUpload} 
-            name="image" 
-            types={fileTypesImage} />
-
-            <br />
-            <p><b>Upload your Work * </b></p>
-            <br />
-            <FileUploader
-            disabled={disabled} 
-            handleChange={onWorkUpload} 
-            name="file" 
-            types={fileTypesWork} />
 
             <br />
             <TextField
             disabled={disabled}
-            label="Sales Price (In ETH) *"
-            placeholder="Price"
-            type="number"
-            onChange={(e) => setPrice(e.target.value)}
-            value={price}
+            label="Share NFT with (optional)"
+            placeholder="0x0...(single eth address)"
+            type="text"
+            onChange={(e) => setOther(e.target.value)}
+            value={other}
             />
 
             <br />

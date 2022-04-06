@@ -86,6 +86,18 @@ const Header = () => {
                       </CallToAction>
                     </Link>
                   </li>
+                  <li>
+                    <Link href="/transfer">
+                      <CallToAction
+                        color={
+                          router.pathname === '/transfer' ? 'primary' : 'secondary'
+                        }
+                        size="sm"
+                      >
+                        Transfer
+                      </CallToAction>
+                    </Link>
+                  </li>
                 </div>
                 <div className="nav-div">
                   <li>
@@ -105,9 +117,9 @@ const Header = () => {
                     </CallToAction>
                   </li>
                   <li>
-                    <TextButton color="warning" size="sm" onPress={logout}>
+                    <CallToAction size="sm" onPress={logout}>
                       Logout
-                    </TextButton>
+                    </CallToAction>
                   </li>
                 </div>
               </div>
