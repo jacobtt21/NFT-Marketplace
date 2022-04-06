@@ -200,7 +200,7 @@ function Mint() {
               {txPending && 'Minting in Progress, this may take a little while!'}
               {txHash && (
                 <>
-                  <div>Transaction confirmed!</div>
+                  <div>Yay! Transaction confirmed!</div>
                   <a
                     href={`https://ropsten.etherscan.io/tx/${txHash}`}
                     target="_blank"
