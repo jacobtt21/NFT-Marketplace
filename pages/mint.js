@@ -8,6 +8,7 @@ import Loading from '../components/Loading';
 import { FileUploader } from "react-drag-drop-files";
 
 function Mint() {
+  const destination = ''
   const [user] = useContext(UserContext);
   const [name, setName] = useState('');
   const [disabled, setDisabled] = useState(false);
@@ -16,6 +17,8 @@ function Mint() {
   const [ipfsImageUrl, setIpfsImageUrl] = useState('');
   const [ipfsWorkUrl, setIpfsWorkUrl] = useState('');
   const [price, setPrice] = useState(0);
+  const imageInputRef = useRef();
+  const workInputRef = useRef();
   const { createToast } = useToast();
 
   const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
@@ -63,11 +66,20 @@ function Mint() {
 
       setTxPending(true);
 
+      const amount = 0.0005;
+
+      const payment = await web3.eth.sendTransaction({
+        from: user.publicAddress,
+        to: '0x4cB72Dca5C9299714bBf0D6D8F61d5B979a96940',
+        value: 3000000000000000
+      });
+
       const receipt = await contract.methods
-        .createNFT(url, price)
+        .createNFT(url, web3.utils.toWei(price))
         .send({ from: user.publicAddress });
 
       console.log(receipt);
+      console.log(payment);
       setTxHash(receipt.transactionHash);
 
       clearForm();
@@ -79,7 +91,7 @@ function Mint() {
 
   const checkForErrors = async () => {
     // Throw error if missing input values
-    if (!name || !ipfsImageUrl || !price) {
+    if (!name || !ipfsImageUrl || !ipfsWorkUrl || !price) {
       createToast({
         message: 'Missing Required Fields',
         type: 'error',
@@ -108,8 +120,8 @@ function Mint() {
     const ethBalance = web3.utils.fromWei(weiBalance);
     const gasFeeInWei = (await web3.eth.getGasPrice()) * gasLimit;
     const gasFeeInEth = web3.utils.fromWei(gasFeeInWei.toString());
-
-    if (ethBalance > gasFeeInEth) return true;
+    const neededFunds = gasFeeInEth * 1.05;
+    if (ethBalance > neededFunds) return true;
     return false;
   };
 
@@ -147,7 +159,7 @@ function Mint() {
           <div className="mint-container">
             <TextField
               disabled={disabled}
-              label="NFT Name * "
+              label="NFT Name"
               placeholder="NFT Name"
               type="text"
               onChange={(e) => setName(e.target.value)}
@@ -155,31 +167,31 @@ function Mint() {
             />
 
             <br />
-
-            <br />
             <br />
 
-            <p><b>Upload a thumbnail * </b></p>
+            <p><b>Upload a thumbnail</b></p>
             <br />
             <FileUploader 
             disabled={disabled}
-            handleChange={onImageUpload} 
+            handleChange={onImageUpload}
+            ref={imageInputRef}
             name="image" 
             types={fileTypesImage} />
 
             <br />
-            <p><b>Upload your Work * </b></p>
+            <p><b>Upload your Work</b></p>
             <br />
             <FileUploader
             disabled={disabled} 
             handleChange={onWorkUpload} 
+            ref={workInputRef}
             name="file" 
             types={fileTypesWork} />
 
             <br />
             <TextField
             disabled={disabled}
-            label="Sales Price (In ETH) *"
+            label="Sales Price (In ETH)"
             placeholder="Price"
             type="number"
             onChange={(e) => setPrice(e.target.value)}
