@@ -2,7 +2,10 @@ import { useCallback, useState, useContext } from 'react';
 import { UserContext } from '../lib/UserContext';
 import { magic } from '../lib/magic';
 import Router from 'next/router';
-import { TextField, CallToAction } from '@magiclabs/ui';
+import { Icon, MonochromeIcons, TextField, CallToAction, Input } from '@magiclabs/ui';
+import Typical from 'react-typical'
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Link from "next/link";
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -41,14 +44,15 @@ export default function Login() {
   }, []);
 
   return (
+    <>
     <div className='landing'>
       <img src='/oustro_logo.svg' className='logo' />
       <div className="login-container">
         <TextField
           type="email"
           name="email"
+          placeholder='you@example.com'
           required="required"
-          placeholder="Enter your email"
           onChange={handleInputOnChange}
           disabled={isLoggingIn}
         />
@@ -67,11 +71,11 @@ export default function Login() {
           }
           .login-container {
             width: 280px;
-            height: 280px;
+            height: 170px;
             margin: 0 auto;
             border-radius: 30px;
             border: 1px solid #f9f9f9;
-            box-shadow: rgba(0, 0, 0, 0.04) 0px 0px 16px;
+            box-shadow: rgba(0, 0, 0, 0.10) 0px 0px 16px;
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
@@ -94,9 +98,19 @@ export default function Login() {
           }
         `}</style>
       </div>
+      <div className='Imagine'>
+        <Typical steps={['Imagine what you could do', 1000,]} wrapper="p"/>
+        <div className='example'>
+
+        </div>
+      </div>
+      <div className='footer'>
+        <p>2023 Oustro Inc.</p>
+      </div>
       <style jsx>{`
-        .landing{text-align:center;font-size:100px}.logo{max-width:90rem;text-align:center;max-height:90rem;margin:0 0}
+        .Imagine {margin:80px auto 10px;}.example{margin:80px auto 10px;width: 900px; height: 200px;}.landing{text-align:center;font-size:60px}.logo{max-width:90rem;text-align:center;max-height:90rem;margin:0 0}.footer{padding:15px;border-top:1px solid #f0f0f0;margin:80px auto 10px;text-align:center;font-size:15px}
       `}</style>
     </div>
+    </>
   );
 }
