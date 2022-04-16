@@ -44,25 +44,6 @@ const Header = () => {
         <ul>
           {!user ? (
             <>
-            <div className="nav-container">
-                <div className="nav-div">
-                <li>
-                    Check out our other products: 
-                  </li>
-                  <li>
-                    <Link href="https://daffy.oustro.co">
-                      <CallToAction
-                        color={
-                          router.pathname === '/' ? 'primary' : 'secondary'
-                        }
-                        size="sm"
-                      >
-                        Daffy
-                      </CallToAction>
-                    </Link>
-                  </li>
-                </div>
-              </div>
             </>
           ) : (
             <>
@@ -103,18 +84,6 @@ const Header = () => {
                         size="sm"
                       >
                         Mint
-                      </CallToAction>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/transfer">
-                      <CallToAction
-                        color={
-                          router.pathname === '/transfer' ? 'primary' : 'secondary'
-                        }
-                        size="sm"
-                      >
-                        Transfer
                       </CallToAction>
                     </Link>
                   </li>

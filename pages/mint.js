@@ -15,6 +15,7 @@ function Mint() {
   const [txPending, setTxPending] = useState(false);
   const [txHash, setTxHash] = useState(false);
   const [ipfsImageUrl, setIpfsImageUrl] = useState('');
+  const [mintStatus, setMintStatus] = useState('');
   const [ipfsWorkUrl, setIpfsWorkUrl] = useState('');
   const [price, setPrice] = useState();
   var imageInputRef = useRef(null);
@@ -26,7 +27,10 @@ function Mint() {
 
   const client = create('https://ipfs.infura.io:5001/api/v0');
 
-  const searchClient = algoliasearch('MH2772P268', 'e69594ef89c128493ab8bdae3d5d1a11');
+  const searchClient = algoliasearch(
+    process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
+    process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_ADMIN_KEY,
+  );
   const index = searchClient.initIndex('Oustro');
 
   // Upload image to IPFS when uploaded by user
@@ -69,6 +73,8 @@ function Mint() {
 
       setTxPending(true);
 
+      setMintStatus("Uploading Work to IPFS")
+
       const payment = await web3.eth.sendTransaction({
         from: user.publicAddress,
         to: '0x4cB72Dca5C9299714bBf0D6D8F61d5B979a96940',
@@ -78,6 +84,8 @@ function Mint() {
       const receipt = await contract.methods
         .createNFT(url, web3.utils.toWei(price))
         .send({ from: user.publicAddress });
+
+      setMintStatus("Processing Minting Fees")
 
 
       setTxHash(receipt.transactionHash);
@@ -90,6 +98,8 @@ function Mint() {
 
       },
       {autoGenerateObjectIDIfNotExist: true})
+
+      setMintStatus('')
 
       clearForm();
     } catch (error) {
@@ -220,7 +230,11 @@ function Mint() {
             </CallToAction>
 
             <div style={{ marginTop: '30px' }}>
-              {txPending && 'Minting in Progress, this may take a little while!'}
+              {txPending && (
+                <>
+                <div>{mintStatus}</div>
+              </>
+                )}
               {txHash && (
                 <>
                   <div>Yay! Transaction confirmed! Be sure to Note down what the ID of this NFT is!</div>
