@@ -43,7 +43,27 @@ const Header = () => {
       <nav>
         <ul>
           {!user ? (
-            <></>
+            <>
+            <div className="nav-container">
+                <div className="nav-div">
+                <li>
+                    Check out our other products: 
+                  </li>
+                  <li>
+                    <Link href="https://daffy.oustro.co">
+                      <CallToAction
+                        color={
+                          router.pathname === '/' ? 'primary' : 'secondary'
+                        }
+                        size="sm"
+                      >
+                        Daffy
+                      </CallToAction>
+                    </Link>
+                  </li>
+                </div>
+              </div>
+            </>
           ) : (
             <>
               <div className="nav-container">

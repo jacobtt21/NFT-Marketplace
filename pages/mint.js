@@ -6,6 +6,7 @@ import { create } from 'ipfs-http-client';
 import { TextField, CallToAction, useToast, TextButton } from '@magiclabs/ui';
 import Loading from '../components/Loading';
 import { FileUploader } from "react-drag-drop-files";
+import algoliasearch from 'algoliasearch';
 
 function Mint() {
   const [user] = useContext(UserContext);
@@ -24,6 +25,9 @@ function Mint() {
   const contract = new web3.eth.Contract(abi, contractAddress);
 
   const client = create('https://ipfs.infura.io:5001/api/v0');
+
+  const searchClient = algoliasearch('MH2772P268', 'e69594ef89c128493ab8bdae3d5d1a11');
+  const index = searchClient.initIndex('Oustro');
 
   // Upload image to IPFS when uploaded by user
   async function onImageUpload(e) {
@@ -75,10 +79,19 @@ function Mint() {
         .createNFT(url, web3.utils.toWei(price))
         .send({ from: user.publicAddress });
 
+
       setTxHash(receipt.transactionHash);
 
+      const search = await index.saveObject({
+        name: name,
+        image: ipfsImageUrl,
+        work: ipfsWorkUrl,
+        creator: user.publicAddress
+
+      },
+      {autoGenerateObjectIDIfNotExist: true})
+
       clearForm();
-      console.log(receipt);
     } catch (error) {
       setDisabled(false);
       console.log(error);

@@ -99,7 +99,7 @@ export default function Login() {
         `}</style>
       </div>
       <div className='Imagine'>
-        <Typical steps={['Imagine what you could do', 1000,]} wrapper="p"/>
+        <Typical steps={['Imagine what you could do...', 1000,]} wrapper="p"/>
         <div className='example'>
 
         </div>
