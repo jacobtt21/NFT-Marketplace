@@ -111,7 +111,7 @@ function Mint() {
         <Loading />
       ) : (
         <>
-          <h1>Transfer an NFT</h1>
+          <h1>Buy an NFT</h1>
           <div className="mint-container">
             <TextField
               disabled={disabled}

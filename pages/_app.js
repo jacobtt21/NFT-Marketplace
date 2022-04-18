@@ -16,7 +16,10 @@ function MyApp({ Component, pageProps }) {
       if (isLoggedIn) {
         magic.user.getMetadata().then(setUser);
       } else {
-        if (router.pathname !== '/callback') {
+        if (router.pathname === '/about') {
+          Router.push('/about');
+        }
+        else if (router.pathname !== '/callback') {
           Router.push('/login');
           setUser();
         }

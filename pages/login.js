@@ -46,7 +46,9 @@ export default function Login() {
   return (
     <>
     <div className='landing'>
-      <img src='/oustro_logo.svg' className='logo' />
+      <Link href="/about">
+        <img src='/oustro_logo.svg' className='logo' />
+      </Link>
       <div className="login-container">
         <TextField
           type="email"

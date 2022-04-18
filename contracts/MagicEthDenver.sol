@@ -22,7 +22,7 @@ contract Oustro is ERC721URIStorage {
 
     function createNFT(string memory uri, uint price) public returns (uint) {
         // Mint NFT
-        count++;
+        count = count + 1;
         uint256 newTokenId = count;
         _safeMint(msg.sender, newTokenId);
         _setTokenURI(newTokenId, uri);
@@ -62,6 +62,10 @@ contract Oustro is ERC721URIStorage {
             }
         }
         return items;
+    }
+
+    function getIndex() external view returns (uint) {
+        return count + 1;
     }
 
     function transfer(address _newOwner, uint Id) external {

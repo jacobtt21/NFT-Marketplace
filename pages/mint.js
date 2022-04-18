@@ -66,14 +66,17 @@ function Mint() {
     try {
       setTxHash();
 
+      setMintStatus("Uploading Work to IPFS")
+
       // Upload JSON data to IPFS (this is the NFT's tokenURI)
-      const data = JSON.stringify({ name, image: ipfsImageUrl, work: ipfsWorkUrl, creator: user.publicAddress });
+      const tIndex = await contract.methods.getIndex().call();
+      const data = JSON.stringify({ name, image: ipfsImageUrl, work: ipfsWorkUrl, creator: user.publicAddress, tokenID: tIndex });
       const ipfsData = await client.add(data);
       const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
 
       setTxPending(true);
 
-      setMintStatus("Uploading Work to IPFS")
+      setMintStatus("Processing Minting Fees")
 
       const payment = await web3.eth.sendTransaction({
         from: user.publicAddress,
@@ -81,20 +84,23 @@ function Mint() {
         value: 3000000000000000
       });
 
+      setMintStatus("Minting In Progress")
+
       const receipt = await contract.methods
         .createNFT(url, web3.utils.toWei(price))
         .send({ from: user.publicAddress });
 
-      setMintStatus("Processing Minting Fees")
-
 
       setTxHash(receipt.transactionHash);
+
+      setMintStatus("Indexing")
 
       const search = await index.saveObject({
         name: name,
         image: ipfsImageUrl,
         work: ipfsWorkUrl,
-        creator: user.publicAddress
+        creator: user.publicAddress,
+        tokenID: tIndex
 
       },
       {autoGenerateObjectIDIfNotExist: true})

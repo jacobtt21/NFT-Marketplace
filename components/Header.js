@@ -57,7 +57,7 @@ const Header = () => {
                         }
                         size="sm"
                       >
-                        Home
+                        Library
                       </CallToAction>
                     </Link>
                   </li>
@@ -84,6 +84,18 @@ const Header = () => {
                         size="sm"
                       >
                         Mint
+                      </CallToAction>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/market">
+                      <CallToAction
+                        color={
+                          router.pathname === '/market' ? 'primary' : 'secondary'
+                        }
+                        size="sm"
+                      >
+                        Buy
                       </CallToAction>
                     </Link>
                   </li>
