@@ -18,8 +18,8 @@ function Mint() {
   const [mintStatus, setMintStatus] = useState('');
   const [ipfsWorkUrl, setIpfsWorkUrl] = useState('');
   const [price, setPrice] = useState();
-  var imageInputRef = useRef(null);
-  var workInputRef = useRef(null);
+  const imageInputRef = useRef();
+  const workInputRef = useRef();
   const { createToast } = useToast();
 
   const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
@@ -35,22 +35,22 @@ function Mint() {
 
   // Upload image to IPFS when uploaded by user
   async function onImageUpload(e) {
-    const file = e;
+    const file = e.target.files[0];
     try {
       const ipfsData = await client.add(file);
-      const urlImage = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
-      setIpfsImageUrl(urlImage);
+      const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
+      setIpfsImageUrl(url);
     } catch (error) {
       console.log(error);
     }
   }
 
   async function onWorkUpload(e) {
-    const file = e;
+    const file = e.target.files[0];
     try {
       const ipfsData = await client.add(file);
-      const urlWork = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
-      setIpfsWorkUrl(urlWork);
+      const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
+      setIpfsWorkUrl(url);
     } catch (error) {
       console.log(error);
     }
@@ -169,12 +169,9 @@ function Mint() {
     setIpfsImageUrl();
     setIpfsWorkUrl();
     setPrice('');
-    imageInputRef.current = '';
-    workInputRef.current = '';
+    imageInputRef.current.value = '';
+    workInputRef.current.value = '';
   };
-
-  const fileTypesImage = ["JPG", "PNG", "JPEG"];
-  const fileTypesWork = ["PDF"];
 
   return (
     <div>
@@ -198,23 +195,22 @@ function Mint() {
 
             <p><b>Upload a thumbnail</b></p>
             <br />
-            <FileUploader 
-            disabled={disabled}
-            handleChange={onImageUpload}
-            ref={imageInputRef}
-            name="image" 
-            types={fileTypesImage} />
+            <input
+              type="file"
+              onChange={onImageUpload}
+              ref={imageInputRef}
+              disabled={disabled}
+            ></input>
 
             <br />
             <p><b>Upload your Work</b></p>
             <br />
-            <FileUploader
-            disabled={disabled} 
-            handleChange={onWorkUpload} 
-            ref={workInputRef}
-            name="file" 
-            types={fileTypesWork} />
-
+            <input
+              type="file"
+              onChange={onWorkUpload} 
+              ref={workInputRef}
+              disabled={disabled}
+            ></input>
             <br />
             <TextField
             disabled={disabled}
