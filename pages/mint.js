@@ -200,6 +200,7 @@ function Mint() {
               onChange={onImageUpload}
               ref={imageInputRef}
               disabled={disabled}
+              accept="image/*"
             ></input>
 
             <br />
@@ -207,6 +208,7 @@ function Mint() {
             <br />
             <input
               type="file"
+              accept=".pdf"
               onChange={onWorkUpload} 
               ref={workInputRef}
               disabled={disabled}
