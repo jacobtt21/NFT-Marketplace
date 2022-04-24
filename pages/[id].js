@@ -32,8 +32,6 @@ export default function Index() {
     const data = await response.json();
     setTheNFT(data);
     setTheData(nft);
-    console.log(data);
-    console.log(nft);
   };
 
   const addRating = async () => {
