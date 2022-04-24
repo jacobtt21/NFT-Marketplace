@@ -91,7 +91,7 @@ const Header = () => {
                 <div className="nav-div">
                   <li>
                     <TextButton color="tertiary" size="sm">
-                      Balance: {balance.substring(0, 6)} ETH
+                      Balance: {balance.substring(0, 6)} rETH
                     </TextButton>
                   </li>
                   <li>

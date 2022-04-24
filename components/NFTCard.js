@@ -75,7 +75,7 @@ export default function NFTCard({ nft, price, status, types, star, num }) {
                     size="sm"
                     outline="none"
                     >
-                      { web3.utils.fromWei(price) } ETH
+                      { web3.utils.fromWei(price) } rETH
                     </CallToAction>
                   </Link>
                   </div>
@@ -85,7 +85,7 @@ export default function NFTCard({ nft, price, status, types, star, num }) {
         ) : (
           <>
             <div className="name">
-              current price: { web3.utils.fromWei(price) } ETH </div>
+              current price: { web3.utils.fromWei(price) } rETH </div>
               <div className="name">
             <TextField
               disabled={disabled}

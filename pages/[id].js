@@ -134,7 +134,7 @@ export default function Index() {
             <>
                 <div className="mint-container">
                     <h1>{theNFT.name}</h1>
-                    <h3>Price: {web3.utils.fromWei(theData.price)} ETH</h3>
+                    <h3>Price: {web3.utils.fromWei(theData.price)} rETH</h3>
                     <Link href={theNFT.work}>
                         <img
                             src={theNFT.image}
