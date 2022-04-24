@@ -5,7 +5,6 @@ import { abi } from '../contracts/abi';
 import { create } from 'ipfs-http-client';
 import { TextField, CallToAction, useToast, TextButton } from '@magiclabs/ui';
 import Loading from '../components/Loading';
-import { FileUploader } from "react-drag-drop-files";
 import algoliasearch from 'algoliasearch';
 
 function Mint() {
@@ -21,6 +20,7 @@ function Mint() {
   const imageInputRef = useRef();
   const workInputRef = useRef();
   const { createToast } = useToast();
+  const [tokenz, setTokenz] = useState('');
 
   const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
   const contract = new web3.eth.Contract(abi, contractAddress);
@@ -56,6 +56,15 @@ function Mint() {
     }
   }
 
+  const copyLink = async () => {
+    navigator.clipboard.writeText(tokenz);
+    createToast({
+      message: 'Link Copied!',
+      type: 'success',
+      lifespan: 2000,
+    });
+  };
+
   // Mint NFT by sending tokenURI (IPFS URL) containing NFT metadata to smart contract
   const mintNFT = async () => {
     setDisabled(true);
@@ -73,6 +82,8 @@ function Mint() {
       const data = JSON.stringify({ name, image: ipfsImageUrl, work: ipfsWorkUrl, creator: user.publicAddress, tokenID: tIndex });
       const ipfsData = await client.add(data);
       const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
+
+      setTokenz("https://oustro.co/"+tIndex);
 
       setTxPending(true);
 
@@ -241,16 +252,14 @@ function Mint() {
                 )}
               {txHash && (
                 <>
-                  <div>Yay! Transaction confirmed! Be sure to Note down what the ID of this NFT is!</div>
-                  <a
-                    href={`https://ropsten.etherscan.io/tx/${txHash}`}
-                    target="_blank"
-                    style={{ textDecoration: 'none' }}
-                  >
-                    <TextButton color="primary" size="sm">
-                      View on Etherscan
-                    </TextButton>
-                  </a>
+                  <CallToAction
+                      color="primary"
+                      size="sm"
+                      outline="none"
+                      onPress={copyLink}
+                    >
+                      Minted! Share your NFT using this link
+                    </CallToAction>
                 </>
               )}
             </div>

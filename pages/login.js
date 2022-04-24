@@ -103,7 +103,13 @@ export default function Login() {
       <div className='Imagine'>
         <Typical steps={['Imagine what you could do...', 1000,]} wrapper="p"/>
         <div className='example'>
-
+        <Link href="/about">
+          <CallToAction
+          
+          >
+            Learn more about Oustro here
+          </CallToAction>
+        </Link>
         </div>
       </div>
       <div className='footer'>

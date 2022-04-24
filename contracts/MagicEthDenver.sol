@@ -1,3 +1,4 @@
+
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.2;
 
@@ -16,6 +17,9 @@ contract Oustro is ERC721URIStorage {
         address owner;
         uint price;
         uint ID;
+        uint rating;
+        uint raters;
+        bool onMarket;
     }
 
     constructor() ERC721("Oustro", "OUSTRO") {}
@@ -31,33 +35,40 @@ contract Oustro is ERC721URIStorage {
                 uri,
                 msg.sender,
                 price,
-                newTokenId 
+                newTokenId,
+                0,
+                0,
+                true
             )
         );
 
         return newTokenId;
     }
 
-    function getNFTs() external view returns (string [] memory) {
-        string [] memory uris = new string[](nfts.length);
+    function getEverything() external view returns (MarketItem [] memory) {
+        MarketItem [] memory uris = new MarketItem[](nfts.length);
         for (uint i = 0; i < nfts.length; ++i) {
-            uris[i] = nfts[i].data;
+            uris[i] = nfts[i];
         }
         return uris;
     }
 
-    function getNFTsByOwner(address _owner) external view returns (string [] memory) {
+    function getNFTbyId(uint Id) external view returns (MarketItem memory) {
+        return nfts[Id - 1];
+    }
+
+    function getNFTsByOwner(address _owner) external view returns (MarketItem [] memory) {
         uint total = 0;
         for (uint i = 0; i < nfts.length; ++i) {
             if (nfts[i].owner == _owner) {
                 total += 1;
             }
         }
-        string [] memory items = new string[](total);
+        MarketItem [] memory items = new MarketItem[](total);
         uint index = 0;
         for (uint i = 0; i < nfts.length; ++i) {
             if (nfts[i].owner == _owner) {
-                items[index] = nfts[i].data;
+                items[index] = nfts[i];
                 index += 1;
             }
         }
@@ -68,12 +79,33 @@ contract Oustro is ERC721URIStorage {
         return count + 1;
     }
 
-    function transfer(address _newOwner, uint Id) external {
-        for (uint i = 0; i < nfts.length; ++i) {
-            if (nfts[i].ID == Id) {
-                nfts[i].owner = _newOwner;
-                break;
-            }
+    function changeMarketStatus(uint Id, address _currentOwner) public returns (uint) {
+        if (nfts[Id - 1].owner == _currentOwner) {
+            nfts[Id - 1].onMarket = !nfts[Id - 1].onMarket;
         }
+
+        return Id;
+    }
+
+    function transfer(address _newOwner, uint Id, address _currentOwner) external {
+        if (nfts[Id - 1].owner == _currentOwner) {
+            nfts[Id - 1].owner = _newOwner;
+        }
+    }
+
+    function changePrice(uint Id, uint newPrice, address _currentOwner) public returns (uint) {
+        if (nfts[Id - 1].owner == _currentOwner) {
+            nfts[Id - 1].price = newPrice;
+        }
+
+        return newPrice;
+    }
+
+    function rateNFT(uint Id, uint newRating) public returns (uint) {
+        uint currentRating = nfts[Id - 1].rating;
+        uint currentRaters = nfts[Id - 1].raters;
+        nfts[Id - 1].rating = ((currentRating * currentRaters) + newRating) / (currentRaters + 1);
+        nfts[Id - 1].raters = currentRaters + 1;
+        return newRating;
     }
 }

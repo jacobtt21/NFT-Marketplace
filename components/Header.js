@@ -62,20 +62,6 @@ const Header = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link href={`/profile`}>
-                      <CallToAction
-                        color={
-                          router.pathname === '/profile'
-                            ? 'primary'
-                            : 'secondary'
-                        }
-                        size="sm"
-                      >
-                        Profile
-                      </CallToAction>
-                    </Link>
-                  </li>
-                  <li>
                     <Link href="/mint">
                       <CallToAction
                         color={
@@ -88,14 +74,16 @@ const Header = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/market">
+                    <Link href={`/profile`}>
                       <CallToAction
                         color={
-                          router.pathname === '/market' ? 'primary' : 'secondary'
+                          router.pathname === '/profile'
+                            ? 'primary'
+                            : 'secondary'
                         }
                         size="sm"
                       >
-                        Buy
+                        Profile
                       </CallToAction>
                     </Link>
                   </li>

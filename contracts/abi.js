@@ -95,6 +95,59 @@ export const abi = [
 	{
 		"inputs": [
 			{
+				"internalType": "uint256",
+				"name": "Id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_currentOwner",
+				"type": "address"
+			}
+		],
+		"name": "changeMarketStatus",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "Id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "newPrice",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_currentOwner",
+				"type": "address"
+			}
+		],
+		"name": "changePrice",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "string",
 				"name": "uri",
 				"type": "string"
@@ -106,6 +159,30 @@ export const abi = [
 			}
 		],
 		"name": "createNFT",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "Id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "newRating",
+				"type": "uint256"
+			}
+		],
+		"name": "rateNFT",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -196,6 +273,11 @@ export const abi = [
 				"internalType": "uint256",
 				"name": "Id",
 				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_currentOwner",
+				"type": "address"
 			}
 		],
 		"name": "transfer",
@@ -271,6 +353,56 @@ export const abi = [
 	},
 	{
 		"inputs": [],
+		"name": "getEverything",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "data",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "ID",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "rating",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "raters",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "onMarket",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct Oustro.MarketItem[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "getIndex",
 		"outputs": [
 			{
@@ -283,13 +415,56 @@ export const abi = [
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "getNFTs",
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "Id",
+				"type": "uint256"
+			}
+		],
+		"name": "getNFTbyId",
 		"outputs": [
 			{
-				"internalType": "string[]",
+				"components": [
+					{
+						"internalType": "string",
+						"name": "data",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "ID",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "rating",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "raters",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "onMarket",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct Oustro.MarketItem",
 				"name": "",
-				"type": "string[]"
+				"type": "tuple"
 			}
 		],
 		"stateMutability": "view",
@@ -306,9 +481,46 @@ export const abi = [
 		"name": "getNFTsByOwner",
 		"outputs": [
 			{
-				"internalType": "string[]",
+				"components": [
+					{
+						"internalType": "string",
+						"name": "data",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "ID",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "rating",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "raters",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "onMarket",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct Oustro.MarketItem[]",
 				"name": "",
-				"type": "string[]"
+				"type": "tuple[]"
 			}
 		],
 		"stateMutability": "view",

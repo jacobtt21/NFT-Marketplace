@@ -16,6 +16,10 @@ export default function Index() {
   );
   const [user] = useContext(UserContext);
   const [allNFTs, setAllNFTs] = useState([]);
+  const [allPrices, setAllPrices] = useState();
+  const [allNums, setAllNums] = useState();
+  const [allStars, setAllStars] = useState();
+  const [allStatus, setAllStatus] = useState();
   const [loading, setLoading] = useState(false);
 
   const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
@@ -104,13 +108,29 @@ export default function Index() {
   // Each URI is an IPFS url containing json metadata about the NFT, such as image and name
   const getNFTs = async () => {
     setLoading(true);
-    const uriList = await contract.methods.getNFTs().call();
+
+    const uriList = await contract.methods.getEverything().call();
+
+    let prices = [];
+    let onMarket = [];
+    let nums = [];
+    let stars = []
+
+    const array = new Array(uriList.length).fill(0);
+    var i = 0;
+    for (i = 0; i < uriList.length; ++i) {
+      array[i] = uriList[i][0];
+      prices[i] = uriList[i][2];
+      onMarket[i] = uriList[i][6];
+      nums[i] = uriList[i][5];
+      stars[i] = uriList[i][4];
+    }
 
     let nfts = [];
 
     // Call IPFS url for metadata of each NFT (json object containing name & image)
     await Promise.all(
-      uriList.map(async (uri) => {
+      array.map(async (uri) => {
         const response = await fetch(uri);
         const data = await response.json();
         nfts.push(data);
@@ -118,6 +138,10 @@ export default function Index() {
     );
 
     setAllNFTs(nfts);
+    setAllPrices(prices);
+    setAllStatus(onMarket);
+    setAllNums(nums);
+    setAllStars(stars);
     setLoading(false);
   };
 
@@ -127,7 +151,7 @@ export default function Index() {
         <CustomSearchBox />
       </InstantSearch>
       <h1></h1>
-      <Grid loading={loading} nfts={allNFTs} />
+      <Grid loading={loading} nfts={allNFTs} prices={allPrices} statuses={allStatus} type={true} stars={allStars} nums={allNums} />
       <style>{`
         h1 {
           font-weight: bold;
