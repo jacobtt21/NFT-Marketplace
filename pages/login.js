@@ -113,7 +113,7 @@ export default function Login() {
         </div>
       </div>
       <div className='footer'>
-        <p>2023 Oustro Inc.</p>
+        <p>2023 Oustro Inc. v1.0.0-beta</p>
       </div>
       <style jsx>{`
         .Imagine {margin:80px auto 10px;}.example{margin:80px auto 10px;width: 900px; height: 200px;}.landing{text-align:center;font-size:60px}.logo{max-width:90rem;text-align:center;max-height:90rem;margin:0 0}.footer{padding:15px;border-top:1px solid #f0f0f0;margin:80px auto 10px;text-align:center;font-size:15px}
