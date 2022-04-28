@@ -65,11 +65,16 @@ export default function Index() {
   return user ? (
     <div>
       <h1>Your NFTs</h1>
-      <Grid loading={loading} nfts={myNFTs} prices={myPrices} statuses={myStatus} type={false} stars={myStars} nums={myNums} />
+      <p>This is your collection of NFT's</p>
+      <Grid loading={loading} nfts={myNFTs} prices={myPrices} statuses={myStatus} type={false} stars={myStars} nums={myNums} go={true} />
       <style>{`
         h1 {
           font-weight: bold;
           font-size: 28px;
+          margin: 20px;
+          min-height: 28px;
+        }
+        p {
           margin: 20px;
           min-height: 28px;
         }

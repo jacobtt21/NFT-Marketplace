@@ -6,11 +6,52 @@ import { Icon, MonochromeIcons, TextField, CallToAction, Input } from '@magiclab
 import Typical from 'react-typical'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Link from "next/link";
+import Grid from '../components/Grid';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [, setUser] = useContext(UserContext);
+  const [loading, setLoading] = useState(false);
+
+  const allNFTs = [
+    {
+      creator: "0x09516Eb251254aD5EF243E83e30E9395D5BcB2B6",
+      image: "https://ipfs.infura.io/ipfs/QmYoUFVGijd47sCbzxmfjZHCi7Uos4DARYFZ4ceYiZcHSJ",
+      name: "The Oustro Logo",
+      tokenID: '%2f',
+      work: "https://ipfs.infura.io/ipfs/QmYwmvJkj4FdvGPGoJmetvvSbYosjN24nf9u1gWHrcekpM"
+    },
+    {
+      creator: "0x09516Eb251254aD5EF243E83e30E9395D5BcB2B6",
+      image: "https://ipfs.infura.io/ipfs/QmYoUFVGijd47sCbzxmfjZHCi7Uos4DARYFZ4ceYiZcHSJ",
+      name: "The Oustro Logo",
+      tokenID: "/",
+      work: "https://ipfs.infura.io/ipfs/QmYwmvJkj4FdvGPGoJmetvvSbYosjN24nf9u1gWHrcekpM"
+    },
+    {
+      creator: "0x09516Eb251254aD5EF243E83e30E9395D5BcB2B6",
+      image: "https://ipfs.infura.io/ipfs/QmYoUFVGijd47sCbzxmfjZHCi7Uos4DARYFZ4ceYiZcHSJ",
+      name: "The Oustro Logo",
+      tokenID: "/",
+      work: "https://ipfs.infura.io/ipfs/QmYwmvJkj4FdvGPGoJmetvvSbYosjN24nf9u1gWHrcekpM"
+    },
+    {
+      creator: "0x09516Eb251254aD5EF243E83e30E9395D5BcB2B6",
+      image: "https://ipfs.infura.io/ipfs/QmYoUFVGijd47sCbzxmfjZHCi7Uos4DARYFZ4ceYiZcHSJ",
+      name: "The Oustro Logo",
+      tokenID: "/",
+      work: "https://ipfs.infura.io/ipfs/QmYwmvJkj4FdvGPGoJmetvvSbYosjN24nf9u1gWHrcekpM"
+    }
+  ]
+
+  const allPrices = [1, 1, 1, 1];
+
+  const allStatus = [false, false, false, false];
+
+  const allStars = [5, 5, 5, 5]
+
+  const allNums = ['1000+', '1000+', '1000+', '1000+']
 
   /**
    * Perform login action via Magic's passwordless flow. Upon successuful
@@ -47,7 +88,7 @@ export default function Login() {
     <>
     <div className='landing'>
       <Link href="/about">
-        <img src='/oustro_logo.svg' className='logo' />
+          <img src='/oustro_logo.svg' className='logo' />
       </Link>
       <div className="login-container">
         <TextField
@@ -68,8 +109,8 @@ export default function Login() {
         </CallToAction>
         <style>{`
           h1 {
-            font-size: 20px;
-            font-weight: bold;
+            font-size: 55px;
+            margin:5px auto 40px;
           }
           .login-container {
             width: 280px;
@@ -100,23 +141,25 @@ export default function Login() {
           }
         `}</style>
       </div>
+      <div className='one'>
+      <Typical steps={['Featured Works', 1000,]} wrapper="h1"/>
       <div className='Imagine'>
-        <Typical steps={['Imagine what you could do...', 1000,]} wrapper="p"/>
-        <div className='example'>
         <Link href="/about">
           <CallToAction
           
           >
-            Learn more about Oustro here
+            Learn more about Oustro
           </CallToAction>
         </Link>
-        </div>
       </div>
+      <Grid loading={loading} nfts={allNFTs} prices={allPrices} statuses={allStatus} type={true} stars={allStars} nums={allNums} go={false}/>
+    </div>
       <div className='footer'>
         <p>2023 Oustro Inc. v1.0.0-beta</p>
       </div>
       <style jsx>{`
-        .Imagine {margin:80px auto 10px;}.example{margin:80px auto 10px;width: 900px; height: 200px;}.landing{text-align:center;font-size:60px}.logo{max-width:90rem;text-align:center;max-height:90rem;margin:0 0}.footer{padding:15px;border-top:1px solid #f0f0f0;margin:80px auto 10px;text-align:center;font-size:15px}
+      .one{ margin:80px; text-align:center; font-size: 17px;}
+        .Imagine {margin:10px auto 10px;}.landing{text-align:center;font-size:50px}.logo{max-width:90rem;text-align:center;max-height:90rem;margin:0 0}.footer{padding:15px;border-top:1px solid #f0f0f0;margin:80px auto 10px;text-align:center;font-size:15px}
       `}</style>
     </div>
     </>

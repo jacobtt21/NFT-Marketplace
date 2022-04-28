@@ -14,7 +14,7 @@ export default function Index() {
   const [theNFT, setTheNFT] = useState();
   const [theData, setTheData] = useState();
   const [newRating, setNewRating] = useState();
-  const [msg, setMsg] = useState();
+  const [msg, setMsg] = useState(false);
   const { createToast } = useToast();
 
   useEffect(() => {
@@ -35,6 +35,7 @@ export default function Index() {
   };
 
   const addRating = async () => {
+    setMsg(true)
     if (parseInt(newRating) > 5 || parseInt(newRating) < 0) {
         createToast({
             message: 'Rating must be between 0 - 5',
@@ -42,6 +43,7 @@ export default function Index() {
             lifespan: 2000,
           });
         setNewRating('');
+        setMsg(false);
         return setDisabled(false);
     }
     try {
@@ -109,7 +111,6 @@ export default function Index() {
     const gasFeeInEth = web3.utils.fromWei(gasFeeInWei.toString());
     const total = web3.utils.fromWei(cost);
     const neededFunds = gasFeeInEth  + (1.05 * total);
-    console.log(neededFunds - ethBalance)
     if (ethBalance - neededFunds > 0) {
         return true;
     }
@@ -170,6 +171,13 @@ export default function Index() {
                         >
                             Submit Rating
                         </CallToAction>
+                        <br />
+                        <br />
+                        {msg && (
+                          <>
+                            Please wait, communicating with smart contract...
+                          </>
+                        )}
                         </div>
                     ) : (
                         <>
@@ -178,8 +186,9 @@ export default function Index() {
                         </div>
                         </>
                     )}
-
-                    {theData.onMarket && theData.owner != user.publicAddress ? (
+                    
+                    {theData.owner != user.publicAddress ?
+                     (theData.onMarket ? (
                         <div className="name">
                             <CallToAction
                             disabled={disabled}
@@ -191,14 +200,15 @@ export default function Index() {
                             </CallToAction>
                         </div>
                     ) : (
-                        <>
-                        <div className="name">
-                            You own this NFT!
-                        </div>
-                        </>
+                      <div className="name">
+                        This NFT is currently not for sale
+                      </div>
+                    )) : (
+                      <div className="name">
+                        You already own this NFT
+                      </div>
                     )}
-                <div style={{ marginTop: '30px' }}>
-                </div>
+                
                 </div>
                 <style>{`
                     h1 {

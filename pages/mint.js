@@ -191,11 +191,12 @@ function Mint() {
       ) : (
         <>
           <h1>Create Your Own NFT</h1>
+          <p>Mint your NFT of a written work, more formats will be supported soon, stay tuned!</p>
           <div className="mint-container">
             <TextField
               disabled={disabled}
               label="NFT Name"
-              placeholder="NFT Name"
+              placeholder="Give your work a great name!"
               type="text"
               onChange={(e) => setName(e.target.value)}
               value={name}
@@ -204,7 +205,7 @@ function Mint() {
             <br />
             <br />
 
-            <p><b>Upload a thumbnail</b></p>
+            <p>Upload an image as a thumbnail for your work!</p>
             <br />
             <input
               type="file"
@@ -215,7 +216,7 @@ function Mint() {
             ></input>
 
             <br />
-            <p><b>Upload your Work</b></p>
+            <p><b>Upload a PDF of your work!</b></p>
             <br />
             <input
               type="file"
@@ -227,8 +228,8 @@ function Mint() {
             <br />
             <TextField
             disabled={disabled}
-            label="Sales Price (In ETH)"
-            placeholder="Price"
+            label="Sales Price in ETH"
+            placeholder="Price of this NFT"
             type="number"
             onChange={(e) => setPrice(e.target.value)}
             value={price}
@@ -241,7 +242,7 @@ function Mint() {
             onClick={mintNFT}
             disabled={disabled}
             >
-            Mint
+            Mint this NFT
             </CallToAction>
 
             <div style={{ marginTop: '30px' }}>
@@ -270,6 +271,10 @@ function Mint() {
         h1 {
           font-weight: bold;
           font-size: 28px;
+          margin: 20px;
+          min-height: 28px;
+        }
+        p {
           margin: 20px;
           min-height: 28px;
         }

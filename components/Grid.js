@@ -2,7 +2,7 @@ import NFTCard from './NFTCard';
 import Link from 'next/link';
 import { Skeleton, TextButton } from '@magiclabs/ui';
 
-export default function Grid({ nfts, prices, statuses, loading, type, stars, nums }) {
+export default function Grid({ nfts, prices, statuses, loading, type, stars, nums, go }) {
   return (
     <>
       <div className="grid">
@@ -26,7 +26,7 @@ export default function Grid({ nfts, prices, statuses, loading, type, stars, num
           nfts.map((nft, i) => {
             return (
               <div key={i}>
-                <NFTCard nft={nft} price={prices[i]} status={statuses[i]} types={type} star={stars[i]} num={nums[i]} />
+                <NFTCard nft={nft} price={prices[i]} status={statuses[i]} types={type} star={stars[i]} num={nums[i]} going={go} />
               </div>
             );
           })

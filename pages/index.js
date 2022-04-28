@@ -147,15 +147,23 @@ export default function Index() {
 
   return user ? (
     <div>
+      <div className='info'>
+      <h1>The Oustro Library</h1>
+      <p>check out everything published on Oustro by clicking on the thumbnail</p>
+      </div>
       <InstantSearch searchClient={searchClient} indexName="Oustro">
         <CustomSearchBox />
       </InstantSearch>
       <h1></h1>
-      <Grid loading={loading} nfts={allNFTs} prices={allPrices} statuses={allStatus} type={true} stars={allStars} nums={allNums} />
+      <Grid loading={loading} nfts={allNFTs} prices={allPrices} statuses={allStatus} type={true} stars={allStars} nums={allNums} go={true} />
       <style>{`
         h1 {
           font-weight: bold;
           font-size: 28px;
+          margin: 20px;
+          min-height: 28px;
+        }
+        p {
           margin: 20px;
           min-height: 28px;
         }

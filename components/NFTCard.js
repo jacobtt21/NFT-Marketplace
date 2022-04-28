@@ -7,7 +7,7 @@ import { TextField, CallToAction } from '@magiclabs/ui';
 import { useRouter } from 'next/router'
 
 
-export default function NFTCard({ nft, price, status, types, star, num }) {
+export default function NFTCard({ nft, price, status, types, star, num, going }) {
   const [user] = useContext(UserContext);
   const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
   const contract = new web3.eth.Contract(abi, contractAddress);
@@ -45,12 +45,25 @@ export default function NFTCard({ nft, price, status, types, star, num }) {
   return (
     <>
       <div className="card">
-      <div className="name">
-        <Link href={{pathname: '/[id]', query: { id: nft.tokenID }}}>
-          <CallToAction>
-          { star } / 5
-          </CallToAction></Link> from { num } ratings
-      </div>
+        {going ? (
+            <div className="name">
+              <Link href={{pathname: '/[id]', query: { id: nft.tokenID }}}>
+                <CallToAction>
+                  { star } / 5
+                </CallToAction>
+              </Link> from { num } ratings
+            </div>
+          ) : (
+            <div className="name">
+              <CallToAction
+              color="primary"
+              size="sm"
+              outline="none">
+                { star } / 5
+              </CallToAction> from { num } ratings
+            </div>
+          )
+        }
         <Link href={nft.work}>
           <div className="nft-img-container">
             <img
