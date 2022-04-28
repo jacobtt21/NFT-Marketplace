@@ -3,56 +3,14 @@ import { UserContext } from '../lib/UserContext';
 import { magic } from '../lib/magic';
 import Router from 'next/router';
 import { Icon, MonochromeIcons, TextField, CallToAction, Input } from '@magiclabs/ui';
-import Typical from 'react-typical'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import Link from "next/link";
-import Grid from '../components/Grid';
+
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [, setUser] = useContext(UserContext);
   const [loading, setLoading] = useState(false);
-
-  const allNFTs = [
-    {
-      creator: "0x09516Eb251254aD5EF243E83e30E9395D5BcB2B6",
-      image: "https://ipfs.infura.io/ipfs/QmYoUFVGijd47sCbzxmfjZHCi7Uos4DARYFZ4ceYiZcHSJ",
-      name: "The Oustro Logo",
-      tokenID: '%2f',
-      work: "https://ipfs.infura.io/ipfs/QmYwmvJkj4FdvGPGoJmetvvSbYosjN24nf9u1gWHrcekpM"
-    },
-    {
-      creator: "0x09516Eb251254aD5EF243E83e30E9395D5BcB2B6",
-      image: "https://ipfs.infura.io/ipfs/QmYoUFVGijd47sCbzxmfjZHCi7Uos4DARYFZ4ceYiZcHSJ",
-      name: "The Oustro Logo",
-      tokenID: "/",
-      work: "https://ipfs.infura.io/ipfs/QmYwmvJkj4FdvGPGoJmetvvSbYosjN24nf9u1gWHrcekpM"
-    },
-    {
-      creator: "0x09516Eb251254aD5EF243E83e30E9395D5BcB2B6",
-      image: "https://ipfs.infura.io/ipfs/QmYoUFVGijd47sCbzxmfjZHCi7Uos4DARYFZ4ceYiZcHSJ",
-      name: "The Oustro Logo",
-      tokenID: "/",
-      work: "https://ipfs.infura.io/ipfs/QmYwmvJkj4FdvGPGoJmetvvSbYosjN24nf9u1gWHrcekpM"
-    },
-    {
-      creator: "0x09516Eb251254aD5EF243E83e30E9395D5BcB2B6",
-      image: "https://ipfs.infura.io/ipfs/QmYoUFVGijd47sCbzxmfjZHCi7Uos4DARYFZ4ceYiZcHSJ",
-      name: "The Oustro Logo",
-      tokenID: "/",
-      work: "https://ipfs.infura.io/ipfs/QmYwmvJkj4FdvGPGoJmetvvSbYosjN24nf9u1gWHrcekpM"
-    }
-  ]
-
-  const allPrices = [1, 1, 1, 1];
-
-  const allStatus = [false, false, false, false];
-
-  const allStars = [5, 5, 5, 5]
-
-  const allNums = ['1000+', '1000+', '1000+', '1000+']
-
   /**
    * Perform login action via Magic's passwordless flow. Upon successuful
    * completion of the login flow, a user is redirected to the homepage.
