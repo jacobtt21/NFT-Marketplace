@@ -44,6 +44,48 @@ const Header = () => {
         <ul>
           {!user ? (
             <>
+            <div className="nav-container">
+                <div className="nav-div">
+                  <li>
+                    <Link href="/showcase">
+                      <CallToAction
+                        color={
+                          router.pathname === '/showcase'
+                            ? 'primary'
+                            : 'secondary'
+                        }
+                        size="sm"
+                      >
+                        Showcase
+                      </CallToAction>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/login">
+                      <CallToAction
+                        color={
+                          router.pathname === '/login' ? 'primary' : 'secondary'
+                        }
+                        size="sm"
+                      >
+                        Login
+                      </CallToAction>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/about">
+                      <CallToAction
+                        color={
+                          router.pathname === '/about' ? 'primary' : 'secondary'
+                        }
+                        size="sm"
+                      >
+                        About
+                      </CallToAction>
+                    </Link>
+                  </li>
+                </div>
+              </div>
             </>
           ) : (
             <>

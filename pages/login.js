@@ -141,25 +141,12 @@ export default function Login() {
           }
         `}</style>
       </div>
-      <div className='one'>
-      <Typical steps={['Featured Works', 1000,]} wrapper="h1"/>
-      <div className='Imagine'>
-        <Link href="/about">
-          <CallToAction
-          
-          >
-            Learn more about Oustro
-          </CallToAction>
-        </Link>
-      </div>
-      <Grid loading={loading} nfts={allNFTs} prices={allPrices} statuses={allStatus} type={true} stars={allStars} nums={allNums} go={false}/>
-    </div>
       <div className='footer'>
         <p>2023 Oustro Inc. v1.0.0-beta</p>
       </div>
       <style jsx>{`
       .one{ margin:80px; text-align:center; font-size: 17px;}
-        .Imagine {margin:10px auto 10px;}.landing{text-align:center;font-size:50px}.logo{max-width:90rem;text-align:center;max-height:90rem;margin:0 0}.footer{padding:15px;border-top:1px solid #f0f0f0;margin:80px auto 10px;text-align:center;font-size:15px}
+        .Imagine {margin:10px auto 10px;}.landing{text-align:center;font-size:50px}.logo{max-width:90rem;text-align:center;max-height:90rem;margin:0 0}.footer{padding:15px;border-top:1px solid #f0f0f0;margin:240px auto 10px;text-align:center;font-size:15px}
       `}</style>
     </div>
     </>

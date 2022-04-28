@@ -9,7 +9,7 @@ import '@magiclabs/ui/dist/cjs/index.css';
 function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState();
   const router = useRouter();
-
+  
   // On each page load, check if user is logged in
   useEffect(() => {
     magic.user.isLoggedIn().then((isLoggedIn) => {
@@ -18,6 +18,12 @@ function MyApp({ Component, pageProps }) {
       } else {
         if (router.pathname === '/about') {
           Router.push('/about');
+        }
+        else if (router.pathname === '/showcase') {
+          Router.push('/showcase');
+        }
+        else if (router.pathname === '/') {
+          Router.push('/showcase');
         }
         else if (router.pathname !== '/callback') {
           Router.push('/login');
