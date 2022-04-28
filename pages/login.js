@@ -87,18 +87,19 @@ export default function Login() {
   return (
     <>
     <div className='landing'>
-      <Link href="/about">
-          <img src='/oustro_logo.svg' className='logo' />
-      </Link>
+    <h1>Welcome to Oustro, we're excited to have you!</h1>
       <div className="login-container">
+        <br />
         <TextField
           type="email"
           name="email"
+          label="Enter your email address"
           placeholder='you@example.com'
           required="required"
           onChange={handleInputOnChange}
           disabled={isLoggingIn}
         />
+        <br />
         <CallToAction
           color="primary"
           size="sm"
@@ -107,14 +108,14 @@ export default function Login() {
         >
         Let's Go!
         </CallToAction>
+        <br />
         <style>{`
           h1 {
-            font-size: 55px;
-            margin:5px auto 40px;
+            font-size: 45px;
+            margin: 70px;
           }
           .login-container {
-            width: 280px;
-            height: 170px;
+            width: 380px;
             margin: 0 auto;
             border-radius: 30px;
             border: 1px solid #f9f9f9;
@@ -124,29 +125,24 @@ export default function Login() {
             justify-content: space-evenly;
             align-items: center;
           }
-
-          .twitter-img {
-            border-radius: 50%;
-            border: 1px solid #fbfbfb;
-            cursor: pointer;
-          }
-
-          .twitter-img:hover {
-            box-shadow: rgba(0, 0, 0, 0.03) 0px 0px 16px;
-          }
-
-          .or-login-with {
-            color: gray;
-            font-size: 12px;
-          }
         `}</style>
       </div>
       <div className='footer'>
         <p>2023 Oustro Inc. v1.0.0-beta</p>
       </div>
       <style jsx>{`
-      .one{ margin:80px; text-align:center; font-size: 17px;}
-        .Imagine {margin:10px auto 10px;}.landing{text-align:center;font-size:50px}.logo{max-width:90rem;text-align:center;max-height:90rem;margin:0 0}.footer{padding:15px;border-top:1px solid #f0f0f0;margin:240px auto 10px;text-align:center;font-size:15px}
+        .landing {
+          text-align:center;
+          font-size:50px
+        }
+
+        .footer {
+          padding:15px;
+          border-top:1px solid #f0f0f0;
+          margin:240px auto 10px;
+          text-align:center;
+          font-size:15px
+        }
       `}</style>
     </div>
     </>

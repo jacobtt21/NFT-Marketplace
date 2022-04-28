@@ -47,6 +47,13 @@ const Header = () => {
             <div className="nav-container">
                 <div className="nav-div">
                   <li>
+                    <Link href="/about">
+                      <img src='/oustro_logo.svg' className='logo' />
+                    </Link>
+                  </li>
+                </div>
+                <div className="nav-div">
+                  <li>
                     <Link href="/showcase">
                       <CallToAction
                         color={
@@ -61,18 +68,6 @@ const Header = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/login">
-                      <CallToAction
-                        color={
-                          router.pathname === '/login' ? 'primary' : 'secondary'
-                        }
-                        size="sm"
-                      >
-                        Login
-                      </CallToAction>
-                    </Link>
-                  </li>
-                  <li>
                     <Link href="/about">
                       <CallToAction
                         color={
@@ -81,6 +76,18 @@ const Header = () => {
                         size="sm"
                       >
                         About
+                      </CallToAction>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/login">
+                      <CallToAction
+                        color={
+                          router.pathname === '/login' ? 'primary' : 'secondary'
+                        }
+                        size="sm"
+                      >
+                        Login
                       </CallToAction>
                     </Link>
                   </li>
@@ -177,6 +184,10 @@ const Header = () => {
 
         .nav-div {
           align-items: center;
+        }
+
+        img {
+          max-width: 9.5rem;
         }
 
         li {

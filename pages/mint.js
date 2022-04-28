@@ -202,6 +202,7 @@ function Mint() {
               type="text"
               onChange={(e) => setName(e.target.value)}
               value={name}
+              required="required"
             />
 
             <br />
@@ -215,6 +216,7 @@ function Mint() {
               ref={imageInputRef}
               disabled={disabled}
               accept="image/*"
+              required="required"
             ></input>
 
             <br />
@@ -226,6 +228,7 @@ function Mint() {
               onChange={onWorkUpload} 
               ref={workInputRef}
               disabled={disabled}
+              required="required"
             ></input>
             <br />
             <TextField
@@ -235,6 +238,7 @@ function Mint() {
             type="number"
             onChange={(e) => setPrice(e.target.value)}
             value={price}
+            required="required"
             />
 
             <br />

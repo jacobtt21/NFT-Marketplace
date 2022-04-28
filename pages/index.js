@@ -154,7 +154,6 @@ export default function Index() {
       <InstantSearch searchClient={searchClient} indexName="Oustro">
         <CustomSearchBox />
       </InstantSearch>
-      <h1></h1>
       <Grid loading={loading} nfts={allNFTs} prices={allPrices} statuses={allStatus} type={true} stars={allStars} nums={allNums} go={true} />
       <style>{`
         h1 {
