@@ -190,8 +190,10 @@ function Mint() {
         <Loading />
       ) : (
         <>
-          <h1>Create Your Own NFT</h1>
-          <p>Mint your NFT of a written work, more formats will be supported soon, stay tuned!</p>
+          <h1>Publishing has never been easier.</h1>
+          <p>The decentralized web will never see what you have in store for them. Create an NFT of something actually meaningful
+            to share with the world. We're so excited! 
+          </p>
           <div className="mint-container">
             <TextField
               disabled={disabled}
@@ -253,13 +255,16 @@ function Mint() {
                 )}
               {txHash && (
                 <>
+                <div className='name'>
+                  Thank you for your contribution to the Oustro Library of Work!
+                </div>
                   <CallToAction
                       color="primary"
                       size="sm"
                       outline="none"
                       onPress={copyLink}
                     >
-                      Minted! Share your NFT using this link
+                      Share your NFT using this link
                     </CallToAction>
                 </>
               )}
@@ -298,6 +303,10 @@ function Mint() {
           border-radius: 8px;
           max-width: 200px;
           max-height: 200px;
+        }
+        .name {
+          margin-top: 10px;
+          text-align: center;
         }
       `}</style>
     </div>

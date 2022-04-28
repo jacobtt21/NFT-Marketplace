@@ -69,7 +69,7 @@ const Header = () => {
                         }
                         size="sm"
                       >
-                        Mint
+                        Publish
                       </CallToAction>
                     </Link>
                   </li>
@@ -83,7 +83,7 @@ const Header = () => {
                         }
                         size="sm"
                       >
-                        Profile
+                        Your Collection
                       </CallToAction>
                     </Link>
                   </li>

@@ -3,7 +3,7 @@ import { UserContext } from '../lib/UserContext';
 import Link from 'next/link'
 import { web3 } from '../lib/magic';
 import { abi } from '../contracts/abi';
-import { TextField, CallToAction } from '@magiclabs/ui';
+import { TextField, CallToAction, TextButton } from '@magiclabs/ui';
 import { useRouter } from 'next/router'
 
 
@@ -44,12 +44,13 @@ export default function NFTCard({ nft, price, status, types, star, num, going })
 
   return (
     <>
+    <Link href={{pathname: '/[id]', query: { id: nft.tokenID }}}>
       <div className="card">
         {going ? (
             <div className="name">
               <Link href={{pathname: '/[id]', query: { id: nft.tokenID }}}>
                 <CallToAction>
-                  { star } / 5
+                { star } / 5
                 </CallToAction>
               </Link> from { num } ratings
             </div>
@@ -59,12 +60,12 @@ export default function NFTCard({ nft, price, status, types, star, num, going })
               color="primary"
               size="sm"
               outline="none">
-                { star } / 5
+                { star } / 5 
               </CallToAction> from { num } ratings
             </div>
           )
         }
-        <Link href={nft.work}>
+        
           <div className="nft-img-container">
             <img
             src={nft.image}
@@ -73,7 +74,7 @@ export default function NFTCard({ nft, price, status, types, star, num, going })
             onError={(e) => (e.target.src = '/fallback.jpeg')}
             />
           </div>
-        </Link>
+ 
         <div className="name">{nft.name}</div>
         <div className="name">by {nft.creator.substring(0, 6)}..{nft.creator.substring(38)}</div>
         <br />
@@ -108,14 +109,15 @@ export default function NFTCard({ nft, price, status, types, star, num, going })
               value={newPrice}
             />
             <br />
-            <CallToAction
+            <TextButton
             disabled={disabled}
             color="primary"
             size="sm"
             onClick={changePrice}
             >
             Change Price
-            </CallToAction>
+            </TextButton>
+            <br />
             <br />
             </div>
             {status ? (
@@ -148,6 +150,7 @@ export default function NFTCard({ nft, price, status, types, star, num, going })
           </>
         )}
       </div>
+      </Link>
       <style>{`
         .card {
           border-radius: 8px;
@@ -171,7 +174,7 @@ export default function NFTCard({ nft, price, status, types, star, num, going })
 
         .nft-img {
           max-width: 200px;
-          max-height: 200px;
+          max-height: 400px;
           cursor: pointer;
           border-radius: 8px;
         }

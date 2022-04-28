@@ -7,6 +7,7 @@ import Loading from '../components/Loading';
 import { TextField, CallToAction, useToast, TextButton } from '@magiclabs/ui';
 import Link from 'next/link'
 
+
 export default function Index() {
     const [disabled, setDisabled] = useState(false);
   const [user] = useContext(UserContext);
@@ -15,6 +16,7 @@ export default function Index() {
   const [theData, setTheData] = useState();
   const [newRating, setNewRating] = useState();
   const [msg, setMsg] = useState(false);
+  const [msg1, setMsg1] = useState(false);
   const { createToast } = useToast();
 
   useEffect(() => {
@@ -134,6 +136,15 @@ export default function Index() {
         {theData ? (
             <>
                 <div className="mint-container">
+                <Link href={theNFT.work}>
+                  <a target="_blank">
+                <CallToAction
+                  color="primary"
+                  >
+                  Take me to the work &rarr;
+                  </CallToAction>
+                  </a>
+                    </Link>
                     <h1>{theNFT.name}</h1>
                     <h3>Price: {web3.utils.fromWei(theData.price)} rETH</h3>
                     <Link href={theNFT.work}>
@@ -149,13 +160,14 @@ export default function Index() {
                     size="sm"
                     outline="none"
                     >
-                        { theData.rating } / 5 Rating
+                      { theData.rating } / 5 Rating
                     </CallToAction>
                     {theNFT.Creator != user.publicAddress ? (
                         <div className="name">
+                          
                         <TextField
                             disabled={disabled}
-                            placeholder="Rate (0 - 5)"
+                            placeholder="On a scale of 1 to 5, rate this piece, be honest."
                             type="number"
                             max="5"
                             min="0"
@@ -163,19 +175,19 @@ export default function Index() {
                             value={newRating}
                         />
                         <br />
-                        <CallToAction
+                        <TextButton
                         disabled={disabled}
                         color="primary"
                         size="sm"
                         onClick={addRating}
                         >
-                            Submit Rating
-                        </CallToAction>
+                            Submit Your Rating
+                        </TextButton>
                         <br />
                         <br />
                         {msg && (
                           <>
-                            Please wait, communicating with smart contract...
+                            Give us a sec, we're explaining to the smart contract why you gave it this rating...
                           </>
                         )}
                         </div>
@@ -196,7 +208,7 @@ export default function Index() {
                             size="sm"
                             onClick={buy}
                             >
-                                Purchase NFT
+                                Buy this work
                             </CallToAction>
                         </div>
                     ) : (
@@ -205,8 +217,13 @@ export default function Index() {
                       </div>
                     )) : (
                       <div className="name">
-                        You already own this NFT
+                        You own this NFT
                       </div>
+                    )}
+                    {msg1 && (
+                      <>
+                        Give us a moment to get this wrapping paper on right before you hand it off to you...
+                      </>
                     )}
                 
                 </div>
@@ -236,7 +253,7 @@ export default function Index() {
                     .image-preview {
                     border-radius: 8px;
                     max-width: 200px;
-                    max-height: 200px;
+                    max-height: 400px;
                     }
                     .name {
                         margin-top: 40px;
