@@ -47,11 +47,6 @@ export default function About() {
   return (
     <>
         <div className='one'>
-            <div className='logo'>
-            <Link href="/about">
-          <img src='/oustro_logo.svg' className='logo' />
-      </Link>
-            </div>
         <div className='two'>
             <Typical steps={['Publishing has never been easier or more rewarding', 1000,]} wrapper="h1"/>
         </div>
