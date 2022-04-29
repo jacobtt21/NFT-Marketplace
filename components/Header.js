@@ -75,7 +75,7 @@ const Header = () => {
                         }
                         size="sm"
                       >
-                        About
+                        Confused?
                       </CallToAction>
                     </Link>
                   </li>
