@@ -13,6 +13,7 @@ export default function NFTCard({ nft, price, status, types, star, num, going })
   const contract = new web3.eth.Contract(abi, contractAddress);
   const [newPrice, setNewPrice] = useState();
   const [disabled, setDisabled] = useState(false);
+  var path = '';
   const router = useRouter()
 
   const changePrice = async () => {
@@ -42,9 +43,16 @@ export default function NFTCard({ nft, price, status, types, star, num, going })
     }
   }
 
+  if (going) {
+    path = "/[id]";
+  }
+  else {
+    path = "/s/[id]"
+  }
+
   return (
     <>
-    <Link href={{pathname: '/[id]', query: { id: nft.tokenID }}}>
+    <Link href={{pathname: path, query: { id: nft.tokenID }}}>
       <div className="card">
         {going ? (
             <div className="name">

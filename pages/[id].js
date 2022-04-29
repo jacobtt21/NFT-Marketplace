@@ -37,7 +37,9 @@ export default function Index() {
   };
 
   const addRating = async () => {
-    setMsg(true)
+    setDisabled(true);
+    const errorsFound = await checkForErrors(1);
+    if (errorsFound) return setDisabled(false);
     if (parseInt(newRating) > 5 || parseInt(newRating) < 0) {
         createToast({
             message: 'Rating must be between 0 - 5',
@@ -49,21 +51,23 @@ export default function Index() {
         return setDisabled(false);
     }
     try {
-      setDisabled(true);
+      setMsg(true)
       const receipt = await contract.methods.rateNFT(parseInt(router.query.id), parseInt(newRating)).send({ from: user.publicAddress });
       console.log(receipt)
       setNewRating('');
       setDisabled(false);
       router.reload(window.location.pathname);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      setMsg(false);
       setDisabled(false);
     }
   }
 
   const buy = async () => {
+    setDisabled(true);
     const cost = theData.price;
-    const errorsFound = await checkForErrors();
+    const errorsFound = await checkForErrors(2);
     if (errorsFound) return setDisabled(false);
     try {
       setDisabled(true);
@@ -83,17 +87,24 @@ export default function Index() {
       router.reload(window.location.pathname);
     } catch (error) {
       console.log(error);
+      setMsg(false);
       setDisabled(false);
     }
   }
 
-  const checkForErrors = async () => {
+  const checkForErrors = async (val) => {
     // Throw error if missing input values
-    
+    var reason = '';
+    if (val === 1) {
+      reason = "Rate this Work"
+    }
+    else if (val === 2) {
+      reason = "Buy this NFT"
+    }
     // Throw error if user does not have enough ETH for gas fee
-    if (!(await hasEnoughFunds())) {
+    if (!(await hasEnoughFunds(val))) {
       createToast({
-        message: 'ETH Balance Too Low',
+        message: 'ETH Balance Too Low to ' + reason,
         type: 'error',
         lifespan: 2000,
       });
@@ -104,9 +115,9 @@ export default function Index() {
     return false;
   };
 
-  const hasEnoughFunds = async () => {
+  const hasEnoughFunds = async (val) => {
     const cost = theData.price;
-    const gasLimit = await calculateGasFee();
+    const gasLimit = await calculateGasFee(val);
     const weiBalance = await web3.eth.getBalance(user.publicAddress);
     const ethBalance = web3.utils.fromWei(weiBalance);
     const gasFeeInWei = (await web3.eth.getGasPrice()) * gasLimit;
@@ -119,16 +130,29 @@ export default function Index() {
     return false;
   };
 
-  const calculateGasFee = async () => {
+  const calculateGasFee = async (val) => {
     // Pass in 74 character string (roughly same as IPFS URL) for accurate gas limit estimate
-    return await contract.methods.transfer('0x0000000000000000000000000000000000000000', '0'.repeat(74), '0x0000000000000000000000000000000000000000').estimateGas(
-      {
-        from: user.publicAddress,
-      },
-      (error, estimatedGasLimit) => {
-        return estimatedGasLimit;
-      }
-    );
+    if (val === 2) {
+      return await contract.methods.transfer('0x0000000000000000000000000000000000000000', '0'.repeat(74), '0x0000000000000000000000000000000000000000').estimateGas(
+        {
+          from: user.publicAddress,
+        },
+        (error, estimatedGasLimit) => {
+          return estimatedGasLimit;
+        }
+      );
+    }
+    else if (val === 1) {
+      console.log("h")
+      return await contract.methods.rateNFT('0'.repeat(74), '0'.repeat(74)).estimateGas(
+        {
+          from: user.publicAddress,
+        },
+        (error, estimatedGasLimit) => {
+          return estimatedGasLimit;
+        }
+      );
+    }
   };
 
   return user ? (
@@ -167,7 +191,7 @@ export default function Index() {
                           
                         <TextField
                             disabled={disabled}
-                            placeholder="On a scale of 1 to 5, rate this piece, be honest."
+                            placeholder="Give this work a rating (on a scale to 0 - 5)"
                             type="number"
                             max="5"
                             min="0"

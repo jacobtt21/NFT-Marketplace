@@ -11,28 +11,28 @@ export default function About() {
           creator: "0x09516Eb251254aD5EF243E83e30E9395D5BcB2B6",
           image: "https://ipfs.infura.io/ipfs/QmYoUFVGijd47sCbzxmfjZHCi7Uos4DARYFZ4ceYiZcHSJ",
           name: "The Oustro Logo",
-          tokenID: '%2f',
+          tokenID: '1',
           work: "https://ipfs.infura.io/ipfs/QmYwmvJkj4FdvGPGoJmetvvSbYosjN24nf9u1gWHrcekpM"
         },
         {
           creator: "0x09516Eb251254aD5EF243E83e30E9395D5BcB2B6",
           image: "https://ipfs.infura.io/ipfs/QmYoUFVGijd47sCbzxmfjZHCi7Uos4DARYFZ4ceYiZcHSJ",
           name: "The Oustro Logo",
-          tokenID: "/",
+          tokenID: "1",
           work: "https://ipfs.infura.io/ipfs/QmYwmvJkj4FdvGPGoJmetvvSbYosjN24nf9u1gWHrcekpM"
         },
         {
           creator: "0x09516Eb251254aD5EF243E83e30E9395D5BcB2B6",
           image: "https://ipfs.infura.io/ipfs/QmYoUFVGijd47sCbzxmfjZHCi7Uos4DARYFZ4ceYiZcHSJ",
           name: "The Oustro Logo",
-          tokenID: "/",
+          tokenID: "1",
           work: "https://ipfs.infura.io/ipfs/QmYwmvJkj4FdvGPGoJmetvvSbYosjN24nf9u1gWHrcekpM"
         },
         {
           creator: "0x09516Eb251254aD5EF243E83e30E9395D5BcB2B6",
           image: "https://ipfs.infura.io/ipfs/QmYoUFVGijd47sCbzxmfjZHCi7Uos4DARYFZ4ceYiZcHSJ",
           name: "The Oustro Logo",
-          tokenID: "/",
+          tokenID: "1",
           work: "https://ipfs.infura.io/ipfs/QmYwmvJkj4FdvGPGoJmetvvSbYosjN24nf9u1gWHrcekpM"
         }
       ]

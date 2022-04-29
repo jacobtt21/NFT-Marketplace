@@ -83,7 +83,7 @@ function Mint() {
       const ipfsData = await client.add(data);
       const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
 
-      setTokenz("https://oustro.co/"+tIndex);
+      setTokenz("https://oustro.co/s/"+tIndex);
 
       setTxPending(true);
 

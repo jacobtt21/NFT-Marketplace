@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
   if (isMobile) {
     return (
-      <>
+      <div>
         <div className='name'>
           <h1>We're not Mobile ready yet, but we will be soon!</h1>
         </div>
@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }) {
             text-align: center;
           }
         `}</style>
-      </>
+      </div>
     )
   }
   
