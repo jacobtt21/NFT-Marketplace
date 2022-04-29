@@ -266,7 +266,7 @@ export default function Index() {
                     padding: 40px;
                     border-radius: 8px;
                     border: 1px solid #f9f9f9;
-                    box-shadow: rgba(0, 0, 0, 0.02) 0px 0px 16px;
+                    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 16px;
                     }
 
                     input[type=file], .image-preview {
