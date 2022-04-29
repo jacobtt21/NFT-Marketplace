@@ -5,10 +5,25 @@ import Layout from '../components/Layout';
 import Router, { useRouter } from 'next/router';
 import { ThemeProvider, ToastProvider, SSRProvider } from '@magiclabs/ui';
 import '@magiclabs/ui/dist/cjs/index.css';
+import {isMobile} from 'react-device-detect';
 
 function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState();
   const router = useRouter();
+  if (isMobile) {
+    return (
+      <>
+        <div className='name'>
+          <h1>We're not Mobile ready yet, but we will be soon!</h1>
+        </div>
+        <style jsx>{`
+          .name {
+            text-align: center;
+          }
+        `}</style>
+      </>
+    )
+  }
   
   // On each page load, check if user is logged in
   useEffect(() => {
