@@ -48,31 +48,37 @@ export default function Login() {
     <h1>Welcome to Oustro, we're excited to have you!</h1>
       <div className="login-container">
         <br />
+        <h3 className='form-header'>Start Here</h3>
+        <br />
         <TextField
           type="email"
           name="email"
-          label="Enter your email address"
           placeholder='you@example.com'
           required="required"
+          prefix={<Icon inline type={MonochromeIcons.Envelope} size={22} />}
           onChange={handleInputOnChange}
           disabled={isLoggingIn}
         />
         <br />
         <CallToAction
+          leadingIcon={MonochromeIcons.PaperPlane}
           color="primary"
           size="sm"
           onClick={login}
           disabled={isLoggingIn}
         >
-        Let's Go!
         </CallToAction>
         <br />
+        <div className='dis'>
+          <p>By signing up, you agree to our Terms & Privacy Policy.</p>
+        </div>
         <style>{`
           h1 {
             font-size: 45px;
             margin: 70px;
           }
           .login-container {
+            font-size: 35px;
             width: 380px;
             margin: 0 auto;
             border-radius: 30px;
@@ -92,6 +98,12 @@ export default function Login() {
         .landing {
           text-align:center;
           font-size:50px
+        }
+
+        .dis {
+          margin-top: 9px;
+          margin-bottom: 9px;
+          font-size: 11px;
         }
 
         .footer {
