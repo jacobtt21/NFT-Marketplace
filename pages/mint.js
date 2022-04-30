@@ -191,9 +191,7 @@ function Mint() {
       ) : (
         <>
           <h1>Publishing has never been easier.</h1>
-          <p>The decentralized web will never see what you have in store for them. Create an NFT of something actually meaningful
-            to share with the world. We're so excited! 
-          </p>
+          <br />
           <div className="mint-container">
             <TextField
               disabled={disabled}

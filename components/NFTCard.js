@@ -173,6 +173,7 @@ export default function NFTCard({ nft, price, status, types, star, num, going })
         }
 
         .nft-img-container {
+          margin-top: 10px;
           min-width: 200px;
           min-height: 200px;
           display: flex;
@@ -182,7 +183,7 @@ export default function NFTCard({ nft, price, status, types, star, num, going })
 
         .nft-img {
           max-width: 200px;
-          max-height: 400px;
+          max-height: 200px;
           cursor: pointer;
           border-radius: 8px;
         }

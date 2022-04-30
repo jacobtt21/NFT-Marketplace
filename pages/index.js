@@ -111,10 +111,13 @@ export default function Index() {
 
     const uriList = await contract.methods.getEverything().call();
 
+    console.log(uriList)
+
     let prices = [];
     let onMarket = [];
     let nums = [];
-    let stars = []
+    let stars = [];
+    let nfts = [];
 
     const array = new Array(uriList.length).fill(0);
     var i = 0;
@@ -124,18 +127,10 @@ export default function Index() {
       onMarket[i] = uriList[i][6];
       nums[i] = uriList[i][5];
       stars[i] = uriList[i][4];
+      const response = await fetch(uriList[i].data);
+      const data = await response.json();
+      nfts.push(data);
     }
-
-    let nfts = [];
-
-    // Call IPFS url for metadata of each NFT (json object containing name & image)
-    await Promise.all(
-      array.map(async (uri) => {
-        const response = await fetch(uri);
-        const data = await response.json();
-        nfts.push(data);
-      })
-    );
 
     setAllNFTs(nfts);
     setAllPrices(prices);

@@ -10,6 +10,7 @@ import {isMobile} from 'react-device-detect';
 function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState();
   const router = useRouter();
+  
   if (isMobile) {
     return (
       <div>

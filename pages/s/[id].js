@@ -22,12 +22,11 @@ export default function Index() {
   const contract = new web3.eth.Contract(abi, contractAddress);
 
   useEffect(() => {
-    if (user) return;
+    if (!router.query.id) return;
     getMyNFT();
   }, [user]);
 
   const getMyNFT = async () => {
-    
     const nft = await contract.methods.getNFTbyId(parseInt(router.query.id)).call();
     const response = await fetch(nft[0]);
     const data = await response.json();

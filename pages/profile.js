@@ -33,26 +33,18 @@ export default function Index() {
     let onMarket = []
     let nums = [];
     let stars = []
-    const array = new Array(tokenURIs.length).fill(0);
+    let nfts = [];
+
     var i = 0;
     for (i = 0; i < tokenURIs.length; ++i) {
-      array[i] = tokenURIs[i][0];
       prices[i] = tokenURIs[i][2];
       onMarket[i] = tokenURIs[i][6];
       nums[i] = tokenURIs[i][5];
       stars[i] = tokenURIs[i][4];
+      const response = await fetch(tokenURIs[i].data);
+      const data = await response.json();
+      nfts.push(data);
     }
-
-    let nfts = [];
-
-    // Call IPFS url for metadata of each NFT (json object containing name & image)
-    await Promise.all(
-      array.map(async (uri) => {
-        const response = await fetch(uri);
-        const data = await response.json();
-        nfts.push(data);
-      })
-    );
 
     setMyNFTs(nfts);
     setMyPrices(prices);

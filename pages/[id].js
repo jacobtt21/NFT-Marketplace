@@ -71,6 +71,7 @@ export default function Index() {
     if (errorsFound) return setDisabled(false);
     try {
       setDisabled(true);
+      setMsg1(true);
       await web3.eth.sendTransaction({
         from: user.publicAddress,
         to: theData.owner,
@@ -84,10 +85,11 @@ export default function Index() {
       const receipt = await contract.methods.transfer(user.publicAddress, parseInt(router.query.id), theData.owner).send({ from: user.publicAddress });
       console.log(receipt)
       setDisabled(false);
+      setMsg1(false);
       router.reload(window.location.pathname);
     } catch (error) {
       console.log(error);
-      setMsg(false);
+      setMsg1(false);
       setDisabled(false);
     }
   }
@@ -171,6 +173,7 @@ export default function Index() {
                     </Link>
                     <h1>{theNFT.name}</h1>
                     <h3>Price: {web3.utils.fromWei(theData.price)} rETH</h3>
+                    <br />
                     <Link href={theNFT.work}>
                         <img
                             src={theNFT.image}
@@ -179,6 +182,7 @@ export default function Index() {
                             onError={(e) => (e.target.src = '/fallback.jpeg')}
                         />
                     </Link>
+                    <div className='name'>
                     <CallToAction
                     color="primary"
                     size="sm"
@@ -186,6 +190,7 @@ export default function Index() {
                     >
                       { theData.rating } / 5 Rating
                     </CallToAction>
+                    </div>
                     {theNFT.Creator != user.publicAddress ? (
                         <div className="name">
                           
@@ -211,7 +216,9 @@ export default function Index() {
                         <br />
                         {msg && (
                           <>
+                          <div className="name">
                             Give us a sec, we're explaining to the smart contract why you gave it this rating...
+                          </div>
                           </>
                         )}
                         </div>
@@ -279,6 +286,14 @@ export default function Index() {
                     max-width: 200px;
                     max-height: 400px;
                     }
+
+                    .nft-img {
+                      max-width: 400px;
+                      max-height: 400px;
+                      cursor: pointer;
+                      border-radius: 8px;
+                    }
+                    
                     .name {
                         margin-top: 40px;
                         text-align: center;
