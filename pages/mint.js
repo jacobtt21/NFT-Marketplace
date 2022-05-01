@@ -190,7 +190,7 @@ function Mint() {
         <Loading />
       ) : (
         <>
-          <h1>Publishing has never been easier.</h1>
+          <h1>If only everything was as easy as publishing on Oustro</h1>
           <br />
           <div className="mint-container">
             <TextField
@@ -205,8 +205,10 @@ function Mint() {
 
             <br />
             <br />
-
-            <p>Upload an image as a thumbnail for your work!</p>
+            <div className='nname'>
+              <p>Upload an image as a thumbnail for your work!</p>
+            </div>
+            <p>(200 x 400 Pixel works best)</p>
             <br />
             <input
               type="file"
@@ -218,7 +220,13 @@ function Mint() {
             ></input>
 
             <br />
-            <p><b>Upload a PDF of your work!</b></p>
+            <br />
+            <br />
+            <br />
+            <div className='nname'>
+              <p>Upload your work!</p>
+            </div>
+            <p>(PDF file format)</p>
             <br />
             <input
               type="file"
@@ -228,6 +236,9 @@ function Mint() {
               disabled={disabled}
               required="required"
             ></input>
+            <br />
+            <br />
+            <br />
             <br />
             <TextField
             disabled={disabled}
@@ -240,6 +251,9 @@ function Mint() {
             />
 
             <br />
+            <br />
+            <br />
+            <br />
             <CallToAction
             color="primary"
             size="sm"
@@ -248,7 +262,6 @@ function Mint() {
             >
             Mint this NFT
             </CallToAction>
-
             <div style={{ marginTop: '30px' }}>
               {txPending && (
                 <>
@@ -282,15 +295,17 @@ function Mint() {
           min-height: 28px;
         }
         p {
-          margin: 20px;
           min-height: 28px;
+        }
+        .info {
+          magrin: 20px;
         }
       
         .mint-container {
           max-width: 400px;
           text-align: center;
           margin: 0 auto;
-          padding: 40px;
+          padding: 30px;
           border-radius: 8px;
           border: 1px solid #f9f9f9;
           box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 16px;
@@ -298,13 +313,18 @@ function Mint() {
 
         input[type=file], .image-preview {
           display: block;
-          margin: 20px 5px;
+          margin: 5px 5px;
         }
 
         .image-preview {
           border-radius: 8px;
           max-width: 200px;
           max-height: 200px;
+        }
+
+        .nname {
+          font-weight: bold;
+          margin-top: 15px;
         }
         .name {
           margin-top: 10px;

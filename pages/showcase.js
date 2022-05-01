@@ -54,7 +54,7 @@ export default function About() {
             Mint NFTs of your work and sell them, all on Oustro
         </div>
         Check out some of the featured works by creators on Oustro
-      <Grid loading={loading} nfts={allNFTs} prices={allPrices} statuses={allStatus} type={true} stars={allStars} nums={allNums} go={false}/>
+      <Grid loading={loading} nfts={allNFTs} prices={allPrices} statuses={allStatus} type={true} stars={allStars} nums={allNums} go={false} takeAway={true}/>
       <div className='Imagine'>
         <Link href="/login">
           <CallToAction

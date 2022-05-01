@@ -58,7 +58,7 @@ export default function Index() {
     <div>
       <h1>Your rocking collection of works</h1>
       <p>Interesting taste...we're not judging, just noticing.</p>
-      <Grid loading={loading} nfts={myNFTs} prices={myPrices} statuses={myStatus} type={false} stars={myStars} nums={myNums} go={true} />
+      <Grid loading={loading} nfts={myNFTs} prices={myPrices} statuses={myStatus} type={false} stars={myStars} nums={myNums} go={true} takeAway={false} />
       <style>{`
         h1 {
           font-weight: bold;

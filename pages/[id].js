@@ -284,7 +284,7 @@ export default function Index() {
                     .image-preview {
                     border-radius: 8px;
                     max-width: 200px;
-                    max-height: 400px;
+                    max-height: 200px;
                     }
 
                     .nft-img {
