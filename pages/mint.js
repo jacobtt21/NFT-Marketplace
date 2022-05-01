@@ -305,7 +305,7 @@ function Mint() {
           max-width: 400px;
           text-align: center;
           margin: 0 auto;
-          padding: 30px;
+          padding: 40px;
           border-radius: 8px;
           border: 1px solid #f9f9f9;
           box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 16px;
