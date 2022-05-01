@@ -56,6 +56,7 @@ export default function Index() {
                             className="nft-img"
                             onError={(e) => (e.target.src = '/fallback.jpeg')}
                         />
+                        <br />
                     <CallToAction
                     color="primary"
                     size="sm"
@@ -94,7 +95,15 @@ export default function Index() {
                     .image-preview {
                     border-radius: 8px;
                     max-width: 200px;
-                    max-height: 400px;
+                    max-height: 200px;
+                    }
+
+                    .nft-img {
+                      max-width: 400px;
+                      max-height: 400px;
+                      cursor: pointer;
+                      border-radius: 8px;
+                      margin: 25px;
                     }
                     .name {
                         margin-top: 40px;

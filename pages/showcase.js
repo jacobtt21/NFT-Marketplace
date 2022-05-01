@@ -15,11 +15,11 @@ export default function About() {
           work: "https://ipfs.infura.io/ipfs/QmYwmvJkj4FdvGPGoJmetvvSbYosjN24nf9u1gWHrcekpM"
         },
         {
-          creator: "0x09516Eb251254aD5EF243E83e30E9395D5BcB2B6",
-          image: "https://ipfs.infura.io/ipfs/QmYoUFVGijd47sCbzxmfjZHCi7Uos4DARYFZ4ceYiZcHSJ",
-          name: "The Oustro Logo",
-          tokenID: "1",
-          work: "https://ipfs.infura.io/ipfs/QmYwmvJkj4FdvGPGoJmetvvSbYosjN24nf9u1gWHrcekpM"
+          creator: "0xdb522DfF03A9ae5Bb79F97b742512820760a5B94",
+          image: "https://ipfs.infura.io/ipfs/Qmc7DQjuQcPuxfVos99Vw9tEURDKGsLD9gC34ZoZ3ayVtp",
+          name: "BONNY - Day 1 Call Sheet",
+          tokenID: "2",
+          work: "https://bafybeihjdpb6x3lnipn3wnezfz63mz435oljydhqfjlw2yf7ljakxgiymq.ipfs.infura-ipfs.io/"
         },
         {
           creator: "0x09516Eb251254aD5EF243E83e30E9395D5BcB2B6",
@@ -29,11 +29,11 @@ export default function About() {
           work: "https://ipfs.infura.io/ipfs/QmYwmvJkj4FdvGPGoJmetvvSbYosjN24nf9u1gWHrcekpM"
         },
         {
-          creator: "0x09516Eb251254aD5EF243E83e30E9395D5BcB2B6",
-          image: "https://ipfs.infura.io/ipfs/QmYoUFVGijd47sCbzxmfjZHCi7Uos4DARYFZ4ceYiZcHSJ",
-          name: "The Oustro Logo",
-          tokenID: "1",
-          work: "https://ipfs.infura.io/ipfs/QmYwmvJkj4FdvGPGoJmetvvSbYosjN24nf9u1gWHrcekpM"
+          creator: "0xdb522DfF03A9ae5Bb79F97b742512820760a5B94",
+          image: "https://ipfs.infura.io/ipfs/Qmc7DQjuQcPuxfVos99Vw9tEURDKGsLD9gC34ZoZ3ayVtp",
+          name: "BONNY - Day 1 Call Sheet",
+          tokenID: "2",
+          work: "https://bafybeihjdpb6x3lnipn3wnezfz63mz435oljydhqfjlw2yf7ljakxgiymq.ipfs.infura-ipfs.io/"
         }
       ]
 
