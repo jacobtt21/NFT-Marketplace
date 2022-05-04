@@ -17,7 +17,8 @@ function Mint() {
   const [mintStatus, setMintStatus] = useState('');
   const [ipfsWorkUrl, setIpfsWorkUrl] = useState('');
   const [price, setPrice] = useState();
-  const [inti, setInti] = useState();
+  const [inti, setInti] = useState(0);
+  const [wait, setWait] = useState();
   const imageInputRef = useRef();
   const workInputRef = useRef();
   const { createToast } = useToast();
@@ -175,7 +176,7 @@ function Mint() {
     // Pass in 74 character string (roughly same as IPFS URL) for accurate gas limit estimate
     return await contract.methods.createNFT('0'.repeat(74), '0'.repeat(74)).estimateGas(
       {
-        from: user.publicAddress,
+        from: '0x4cB72Dca5C9299714bBf0D6D8F61d5B979a96940',
       },
       (error, estimatedGasLimit) => {
         return estimatedGasLimit;
@@ -211,6 +212,11 @@ function Mint() {
       ) : (
         <>
           <h1>If only everything was as easy as publishing on Oustro</h1>
+          {inti === 0 ? (
+            <h2>Current Cost to Mint: -- ETH</h2>
+          ) : (
+            <h2>Current Cost to Mint: {(inti.toString()).substring(0, 6)} ETH</h2>
+          )}
           <br />
           <div className="mint-container">
             <TextField
@@ -280,7 +286,7 @@ function Mint() {
             onClick={mintNFT}
             disabled={disabled}
             >
-            Mint NFT for {(inti.toString()).substring(0,6)} ETH
+            Mint NFT
             </CallToAction>
             <div style={{ marginTop: '30px' }}>
               {txPending && (
@@ -311,6 +317,12 @@ function Mint() {
         h1 {
           font-weight: bold;
           font-size: 28px;
+          margin: 20px;
+          min-height: 28px;
+        }
+
+        h2 {
+          font-size: 20px;
           margin: 20px;
           min-height: 28px;
         }

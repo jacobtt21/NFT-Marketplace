@@ -111,8 +111,6 @@ export default function Index() {
 
     const uriList = await contract.methods.getEverything().call();
 
-    console.log(uriList)
-
     let prices = [];
     let onMarket = [];
     let nums = [];
