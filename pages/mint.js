@@ -299,6 +299,8 @@ function Mint() {
                 <div className='name'>
                   Thank you for your contribution to the Oustro Library of Work!
                 </div>
+                <br />
+                <br />
                   <CallToAction
                       color="primary"
                       size="sm"
