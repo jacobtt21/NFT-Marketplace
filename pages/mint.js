@@ -176,7 +176,7 @@ function Mint() {
     // Pass in 74 character string (roughly same as IPFS URL) for accurate gas limit estimate
     return await contract.methods.createNFT('0'.repeat(74), '0'.repeat(74)).estimateGas(
       {
-        from: '0x4cB72Dca5C9299714bBf0D6D8F61d5B979a96940',
+        from: user.publicAddress,
       },
       (error, estimatedGasLimit) => {
         return estimatedGasLimit;
@@ -200,9 +200,11 @@ function Mint() {
     return result
   }
 
-  (async () => {
-    setInti(await mainFunction())
-  })()
+  if (user) {
+    (async () => {
+      setInti(await mainFunction())
+    })()
+  }
   
 
   return (
