@@ -1,4 +1,4 @@
-import { useState, useContext, useRef } from 'react';
+import { useState, useContext, useRef, useCallback } from 'react';
 import { UserContext } from '../lib/UserContext';
 import { web3 } from '../lib/magic';
 import { abi } from '../contracts/abi';
@@ -17,6 +17,7 @@ function Mint() {
   const [mintStatus, setMintStatus] = useState('');
   const [ipfsWorkUrl, setIpfsWorkUrl] = useState('');
   const [price, setPrice] = useState();
+  const [inti, setInti] = useState();
   const imageInputRef = useRef();
   const workInputRef = useRef();
   const { createToast } = useToast();
@@ -46,6 +47,7 @@ function Mint() {
   }
 
   async function onWorkUpload(e) {
+    await getPrice;
     const file = e.target.files[0];
     try {
       const ipfsData = await client.add(file);
@@ -161,6 +163,14 @@ function Mint() {
     return false;
   };
 
+  const getPrice = async () => {
+    const gasLimit = await calculateGasFee();
+    const gasFeeInWei = (await web3.eth.getGasPrice()) * gasLimit;
+    const gasFeeInEth = web3.utils.fromWei(gasFeeInWei.toString());
+    const neededFunds = gasFeeInEth * 1.05;
+    return neededFunds;
+  };
+
   const calculateGasFee = async () => {
     // Pass in 74 character string (roughly same as IPFS URL) for accurate gas limit estimate
     return await contract.methods.createNFT('0'.repeat(74), '0'.repeat(74)).estimateGas(
@@ -183,6 +193,16 @@ function Mint() {
     imageInputRef.current.value = '';
     workInputRef.current.value = '';
   };
+
+  const mainFunction = async () => {
+    const result = await getPrice()
+    return result
+  }
+
+  (async () => {
+    setInti(await mainFunction())
+  })()
+  
 
   return (
     <div>
@@ -260,7 +280,7 @@ function Mint() {
             onClick={mintNFT}
             disabled={disabled}
             >
-            Mint this NFT
+            Mint NFT for {(inti.toString()).substring(0,6)} ETH
             </CallToAction>
             <div style={{ marginTop: '30px' }}>
               {txPending && (
