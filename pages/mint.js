@@ -214,11 +214,6 @@ function Mint() {
       ) : (
         <>
           <h1>If only everything was as easy as publishing on Oustro</h1>
-          {inti === 0 ? (
-            <h2>Current Cost to Mint: -- ETH</h2>
-          ) : (
-            <h2>Current Cost to Mint: {(inti.toString()).substring(0, 6)} ETH</h2>
-          )}
           <br />
           <div className="mint-container">
             <TextField
@@ -282,14 +277,25 @@ function Mint() {
             <br />
             <br />
             <br />
-            <CallToAction
-            color="primary"
-            size="sm"
-            onClick={mintNFT}
-            disabled={disabled}
-            >
-            Mint NFT
-            </CallToAction>
+            {inti === 0 ? (
+              <CallToAction
+              color="primary"
+              size="sm"
+              onClick={mintNFT}
+              disabled={disabled}
+              >
+              Mint NFT for -- ETH
+              </CallToAction>
+              ) : (
+                <CallToAction
+                color="primary"
+                size="sm"
+                onClick={mintNFT}
+                disabled={disabled}
+                >
+                Mint NFT for {(inti.toString()).substring(0, 6)} ETH
+                </CallToAction>
+            )}
             <div style={{ marginTop: '30px' }}>
               {txPending && (
                 <>
