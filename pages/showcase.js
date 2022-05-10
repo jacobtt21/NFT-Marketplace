@@ -24,7 +24,7 @@ export default function About() {
         {
           creator: "0x128e33e92e46CeE465E16c91eC27931d2e8Bb483",
           image: "https://bafybeidu7w3fqpspse2st2c2yx7j7ztssk3kn3irz27ql3jdffl2tkmcde.ipfs.infura-ipfs.io/",
-          name: "The Oustro Logo",
+          name: "An Anthology of the Internet. Vol I",
           tokenID: "6",
           work: "https://bafybeifvs6f2nzogryghm4ochmggnjmidrj573aguw76gkzbjepvx4wb4y.ipfs.infura-ipfs.io/"
         },
