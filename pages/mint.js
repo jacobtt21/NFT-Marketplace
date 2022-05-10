@@ -231,7 +231,7 @@ function Mint() {
             <div className='nname'>
               <p>Upload an image as a thumbnail for your work!</p>
             </div>
-            <p>(600 x 400 Pixel (width x heigth) works best)</p>
+            <p>(500 x 500 Pixel works best)</p>
             <br />
             <input
               type="file"
