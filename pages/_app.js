@@ -10,12 +10,14 @@ import {isMobile} from 'react-device-detect';
 function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState();
   const router = useRouter();
+  const [flag, setFlag] = useState();
+
   
-  if (isMobile) {
-    const href = "www.google.com"
-    router.push(href);
+  // if (isMobile) {
+  //   const href = "www.google.com"
+  //   router.push(href);
       
-  }
+  // }
   
   // On each page load, check if user is logged in
   useEffect(() => {
@@ -24,13 +26,16 @@ function MyApp({ Component, pageProps }) {
         magic.user.getMetadata().then(setUser);
       } else {
         if (router.pathname === '/about') {
-          Router.push('/about');
+          setFlag(1);
+        }
+        else if (router.pathname === '/tank') {
+          setFlag(2);
         }
         else if (router.pathname === '/showcase') {
-          Router.push('/showcase');
+          setFlag(3);
         }
         else if (router.pathname === '/') {
-          Router.push('/showcase');
+          setFlag(3);
         }
         else if (router.pathname !== '/callback') {
           Router.push('/login');
@@ -39,6 +44,16 @@ function MyApp({ Component, pageProps }) {
       }
     });
   }, []);
+
+  if (flag == 1) {
+    Router.push('/about');
+  }
+  else if (flag == 2) {
+    Router.push('/about');
+  }
+  else if (flag == 3) {
+    Router.push('/showcase');
+  }
 
   return (
     <SSRProvider>
