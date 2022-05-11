@@ -24,7 +24,7 @@ export default function Index() {
   useEffect(() => {
     if (!router.query.id) return;
     getMyNFT();
-  }, [user]);
+  }, [router.query.id]);
 
   const getMyNFT = async () => {
     const nft = await contract.methods.getNFTbyId(parseInt(router.query.id)).call();
@@ -39,7 +39,18 @@ export default function Index() {
         {theData ? (
             <>
                 <div className="mint-container">
-                <Link href="/login">
+                {user ? (
+                  <Link href={{pathname: '/[id]', query: { id: router.query.id }}}>
+                  
+                  <CallToAction
+                    color="primary"
+                    >
+                    Take a closer look &rarr;
+                    </CallToAction>
+                  
+                      </Link>
+                ) : (
+                  <Link href="/login">
                   
                 <CallToAction
                   color="primary"
@@ -48,6 +59,7 @@ export default function Index() {
                   </CallToAction>
                 
                     </Link>
+                )}
                     <h1>{theNFT.name}</h1>
                     <h3>Price: {web3.utils.fromWei(theData.price)} rETH</h3>
                         <img
