@@ -12,18 +12,9 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
   
   if (isMobile) {
-    return (
-      <div>
-        <div className='name'>
-          <h1>We're not Mobile ready yet, but we will be soon!</h1>
-        </div>
-        <style jsx>{`
-          .name {
-            text-align: center;
-          }
-        `}</style>
-      </div>
-    )
+    const href = "www.google.com"
+    router.push(href);
+      
   }
   
   // On each page load, check if user is logged in
