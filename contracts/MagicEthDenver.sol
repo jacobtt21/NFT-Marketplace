@@ -38,7 +38,7 @@ contract Oustro is ERC721URIStorage {
                 newTokenId,
                 0,
                 0,
-                true
+                false
             )
         );
 

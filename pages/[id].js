@@ -242,14 +242,6 @@ export default function Index() {
                             Submit Your Rating for {(inti.toString()).substring(0, 6)} ETH
                         </TextButton>
                         )}
-                        {/* <TextButton
-                        disabled={disabled}
-                        color="primary"
-                        size="sm"
-                        onClick={addRating}
-                        >
-                            Submit Your Rating
-                        </TextButton> */}
                         <br />
                         <br />
                         {msg && (

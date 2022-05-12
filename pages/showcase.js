@@ -8,32 +8,32 @@ export default function About() {
     const [loading, setLoading] = useState(false);
     const allNFTs = [
         {
-          creator: "0x09516Eb251254aD5EF243E83e30E9395D5BcB2B6",
-          image: "https://ipfs.infura.io/ipfs/QmYoUFVGijd47sCbzxmfjZHCi7Uos4DARYFZ4ceYiZcHSJ",
-          name: "The Oustro Logo",
-          tokenID: '1',
-          work: "https://ipfs.infura.io/ipfs/QmYwmvJkj4FdvGPGoJmetvvSbYosjN24nf9u1gWHrcekpM"
+          creator: "0x4feE4e9F9B253058103a5014cFd106F0eC4950E8",
+          image: "https://bafybeid46x24mfghxs3phs54veor3zrszqlrf7qowqkjnu7w4wmzcba2ia.ipfs.infura-ipfs.io/",
+          name: "Quasr Whitepaper",
+          tokenID: '4',
+          work: "https://bafybeie5srm3bac476dokid2sde4xqxxfthfll4uqqz2qfcowsmigw673y.ipfs.infura-ipfs.io/"
         },
         {
-          creator: "0xdb522DfF03A9ae5Bb79F97b742512820760a5B94",
-          image: "https://ipfs.infura.io/ipfs/Qmc7DQjuQcPuxfVos99Vw9tEURDKGsLD9gC34ZoZ3ayVtp",
-          name: "BONNY - Day 1 Call Sheet",
-          tokenID: "2",
-          work: "https://bafybeihjdpb6x3lnipn3wnezfz63mz435oljydhqfjlw2yf7ljakxgiymq.ipfs.infura-ipfs.io/"
+          creator: "0x09516Eb251254aD5EF243E83e30E9395D5BcB2B6",
+          image: "https://bafybeie3oo42g3ba4jchrcj2m4uz7rs3vqz22xclzw5wiffadx2cklw3km.ipfs.infura-ipfs.io/",
+          name: "The first NFT on Oustro",
+          tokenID: "1",
+          work: "https://bafybeiakxs65n7vvw6gd4urkoqbjgpji7paf4pabqn4d72rgfmd7z3ftii.ipfs.infura-ipfs.io/"
         },
         {
           creator: "0x128e33e92e46CeE465E16c91eC27931d2e8Bb483",
-          image: "https://bafybeidu7w3fqpspse2st2c2yx7j7ztssk3kn3irz27ql3jdffl2tkmcde.ipfs.infura-ipfs.io/",
-          name: "An Anthology of the Internet. Vol I",
-          tokenID: "6",
-          work: "https://bafybeifvs6f2nzogryghm4ochmggnjmidrj573aguw76gkzbjepvx4wb4y.ipfs.infura-ipfs.io/"
+          image: "https://bafybeicaak65tbrz3hqwxyzb36nfizadmau3hyyyifdfjccigeaovpat3a.ipfs.infura-ipfs.io/",
+          name: "Spacetime, to infinity and the farm",
+          tokenID: "2",
+          work: "https://bafybeiegkxna2cysmky7dlx4vkmrlj5bje6n2k6yoambbmm5vd5xqab3jy.ipfs.infura-ipfs.io/"
         },
         {
-          creator: "0xdb522DfF03A9ae5Bb79F97b742512820760a5B94",
-          image: "https://ipfs.infura.io/ipfs/Qmc7DQjuQcPuxfVos99Vw9tEURDKGsLD9gC34ZoZ3ayVtp",
-          name: "BONNY - Day 1 Call Sheet",
-          tokenID: "2",
-          work: "https://bafybeihjdpb6x3lnipn3wnezfz63mz435oljydhqfjlw2yf7ljakxgiymq.ipfs.infura-ipfs.io/"
+          creator: "0x4feE4e9F9B253058103a5014cFd106F0eC4950E8",
+          image: "https://bafybeig577fpz72sszvjurhki3ru2chgmm6yyrhj4psxxr7gr4uirxb6xq.ipfs.infura-ipfs.io/",
+          name: "An Anthology of the Internet. Vol I",
+          tokenID: "3",
+          work: "https://bafybeiakxs65n7vvw6gd4urkoqbjgpji7paf4pabqn4d72rgfmd7z3ftii.ipfs.infura-ipfs.io/"
         }
       ]
 

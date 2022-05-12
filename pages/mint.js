@@ -6,6 +6,7 @@ import { create } from 'ipfs-http-client';
 import { TextField, CallToAction, useToast, TextButton } from '@magiclabs/ui';
 import Loading from '../components/Loading';
 import algoliasearch from 'algoliasearch';
+import Link from 'next/link'
 
 function Mint() {
   const [user] = useContext(UserContext);
@@ -213,6 +214,7 @@ function Mint() {
       ) : (
         <>
           <h1>If only everything was as easy as publishing on Oustro</h1>
+          <h2>Make sure everything is correct, minting cannot be undone.</h2>
           <br />
           <div className="mint-container">
             <TextField
@@ -242,6 +244,9 @@ function Mint() {
             ></input>
 
             <br />
+            {ipfsImageUrl && (
+              <img className="image-preview" src={ipfsImageUrl} />
+            )}
             <br />
             <br />
             <br />
@@ -259,6 +264,17 @@ function Mint() {
               required="required"
             ></input>
             <br />
+            {ipfsWorkUrl && (
+              <Link href={ipfsWorkUrl}>
+              <a target="_blank">
+            <CallToAction
+              color="primary"
+              >
+              Check Work &rarr;
+              </CallToAction>
+              </a>
+                </Link>
+            )}
             <br />
             <br />
             <br />
@@ -272,7 +288,7 @@ function Mint() {
             required="required"
             />
             <br />
-            By Default NFTs are put on the marketplace, this can be changed in
+            By Default NFTs are not put on the marketplace, this can be changed in
             'Your Collection' tab.
 
             <br />
@@ -298,6 +314,7 @@ function Mint() {
                 Mint NFT for {(inti.toString()).substring(0, 6)} ETH
                 </CallToAction>
             )}
+            
             <div style={{ marginTop: '30px' }}>
               {txPending && (
                 <>
@@ -334,7 +351,7 @@ function Mint() {
         }
 
         h2 {
-          font-size: 20px;
+          font-size: 16px;
           margin: 20px;
           min-height: 28px;
         }
@@ -364,6 +381,7 @@ function Mint() {
           border-radius: 8px;
           max-width: 200px;
           max-height: 200px;
+          margin: auto;
         }
 
         .nname {
