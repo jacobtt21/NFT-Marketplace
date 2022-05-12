@@ -270,7 +270,7 @@ function Mint() {
             <CallToAction
               color="primary"
               >
-              Check Work &rarr;
+              Check Your Work &rarr;
               </CallToAction>
               </a>
                 </Link>
