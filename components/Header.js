@@ -47,7 +47,7 @@ const Header = () => {
             <div className="nav-container">
                 <div className="nav-div">
                   <li>
-                    <Link href="/about">
+                    <Link href="/showcase">
                       <img src='/oustro_logo.svg' className='logo' />
                     </Link>
                   </li>

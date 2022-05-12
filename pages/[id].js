@@ -9,7 +9,7 @@ import Link from 'next/link'
 
 
 export default function Index() {
-    const [disabled, setDisabled] = useState(false);
+  const [disabled, setDisabled] = useState(false);
   const [user] = useContext(UserContext);
   const router = useRouter();
   const [theNFT, setTheNFT] = useState();
@@ -18,6 +18,7 @@ export default function Index() {
   const [msg, setMsg] = useState(false);
   const [msg1, setMsg1] = useState(false);
   const { createToast } = useToast();
+  const [inti, setInti] = useState(0);
 
   useEffect(() => {
     if (!user) return;
@@ -132,6 +133,14 @@ export default function Index() {
     return false;
   };
 
+  const getPrice = async (val) => {
+    const gasLimit = await calculateGasFee(val);
+    const gasFeeInWei = (await web3.eth.getGasPrice()) * gasLimit;
+    const gasFeeInEth = web3.utils.fromWei(gasFeeInWei.toString());
+    const neededFunds = gasFeeInEth;
+    return neededFunds;
+  };
+
   const calculateGasFee = async (val) => {
     // Pass in 74 character string (roughly same as IPFS URL) for accurate gas limit estimate
     if (val === 2) {
@@ -145,7 +154,6 @@ export default function Index() {
       );
     }
     else if (val === 1) {
-      console.log("h")
       return await contract.methods.rateNFT('0'.repeat(74), '0'.repeat(74)).estimateGas(
         {
           from: user.publicAddress,
@@ -156,6 +164,17 @@ export default function Index() {
       );
     }
   };
+
+  const mainFunction = async () => {
+    const result = await getPrice(1)
+    return result
+  }
+
+  if (user) {
+    (async () => {
+      setInti(await mainFunction())
+    })()
+  }
 
   return user ? (
     <div>
@@ -204,14 +223,33 @@ export default function Index() {
                             value={newRating}
                         />
                         <br />
+                        {inti === 0 ? (
+                          <TextButton
+                        disabled={disabled}
+                        color="primary"
+                        size="sm"
+                        onClick={addRating}
+                        >
+                            Submit Your Rating for -- ETH
+                        </TextButton>
+                        ) : (
                         <TextButton
                         disabled={disabled}
                         color="primary"
                         size="sm"
                         onClick={addRating}
                         >
-                            Submit Your Rating
+                            Submit Your Rating for {(inti.toString()).substring(0, 6)} ETH
                         </TextButton>
+                        )}
+                        {/* <TextButton
+                        disabled={disabled}
+                        color="primary"
+                        size="sm"
+                        onClick={addRating}
+                        >
+                            Submit Your Rating
+                        </TextButton> */}
                         <br />
                         <br />
                         {msg && (

@@ -33,7 +33,7 @@ export default function Index() {
   const Hit = ({ hit }) => (
     <>
       <div className="card">
-        <Link href={hit.work}>
+        <Link href={{pathname: '/[id]', query: { id: hit.tokenID }}}>
           <div className="nft-img-container">
             <img
             src={hit.image}

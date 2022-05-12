@@ -18,7 +18,6 @@ function Mint() {
   const [ipfsWorkUrl, setIpfsWorkUrl] = useState('');
   const [price, setPrice] = useState();
   const [inti, setInti] = useState(0);
-  const [wait, setWait] = useState();
   const imageInputRef = useRef();
   const workInputRef = useRef();
   const { createToast } = useToast();
@@ -272,6 +271,9 @@ function Mint() {
             value={price}
             required="required"
             />
+            <br />
+            By Default NFTs are put on the marketplace, this can be changed in
+            'Your Collection' tab.
 
             <br />
             <br />

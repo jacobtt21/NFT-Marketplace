@@ -45,10 +45,10 @@ export default function Login() {
   return (
     <>
     <div className='landing'>
-    <h1>Welcome to Oustro, we're excited to have you!</h1>
+    <h1>Chapter 1: The Gates of Oustro</h1>
       <div className="login-container">
         <br />
-        <h3 className='form-header'>Start Here</h3>
+        <h3 className='form-header'>Login / Sign up</h3>
         <br />
         <TextField
           type="email"
@@ -67,6 +67,7 @@ export default function Login() {
           onClick={login}
           disabled={isLoggingIn}
         >
+          Send Magic Link
         </CallToAction>
         <br />
         <div className='dis'>
