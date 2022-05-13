@@ -5,7 +5,6 @@ import Layout from '../components/Layout';
 import Router, { useRouter } from 'next/router';
 import { ThemeProvider, ToastProvider, SSRProvider } from '@magiclabs/ui';
 import '@magiclabs/ui/dist/cjs/index.css';
-import {isMobile} from 'react-device-detect';
 
 function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState();
@@ -21,6 +20,9 @@ function MyApp({ Component, pageProps }) {
             Router.push('/showcase');
           }
           else if (router.pathname === '/s/[id]') {
+            
+          }
+          else if (router.pathname === '/u/[user]') {
             
           }
           else {

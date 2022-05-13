@@ -164,7 +164,6 @@ export default function NFTCard({ nft, price, status, types, star, num, going, t
             {status && (
               <>
                 <div className="name">
-                <Link href={{pathname: '/[id]', query: { id: nft.tokenID }}}>
                     <CallToAction
                     color="primary"
                     size="sm"
@@ -172,7 +171,6 @@ export default function NFTCard({ nft, price, status, types, star, num, going, t
                     >
                       { web3.utils.fromWei(price) } rETH
                     </CallToAction>
-                  </Link>
                   </div>
               </>
             )}
