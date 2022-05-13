@@ -65,7 +65,7 @@ export default function About() {
       </div>
     </div>
       <div className='footer'>
-        <p>2023 Oustro Inc. v1.0.0-beta</p>
+        <p>2023 Oustro Inc. v1.3.9-beta</p>
       </div>
       <style jsx>{`
       .one{ margin:80px; text-align:center; font-size: 17px;}.two{ margin:20px; text-align:center; font-size: 60px;}.three{ margin:40px; text-align:center; font-size: 30px;}img{width: auto,
