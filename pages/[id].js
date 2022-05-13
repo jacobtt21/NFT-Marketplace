@@ -212,14 +212,14 @@ export default function Index() {
                     <h1>{theNFT.name}</h1>
                     <h3>Price: {web3.utils.fromWei(theData.price)} rETH</h3>
                     <br />
-                    <Link href={theNFT.work}>
+                    
                         <img
                             src={theNFT.image}
                             width={300}
                             className="nft-img"
                             onError={(e) => (e.target.src = '/fallback.jpeg')}
                         />
-                    </Link>
+                
                     <div className='name'>
                     <CallToAction
                     color="primary"
