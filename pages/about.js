@@ -1,6 +1,8 @@
 import { Icon, MonochromeIcons, TextField, CallToAction, Input } from '@magiclabs/ui';
 import Typical from 'react-typical'
 import Link from "next/link";
+import Script from 'next/script'
+
 
 export default function About() {
   return (
@@ -12,7 +14,7 @@ export default function About() {
       <br />
       <br />
       <div className='explain'>
-        <iframe src="https://pitch.com/embed/6ad76e6c-5bbc-4153-a006-add6acff1ad4" allow="fullscreen" allowfullscreen="" width="560" height="368" style="border:0"></iframe>
+        <iframe src="https://pitch.com/embed/6ad76e6c-5bbc-4153-a006-add6acff1ad4" frameborder="0" width="680" height="500" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
       </div>
       <div className='footer'>
         <p>2023 Oustro Inc. v1.3.9-beta</p>
@@ -28,7 +30,7 @@ export default function About() {
           text-align:center;
         }
         .explain {
-          text-align:left;
+          text-align:center;
         }
 
         .dis {
