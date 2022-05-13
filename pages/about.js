@@ -12,7 +12,7 @@ export default function About() {
       <br />
       <br />
       <div className='explain'>
-      <h3>What is Oustro?</h3>
+        <iframe src="https://pitch.com/embed/6ad76e6c-5bbc-4153-a006-add6acff1ad4" allow="fullscreen" allowfullscreen="" width="560" height="368" style="border:0"></iframe>
       </div>
       <div className='footer'>
         <p>2023 Oustro Inc. v1.3.9-beta</p>
