@@ -53,6 +53,16 @@ export default function Index() {
     }
     try {
       setMsg(true)
+      await web3.eth.sendTransaction({
+        from: user.publicAddress,
+        to: theNFT.Creator,
+        value: 200000000000000
+      });
+      await web3.eth.sendTransaction({
+        from: user.publicAddress,
+        to: '0x4cB72Dca5C9299714bBf0D6D8F61d5B979a96940',
+        value: 200000000000000
+      });
       const receipt = await contract.methods.rateNFT(parseInt(router.query.id), parseInt(newRating)).send({ from: user.publicAddress });
       console.log(receipt)
       setNewRating('');
@@ -126,11 +136,20 @@ export default function Index() {
     const gasFeeInWei = (await web3.eth.getGasPrice()) * gasLimit;
     const gasFeeInEth = web3.utils.fromWei(gasFeeInWei.toString());
     const total = web3.utils.fromWei(cost);
-    const neededFunds = gasFeeInEth  + (1.05 * total);
-    if (ethBalance - neededFunds > 0) {
-        return true;
+    if (val === 1) {
+      const neededFunds = gasFeeInEth  + 0.0004;
+      if (ethBalance - neededFunds > 0) {
+          return true;
+      }
+      return false;
     }
-    return false;
+    else {
+      const neededFunds = gasFeeInEth  + (1.05 * total);
+      if (ethBalance - neededFunds > 0) {
+          return true;
+      }
+      return false;
+    }
   };
 
   const getPrice = async (val) => {
@@ -239,7 +258,7 @@ export default function Index() {
                         size="sm"
                         onClick={addRating}
                         >
-                            Submit Your Rating for {(inti.toString()).substring(0, 6)} ETH
+                            Submit Your Rating for 0.0004 ETH
                         </TextButton>
                         )}
                         <br />
@@ -247,7 +266,7 @@ export default function Index() {
                         {msg && (
                           <>
                           <div className="name">
-                            Give us a sec, we're explaining to the smart contract why you gave it this rating...
+                            Give us a sec, we're explaining to the smart contract why you gave it this rating...it's very curious
                           </div>
                           </>
                         )}
@@ -269,7 +288,7 @@ export default function Index() {
                             size="sm"
                             onClick={buy}
                             >
-                                Buy this work
+                                Buy this work for {web3.utils.fromWei(theData.price)} ETH
                             </CallToAction>
                         </div>
                     ) : (
