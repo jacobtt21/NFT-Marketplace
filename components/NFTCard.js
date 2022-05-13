@@ -355,12 +355,12 @@ export default function NFTCard({ nft, price, status, types, star, num, going, t
         .card {
           border-radius: 8px;
           padding: 15px;
-          box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 16px,
+          box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 16px,
             rgba(0, 0, 0, 0.05) 0px 0px 16px;
         }
 
         .card:hover {
-          box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 16px,
+          box-shadow: rgba(0, 0, 0, 0.29) 0px 0px 16px,
             rgba(0, 0, 0, 0.1) 0px 0px 16px;
         }
 
