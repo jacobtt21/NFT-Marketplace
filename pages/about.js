@@ -14,7 +14,9 @@ export default function About() {
       <br />
       <br />
       <div className='explain'>
-        <iframe src="https://pitch.com/embed/6ad76e6c-5bbc-4153-a006-add6acff1ad4" frameborder="0" width="680" height="500" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+      <iframe 
+        src="https://www.canva.com/design/DAFAljchgOY/view?embed" frameborder="0" width="680" height="500" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">
+        </iframe>
       </div>
       <div className='footer'>
         <p>2023 Oustro Inc. v1.3.9-beta</p>

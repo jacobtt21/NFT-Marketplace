@@ -8,31 +8,31 @@ export default function About() {
     const [loading, setLoading] = useState(false);
     const allNFTs = [
         {
-          creator: "0x4feE4e9F9B253058103a5014cFd106F0eC4950E8",
+          creator: "0x581CDd503004FD4dBF52681710Cbe1A80d8fBC1d",
           image: "https://bafybeid46x24mfghxs3phs54veor3zrszqlrf7qowqkjnu7w4wmzcba2ia.ipfs.infura-ipfs.io/",
-          name: "Quasr Whitepaper",
+          name: "Quasr: Whitepaper",
           tokenID: '4',
           work: "https://bafybeie5srm3bac476dokid2sde4xqxxfthfll4uqqz2qfcowsmigw673y.ipfs.infura-ipfs.io/"
         },
         {
-          creator: "0x09516Eb251254aD5EF243E83e30E9395D5BcB2B6",
-          image: "https://bafybeie3oo42g3ba4jchrcj2m4uz7rs3vqz22xclzw5wiffadx2cklw3km.ipfs.infura-ipfs.io/",
-          name: "The first NFT on Oustro",
+          creator: "0x128e33e92e46CeE465E16c91eC27931d2e8Bb483",
+          image: "https://bafybeier5v2mx2jvxira2zdzec2ow5h3oiubw3dvgjtcstvx5qunli3oce.ipfs.infura-ipfs.io/",
+          name: "The First NFT on Oustro",
           tokenID: "1",
           work: "https://bafybeiakxs65n7vvw6gd4urkoqbjgpji7paf4pabqn4d72rgfmd7z3ftii.ipfs.infura-ipfs.io/"
         },
         {
-          creator: "0x128e33e92e46CeE465E16c91eC27931d2e8Bb483",
+          creator: "0x09516Eb251254aD5EF243E83e30E9395D5BcB2B6",
           image: "https://bafybeicaak65tbrz3hqwxyzb36nfizadmau3hyyyifdfjccigeaovpat3a.ipfs.infura-ipfs.io/",
-          name: "Spacetime, to infinity and the farm",
-          tokenID: "2",
+          name: "Spaceland, to Infinity and the Farm: Synopsis",
+          tokenID: "3",
           work: "https://bafybeiegkxna2cysmky7dlx4vkmrlj5bje6n2k6yoambbmm5vd5xqab3jy.ipfs.infura-ipfs.io/"
         },
         {
           creator: "0x4feE4e9F9B253058103a5014cFd106F0eC4950E8",
           image: "https://bafybeig577fpz72sszvjurhki3ru2chgmm6yyrhj4psxxr7gr4uirxb6xq.ipfs.infura-ipfs.io/",
-          name: "An Anthology of the Internet. Vol I",
-          tokenID: "3",
+          name: "An Anthology of the Internet: Vol I",
+          tokenID: "2",
           work: "https://bafybeiakxs65n7vvw6gd4urkoqbjgpji7paf4pabqn4d72rgfmd7z3ftii.ipfs.infura-ipfs.io/"
         }
       ]

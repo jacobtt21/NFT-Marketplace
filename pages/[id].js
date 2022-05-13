@@ -83,6 +83,13 @@ export default function Index() {
     try {
       setDisabled(true);
       setMsg1(true);
+      if (theNFT.share !== "NaN") {
+        await web3.eth.sendTransaction({
+          from: user.publicAddress,
+          to: theNFT.share,
+          value: cost * 0.005
+        });
+      }
       await web3.eth.sendTransaction({
         from: user.publicAddress,
         to: theData.owner,
@@ -144,7 +151,7 @@ export default function Index() {
       return false;
     }
     else {
-      const neededFunds = gasFeeInEth  + (1.05 * total);
+      const neededFunds = gasFeeInEth  + (1.1 * total);
       if (ethBalance - neededFunds > 0) {
           return true;
       }
@@ -210,6 +217,8 @@ export default function Index() {
                   </a>
                     </Link>
                     <h1>{theNFT.name}</h1>
+                    <h3>created by {theNFT.creator}</h3>
+                    <br />
                     <h3>Price: {web3.utils.fromWei(theData.price)} rETH</h3>
                     <br />
                     
@@ -265,6 +274,7 @@ export default function Index() {
                         <br />
                         {msg && (
                           <>
+                          <br />
                           <div className="name">
                             Give us a sec, we're explaining to the smart contract why you gave it this rating...it's very curious
                           </div>

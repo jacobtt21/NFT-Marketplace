@@ -157,7 +157,7 @@ export default function NFTCard({ nft, price, status, types, star, num, going, t
           </div>
  
         <div className="name">{nft.name}</div>
-        <div className="name">by {nft.creator.substring(0, 6)}..{nft.creator.substring(38)}</div>
+        <div className="name">created by {nft.creator.substring(0, 6)}..{nft.creator.substring(38)}</div>
         <br />
         {types ? (
           <>
