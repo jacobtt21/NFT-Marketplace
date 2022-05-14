@@ -6,11 +6,11 @@ const Layout = (props) => (
     <Head>
       <title>Oustro</title>
       <link rel="icon" href="/favicon.ico" />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@oustrohq" />
-      <meta property="og:title" content="Twitter is cool, Oustro is cooler" />
-      <meta name="twitter:description" content="Mint NFTs of actual work and sell them, all on Oustro" />
-      <meta property="og:image" content="https://www.oustro.co/oustro_logo.svg" />
+      <meta name="twitter:card" content="summary_large_image"></meta>
+      <meta name="twitter:site" content="@oustrohq"></meta>
+      <meta property="og:title" content="Twitter is cool, Oustro is cooler"></meta>
+      <meta name="twitter:description" content="Mint NFTs of actual work and sell them, all on Oustro"></meta>
+      <meta name="twitter:image" content="http://example.com/myimage.jpg?4362984378"></meta>
     </Head>
 
     <Header />
