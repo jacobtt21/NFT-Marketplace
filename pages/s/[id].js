@@ -39,13 +39,6 @@ export default function Index() {
     <div>
         {theData ? (
             <>
-            <Head>
-              <meta name="twitter:card" content="summary" />
-              <meta name="twitter:site" content="@flickr" />
-              <meta name="twitter:title" content="Small Island Developing States Photo Submission" />
-              <meta name="twitter:description" content="View the album on Flickr." />
-              <meta name="twitter:image" content="https://farm6.staticflickr.com/5510/14338202952_93595258ff_z.jpg" />
-            </Head>
                 <div className="mint-container">
                 {user ? (
                   <Link href={{pathname: '/[id]', query: { id: router.query.id }}}>
@@ -133,13 +126,6 @@ export default function Index() {
             </>
         ) : (
             <>
-              <Head>
-                <meta name="twitter:card" content="summary" />
-                <meta name="twitter:site" content="@flickr" />
-                <meta name="twitter:title" content="Small Island Developing States Photo Submission" />
-                <meta name="twitter:description" content="View the album on Flickr." />
-                <meta name="twitter:image" content="https://farm6.staticflickr.com/5510/14338202952_93595258ff_z.jpg" />
-              </Head>
                 <Loading />
             </>
         )}
