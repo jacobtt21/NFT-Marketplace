@@ -8,6 +8,7 @@ import algoliasearch from 'algoliasearch';
 import { InstantSearch, Hits, connectSearchBox } from "react-instantsearch-dom";
 import { Icon, MonochromeIcons, TextField, CallToAction, Input } from '@magiclabs/ui';
 import Link from 'next/link';
+import Head from 'next/head';
 
 export default function Index() {
   const searchClient = algoliasearch(
@@ -140,6 +141,13 @@ export default function Index() {
 
   return user ? (
     <div>
+      <Head>
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@flickr" />
+        <meta name="twitter:title" content="Small Island Developing States Photo Submission" />
+        <meta name="twitter:description" content="View the album on Flickr." />
+        <meta name="twitter:image" content="https://farm6.staticflickr.com/5510/14338202952_93595258ff_z.jpg" />
+      </Head>
       <div className='info'>
       <h1>The Oustro Library</h1>
       <p>Relax, you're here, take sometime to yourself and enjoy the work your peers have provided for you, completely free.</p>
@@ -162,6 +170,15 @@ export default function Index() {
         `}</style>
     </div>
   ) : (
+    <>
+    <Head>
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@flickr" />
+        <meta name="twitter:title" content="Small Island Developing States Photo Submission" />
+        <meta name="twitter:description" content="View the album on Flickr." />
+        <meta name="twitter:image" content="https://farm6.staticflickr.com/5510/14338202952_93595258ff_z.jpg" />
+      </Head>
     <Loading />
+    </>
   );
 }

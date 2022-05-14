@@ -1,5 +1,6 @@
 import { Icon, MonochromeIcons, TextField, CallToAction, Input } from '@magiclabs/ui';
 import { useCallback, useState, useContext } from 'react';
+import Head from 'next/head';
 import Typical from 'react-typical'
 import Link from "next/link";
 import Grid from '../components/Grid';
@@ -46,6 +47,13 @@ export default function About() {
         const allNums = ['1000+', '1000+', '1000+', '1000+']
   return (
     <>
+    <Head>
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@flickr" />
+        <meta name="twitter:title" content="Small Island Developing States Photo Submission" />
+        <meta name="twitter:description" content="View the album on Flickr." />
+        <meta name="twitter:image" content="https://farm6.staticflickr.com/5510/14338202952_93595258ff_z.jpg" />
+      </Head>
         <div className='one'>
         <div className='two'>
             <Typical steps={['Publishing has never been easier', 1000, 'and supporting creators have never been as rewarding.', 1000, 'Welcome to Oustro', 1000]} wrapper="h1"/>
