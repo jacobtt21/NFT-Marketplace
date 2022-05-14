@@ -48,10 +48,10 @@ export default function About() {
     <>
         <div className='one'>
         <div className='two'>
-            <Typical steps={['Publishing has never been easier or more rewarding', 1000,]} wrapper="h1"/>
+            <Typical steps={['Publishing has never been easier', 1000, 'and supporting creators have never been as rewarding.', 1000, 'Welcome to Oustro', 1000]} wrapper="h1"/>
         </div>
         <div className='three'>
-            Mint NFTs of your work and sell them, all on Oustro
+            Mint NFTs of work and sell them, all on Oustro
         </div>
         Check out some of the featured works by creators on Oustro
       <Grid loading={loading} nfts={allNFTs} prices={allPrices} statuses={allStatus} type={true} stars={allStars} nums={allNums} go={false} takeAway={true}/>

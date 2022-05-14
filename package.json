@@ -21,6 +21,7 @@
     "react-dom": "^17.0.1",
     "react-drag-drop-files": "^2.3.4",
     "react-instantsearch-dom": "^6.23.3",
+    "react-player": "^2.10.1",
     "react-range": "^1.8.12",
     "react-responsive-carousel": "^3.2.23",
     "react-typical": "^0.1.3",
