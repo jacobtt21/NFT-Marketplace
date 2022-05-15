@@ -4,6 +4,7 @@ import { web3 } from '../lib/magic';
 import { abi } from '../contracts/abi';
 import Grid from '../components/Grid';
 import Loading from '../components/Loading';
+import { TextField, CallToAction, useToast, TextButton } from '@magiclabs/ui';
 
 export default function Index() {
   const [user] = useContext(UserContext);
@@ -13,9 +14,20 @@ export default function Index() {
   const [myNums, setMyNums] = useState();
   const [myStars, setMyStars] = useState();
   const [loading, setLoading] = useState(false);
+  const { createToast } = useToast();
 
   const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
   const contract = new web3.eth.Contract(abi, contractAddress);
+
+  const copyLink = async () => {
+    const tokenz = "https://www.oustro.co/u/"+user.publicAddress;
+    navigator.clipboard.writeText(tokenz);
+    createToast({
+      message: 'Link Copied!',
+      type: 'success',
+      lifespan: 2000,
+    });
+  };
 
   useEffect(() => {
     if (!user) return;
@@ -57,7 +69,12 @@ export default function Index() {
   return user ? (
     <div>
       <h1>Your rocking collection of works</h1>
-      <p>Interesting taste...we're not judging, just noticing.</p>
+      <p>Interesting taste...we're not judging, just noticing. <TextButton
+        onPress={copyLink}
+      >
+        Might as well share it right?
+      </TextButton>
+      </p>
       <Grid loading={loading} nfts={myNFTs} prices={myPrices} statuses={myStatus} type={false} stars={myStars} nums={myNums} go={true} takeAway={false} />
       <style>{`
         h1 {
