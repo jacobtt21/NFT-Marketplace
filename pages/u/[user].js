@@ -66,18 +66,19 @@ export default function Index() {
 
   return myStars ? (
     <div>
-      <h1>{router.query.user.substring(0, 6)}...{router.query.user.substring(38)}'s Collection</h1>
-      <p>I was looking for one of these, who knew it was here the whole time?</p>
+      <h1>{router.query.user}'s Collection</h1>
+      <br/>
+      <p>I can't believe this was here the entire time, I might have to "borrow it"</p>
       <Grid loading={loading} nfts={myNFTs} prices={myPrices} statuses={myStatus} type={true} stars={myStars} nums={myNums} go={route} takeAway={true} />
       <style>{`
         h1 {
           font-weight: bold;
           font-size: 28px;
-          margin: 20px;
+          text-align: center;
           min-height: 28px;
         }
         p {
-          margin: 20px;
+          text-align: center;
           min-height: 28px;
         }
         `}</style>
