@@ -8,12 +8,16 @@ export default function About() {
   return (
     <>
     <div className='landing'>
-      <h1>Confused about this whole thing?</h1>
-      <br />
-      <h2>Don't worry, we're here to explain...</h2>
+      <h1>Our Mission</h1>
       <br />
       <br />
       <div className='explain'>
+      <h3>Oustro is on a mission to provide the world a place where ideas, creations, stories, and more can freely be available to
+        the public without fear of censorship or centraliziation.
+      </h3>
+      <br />
+      <br />
+      <br />
       <iframe 
         src="https://www.canva.com/design/DAFAljchgOY/view?embed" frameborder="0" width="680" height="500" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">
         </iframe>
@@ -26,7 +30,13 @@ export default function About() {
           font-size: 50px;
         }
         h2 {
+          font-size: 25px;
+        }
+        h3 {
           font-size: 30px;
+          font-weight: bold;
+          max-width: 60rem;
+          margin: auto;
         }
         .landing {
           text-align:center;
