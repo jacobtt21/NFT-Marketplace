@@ -20,7 +20,7 @@ export default function Index() {
   const contract = new web3.eth.Contract(abi, contractAddress);
 
   const copyLink = async () => {
-    const tokenz = "https://www.oustro.co/u/"+user.publicAddress;
+    const tokenz = "https://www.oustro.xyz/u/"+user.publicAddress;
     navigator.clipboard.writeText(tokenz);
     createToast({
       message: 'Link Copied!',
