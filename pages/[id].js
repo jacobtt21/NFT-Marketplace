@@ -217,7 +217,13 @@ export default function Index() {
                   </a>
                     </Link>
                     <h1>{theNFT.name}</h1>
-                    <h3>created by {theNFT.creator}</h3>
+                    <h3>created by</h3>
+                    <Link href={{pathname: '/u/[user]', query: { user: theNFT.creator }}}>
+                    <TextButton>
+                      {theNFT.creator.substring(0, 12)}...{theNFT.creator.substring(38)}
+                    </TextButton>
+                    </Link>
+                    <br />            
                     <br />
                     <h3>Price: {web3.utils.fromWei(theData.price)} rETH</h3>
                     <br />
