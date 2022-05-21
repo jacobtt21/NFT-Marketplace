@@ -16,11 +16,11 @@ export default function About() {
           work: "https://bafybeie5srm3bac476dokid2sde4xqxxfthfll4uqqz2qfcowsmigw673y.ipfs.infura-ipfs.io/"
         },
         {
-          creator: "0x128e33e92e46CeE465E16c91eC27931d2e8Bb483",
-          image: "https://bafybeier5v2mx2jvxira2zdzec2ow5h3oiubw3dvgjtcstvx5qunli3oce.ipfs.infura-ipfs.io/",
-          name: "The First NFT on Oustro",
-          tokenID: "1",
-          work: "https://bafybeiakxs65n7vvw6gd4urkoqbjgpji7paf4pabqn4d72rgfmd7z3ftii.ipfs.infura-ipfs.io/"
+          creator: "0x4feE4e9F9B253058103a5014cFd106F0eC4950E8",
+          image: "https://bafybeidguhkc4njtzz32gakigrfxfomj7jytkzoiticj7xr7lsn57n5uvi.ipfs.infura-ipfs.io/",
+          name: "Dinner Script",
+          tokenID: "5",
+          work: "https://bafybeickkrcva4x6egm3lx3mqdlupnvzh7o6d4zhcqgril4tmo7ebytaxq.ipfs.infura-ipfs.io/"
         },
         {
           creator: "0x09516Eb251254aD5EF243E83e30E9395D5BcB2B6",
