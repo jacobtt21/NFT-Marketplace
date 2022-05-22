@@ -34,7 +34,6 @@ export default function About() {
         }
         h3 {
           font-size: 30px;
-          font-weight: bold;
           max-width: 60rem;
           margin: auto;
         }
