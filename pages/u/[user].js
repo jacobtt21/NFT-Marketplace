@@ -12,6 +12,7 @@ export default function Index() {
   const [myPrices, setMyPrices] = useState();
   const [myStatus, setMyStatus] = useState();
   const [myNums, setMyNums] = useState();
+  const [myVerify, setMyVerify] = useState();
   const [myStars, setMyStars] = useState();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -37,6 +38,7 @@ export default function Index() {
     let nums = [];
     let stars = []
     let nfts = [];
+    let verify = [];
 
     var i = 0;
     for (i = 0; i < tokenURIs.length; ++i) {
@@ -44,12 +46,14 @@ export default function Index() {
       onMarket[i] = tokenURIs[i][6];
       nums[i] = tokenURIs[i][5];
       stars[i] = tokenURIs[i][4];
+      verify[i] = tokenURIs[i][7];
       const response = await fetch(tokenURIs[i].data);
       const data = await response.json();
       nfts.push(data);
     }
 
     setMyNFTs(nfts);
+    setMyVerify(verify);
     setMyPrices(prices);
     setMyStatus(onMarket);
     setMyNums(nums);
@@ -69,7 +73,7 @@ export default function Index() {
       <h1>{router.query.user}'s Collection</h1>
       <br/>
       <p>I can't believe this was here the entire time, I might have to "borrow it"</p>
-      <Grid loading={loading} nfts={myNFTs} prices={myPrices} statuses={myStatus} type={true} stars={myStars} nums={myNums} go={route} takeAway={true} />
+      <Grid loading={loading} nfts={myNFTs} prices={myPrices} statuses={myStatus} type={true} stars={myStars} nums={myNums} checkmark={myVerify} go={route} takeAway={true} />
       <style>{`
         h1 {
           font-weight: bold;
