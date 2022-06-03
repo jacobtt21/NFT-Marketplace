@@ -244,6 +244,19 @@ export default function Index() {
                       { theData.rating } / 5 Rating
                     </CallToAction>
                     </div>
+                    { theNFT.socialLink !== '' && (
+                      <div className='name'>
+                      <Link href={theNFT.socialLink}>
+                      <a target="_blank">
+                      <CallToAction
+                    color="primary"
+                    >
+                    Take me to the community &rarr;
+                    </CallToAction>
+                    </a>
+                      </Link>
+                      </div>
+                    )}
                     {theNFT.Creator != user.publicAddress ? (
                         <div className="name">
                           

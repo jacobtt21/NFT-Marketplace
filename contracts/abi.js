@@ -128,6 +128,30 @@ export const abi = [
 	{
 		"inputs": [
 			{
+				"internalType": "uint256",
+				"name": "Id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "newVerify",
+				"type": "uint256"
+			}
+		],
+		"name": "changeVerify",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "string",
 				"name": "uri",
 				"type": "string"
@@ -391,6 +415,11 @@ export const abi = [
 						"internalType": "bool",
 						"name": "onMarket",
 						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "verify",
+						"type": "uint256"
 					}
 				],
 				"internalType": "struct Oustro.MarketItem[]",
@@ -460,6 +489,11 @@ export const abi = [
 						"internalType": "bool",
 						"name": "onMarket",
 						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "verify",
+						"type": "uint256"
 					}
 				],
 				"internalType": "struct Oustro.MarketItem",
@@ -516,6 +550,11 @@ export const abi = [
 						"internalType": "bool",
 						"name": "onMarket",
 						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "verify",
+						"type": "uint256"
 					}
 				],
 				"internalType": "struct Oustro.MarketItem[]",

@@ -3,11 +3,11 @@ import { UserContext } from '../lib/UserContext';
 import Link from 'next/link'
 import { web3 } from '../lib/magic';
 import { abi } from '../contracts/abi';
-import { TextField, CallToAction, TextButton } from '@magiclabs/ui';
+import { TextField, CallToAction, TextButton, MonochromeIcons } from '@magiclabs/ui';
 import { useRouter } from 'next/router'
 
 
-export default function NFTCard({ nft, price, status, types, star, num, going, take }) {
+export default function NFTCard({ nft, price, status, types, star, num, check, going, take }) {
   const [user] = useContext(UserContext);
   const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
   const contract = new web3.eth.Contract(abi, contractAddress);
@@ -146,7 +146,6 @@ export default function NFTCard({ nft, price, status, types, star, num, going, t
             </div>
           )
         }
-        
           <div className="nft-img-container">
             <img
             src={nft.image}
@@ -155,8 +154,26 @@ export default function NFTCard({ nft, price, status, types, star, num, going, t
             onError={(e) => (e.target.src = '/fallback.jpeg')}
             />
           </div>
- 
-        <div className="name">{nft.name}</div>
+        {check === '0' ? (
+          <div className='name'>
+          <TextButton
+            color="primary"
+            outline="none"
+            >
+              {nft.name}
+          </TextButton>
+        </div>
+        ) : (
+          <div className="name">
+              <TextButton
+              leadingIcon={MonochromeIcons.SuccessFilled}
+              color="primary"
+              outline="none"
+              >
+                {nft.name}
+              </TextButton>
+            </div> 
+        )}
         <div className="name">created by {nft.creator.substring(0, 6)}..{nft.creator.substring(38)}</div>
         <br />
         {types ? (
@@ -261,7 +278,26 @@ export default function NFTCard({ nft, price, status, types, star, num, going, t
             />
           </div>
  
-        <div className="name">{nft.name}</div>
+          {check === '0' ? (
+          <div className='name'>
+          <TextButton
+            color="primary"
+            outline="none"
+            >
+              {nft.name}
+          </TextButton>
+        </div>
+        ) : (
+          <div className="name">
+              <TextButton
+              leadingIcon={MonochromeIcons.SuccessFilled}
+              color="primary"
+              outline="none"
+              >
+                {nft.name}
+              </TextButton>
+            </div> 
+        )}
         <div className="name">by {nft.creator.substring(0, 6)}..{nft.creator.substring(38)}</div>
         <br />
         {types ? (

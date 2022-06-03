@@ -25,14 +25,14 @@ export default function About() {
         {
           creator: "0x09516Eb251254aD5EF243E83e30E9395D5BcB2B6",
           image: "https://bafybeicaak65tbrz3hqwxyzb36nfizadmau3hyyyifdfjccigeaovpat3a.ipfs.infura-ipfs.io/",
-          name: "Spaceland, to Infinity and the Farm: Synopsis",
+          name: "Spaceland",
           tokenID: "3",
           work: "https://bafybeiegkxna2cysmky7dlx4vkmrlj5bje6n2k6yoambbmm5vd5xqab3jy.ipfs.infura-ipfs.io/"
         },
         {
           creator: "0x4feE4e9F9B253058103a5014cFd106F0eC4950E8",
           image: "https://bafybeig577fpz72sszvjurhki3ru2chgmm6yyrhj4psxxr7gr4uirxb6xq.ipfs.infura-ipfs.io/",
-          name: "An Anthology of the Internet: Vol I",
+          name: "AAOTI: Vol I",
           tokenID: "2",
           work: "https://bafybeiakxs65n7vvw6gd4urkoqbjgpji7paf4pabqn4d72rgfmd7z3ftii.ipfs.infura-ipfs.io/"
         }
@@ -43,6 +43,8 @@ export default function About() {
         const allStatus = [false, false, false, false];
 
         const allStars = [5, 5, 5, 5]
+
+        const allVeri = [0, 0, 0, 0]
 
         const allNums = ['1000+', '1000+', '1000+', '1000+']
   return (
@@ -55,7 +57,7 @@ export default function About() {
           Welcome to the the new library of works, all powered by you
         </div>
         Check out some of the featured works by creators on Oustro
-      <Grid loading={loading} nfts={allNFTs} prices={allPrices} statuses={allStatus} type={true} stars={allStars} nums={allNums} go={false} takeAway={true}/>
+      <Grid loading={loading} nfts={allNFTs} prices={allPrices} statuses={allStatus} type={true} stars={allStars} nums={allNums} go={false} takeAway={true} checkmark={allVeri}/>
       <div className='Imagine'>
         <Link href="/login">
           <CallToAction

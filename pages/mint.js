@@ -12,6 +12,7 @@ function Mint() {
   const [user] = useContext(UserContext);
   const [name, setName] = useState('');
   const [sharing, setShare] = useState('');
+  const [social, setSocial] = useState('');
   const [disabled, setDisabled] = useState(false);
   const [txPending, setTxPending] = useState(false);
   const [txHash, setTxHash] = useState(false);
@@ -95,7 +96,7 @@ function Mint() {
         }
       }
       const tIndex = await contract.methods.getIndex().call();
-      const data = JSON.stringify({ name, image: ipfsImageUrl, work: ipfsWorkUrl, share: shareAddress, creator: user.publicAddress, tokenID: tIndex });
+      const data = JSON.stringify({ name, image: ipfsImageUrl, work: ipfsWorkUrl, share: shareAddress, creator: user.publicAddress, socialLink: social, tokenID: tIndex });
       const ipfsData = await client.add(data);
       const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
 
@@ -205,6 +206,7 @@ function Mint() {
     setIpfsImageUrl();
     setIpfsWorkUrl();
     setPrice('');
+    setSocial('');
     setShare('');
     imageInputRef.current.value = '';
     workInputRef.current.value = '';
@@ -245,13 +247,12 @@ function Mint() {
             <br />
             <TextField
               disabled={disabled}
-              label="Wallet you would like to share royalties with (optional)"
-              placeholder="0x0.."
+              label="Social Links for this work (optional)"
+              placeholder="Discord, Reddit, Telegram etc. (Only 1 Link)"
               type="text"
-              onChange={(e) => setShare(e.target.value)}
-              value={sharing}
+              onChange={(e) => setSocial(e.target.value)}
+              value={social}
             />
-
             <br />
             <br />
             <div className='nname'>
@@ -272,7 +273,6 @@ function Mint() {
             {ipfsImageUrl && (
               <img className="image-preview" src={ipfsImageUrl} />
             )}
-            <br />
             <br />
             <br />
             <div className='nname'>
@@ -302,7 +302,6 @@ function Mint() {
             )}
             <br />
             <br />
-            <br />
             <TextField
             disabled={disabled}
             label="Sales Price in ETH"
@@ -311,6 +310,16 @@ function Mint() {
             onChange={(e) => setPrice(e.target.value)}
             value={price}
             required="required"
+            />
+            <br />
+            <br />
+            <TextField
+              disabled={disabled}
+              label="Wallet you would like to share royalties with (optional)"
+              placeholder="0x0.."
+              type="text"
+              onChange={(e) => setShare(e.target.value)}
+              value={sharing}
             />
             <br />
             By Default NFTs are not put on the marketplace, this can be changed in

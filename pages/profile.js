@@ -11,6 +11,7 @@ export default function Index() {
   const [myNFTs, setMyNFTs] = useState([]);
   const [myPrices, setMyPrices] = useState();
   const [myStatus, setMyStatus] = useState();
+  const [myVerify, setMyVerify] = useState();
   const [myNums, setMyNums] = useState();
   const [myStars, setMyStars] = useState();
   const [loading, setLoading] = useState(false);
@@ -46,6 +47,7 @@ export default function Index() {
     let nums = [];
     let stars = []
     let nfts = [];
+    let verify = [];
 
     var i = 0;
     for (i = 0; i < tokenURIs.length; ++i) {
@@ -53,6 +55,7 @@ export default function Index() {
       onMarket[i] = tokenURIs[i][6];
       nums[i] = tokenURIs[i][5];
       stars[i] = tokenURIs[i][4];
+      verify[i] = tokenURIs[i][7];
       const response = await fetch(tokenURIs[i].data);
       const data = await response.json();
       nfts.push(data);
@@ -62,6 +65,7 @@ export default function Index() {
     setMyPrices(prices);
     setMyStatus(onMarket);
     setMyNums(nums);
+    setMyVerify(verify);
     setMyStars(stars);
     setLoading(false);
   };
@@ -75,7 +79,7 @@ export default function Index() {
         Might as well share it right?
       </TextButton>
       </p>
-      <Grid loading={loading} nfts={myNFTs} prices={myPrices} statuses={myStatus} type={false} stars={myStars} nums={myNums} go={true} takeAway={false} />
+      <Grid loading={loading} nfts={myNFTs} prices={myPrices} statuses={myStatus} type={false} stars={myStars} nums={myNums} checkmark={myVerify} go={true} takeAway={false} />
       <style>{`
         h1 {
           font-weight: bold;

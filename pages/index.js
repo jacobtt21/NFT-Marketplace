@@ -21,6 +21,7 @@ export default function Index() {
   const [allNums, setAllNums] = useState();
   const [allStars, setAllStars] = useState();
   const [allStatus, setAllStatus] = useState();
+  const [allVerify, setAllVerify] = useState();
   const [loading, setLoading] = useState(false);
 
   const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
@@ -117,12 +118,16 @@ export default function Index() {
     let nums = [];
     let stars = [];
     let nfts = [];
+    let verified = [];
+
+    console.log(uriList)
 
     const array = new Array(uriList.length).fill(0);
     var i = 0;
     for (i = 0; i < uriList.length; ++i) {
       array[i] = uriList[i][0];
       prices[i] = uriList[i][2];
+      verified[i] = uriList[i][7];
       onMarket[i] = uriList[i][6];
       nums[i] = uriList[i][5];
       stars[i] = uriList[i][4];
@@ -136,6 +141,7 @@ export default function Index() {
     setAllStatus(onMarket);
     setAllNums(nums);
     setAllStars(stars);
+    setAllVerify(verified);
     setLoading(false);
   };
 
@@ -148,7 +154,7 @@ export default function Index() {
       <InstantSearch searchClient={searchClient} indexName="Oustro">
         <CustomSearchBox />
       </InstantSearch>
-      <Grid loading={loading} nfts={allNFTs} prices={allPrices} statuses={allStatus} type={true} stars={allStars} nums={allNums} go={true} takeAway={true} />
+      <Grid loading={loading} nfts={allNFTs} prices={allPrices} statuses={allStatus} type={true} stars={allStars} nums={allNums} go={true} takeAway={true} checkmark={allVerify} />
       <style>{`
         h1 {
           font-weight: bold;

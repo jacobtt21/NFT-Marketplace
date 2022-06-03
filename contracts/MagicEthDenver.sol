@@ -20,6 +20,7 @@ contract Oustro is ERC721URIStorage {
         uint rating;
         uint raters;
         bool onMarket;
+        uint verify;
     }
 
     constructor() ERC721("Oustro", "OUSTRO") {}
@@ -38,7 +39,8 @@ contract Oustro is ERC721URIStorage {
                 newTokenId,
                 0,
                 0,
-                false
+                false,
+                0
             )
         );
 
@@ -107,5 +109,10 @@ contract Oustro is ERC721URIStorage {
         nfts[Id - 1].rating = ((currentRating * currentRaters) + newRating) / (currentRaters + 1);
         nfts[Id - 1].raters = currentRaters + 1;
         return newRating;
+    }
+
+    function changeVerify(uint Id, uint newVerify) public returns (uint) {
+        nfts[Id - 1].verify = newVerify;
+        return newVerify;
     }
 }
