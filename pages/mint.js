@@ -19,7 +19,7 @@ function Mint() {
   const [ipfsImageUrl, setIpfsImageUrl] = useState('');
   const [mintStatus, setMintStatus] = useState('');
   const [ipfsWorkUrl, setIpfsWorkUrl] = useState('');
-  const [price, setPrice] = useState();
+  const [price, setPrice] = useState('');
   const [inti, setInti] = useState(0);
   const imageInputRef = useRef();
   const workInputRef = useRef();
@@ -78,6 +78,12 @@ function Mint() {
     if (errorsFound) return setDisabled(false);
 
     try {
+      var costo = '0';
+
+      if (price) {
+        costo = price;
+      }
+      
       setTxHash();
 
       setMintStatus("Uploading Work to IPFS")
@@ -115,7 +121,7 @@ function Mint() {
       setMintStatus("Minting In Progress")
 
       const receipt = await contract.methods
-        .createNFT(url, web3.utils.toWei(price))
+        .createNFT(url, web3.utils.toWei(costo))
         .send({ from: user.publicAddress });
 
 
@@ -145,7 +151,7 @@ function Mint() {
 
   const checkForErrors = async () => {
     // Throw error if missing input values
-    if (!name || !ipfsImageUrl || !ipfsWorkUrl || !price) {
+    if (!name || !ipfsImageUrl || !ipfsWorkUrl) {
       createToast({
         message: 'Missing Required Fields',
         type: 'error',
@@ -208,6 +214,7 @@ function Mint() {
     setPrice('');
     setSocial('');
     setShare('');
+
     imageInputRef.current.value = '';
     workInputRef.current.value = '';
   };
@@ -304,16 +311,16 @@ function Mint() {
             <br />
             <TextField
             disabled={disabled}
-            label="Sales Price in ETH"
-            placeholder="Price of this NFT"
+            label="Sales Price in ETH (optional)"
+            placeholder="If empty, defaults to 0 ETH"
             type="number"
             onChange={(e) => setPrice(e.target.value)}
             value={price}
-            required="required"
             />
             <br />
             <br />
-            <TextField
+            {price != '0' && price ? (
+              <TextField
               disabled={disabled}
               label="Wallet you would like to share royalties with (optional)"
               placeholder="0x0.."
@@ -321,6 +328,10 @@ function Mint() {
               onChange={(e) => setShare(e.target.value)}
               value={sharing}
             />
+            ) :
+            (
+              <></>
+            )}
             <br />
             By Default NFTs are not put on the marketplace, this can be changed in
             'Your Collection' tab.

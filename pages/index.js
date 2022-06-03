@@ -120,8 +120,6 @@ export default function Index() {
     let nfts = [];
     let verified = [];
 
-    console.log(uriList)
-
     const array = new Array(uriList.length).fill(0);
     var i = 0;
     for (i = 0; i < uriList.length; ++i) {
