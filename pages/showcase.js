@@ -54,7 +54,7 @@ export default function About() {
         <Typical steps={['Publishing has never been easier', 1000, 'and supporting creators have never been as rewarding.', 1000, 'Welcome to Oustro', 1000]} wrapper="h1"/>
         </div>
         <div className='three'>
-          Welcome to the the new library of works, all powered by you
+          Welcome to the new library of works, all powered by you
         </div>
         Check out some of the featured works by creators on Oustro
       <Grid loading={loading} nfts={allNFTs} prices={allPrices} statuses={allStatus} type={true} stars={allStars} nums={allNums} go={false} takeAway={true} checkmark={allVeri}/>

@@ -12,18 +12,11 @@ export default function About() {
       <br />
       <br />
       <div className='explain'>
-      <h3>Oustro is on a mission to provide the world a place where ideas, creations, stories, and more can freely be available to
-        the public without fear of censorship or centraliziation.
+      <h3>Oustro is on
       </h3>
-      <br />
-      <br />
-      <br />
-      <iframe 
-        src="https://www.canva.com/design/DAFAljchgOY/view?embed" frameborder="0" width="680" height="500" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">
-        </iframe>
       </div>
       <div className='footer'>
-        <p>2023 Oustro Inc. v1.3.9-beta</p>
+        <p>2023 Oustro Inc. v1.4.2-beta</p>
       </div>
       <style jsx>{`
         h1 {
