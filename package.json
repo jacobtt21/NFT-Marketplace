@@ -12,6 +12,7 @@
     "@magic-ext/oauth": "^2.0.1",
     "@magic-sdk/admin": "^1.3.0",
     "@magiclabs/ui": "0.24.0",
+    "@panelbear/panelbear-nextjs": "^1.0.3",
     "algoliasearch": "^4.13.0",
     "ipfs-http-client": "^55.0.0",
     "magic-sdk": "^7.0.0",

@@ -5,10 +5,12 @@ import Layout from '../components/Layout';
 import Router, { useRouter } from 'next/router';
 import { ThemeProvider, ToastProvider, SSRProvider } from '@magiclabs/ui';
 import '@magiclabs/ui/dist/cjs/index.css';
+import { usePanelbear } from '@panelbear/panelbear-nextjs';
 
 function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState();
   const router = useRouter();
+  usePanelbear('JeX1D57Asdk');
   
   useEffect(() => {
     magic.user.isLoggedIn().then((isLoggedIn) => {

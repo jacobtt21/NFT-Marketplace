@@ -7,6 +7,7 @@ import { TextField, CallToAction, useToast, TextButton } from '@magiclabs/ui';
 import Loading from '../components/Loading';
 import algoliasearch from 'algoliasearch';
 import Link from 'next/link'
+import * as Panelbear from "@panelbear/panelbear-js";
 
 function Mint() {
   const [user] = useContext(UserContext);
@@ -72,6 +73,7 @@ function Mint() {
 
   // Mint NFT by sending tokenURI (IPFS URL) containing NFT metadata to smart contract
   const mintNFT = async () => {
+    Panelbear.track("MintingNFT");
     setDisabled(true);
 
     const errorsFound = await checkForErrors();

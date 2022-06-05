@@ -6,6 +6,7 @@ import { abi } from '../contracts/abi';
 import Loading from '../components/Loading';
 import { TextField, CallToAction, useToast, TextButton } from '@magiclabs/ui';
 import Link from 'next/link'
+import * as Panelbear from "@panelbear/panelbear-js";
 
 
 export default function Index() {
@@ -38,6 +39,7 @@ export default function Index() {
   };
 
   const addRating = async () => {
+    Panelbear.track("RatingNFT");
     setDisabled(true);
     const errorsFound = await checkForErrors(1);
     if (errorsFound) return setDisabled(false);
@@ -76,6 +78,7 @@ export default function Index() {
   }
 
   const buy = async () => {
+    Panelbear.track("BuyingNFT");
     setDisabled(true);
     const cost = theData.price;
     const errorsFound = await checkForErrors(2);
