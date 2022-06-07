@@ -33,6 +33,7 @@ export default function Index() {
     const data = await response.json();
     setTheNFT(data);
     setTheData(nft);
+    console.log(theData)
   };
 
   return (
@@ -51,15 +52,29 @@ export default function Index() {
                   
                       </Link>
                 ) : (
-                  <Link href="/login">
+                  <>
+                  {theData.show ? (
+                    <Link href="/login">
                   
-                <CallToAction
-                  color="primary"
-                  >
-                  Take a closer look &rarr;
-                  </CallToAction>
-                
-                    </Link>
+                    <CallToAction
+                      color="primary"
+                      >
+                      Take a closer look &rarr;
+                      </CallToAction>
+                    
+                        </Link>
+                  ) : (
+                  <Link href={theNFT.work}>
+                  <a target="_blank">
+                  <CallToAction
+                    color="primary"
+                    >
+                    Take a closer look &rarr;
+                    </CallToAction>
+                    </a>
+                      </Link>
+                  )}
+                  </>
                 )}
                     <h1>{theNFT.name}</h1>
                     <h3>Price: {web3.utils.fromWei(theData.price)} rETH</h3>
@@ -75,7 +90,7 @@ export default function Index() {
                     size="sm"
                     outline="none"
                     >
-                      5 / 5 Rating
+                      {theData.rating} / 5 Rating
                     </CallToAction>  
                     <div className='name'>
                       <h3>by {theNFT.creator.substring(0, 6)}..{theNFT.creator.substring(38)}</h3> 

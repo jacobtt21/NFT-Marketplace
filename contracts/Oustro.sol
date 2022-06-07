@@ -21,11 +21,12 @@ contract Oustro is ERC721URIStorage {
         uint raters;
         bool onMarket;
         uint verify;
+        bool show;
     }
 
     constructor() ERC721("Oustro", "OUSTRO") {}
 
-    function createNFT(string memory uri, uint price) public returns (uint) {
+    function createNFT(string memory uri, uint price, bool goingtoShow) public returns (uint) {
         // Mint NFT
         count = count + 1;
         uint256 newTokenId = count;
@@ -40,7 +41,8 @@ contract Oustro is ERC721URIStorage {
                 0,
                 0,
                 false,
-                0
+                0,
+                goingtoShow
             )
         );
 
@@ -114,5 +116,10 @@ contract Oustro is ERC721URIStorage {
     function changeVerify(uint Id, uint newVerify) public returns (uint) {
         nfts[Id - 1].verify = newVerify;
         return newVerify;
+    }
+
+    function changeShow(uint Id) public returns (uint) {
+        nfts[Id - 1].show = !nfts[Id - 1].show;
+        return Id;
     }
 }

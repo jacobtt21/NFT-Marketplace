@@ -3,7 +3,7 @@ import { UserContext } from '../lib/UserContext';
 import { web3 } from '../lib/magic';
 import { abi } from '../contracts/abi';
 import { create } from 'ipfs-http-client';
-import { TextField, CallToAction, useToast, TextButton } from '@magiclabs/ui';
+import { TextField, CallToAction, useToast} from '@magiclabs/ui';
 import Loading from '../components/Loading';
 import algoliasearch from 'algoliasearch';
 import Link from 'next/link'
@@ -17,6 +17,7 @@ function Mint() {
   const [disabled, setDisabled] = useState(false);
   const [txPending, setTxPending] = useState(false);
   const [txHash, setTxHash] = useState(false);
+  const [show, setShow] = useState(true);
   const [ipfsImageUrl, setIpfsImageUrl] = useState('');
   const [mintStatus, setMintStatus] = useState('');
   const [ipfsWorkUrl, setIpfsWorkUrl] = useState('');
@@ -71,6 +72,10 @@ function Mint() {
     });
   };
 
+  const ChangeVis = async () => {
+    setShow(!show);
+  };
+
   // Mint NFT by sending tokenURI (IPFS URL) containing NFT metadata to smart contract
   const mintNFT = async () => {
     Panelbear.track("MintingNFT");
@@ -123,7 +128,7 @@ function Mint() {
       setMintStatus("Minting In Progress")
 
       const receipt = await contract.methods
-        .createNFT(url, web3.utils.toWei(costo))
+        .createNFT(url, web3.utils.toWei(costo), show)
         .send({ from: user.publicAddress });
 
 
@@ -197,7 +202,7 @@ function Mint() {
 
   const calculateGasFee = async () => {
     // Pass in 74 character string (roughly same as IPFS URL) for accurate gas limit estimate
-    return await contract.methods.createNFT('0'.repeat(74), '0'.repeat(74)).estimateGas(
+    return await contract.methods.createNFT('0'.repeat(74), '0'.repeat(74), true).estimateGas(
       {
         from: user.publicAddress,
       },
@@ -262,6 +267,36 @@ function Mint() {
               onChange={(e) => setSocial(e.target.value)}
               value={social}
             />
+            <br />
+            {show ? (
+              <>
+              <div className='nname'>
+              <p>Visability: Public</p>
+              </div>
+              <CallToAction
+              disabled={disabled}
+              color="primary"
+              size='sm'
+              onClick={ChangeVis}
+              >
+              Change to Private (Only Accessible by Link)
+              </CallToAction>
+              </>
+            ) : (
+              <>
+              <div className='nname'>
+              <p>Visability: Private</p>
+              </div>
+              <CallToAction
+              disabled={disabled}
+              color="primary"
+              size='sm'
+              onClick={ChangeVis}
+              >
+              Change to Public (Open to Everyone)
+              </CallToAction>
+              </>
+            )}
             <br />
             <br />
             <div className='nname'>

@@ -131,6 +131,25 @@ export const abi = [
 				"internalType": "uint256",
 				"name": "Id",
 				"type": "uint256"
+			}
+		],
+		"name": "changeShow",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "Id",
+				"type": "uint256"
 			},
 			{
 				"internalType": "uint256",
@@ -160,6 +179,11 @@ export const abi = [
 				"internalType": "uint256",
 				"name": "price",
 				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "goingtoShow",
+				"type": "bool"
 			}
 		],
 		"name": "createNFT",
@@ -420,6 +444,11 @@ export const abi = [
 						"internalType": "uint256",
 						"name": "verify",
 						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "show",
+						"type": "bool"
 					}
 				],
 				"internalType": "struct Oustro.MarketItem[]",
@@ -494,6 +523,11 @@ export const abi = [
 						"internalType": "uint256",
 						"name": "verify",
 						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "show",
+						"type": "bool"
 					}
 				],
 				"internalType": "struct Oustro.MarketItem",
@@ -555,6 +589,11 @@ export const abi = [
 						"internalType": "uint256",
 						"name": "verify",
 						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "show",
+						"type": "bool"
 					}
 				],
 				"internalType": "struct Oustro.MarketItem[]",
