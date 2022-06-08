@@ -165,6 +165,7 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
         </div>
         ) : (
           <div className="name">
+            <Link href={{pathname: path, query: { id: nft.tokenID }}}>
               <TextButton
               leadingIcon={MonochromeIcons.SuccessFilled}
               color="primary"
@@ -172,6 +173,7 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
               >
                 {nft.name}
               </TextButton>
+              </Link>
             </div> 
         )}
         <div className="name">created by {nft.creator.substring(0, 6)}..{nft.creator.substring(38)}</div>

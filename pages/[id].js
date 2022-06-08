@@ -4,7 +4,7 @@ import { UserContext } from '../lib/UserContext';
 import { web3 } from '../lib/magic';
 import { abi } from '../contracts/abi';
 import Loading from '../components/Loading';
-import { TextField, CallToAction, useToast, TextButton } from '@magiclabs/ui';
+import { TextField, CallToAction, useToast, TextButton, MonochromeIcons } from '@magiclabs/ui';
 import Link from 'next/link'
 import * as Panelbear from "@panelbear/panelbear-js";
 
@@ -219,7 +219,21 @@ export default function Index() {
                   </CallToAction>
                   </a>
                     </Link>
-                    <h1>{theNFT.name}</h1>
+                    {theData.verify === '0' ? (
+                      <h1>{theNFT.name}</h1>
+
+                    ) : (
+                      <h1>
+                      <Link href="/verify">
+                    <TextButton
+                    leadingIcon={MonochromeIcons.SuccessFilled}
+                    color="primary"
+                    outline="none"
+                    >
+                    </TextButton>
+                    </Link>
+                      {theNFT.name}</h1>
+                    )}
                     <h3>created by</h3>
                     <Link href={{pathname: '/u/[user]', query: { user: theNFT.creator }}}>
                     <TextButton>
@@ -260,7 +274,7 @@ export default function Index() {
                       </Link>
                       </div>
                     )}
-                    {theNFT.Creator != user.publicAddress ? (
+                    {theNFT.creator !== user.publicAddress ? (
                         <div className="name">
                           
                         <TextField
@@ -311,7 +325,7 @@ export default function Index() {
                         </>
                     )}
                     
-                    {theData.owner != user.publicAddress ?
+                    {theData.owner !== user.publicAddress ?
                      (theData.onMarket ? (
                         <div className="name">
                             <CallToAction
