@@ -6,30 +6,21 @@ const Layout = (props) => (
     <Head>
       <title>Oustro</title>
       <link rel="icon" href="/favicon.ico" />
-      <meta property="og:title" content="Oustro" key="ogtitle" />
-      <meta property="og:description" content="Where change happens" key="ogdesc" />
-      <meta
-          property="og:image"
-          content="/oustro_logo.svg"
-          key="ogimage"
-      />
-      <meta
-          property="og:site_name"
-          content="Oustro"
-          key="ogsitename"
-      />
-      <meta
-          property="og:url"
-          content="https://oustro.xyz"
-          key="ogurl"
-      />
-       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Oustro" />
-      <meta name="twitter:description" content="NFTs for use" />
-      <meta
-          name="twitter:image"
-          content="https://www.oustro.xyz/oustro_logo.svg"
-        />
+
+      <meta name="title" content="Oustro" />
+      <meta name="description" content="Welcome to the future of Publishing" />
+
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://oustro.xyz" />
+      <meta property="og:title" content="Oustro" />
+      <meta property="og:description" content="Welcome to the future of Publishing" />
+      <meta property="og:image" content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png" />
+
+      <meta property="twitter:card" content="summary_large_image" />
+      <meta property="twitter:url" content="https://oustro.xyz" />
+      <meta property="twitter:title" content="Oustro" />
+      <meta property="twitter:description" content="Welcome to the future of Publishing" />
+      <meta property="twitter:image" content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png" />
 
     </Head>
     <Header />
