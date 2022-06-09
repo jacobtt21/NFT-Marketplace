@@ -32,6 +32,7 @@ const Layout = (props) => (
         />
 
     </Head>
+    <Header />
     <main>
       <div className="container">{props.children}</div>
     </main>
