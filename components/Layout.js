@@ -36,7 +36,6 @@ const Layout = (props) => (
       <link rel="apple-touch-icon" sizes="152x152" href="/oustro_logo.svg" />
       <link rel="apple-touch-icon" sizes="180x180" href="/oustro_logo.svg" />
     </Head>
-    <Header />
     <main>
       <div className="container">{props.children}</div>
     </main>
