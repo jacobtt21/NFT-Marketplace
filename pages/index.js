@@ -122,17 +122,15 @@ export default function Index() {
     let nfts = [];
     let verified = [];
 
-    const array = new Array(uriList.length).fill(0);
     var i = 0;
     for (i = 0; i < uriList.length; ++i) {
       if (uriList[i][8]) {
-        array[i] = uriList[i][0];
         prices[i] = uriList[i][2];
         verified[i] = uriList[i][7];
         onMarket[i] = uriList[i][6];
         nums[i] = uriList[i][5];
         stars[i] = uriList[i][4];
-        const response = await fetch(uriList[i].data);
+        const response = await fetch(uriList[i][0]);
         const data = await response.json();
         nfts.push(data);
       }

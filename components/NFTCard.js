@@ -8,20 +8,24 @@ import { useRouter } from 'next/router'
 
 
 export default function NFTCard({ nft, price, status, types, star, num, check, going, take }) {
-  const [user] = useContext(UserContext);
   const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
   const contract = new web3.eth.Contract(abi, contractAddress);
+
+  const [user] = useContext(UserContext);
   const [newPrice, setNewPrice] = useState();
   const [disabled, setDisabled] = useState(false);
   const [msg, setMsg] = useState(false);
   const [msg1, setMsg1] = useState(false);
+
   var path = '';
   const router = useRouter()
 
   const changePrice = async () => {
     setDisabled(true);
     const errorsFound = await checkForErrors(2);
-    if (errorsFound) return setDisabled(false);
+    if (errorsFound) {
+      return setDisabled(false);
+    }
     try {
       setMsg(true);
       const receipt = await contract.methods.changePrice(parseInt(nft.tokenID), web3.utils.toWei(newPrice), user.publicAddress).send({ from: user.publicAddress });
@@ -30,7 +34,8 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
       setDisabled(false);
       setMsg(false);
       router.reload(window.location.pathname);
-    } catch (error) {
+    } 
+    catch (error) {
       console.log(error);
       setDisabled(false);
       setMsg(false);
@@ -40,7 +45,9 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
   const changeStatus = async () => {
     setDisabled(true);
     const errorsFound = await checkForErrors(1);
-    if (errorsFound) return setDisabled(false);
+    if (errorsFound) { 
+      return setDisabled(false);
+    }
     try {
       setMsg1(true);
       const receipt = await contract.methods.changeMarketStatus(parseInt(nft.tokenID), user.publicAddress).send({ from: user.publicAddress });
@@ -48,7 +55,8 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
       setDisabled(false);
       setMsg1(false);
       router.reload(window.location.pathname);
-    } catch (error) {
+    } 
+    catch (error) {
       console.log(error);
       setDisabled(false);
       setMsg1(false);
@@ -73,7 +81,6 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
       });
       return true;
     }
-
     // No errors found
     return false;
   };
@@ -124,271 +131,265 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
 
   return (
     <>
-    {take ? (
-      <Link href={{pathname: path, query: { id: nft.tokenID }}}>
-      <div className="card">
-        {going ? (
-            <div className="name">
-              <Link href={{pathname: '/[id]', query: { id: nft.tokenID }}}>
-                <CallToAction>
-                { star } / 5
-                </CallToAction>
-              </Link> from { num } ratings
-            </div>
-          ) : (
-            <div className="name">
-              <CallToAction
-              color="primary"
-              size="sm"
-              outline="none">
-                { star } / 5 
-              </CallToAction> from { num } ratings
-            </div>
-          )
-        }
-          <div className="nft-img-container">
-            <img
-            src={nft.image}
-            width={300}
-            className="nft-img"
-            onError={(e) => (e.target.src = '/fallback.jpeg')}
-            />
-          </div>
-        {check === '0' ? (
-          <div className='name'>
-          <TextButton
-            color="primary"
-            outline="none"
-            >
-              {nft.name}
-          </TextButton>
-        </div>
-        ) : (
-          <div className="name">
-            <Link href={{pathname: path, query: { id: nft.tokenID }}}>
-              <TextButton
-              leadingIcon={MonochromeIcons.SuccessFilled}
-              color="primary"
-              outline="none"
-              >
-                {nft.name}
-              </TextButton>
-              </Link>
-            </div> 
-        )}
-        <div className="name">created by {nft.creator.substring(0, 6)}..{nft.creator.substring(38)}</div>
-        <br />
-        {types ? (
-          <>
-            {status && (
-              <>
-                <div className="name">
-                    <CallToAction
-                    color="primary"
-                    size="sm"
-                    outline="none"
-                    >
-                      { web3.utils.fromWei(price) } rETH
-                    </CallToAction>
-                  </div>
-              </>
-            )}
-          </>
-        ) : (
-          <>
-            <div className="name">
-              current price: { web3.utils.fromWei(price) } rETH </div>
+      {take ? (
+        <Link href={{pathname: path, query: { id: nft.tokenID }}}>
+          <div className="card">
+            {going ? (
               <div className="name">
-            <TextField
-              disabled={disabled}
-              placeholder="New Price"
-              type="number"
-              onChange={(e) => setNewPrice(e.target.value)}
-              value={newPrice}
-            />
-            <br />
-            <TextButton
-            disabled={disabled}
-            color="primary"
-            size="sm"
-            onClick={changePrice}
-            >
-            Change Price
-            </TextButton>
-            <br />
-            <br />
-            </div>
-            {status ? (
-              <>
-              <div className="name">
-                <CallToAction
-                disabled={disabled}
-                color="primary"
-                size="sm"
-                onClick={changeStatus}
-                >
-                Take Off Market
-                </CallToAction>
-                </div>
-              </>
-            ) : (
-              <>
-              <div className="name">
-                <CallToAction
-                disabled={disabled}
-                color="primary"
-                size="sm"
-                onClick={changeStatus}
-                >
-                Put On Market
-                </CallToAction>
-                </div>
-              </>
-            )}
-          </>
-        )}
-      </div>
-      </Link>
-    ) : (
-      <div className="card">
-        {going ? (
-            <div className="name">
-              <Link href={{pathname: '/[id]', query: { id: nft.tokenID }}}>
-                <CallToAction>
-                { star } / 5
-                </CallToAction>
-              </Link> from { num } ratings
-            </div>
-          ) : (
-            <div className="name">
-              <CallToAction
-              color="primary"
-              size="sm"
-              outline="none">
-                { star } / 5 
-              </CallToAction> from { num } ratings
-            </div>
-          )
-        }
-        
-          <div className="nft-img-container">
-            <img
-            src={nft.image}
-            width={300}
-            className="nft-img"
-            onError={(e) => (e.target.src = '/fallback.jpeg')}
-            />
-          </div>
- 
-          {check === '0' ? (
-          <div className='name'>
-          <TextButton
-            color="primary"
-            outline="none"
-            >
-              {nft.name}
-          </TextButton>
-        </div>
-        ) : (
-          <div className="name">
-              <TextButton
-              leadingIcon={MonochromeIcons.SuccessFilled}
-              color="primary"
-              outline="none"
-              >
-                {nft.name}
-              </TextButton>
-            </div> 
-        )}
-        <div className="name">by {nft.creator.substring(0, 6)}..{nft.creator.substring(38)}</div>
-        <br />
-        {types ? (
-          <>
-            {status && (
-              <>
-                <div className="name">
                 <Link href={{pathname: '/[id]', query: { id: nft.tokenID }}}>
-                    <CallToAction
-                    color="primary"
-                    size="sm"
-                    outline="none"
-                    >
-                      { web3.utils.fromWei(price) } rETH
-                    </CallToAction>
-                  </Link>
-                  </div>
-              </>
-            )}
-          </>
-        ) : (
-          <>
-            <div className="name">
-              current price: { web3.utils.fromWei(price) } rETH </div>
-              <div className="name">
-            <TextField
-              disabled={disabled}
-              placeholder="New Price"
-              type="number"
-              onChange={(e) => setNewPrice(e.target.value)}
-              value={newPrice}
-            />
-            <br />
-            <TextButton
-            disabled={disabled}
-            color="primary"
-            size="sm"
-            onClick={changePrice}
-            >
-            Change Price
-            </TextButton>
-            <br />
-            {msg && (
-
-            <div className='name'>
-              Found the eraser, we'll be back real quick
-            </div>
-
-            )}
-            <br />
-
-            </div>
-            {status ? (
-              <>
-              <div className="name">
-                <CallToAction
-                disabled={disabled}
-                color="primary"
-                size="sm"
-                onClick={changeStatus}
-                >
-                Take Off Market
-                </CallToAction>
-                </div>
-              </>
+                  <CallToAction>
+                    { star } / 5
+                  </CallToAction>
+                </Link> from { num } ratings
+              </div>
             ) : (
-              <>
               <div className="name">
                 <CallToAction
-                disabled={disabled}
                 color="primary"
                 size="sm"
-                onClick={changeStatus}
-                >
-                Put On Market
-                </CallToAction>
-                </div>
-                <br />
-              </>
-            )}
-            {msg1 && (
-              <div className='name'>
-                We're going to the market, need anything?
+                outline="none">
+                  { star } / 5 
+                </CallToAction> from { num } ratings
               </div>
             )}
-          </>
-        )}
-      </div>
-    )}
+            <div className="nft-img-container">
+              <img
+              src={nft.image}
+              width={300}
+              className="nft-img"
+              onError={(e) => (e.target.src = '/fallback.jpeg')}
+              />
+            </div>
+            {check === '0' ? (
+              <div className='name'>
+                <TextButton
+                color="primary"
+                outline="none"
+                >
+                  {nft.name}
+                </TextButton>
+              </div>
+            ) : (
+              <div className="name">
+                <Link href={{pathname: path, query: { id: nft.tokenID }}}>
+                  <TextButton
+                  leadingIcon={MonochromeIcons.SuccessFilled}
+                  color="primary"
+                  outline="none"
+                  >
+                    {nft.name}
+                  </TextButton>
+                </Link>
+              </div> 
+            )}
+            <div className="name">created by {nft.creator.substring(0, 6)}..{nft.creator.substring(38)}</div>
+            <br />
+            {types ? (
+              <>
+                {status && (
+                  <>
+                    <div className="name">
+                      <CallToAction
+                      color="primary"
+                      size="sm"
+                      outline="none"
+                      >
+                        { web3.utils.fromWei(price) } rETH
+                      </CallToAction>
+                    </div>
+                  </>
+                )}
+              </>
+            ) : (
+              <>
+                <div className="name">
+                  current price: { web3.utils.fromWei(price) } rETH 
+                </div>
+                <div className="name">
+                  <TextField
+                  disabled={disabled}
+                  placeholder="New Price"
+                  type="number"
+                  onChange={(e) => setNewPrice(e.target.value)}
+                  value={newPrice}
+                  />
+                  <br />
+                  <TextButton
+                  disabled={disabled}
+                  color="primary"
+                  size="sm"
+                  onClick={changePrice}
+                  >
+                    Change Price
+                  </TextButton>
+                  <br />
+                  <br />
+                </div>
+                {status ? (
+                  <>
+                    <div className="name">
+                      <CallToAction
+                      disabled={disabled}
+                      color="primary"
+                      size="sm"
+                      onClick={changeStatus}
+                      >
+                        Take Off Market
+                      </CallToAction>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="name">
+                      <CallToAction
+                      disabled={disabled}
+                      color="primary"
+                      size="sm"
+                      onClick={changeStatus}
+                      >
+                        Put On Market
+                      </CallToAction>
+                    </div>
+                  </>
+                )}
+              </>
+            )}
+          </div>
+        </Link>
+      ) : (
+        <div className="card">
+          {going ? (
+            <div className="name">
+              <Link href={{pathname: '/[id]', query: { id: nft.tokenID }}}>
+                <CallToAction>
+                  { star } / 5
+                </CallToAction>
+              </Link> from { num } ratings
+            </div>
+          ) : (
+            <div className="name">
+              <CallToAction
+              color="primary"
+              size="sm"
+              outline="none">
+                { star } / 5 
+              </CallToAction> from { num } ratings
+            </div>
+          )}
+          <div className="nft-img-container">
+            <img
+            src={nft.image}
+            width={300}
+            className="nft-img"
+            onError={(e) => (e.target.src = '/fallback.jpeg')}
+            />
+          </div>
+          {check === '0' ? (
+            <div className='name'>
+              <TextButton
+              color="primary"
+              outline="none"
+              >
+                {nft.name}
+              </TextButton>
+            </div>
+          ) : (
+            <div className="name">
+              <TextButton
+              leadingIcon={MonochromeIcons.SuccessFilled}
+              color="primary"
+              outline="none"
+              >
+                {nft.name}
+              </TextButton>
+            </div> 
+          )}
+          <div className="name">by {nft.creator.substring(0, 6)}..{nft.creator.substring(38)}</div>
+          <br />
+          {types ? (
+            <>
+              {status && (
+                <>
+                  <div className="name">
+                    <Link href={{pathname: '/[id]', query: { id: nft.tokenID }}}>
+                      <CallToAction
+                      color="primary"
+                      size="sm"
+                      outline="none"
+                      >
+                        { web3.utils.fromWei(price) } rETH
+                      </CallToAction>
+                    </Link>
+                  </div>
+                </>
+              )}
+            </>
+          ) : (
+            <>
+              <div className="name">
+                current price: { web3.utils.fromWei(price) } rETH </div>
+                <div className="name">
+                  <TextField
+                  disabled={disabled}
+                  placeholder="New Price"
+                  type="number"
+                  onChange={(e) => setNewPrice(e.target.value)}
+                  value={newPrice}
+                  />
+                  <br />
+                  <TextButton
+                  disabled={disabled}
+                  color="primary"
+                  size="sm"
+                  onClick={changePrice}
+                  >
+                    Change Price
+                  </TextButton>
+                  <br />
+                  {msg && (
+                    <div className='name'>
+                      Found the eraser, we'll be back real quick
+                    </div>
+                  )}
+                  <br />
+                </div>
+              {status ? (
+                <>
+                  <div className="name">
+                    <CallToAction
+                    disabled={disabled}
+                    color="primary"
+                    size="sm"
+                    onClick={changeStatus}
+                    >
+                      Take Off Market
+                    </CallToAction>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="name">
+                    <CallToAction
+                    disabled={disabled}
+                    color="primary"
+                    size="sm"
+                    onClick={changeStatus}
+                    >
+                      Put On Market
+                    </CallToAction>
+                  </div>
+                  <br />
+                </>
+              )}
+              {msg1 && (
+                <div className='name'>
+                  We're going to the market, need anything?
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      )}
       <style>{`
         .card {
           border-radius: 8px;

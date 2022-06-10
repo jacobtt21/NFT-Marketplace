@@ -22,13 +22,14 @@ export default function Index() {
   const contract = new web3.eth.Contract(abi, contractAddress);
 
   useEffect(() => {
-    if (!router.query.user) return;
+    if (!router.query.user) {
+      return;
+    }
     getMyNFTs();
   }, [router.query.user]);
 
   const getMyNFTs = async () => {
     setLoading(true);
-
     // Get array of token URI's stored in contract for given user
     // Each URI is an IPFS url containing json metadata about the NFT, such as image and name
     const tokenURIs = await contract.methods.getNFTsByOwner(router.query.user).call();
@@ -66,7 +67,7 @@ export default function Index() {
         router.push('/profile');
     }
     route = true;
-}
+  }
 
   return myStars ? (
     <div>
@@ -85,7 +86,7 @@ export default function Index() {
           text-align: center;
           min-height: 28px;
         }
-        `}</style>
+      `}</style>
     </div>
   ) : (
     <Loading />

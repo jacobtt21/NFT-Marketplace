@@ -22,7 +22,9 @@ export default function Index() {
   const [inti, setInti] = useState(0);
 
   useEffect(() => {
-    if (!user) return;
+    if (!user) {
+      return;
+    }
     getMyNFT();
   }, [user]);
 
@@ -30,7 +32,6 @@ export default function Index() {
   const contract = new web3.eth.Contract(abi, contractAddress);
 
   const getMyNFT = async () => {
-    
     const nft = await contract.methods.getNFTbyId(parseInt(router.query.id)).call();
     const response = await fetch(nft[0]);
     const data = await response.json();
@@ -42,16 +43,18 @@ export default function Index() {
     Panelbear.track("RatingNFT");
     setDisabled(true);
     const errorsFound = await checkForErrors(1);
-    if (errorsFound) return setDisabled(false);
+    if (errorsFound) {
+      return setDisabled(false);
+    }
     if (parseInt(newRating) > 5 || parseInt(newRating) < 0) {
-        createToast({
-            message: 'Rating must be between 0 - 5',
-            type: 'error',
-            lifespan: 2000,
-          });
-        setNewRating('');
-        setMsg(false);
-        return setDisabled(false);
+      createToast({
+        message: 'Rating must be between 0 - 5',
+        type: 'error',
+        lifespan: 2000,
+      });
+      setNewRating('');
+      setMsg(false);
+      return setDisabled(false);
     }
     try {
       setMsg(true)
@@ -70,8 +73,9 @@ export default function Index() {
       setNewRating('');
       setDisabled(false);
       router.reload(window.location.pathname);
-    } catch (error) {
-      // console.log(error);
+    } 
+    catch (error) {
+      console.log(error);
       setMsg(false);
       setDisabled(false);
     }
@@ -82,7 +86,9 @@ export default function Index() {
     setDisabled(true);
     const cost = theData.price;
     const errorsFound = await checkForErrors(2);
-    if (errorsFound) return setDisabled(false);
+    if (errorsFound) {
+      return setDisabled(false);
+    }
     try {
       setDisabled(true);
       setMsg1(true);
@@ -108,7 +114,8 @@ export default function Index() {
       setDisabled(false);
       setMsg1(false);
       router.reload(window.location.pathname);
-    } catch (error) {
+    } 
+    catch (error) {
       console.log(error);
       setMsg1(false);
       setDisabled(false);
@@ -133,7 +140,6 @@ export default function Index() {
       });
       return true;
     }
-
     // No errors found
     return false;
   };
@@ -207,199 +213,193 @@ export default function Index() {
 
   return user ? (
     <div>
-        {theData ? (
-            <>
-                <div className="mint-container">
-                <Link href={theNFT.work}>
-                  <a target="_blank">
+      {theData ? (
+        <>
+          <div className="mint-container">
+            <Link href={theNFT.work}>
+              <a target="_blank">
                 <CallToAction
-                  color="primary"
-                  >
+                color="primary"
+                >
                   Take me to the work &rarr;
-                  </CallToAction>
-                  </a>
-                    </Link>
-                    {theData.verify === '0' ? (
-                      <h1>{theNFT.name}</h1>
-
-                    ) : (
-                      <h1>
-                      <Link href="/verify">
-                    <TextButton
-                    leadingIcon={MonochromeIcons.SuccessFilled}
-                    color="primary"
-                    outline="none"
-                    >
-                    </TextButton>
-                    </Link>
-                      {theNFT.name}</h1>
-                    )}
-                    <h3>created by</h3>
-                    <Link href={{pathname: '/u/[user]', query: { user: theNFT.creator }}}>
-                    <TextButton>
-                      {theNFT.creator.substring(0, 12)}...{theNFT.creator.substring(38)}
-                    </TextButton>
-                    </Link>
-                    <br />            
-                    <br />
-                    <h3>Price: {web3.utils.fromWei(theData.price)} rETH</h3>
-                    <br />
-                    
-                        <img
-                            src={theNFT.image}
-                            width={300}
-                            className="nft-img"
-                            onError={(e) => (e.target.src = '/fallback.jpeg')}
-                        />
-                
-                    <div className='name'>
+                </CallToAction>
+              </a>
+            </Link>
+            {theData.verify === '0' ? (
+              <h1>{theNFT.name}</h1>
+            ) : (
+              <h1>
+                <Link href="/verify">
+                  <TextButton
+                  leadingIcon={MonochromeIcons.SuccessFilled}
+                  color="primary"
+                  outline="none"
+                  >
+                  </TextButton>
+                </Link>
+                {theNFT.name}
+              </h1>
+            )}
+            <h3>created by</h3>
+            <Link href={{pathname: '/u/[user]', query: { user: theNFT.creator }}}>
+              <TextButton>
+                {theNFT.creator.substring(0, 12)}...{theNFT.creator.substring(38)}
+              </TextButton>
+            </Link>
+            <br />            
+            <br />
+            <h3>Price: {web3.utils.fromWei(theData.price)} rETH</h3>
+            <br />        
+            <img
+            src={theNFT.image}
+            width={300}
+            className="nft-img"
+            onError={(e) => (e.target.src = '/fallback.jpeg')}
+            />    
+            <div className='name'>
+              <CallToAction
+              color="primary"
+              size="sm"
+              outline="none"
+              >
+                { theData.rating } / 5 Rating
+              </CallToAction>
+            </div>
+            { theNFT.socialLink !== '' && (
+              <div className='name'>
+                <Link href={theNFT.socialLink}>
+                  <a target="_blank">
                     <CallToAction
                     color="primary"
-                    size="sm"
-                    outline="none"
                     >
-                      { theData.rating } / 5 Rating
+                      Take me to the community &rarr;
                     </CallToAction>
+                  </a>
+                </Link>
+              </div>
+            )}
+            {theNFT.creator !== user.publicAddress ? (
+              <div className="name">            
+                <TextField
+                disabled={disabled}
+                placeholder="Give this work a rating (on a scale to 0 - 5)"
+                type="number"
+                max="5"
+                min="0"
+                onChange={(e) => setNewRating(e.target.value)}
+                value={newRating}
+                />
+                <br />
+                {inti === 0 ? (
+                  <TextButton
+                  disabled={disabled}
+                  color="primary"
+                  size="sm"
+                  onClick={addRating}
+                  >
+                    Submit Your Rating for -- ETH
+                  </TextButton>
+                ) : (
+                  <TextButton
+                  disabled={disabled}
+                  color="primary"
+                  size="sm"
+                  onClick={addRating}
+                  >
+                    Submit Your Rating for 0.0004 ETH
+                  </TextButton>
+                )}
+                <br />
+                <br />
+                {msg && (
+                  <>
+                    <br />
+                    <div className="name">
+                      Give us a sec, we're explaining to the smart contract why you gave it this rating...it's very curious
                     </div>
-                    { theNFT.socialLink !== '' && (
-                      <div className='name'>
-                      <Link href={theNFT.socialLink}>
-                      <a target="_blank">
-                      <CallToAction
-                    color="primary"
-                    >
-                    Take me to the community &rarr;
-                    </CallToAction>
-                    </a>
-                      </Link>
-                      </div>
-                    )}
-                    {theNFT.creator !== user.publicAddress ? (
-                        <div className="name">
-                          
-                        <TextField
-                            disabled={disabled}
-                            placeholder="Give this work a rating (on a scale to 0 - 5)"
-                            type="number"
-                            max="5"
-                            min="0"
-                            onChange={(e) => setNewRating(e.target.value)}
-                            value={newRating}
-                        />
-                        <br />
-                        {inti === 0 ? (
-                          <TextButton
-                        disabled={disabled}
-                        color="primary"
-                        size="sm"
-                        onClick={addRating}
-                        >
-                            Submit Your Rating for -- ETH
-                        </TextButton>
-                        ) : (
-                        <TextButton
-                        disabled={disabled}
-                        color="primary"
-                        size="sm"
-                        onClick={addRating}
-                        >
-                            Submit Your Rating for 0.0004 ETH
-                        </TextButton>
-                        )}
-                        <br />
-                        <br />
-                        {msg && (
-                          <>
-                          <br />
-                          <div className="name">
-                            Give us a sec, we're explaining to the smart contract why you gave it this rating...it's very curious
-                          </div>
-                          </>
-                        )}
-                        </div>
-                    ) : (
-                        <>
-                        <div className="name">
-                            As the Creator of this Work, you can't rate it!
-                        </div>
-                        </>
-                    )}
-                    
-                    {theData.owner !== user.publicAddress ?
-                     (theData.onMarket ? (
-                        <div className="name">
-                            <CallToAction
-                            disabled={disabled}
-                            color="primary"
-                            size="sm"
-                            onClick={buy}
-                            >
-                                Buy this work for {web3.utils.fromWei(theData.price)} ETH
-                            </CallToAction>
-                        </div>
-                    ) : (
-                      <div className="name">
-                        This NFT is currently not for sale
-                      </div>
-                    )) : (
-                      <div className="name">
-                        You own this NFT
-                      </div>
-                    )}
-                    {msg1 && (
-                      <>
-                        Give us a moment to get this wrapping paper on right before you hand it off to you...
-                      </>
-                    )}
-                
+                  </>
+                )}
+              </div>
+            ) : (
+              <>
+                <div className="name">
+                  As the Creator of this Work, you can't rate it!
                 </div>
-                <style>{`
-                    h1 {
-                    font-weight: bold;
-                    font-size: 28px;
-                    margin: 20px;
-                    min-height: 28px;
-                    }
+              </>
+            )}        
+            {theData.owner !== user.publicAddress ?
+              (theData.onMarket ? (
+                <div className="name">
+                  <CallToAction
+                  disabled={disabled}
+                  color="primary"
+                  size="sm"
+                  onClick={buy}
+                  >
+                    Buy this work for {web3.utils.fromWei(theData.price)} ETH
+                  </CallToAction>
+                </div>
+              ) : (
+                <div className="name">
+                  This NFT is currently not for sale
+                </div>
+              )
+            ) : (
+              <div className="name">
+                You own this NFT
+              </div>
+            )}
+            {msg1 && (
+              <>
+                Give us a moment to get this wrapping paper on right before you hand it off to you...
+              </>
+            )}
+          </div>
+          <style>{`
+            h1 {
+              font-weight: bold;
+              font-size: 28px;
+              margin: 20px;
+              min-height: 28px;
+            }
                 
-                    .mint-container {
-                    max-width: 400px;
-                    text-align: center;
-                    margin: 0 auto;
-                    padding: 40px;
-                    border-radius: 8px;
-                    border: 1px solid #f9f9f9;
-                    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 16px;
-                    }
+            .mint-container {
+              max-width: 400px;
+              text-align: center;
+              margin: 0 auto;
+              padding: 40px;
+              border-radius: 8px;
+              border: 1px solid #f9f9f9;
+              box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 16px;
+            }
 
-                    input[type=file], .image-preview {
-                    display: block;
-                    margin: 20px 5px;
-                    }
+            input[type=file], .image-preview {
+              display: block;
+              margin: 20px 5px;
+            }
 
-                    .image-preview {
-                    border-radius: 8px;
-                    max-width: 200px;
-                    max-height: 200px;
-                    }
+            .image-preview {
+              border-radius: 8px;
+              max-width: 200px;
+              max-height: 200px;
+            }
 
-                    .nft-img {
-                      max-width: 400px;
-                      max-height: 400px;
-                      cursor: pointer;
-                      border-radius: 8px;
-                    }
+            .nft-img {
+              max-width: 400px;
+              max-height: 400px;
+              cursor: pointer;
+              border-radius: 8px;
+            }
                     
-                    .name {
-                        margin-top: 40px;
-                        text-align: center;
-                      }
-                `}</style>
-            </>
-        ) : (
-            <>
-                <Loading />
-            </>
-        )}
+            .name {
+              margin-top: 40px;
+              text-align: center;
+            }
+          `}</style>
+        </>
+      ) : (
+        <Loading />
+      )}
     </div>
   ) : (
     <Loading />

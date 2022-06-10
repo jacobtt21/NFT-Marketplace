@@ -4,7 +4,7 @@ import { web3 } from '../lib/magic';
 import { abi } from '../contracts/abi';
 import Grid from '../components/Grid';
 import Loading from '../components/Loading';
-import { TextField, CallToAction, useToast, TextButton } from '@magiclabs/ui';
+import { useToast, TextButton } from '@magiclabs/ui';
 
 export default function Index() {
   const [user] = useContext(UserContext);
@@ -31,7 +31,9 @@ export default function Index() {
   };
 
   useEffect(() => {
-    if (!user) return;
+    if (!user) {
+      return;
+    }
     getMyNFTs();
   }, [user]);
 
@@ -73,11 +75,12 @@ export default function Index() {
   return user ? (
     <div>
       <h1>Your rocking collection of works</h1>
-      <p>Interesting taste...we're not judging, just noticing. <TextButton
+      <p>Interesting taste...we're not judging, just noticing. 
+        <TextButton
         onPress={copyLink}
-      >
-        Might as well share it right?
-      </TextButton>
+        >
+          Might as well share it right?
+        </TextButton>
       </p>
       <Grid loading={loading} nfts={myNFTs} prices={myPrices} statuses={myStatus} type={false} stars={myStars} nums={myNums} checkmark={myVerify} go={true} takeAway={false} />
       <style>{`

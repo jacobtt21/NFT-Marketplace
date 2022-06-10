@@ -37,6 +37,7 @@ function Mint() {
     process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
     process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_ADMIN_KEY,
   );
+  
   const index = searchClient.initIndex('Oustro');
 
   // Upload image to IPFS when uploaded by user
@@ -46,7 +47,8 @@ function Mint() {
       const ipfsData = await client.add(file);
       const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
       setIpfsImageUrl(url);
-    } catch (error) {
+    } 
+    catch (error) {
       console.log(error);
     }
   }
@@ -58,7 +60,8 @@ function Mint() {
       const ipfsData = await client.add(file);
       const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
       setIpfsWorkUrl(url);
-    } catch (error) {
+    } 
+    catch (error) {
       console.log(error);
     }
   }
@@ -136,7 +139,7 @@ function Mint() {
 
       setMintStatus("Indexing")
 
-      const search = await index.saveObject({
+      await index.saveObject({
         name: name,
         share: shareAddress,
         image: ipfsImageUrl,
@@ -144,8 +147,7 @@ function Mint() {
         creator: user.publicAddress,
         tokenID: tIndex
 
-      },
-      {autoGenerateObjectIDIfNotExist: true})
+      }, {autoGenerateObjectIDIfNotExist: true})
 
       setMintStatus('')
 
@@ -221,7 +223,6 @@ function Mint() {
     setPrice('');
     setSocial('');
     setShare('');
-
     imageInputRef.current.value = '';
     workInputRef.current.value = '';
   };
@@ -249,52 +250,52 @@ function Mint() {
           <br />
           <div className="mint-container">
             <TextField
-              disabled={disabled}
-              label="NFT Name"
-              placeholder="Give your work a great name!"
-              type="text"
-              onChange={(e) => setName(e.target.value)}
-              value={name}
-              required="required"
+            disabled={disabled}
+            label="NFT Name"
+            placeholder="Give your work a great name!"
+            type="text"
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+            required="required"
             />
             <br />
             <br />
             <TextField
-              disabled={disabled}
-              label="Social Links for this work (optional)"
-              placeholder="Discord, Reddit, Telegram etc. (Only 1 Link)"
-              type="text"
-              onChange={(e) => setSocial(e.target.value)}
-              value={social}
+            disabled={disabled}
+            label="Social Links for this work (optional)"
+            placeholder="Discord, Reddit, Telegram etc. (Only 1 Link)"
+            type="text"
+            onChange={(e) => setSocial(e.target.value)}
+            value={social}
             />
             <br />
             {show ? (
               <>
-              <div className='nname'>
-              <p>Visability: Public</p>
-              </div>
-              <CallToAction
-              disabled={disabled}
-              color="primary"
-              size='sm'
-              onClick={ChangeVis}
-              >
-              Change to Private (Only Accessible by Link)
-              </CallToAction>
+                <div className='nname'>
+                  <p>Visability: Public</p>
+                </div>
+                <CallToAction
+                disabled={disabled}
+                color="primary"
+                size='sm'
+                onClick={ChangeVis}
+                >
+                  Change to Private (Only Accessible by Link)
+                </CallToAction>
               </>
             ) : (
               <>
-              <div className='nname'>
-              <p>Visability: Private</p>
-              </div>
-              <CallToAction
-              disabled={disabled}
-              color="primary"
-              size='sm'
-              onClick={ChangeVis}
-              >
-              Change to Public (Open to Everyone)
-              </CallToAction>
+                <div className='nname'>
+                  <p>Visability: Private</p>
+                </div>
+                <CallToAction
+                disabled={disabled}
+                color="primary"
+                size='sm'
+                onClick={ChangeVis}
+                >
+                  Change to Public (Open to Everyone)
+                </CallToAction>
               </>
             )}
             <br />
@@ -305,14 +306,14 @@ function Mint() {
             <p>(500 x 500 Pixel works best)</p>
             <br />
             <input
-              type="file"
-              onChange={onImageUpload}
-              ref={imageInputRef}
-              disabled={disabled}
-              accept="image/*"
-              required="required"
-            ></input>
-
+            type="file"
+            onChange={onImageUpload}
+            ref={imageInputRef}
+            disabled={disabled}
+            accept="image/*"
+            required="required"
+            >
+            </input>
             <br />
             {ipfsImageUrl && (
               <img className="image-preview" src={ipfsImageUrl} />
@@ -325,24 +326,25 @@ function Mint() {
             <p>(PDF file format)</p>
             <br />
             <input
-              type="file"
-              accept=".pdf"
-              onChange={onWorkUpload} 
-              ref={workInputRef}
-              disabled={disabled}
-              required="required"
-            ></input>
+            type="file"
+            accept=".pdf"
+            onChange={onWorkUpload} 
+            ref={workInputRef}
+            disabled={disabled}
+            required="required"
+            >
+            </input>
             <br />
             {ipfsWorkUrl && (
               <Link href={ipfsWorkUrl}>
-              <a target="_blank">
-            <CallToAction
-              color="primary"
-              >
-              Check Your Work &rarr;
-              </CallToAction>
-              </a>
-                </Link>
+                <a target="_blank">
+                  <CallToAction
+                  color="primary"
+                  >
+                    Check Your Work &rarr;
+                  </CallToAction>
+                </a>
+              </Link>
             )}
             <br />
             <br />
@@ -364,15 +366,13 @@ function Mint() {
               type="text"
               onChange={(e) => setShare(e.target.value)}
               value={sharing}
-            />
-            ) :
-            (
+              />
+            ) : (
               <></>
             )}
             <br />
             By Default NFTs are not put on the marketplace, this can be changed in
             'Your Collection' tab.
-
             <br />
             <br />
             <br />
@@ -384,40 +384,39 @@ function Mint() {
               onClick={mintNFT}
               disabled={disabled}
               >
-              Mint NFT for -- ETH
+                Mint NFT for -- ETH
               </CallToAction>
-              ) : (
-                <CallToAction
-                color="primary"
-                size="sm"
-                onClick={mintNFT}
-                disabled={disabled}
-                >
+            ) : (
+              <CallToAction
+              color="primary"
+              size="sm"
+              onClick={mintNFT}
+              disabled={disabled}
+              >
                 Mint NFT for {(inti.toString()).substring(0, 6)} ETH
-                </CallToAction>
+              </CallToAction>
             )}
-            
             <div style={{ marginTop: '30px' }}>
               {txPending && (
                 <>
-                <div>{mintStatus}</div>
-              </>
-                )}
+                  <div>{mintStatus}</div>
+                </>
+              )}
               {txHash && (
                 <>
-                <div className='name'>
-                  Thank you for your contribution to the Oustro Library of Work!
-                </div>
-                <br />
-                <br />
+                  <div className='name'>
+                    Thank you for your contribution to the Oustro Library of Work!
+                  </div>
+                  <br />
+                  <br />
                   <CallToAction
-                      color="primary"
-                      size="sm"
-                      outline="none"
-                      onPress={copyLink}
-                    >
-                      Share your NFT using this link
-                    </CallToAction>
+                  color="primary"
+                  size="sm"
+                  outline="none"
+                  onPress={copyLink}
+                  >
+                    Share your NFT using this link
+                  </CallToAction>
                 </>
               )}
             </div>

@@ -21,7 +21,6 @@ const Layout = (props) => (
       <meta property="twitter:title" content="Oustro" />
       <meta property="twitter:description" content="Welcome to the future of Publishing" />
       <meta property="twitter:image" content="https://i.imgur.com/uQRUzpt.png" />
-
     </Head>
     <Header />
     <main>
