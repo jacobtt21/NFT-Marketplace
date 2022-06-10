@@ -8,7 +8,7 @@ const Layout = (props) => (
       <link rel="icon" href="/favicon.ico" />
 
       <meta name="title" content="Oustro" />
-      <meta name="description" content="Welcome to the future of Publishing" />
+      <meta name="description" content="Publishing has never been easier and supporting creators has never been so rewarding. Welcome to Oustro." />
 
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://oustro.xyz" />
