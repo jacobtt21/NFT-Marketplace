@@ -13,13 +13,13 @@ const Layout = (props) => (
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://oustro.xyz" />
       <meta property="og:title" content="Oustro" />
-      <meta property="og:description" content="Welcome to the future of Publishing" />
+      <meta property="og:description" content="Publishing has never been easier and supporting creators has never been so rewarding. Welcome to Oustro." />
       <meta property="og:image" content="https://i.imgur.com/uQRUzpt.png" />
 
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content="https://oustro.xyz" />
       <meta property="twitter:title" content="Oustro" />
-      <meta property="twitter:description" content="Welcome to the future of Publishing" />
+      <meta property="twitter:description" content="Publishing has never been easier and supporting creators has never been so rewarding. Welcome to Oustro." />
       <meta property="twitter:image" content="https://i.imgur.com/uQRUzpt.png" />
     </Head>
     <Header />
