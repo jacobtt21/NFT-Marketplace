@@ -44,7 +44,7 @@ const Header = () => {
         <ul>
           {!user ? (
             <>
-            <div className="nav-container">
+              <div className="nav-container">
                 <div className="nav-div">
                   <li>
                     <Link href="/showcase">
@@ -169,13 +169,19 @@ const Header = () => {
         nav {
           max-width: 80rem;
           margin: 15px auto;
-          padding: 1rem;
           min-height: 70px;
+          padding: 1rem;
         }
 
         .nav-container,
         .nav-div {
           display: flex;
+        }
+
+        .banner {
+          min-height: 30px;
+          min-width: 10rem;
+          text-align: center;
         }
 
         .nav-container {

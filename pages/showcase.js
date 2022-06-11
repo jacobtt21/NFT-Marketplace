@@ -1,6 +1,5 @@
-import { Icon, MonochromeIcons, TextField, CallToAction, Input } from '@magiclabs/ui';
-import { useCallback, useState, useContext } from 'react';
-import Head from 'next/head';
+import { CallToAction } from '@magiclabs/ui';
+import { useState } from 'react';
 import Typical from 'react-typical'
 import Link from "next/link";
 import Grid from '../components/Grid';
