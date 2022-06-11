@@ -54,7 +54,7 @@ export default function About() {
           </CallToAction>
         </div>
         <div className='footer'>
-          <p>2023 Oustro Inc. v1.4.2-beta</p>
+          <p>2023 Oustro Inc. v1.5-beta</p>
         </div>
         <style jsx>{`
           .mint-container {
