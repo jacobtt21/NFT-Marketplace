@@ -355,6 +355,17 @@ export default function Index() {
               </>
             )}
           </div>
+          <div className='name'>
+          <Link href={{pathname: '/contact/[id]', query: { id: router.query.id }}}>
+              <TextButton
+              color="error"
+              >
+                Report this Work
+              </TextButton>
+            </Link>
+          </div>
+          <br />
+
           <style>{`
             h1 {
               font-weight: bold;
