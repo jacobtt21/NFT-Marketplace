@@ -6,9 +6,8 @@ import Grid from '../components/Grid';
 import Loading from '../components/Loading';
 import algoliasearch from 'algoliasearch';
 import { InstantSearch, Hits, connectSearchBox } from "react-instantsearch-dom";
-import { Icon, MonochromeIcons, TextField, CallToAction, Input } from '@magiclabs/ui';
+import { TextField } from '@magiclabs/ui';
 import Link from 'next/link';
-import Head from 'next/head';
 
 export default function Index() {
   const searchClient = algoliasearch(

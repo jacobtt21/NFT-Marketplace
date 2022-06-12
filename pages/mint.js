@@ -1,4 +1,4 @@
-import { useState, useContext, useRef, useCallback } from 'react';
+import { useState, useContext, useRef } from 'react';
 import { UserContext } from '../lib/UserContext';
 import { web3 } from '../lib/magic';
 import { abi } from '../contracts/abi';

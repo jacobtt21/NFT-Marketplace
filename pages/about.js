@@ -1,7 +1,4 @@
-import { Icon, MonochromeIcons, TextField, CallToAction } from '@magiclabs/ui';
-import Typical from 'react-typical'
-import Link from "next/link";
-import Script from 'next/script'
+import { CallToAction } from '@magiclabs/ui';
 
 
 export default function About() {

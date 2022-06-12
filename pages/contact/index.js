@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import { UserContext } from '../../lib/UserContext';
-import { TextField, CallToAction, Popover } from '@magiclabs/ui';
+import { TextField, CallToAction } from '@magiclabs/ui';
 import Loading from '../../components/Loading';
 
 function Contact() {

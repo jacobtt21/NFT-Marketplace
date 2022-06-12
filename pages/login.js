@@ -2,9 +2,7 @@ import { useCallback, useState, useContext } from 'react';
 import { UserContext } from '../lib/UserContext';
 import { magic } from '../lib/magic';
 import Router from 'next/router';
-import { Icon, MonochromeIcons, TextField, CallToAction, Input } from '@magiclabs/ui';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-
+import { Icon, MonochromeIcons, TextField, CallToAction } from '@magiclabs/ui';
 
 export default function Login() {
   const [email, setEmail] = useState('');
