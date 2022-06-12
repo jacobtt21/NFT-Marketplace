@@ -13,36 +13,26 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
   usePanelbear('JeX1D57Asdk');
 
+  if (isMobile) {
+    return router.push('www.google.com')
+  }
   
   useEffect(() => {
     magic.user.isLoggedIn().then((isLoggedIn) => {
       if (isLoggedIn) {
-        if (isMobile) {
-          Router.push("www.google.com");
-        }
         magic.user.getMetadata().then(setUser);
       } else {
         if (router.pathname !== '/callback') {
           if (router.pathname === '/') {
-            if (isMobile) {
-              Router.push("www.google.com");
-            }
             Router.push('/showcase');
           }
           else if (router.pathname === '/s/[id]') {
-            if (isMobile) {
-              Router.push("www.google.com");
-            }
+            
           }
           else if (router.pathname === '/u/[user]') {
-            if (isMobile) {
-              Router.push("www.google.com");
-            }
+            
           }
           else {
-            if (isMobile) {
-              Router.push("www.google.com");
-            }
             Router.push('/login');
             setUser();
           }
