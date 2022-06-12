@@ -41,11 +41,11 @@ export default function About() {
 
     const allStatus = [false, false, false, false];
 
-    const allStars = [0, 5, 5, 5]
+    const allStars = [5, 5, 5, 5]
 
     const allVeri = [0, 0, 0, 0]
 
-    const allNums = ['97', '78', '102', '34']
+    const allNums = ['34', '78', '102', '94']
 
   return (
     <>
