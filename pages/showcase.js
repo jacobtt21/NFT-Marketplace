@@ -2,7 +2,7 @@ import { CallToAction } from '@magiclabs/ui';
 import { useState } from 'react';
 import Typical from 'react-typical'
 import Link from "next/link";
-import Grid from '../components/Grid';
+import Grid from '../components/Grid2';
 
 export default function About() {
     const [loading, setLoading] = useState(false);
@@ -57,7 +57,7 @@ export default function About() {
           Welcome to the new library of works, all powered by you
         </div>
         Check out some of the featured works by creators on Oustro
-        <Grid loading={loading} nfts={allNFTs} prices={allPrices} statuses={allStatus} type={true} stars={allStars} nums={allNums} go={false} takeAway={true} checkmark={allVeri}/>
+        <Grid loading={loading} nfts={allNFTs} prices={allPrices} statuses={allStatus} type={true} stars={allStars} nums={allNums} go={false} takeAway={true} checkmark={allVeri} real={false}/>
         <div className='Imagine'>
           <Link href="/login">
             <CallToAction
