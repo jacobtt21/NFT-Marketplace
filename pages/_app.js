@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
   
   useEffect(() => {
     if (isMobile) {
-      window.location.href = "https://google.com/about";
+      window.location.href = "https://mobile.oustro.xyz";
     }
     magic.user.isLoggedIn().then((isLoggedIn) => {
       if (isLoggedIn) {
