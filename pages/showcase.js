@@ -45,7 +45,7 @@ export default function About() {
 
     const allVeri = [0, 0, 0, 0]
 
-    const allNums = ['0', '2', '2', '3']
+    const allNums = ['97', '78', '102', '34']
 
   return (
     <>
