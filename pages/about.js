@@ -1,6 +1,5 @@
 import { CallToAction } from '@magiclabs/ui';
 
-
 export default function About() {
   return (
     <>

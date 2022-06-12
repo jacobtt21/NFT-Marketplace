@@ -8,7 +8,7 @@ export default function About() {
       <br />
       <h4> Coming soon</h4>
       <div className='footer'>
-        <p>2023 Oustro Inc. v1.4.2-beta</p>
+        <p>2023 Oustro Inc. v1.5-beta</p>
       </div>
       <style jsx>{`
       .mint-container {
