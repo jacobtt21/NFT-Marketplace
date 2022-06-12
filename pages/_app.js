@@ -7,6 +7,7 @@ import { ThemeProvider, ToastProvider, SSRProvider } from '@magiclabs/ui';
 import '@magiclabs/ui/dist/cjs/index.css';
 import { usePanelbear } from '@panelbear/panelbear-nextjs';
 import { isMobile } from 'react-device-detect';
+import redirect from 'nextjs-redirect'
 
 function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState();
@@ -14,7 +15,7 @@ function MyApp({ Component, pageProps }) {
   usePanelbear('JeX1D57Asdk');
 
   if (isMobile) {
-    return router.push('www.google.com')
+    redirect('https://google.com')
   }
   
   useEffect(() => {
