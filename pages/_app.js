@@ -13,12 +13,11 @@ function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState();
   const router = useRouter();
   usePanelbear('JeX1D57Asdk');
-
-  if (isMobile) {
-    redirect('https://google.com')
-  }
   
   useEffect(() => {
+    if (isMobile) {
+      return redirect('https://google.com');
+    }
     magic.user.isLoggedIn().then((isLoggedIn) => {
       if (isLoggedIn) {
         magic.user.getMetadata().then(setUser);
