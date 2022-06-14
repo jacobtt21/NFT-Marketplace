@@ -356,7 +356,7 @@ export default function Index() {
             )}
           </div>
           <div className='name'>
-          <Link href={{pathname: '/contact/[id]', query: { id: router.query.id }}}>
+            <Link href={{pathname: '/contact/[id]', query: { id: router.query.id }}}>
               <TextButton
               color="error"
               >

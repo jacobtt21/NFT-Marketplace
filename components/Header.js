@@ -139,9 +139,11 @@ const Header = () => {
                 </div>
                 <div className="nav-div">
                   <li>
-                    <TextButton color="tertiary" size="sm">
-                      Balance: {balance.substring(0, 6)} rETH
-                    </TextButton>
+                    <Link href="https://www.moonpay.com/buy">
+                      <TextButton color="tertiary" size="sm">
+                        Balance: {balance.substring(0, 6)} rETH
+                      </TextButton>
+                    </Link>
                   </li>
                   <li>
                     <CallToAction
