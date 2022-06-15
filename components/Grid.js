@@ -6,7 +6,6 @@ export default function Grid({ nfts, prices, statuses, loading, type, stars, num
   return (
     <>
       <div className="grid">
-        {/* If loading NFTs, display 4 placeholder loading images */}
         {loading ? (
           Array(4)
             .fill(0)

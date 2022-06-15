@@ -7,7 +7,7 @@ import { TextField, CallToAction, TextButton, MonochromeIcons } from '@magiclabs
 import { useRouter } from 'next/router'
 
 
-export default function NFTCard({ nft, price, status, types, star, num, check, going, take, reals }) {
+export default function NFTCard({ nft, price, status, types, star, num, check, going, take }) {
   const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
   const contract = new web3.eth.Contract(abi, contractAddress);
 

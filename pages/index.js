@@ -112,8 +112,6 @@ export default function Index() {
 
     const uriList = await contract.methods.getEverything().call();
 
-    console.log(uriList)
-
     let prices = [];
     let onMarket = [];
     let nums = [];
@@ -124,11 +122,11 @@ export default function Index() {
     var i = 0;
     for (i = 0; i < uriList.length; ++i) {
       if (uriList[i][8]) {
-        prices[i] = uriList[i][2];
-        verified[i] = uriList[i][7];
-        onMarket[i] = uriList[i][6];
-        nums[i] = uriList[i][5];
-        stars[i] = uriList[i][4];
+        prices.push(uriList[i][2]);
+        verified.push(uriList[i][7]);
+        onMarket.push(uriList[i][6]);
+        nums.push(uriList[i][5])
+        stars.push(uriList[i][4]);
         const response = await fetch(uriList[i][0]);
         const data = await response.json();
         nfts.push(data);
