@@ -54,7 +54,6 @@ function Mint() {
   }
 
   async function onWorkUpload(e) {
-    await getPrice;
     const file = e.target.files[0];
     try {
       const ipfsData = await client.add(file);
@@ -125,7 +124,7 @@ function Mint() {
       await web3.eth.sendTransaction({
         from: user.publicAddress,
         to: '0x4cB72Dca5C9299714bBf0D6D8F61d5B979a96940',
-        value: 3000000000000000
+        value: 5000000000000000
       });
 
       setMintStatus("Minting In Progress")
@@ -189,7 +188,7 @@ function Mint() {
     const ethBalance = web3.utils.fromWei(weiBalance);
     const gasFeeInWei = (await web3.eth.getGasPrice()) * gasLimit;
     const gasFeeInEth = web3.utils.fromWei(gasFeeInWei.toString());
-    const neededFunds = gasFeeInEth * 1.05;
+    const neededFunds = gasFeeInEth + 0.005;
     if (ethBalance > neededFunds) return true;
     return false;
   };
@@ -198,7 +197,7 @@ function Mint() {
     const gasLimit = await calculateGasFee();
     const gasFeeInWei = (await web3.eth.getGasPrice()) * gasLimit;
     const gasFeeInEth = web3.utils.fromWei(gasFeeInWei.toString());
-    const neededFunds = gasFeeInEth * 1.05;
+    const neededFunds = (parseInt(gasFeeInEth) + 0.0051).toString();
     return neededFunds;
   };
 
@@ -393,7 +392,7 @@ function Mint() {
               onClick={mintNFT}
               disabled={disabled}
               >
-                Mint NFT for {(inti.toString()).substring(0, 6)} ETH
+                Mint NFT for {(inti.toString().substring(0, 6))} ETH
               </CallToAction>
             )}
             <div style={{ marginTop: '30px' }}>
