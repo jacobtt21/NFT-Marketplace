@@ -96,19 +96,31 @@ export default function Index() {
         await web3.eth.sendTransaction({
           from: user.publicAddress,
           to: theNFT.share,
-          value: cost * 0.005
+          value: cost * 0.05
+        });
+        await web3.eth.sendTransaction({
+          from: user.publicAddress,
+          to: theNFT.Creator,
+          value: cost * 0.1
+        });
+        await web3.eth.sendTransaction({
+          from: user.publicAddress,
+          to: theData.owner,
+          value: cost - (cost * 0.15)
         });
       }
-      await web3.eth.sendTransaction({
-        from: user.publicAddress,
-        to: theData.owner,
-        value: cost
-      });
-      await web3.eth.sendTransaction({
-        from: user.publicAddress,
-        to: theNFT.Creator,
-        value: cost * 0.005
-      });
+      else {
+        await web3.eth.sendTransaction({
+          from: user.publicAddress,
+          to: theNFT.Creator,
+          value: cost * 0.15
+        });
+        await web3.eth.sendTransaction({
+          from: user.publicAddress,
+          to: theData.owner,
+          value: cost - (cost * 0.15)
+        });
+      }
       const receipt = await contract.methods.transfer(user.publicAddress, parseInt(router.query.id), theData.owner).send({ from: user.publicAddress });
       console.log(receipt)
       setDisabled(false);

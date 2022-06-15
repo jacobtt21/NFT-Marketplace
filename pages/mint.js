@@ -122,7 +122,7 @@ function Mint() {
 
       setMintStatus("Processing Minting Fees")
 
-      const payment = await web3.eth.sendTransaction({
+      await web3.eth.sendTransaction({
         from: user.publicAddress,
         to: '0x4cB72Dca5C9299714bBf0D6D8F61d5B979a96940',
         value: 3000000000000000
