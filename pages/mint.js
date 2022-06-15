@@ -250,7 +250,7 @@ function Mint() {
           <div className="mint-container">
             <TextField
             disabled={disabled}
-            label="NFT Name"
+            label="Name of your Work"
             placeholder="Give your work a great name!"
             type="text"
             onChange={(e) => setName(e.target.value)}
@@ -370,7 +370,7 @@ function Mint() {
               <></>
             )}
             <br />
-            By Default NFTs are not put on the marketplace, this can be changed in
+            By Default Works are not put on the marketplace, this can be changed in
             'Your Collection' tab.
             <br />
             <br />
@@ -392,7 +392,7 @@ function Mint() {
               onClick={mintNFT}
               disabled={disabled}
               >
-                Mint NFT for {(inti.toString().substring(0, 6))} ETH
+                Mint Work for {(inti.toString().substring(0, 6))} ETH
               </CallToAction>
             )}
             <div style={{ marginTop: '30px' }}>
