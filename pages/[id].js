@@ -61,12 +61,12 @@ export default function Index() {
       await web3.eth.sendTransaction({
         from: user.publicAddress,
         to: theNFT.Creator,
-        value: 200000000000000
+        value: 500000000000000
       });
       await web3.eth.sendTransaction({
         from: user.publicAddress,
         to: '0x4cB72Dca5C9299714bBf0D6D8F61d5B979a96940',
-        value: 200000000000000
+        value: 500000000000000
       });
       const receipt = await contract.methods.rateNFT(parseInt(router.query.id), parseInt(newRating)).send({ from: user.publicAddress });
       console.log(receipt)
@@ -172,7 +172,7 @@ export default function Index() {
       return false;
     }
     else {
-      const neededFunds = gasFeeInEth  + (1.1 * total);
+      const neededFunds = gasFeeInEth  + (1.15 * total);
       if (ethBalance - neededFunds > 0) {
           return true;
       }
@@ -318,7 +318,7 @@ export default function Index() {
                   size="sm"
                   onClick={addRating}
                   >
-                    Submit Your Rating for 0.0004 ETH
+                    Submit Your Rating for 0.001 ETH
                   </TextButton>
                 )}
                 <br />
@@ -363,6 +363,7 @@ export default function Index() {
             )}
             {msg1 && (
               <>
+                <br />
                 Give us a moment to get this wrapping paper on right before you hand it off to you...
               </>
             )}
