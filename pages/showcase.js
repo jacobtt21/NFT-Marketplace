@@ -66,14 +66,79 @@ export default function About() {
             </CallToAction>
           </Link>
         </div>
+        <div className='Inv'>
+          <h1>Oustro is Featured In</h1>
+          <img
+            src="https://s.gitcoin.co/static/v2/images/presskit/logotype.41fe3e22f370.svg"
+            width={300}
+            className="nft-img"
+            onError={(e) => (e.target.src = '/fallback.jpeg')}
+            />  
+            <img
+            src="https://upload.wikimedia.org/wikipedia/commons/8/89/Product_Hunt_Logo.svg"
+            width={300}
+            className="nft-img"
+            onError={(e) => (e.target.src = '/fallback.jpeg')}
+            /> 
+        </div>
       </div>
       <div className='footer'>
         <p>2023 Oustro Inc. v1.5-beta</p>
       </div>
       <style jsx>{`
-      .one{ margin:80px; text-align:center; font-size: 17px;}.two{ margin:20px; text-align:center; font-size: 60px;}.three{ margin:40px; text-align:center; font-size: 30px;}img{width: auto,
-        height: 100px}.logo{max-width:90rem;text-align:center;max-height:40rem;margin:0 0}
-        .Imagine {margin:4px;}.landing{text-align:center;font-size:50px}.logo{max-width:90rem;text-align:center;max-height:90rem;margin:0 0}.footer{padding:15px;border-top:1px solid #f0f0f0;margin:80px auto 10px;text-align:center;font-size:15px}
+        .one { 
+          margin: 80px; 
+          text-align:center; 
+          font-size: 17px;
+        }
+        .two { 
+          margin:20px; 
+          text-align:center; 
+          font-size: 60px;
+        }
+        .three { 
+          margin:20px; 
+          text-align:center; 
+          font-size: 30px;
+        }
+        img {
+          width: auto,
+          height: 100px
+        }
+        .logo {
+          max-width:90rem;
+          text-align:center;
+          max-height:40rem;
+          margin:0 0
+        }
+        .nft-img {
+          max-width: 400px;
+          max-height: 400px;
+          cursor: pointer;
+          border-radius: 8px;
+          margin: 30px;
+        }
+        .Inv {
+          margin:80px;
+          font-size: 30px;
+        }
+        .landing {
+          text-align:center;
+          font-size:50px
+        }
+        .logo {
+          max-width:90rem;
+          text-align:center;
+          max-height:90rem;
+          margin:0 0
+        }
+        .footer {
+          padding:15px;
+          border-top:1px solid #f0f0f0;
+          margin:80px auto 10px;
+          text-align:center;
+          font-size:15px;
+        }
       `}</style>
     </>
   );
