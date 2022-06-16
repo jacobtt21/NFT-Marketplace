@@ -5,7 +5,7 @@ export default function About() {
   return (
     <>
       <Head>
-        <title>Confused?</title>
+        <title>Confused? | Oustro</title>
         <meta name="description" content="Learn more about Oustro" />
         <link
           rel="canonical"
@@ -14,50 +14,15 @@ export default function About() {
         />
       </Head>
       <div className='landing'>
-        <h1>We're the melting pot of ideas, thoughts, creativity, and change.</h1>
-        <br />
-        <h4> Oustro is meant to be a library of everything, ranging from scientific papers, movie scripts, stories, magazines, 
-        literally anything that can be converted to a PDF form. </h4>
-        <br />
-        <br />
-        <h4>No other platform allows such a broad spectrum of mediums 
-        to exist in a single place.</h4>
-        <br />
-        <br />
-        <br />
-        <h1>Creators Love Us...</h1>
-        <br />
         <div className="mint-container">
-          <h2>...because we support them</h2>
-          <br />
-          <br />
+          <h1>Our Mission is to give a chance for their voice to be heard</h1>
           <img
-          src="/about.png"
+          src="/about-image.png"
           width={300}
           className="nft-img"
           onError={(e) => (e.target.src = '/fallback.jpeg')}
           />
-          <br />
-          <br />
-          <br />
-          <CallToAction>
-            Provide the world your work
-          </CallToAction>
-          <br />
-          <br />
-          <CallToAction>
-            Get paid to do so
-          </CallToAction>
-          <br />
-          <br />
-          <CallToAction>
-            Build a Community
-          </CallToAction>
-          <br />
-          <br />
-          <CallToAction>
-            Receieve Support Directly form Supporters
-          </CallToAction>
+          <h2>and that starts by giving them a platform to speak.</h2>
         </div>
         <div className='footer'>
           <p>2023 Oustro Inc. v1.5-beta</p>
@@ -73,6 +38,7 @@ export default function About() {
             box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 16px;
           }
           .nft-img {
+            margin:20px;
             max-width: 400px;
             max-height: 400px;
             cursor: pointer;
@@ -80,13 +46,13 @@ export default function About() {
           }
           h1 {
             font-size: 35px;
-            font-weight: bold;
           }
           h4 {
             font-size: 23px;
           }
           h2 {
             font-size: 30px;
+            margin: 40px;
           }
           h3 {
             font-size: 20px;
