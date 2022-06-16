@@ -3,6 +3,7 @@ import { UserContext } from '../lib/UserContext';
 import { magic } from '../lib/magic';
 import Router from 'next/router';
 import { Icon, MonochromeIcons, TextField, CallToAction } from '@magiclabs/ui';
+import Head from 'next/head';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -42,6 +43,15 @@ export default function Login() {
 
   return (
     <>
+    <Head>
+      <title>Login</title>
+      <meta name="description" content="Login and Get Started for free!" />
+      <link
+        rel="canonical"
+        href="https://www.oustro.xyz/login"
+        key="canonical"
+      />
+    </Head>
     <div className='landing'>
     <h1>Chapter 1: The Gates of Oustro</h1>
       <div className="login-container">

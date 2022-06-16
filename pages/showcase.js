@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Typical from 'react-typical'
 import Link from "next/link";
 import Grid from '../components/Grid2';
+import Head from 'next/head';
 
 export default function About() {
     const [loading, setLoading] = useState(false);
@@ -49,6 +50,15 @@ export default function About() {
 
   return (
     <>
+      <Head>
+        <title>Showcase</title>
+        <meta name="description" content="Publishing has never been easier and supporting creators has never been so rewarding. Welcome to Oustro." />
+        <link
+          rel="canonical"
+          href="https://www.oustro.xyz/showcase"
+          key="canonical"
+        />
+      </Head>
       <div className='one'>
         <div className='two'>
           <Typical steps={['Publishing has never been easier', 1000, 'and supporting creators have never been as rewarding.', 1000, 'Welcome to Oustro', 1000]} wrapper="h1"/>

@@ -1,8 +1,18 @@
 import { CallToAction } from '@magiclabs/ui';
+import Head from 'next/head';
 
 export default function About() {
   return (
     <>
+      <Head>
+        <title>Confused?</title>
+        <meta name="description" content="Learn more about Oustro" />
+        <link
+          rel="canonical"
+          href="https://www.oustro.xyz/about"
+          key="canonical"
+        />
+      </Head>
       <div className='landing'>
         <h1>We're the melting pot of ideas, thoughts, creativity, and change.</h1>
         <br />
