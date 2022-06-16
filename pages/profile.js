@@ -4,7 +4,7 @@ import { web3 } from '../lib/magic';
 import { abi } from '../contracts/abi';
 import Grid from '../components/Grid';
 import Loading from '../components/Loading';
-import { useToast, TextButton } from '@magiclabs/ui';
+import { useToast, TextButton, CallToAction } from '@magiclabs/ui';
 
 export default function Index() {
   const [user] = useContext(UserContext);
@@ -75,12 +75,13 @@ export default function Index() {
   return user ? (
     <div>
       <h1>Your rocking collection of works</h1>
-      <p>Interesting taste...we're not judging, just noticing. 
+      <p>Interesting taste...we're not judging, just noticing. ( 
         <TextButton
         onPress={copyLink}
         >
-          Might as well share it right?
+          Share it
         </TextButton>
+        )
       </p>
       <Grid loading={loading} nfts={myNFTs} prices={myPrices} statuses={myStatus} type={false} stars={myStars} nums={myNums} checkmark={myVerify} go={true} takeAway={false} />
       <style>{`
@@ -91,7 +92,7 @@ export default function Index() {
           min-height: 28px;
         }
         p {
-          margin: 20px;
+          margin: 25px;
           min-height: 28px;
         }
         `}</style>

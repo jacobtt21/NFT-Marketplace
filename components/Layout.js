@@ -27,9 +27,8 @@ const Layout = (props) => (
       <div className="container">{props.children}</div>
     </main>
     <style jsx global>{`
-      * {
-        font-family: Verdana;
-        outline: none;
+      html, body {
+        font-family: 'Poppins', sans-serif;
       }
       body {
         min-height: 100vh;

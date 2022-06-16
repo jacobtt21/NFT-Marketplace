@@ -67,7 +67,7 @@ export default function About() {
           </Link>
         </div>
         <div className='Inv'>
-          <h1>Oustro is Featured In</h1>
+          <h1>Oustro is Proudly Featured On</h1>
           <img
             src="https://s.gitcoin.co/static/v2/images/presskit/logotype.41fe3e22f370.svg"
             width={300}
