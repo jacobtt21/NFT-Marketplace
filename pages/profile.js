@@ -95,7 +95,7 @@ export default function Index() {
           margin: 25px;
           min-height: 28px;
         }
-        `}</style>
+      `}</style>
     </div>
   ) : (
     <Loading />

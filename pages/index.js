@@ -4,23 +4,27 @@ import { web3 } from '../lib/magic';
 import { abi } from '../contracts/abi';
 import Grid from '../components/Grid';
 import Loading from '../components/Loading';
-import algoliasearch from 'algoliasearch';
-import { InstantSearch, Hits, connectSearchBox } from "react-instantsearch-dom";
-import { TextField } from '@magiclabs/ui';
-import Link from 'next/link';
 
 export default function Index() {
-  const searchClient = algoliasearch(
-    process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
-    process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY,
-  );
   const [user] = useContext(UserContext);
-  const [allNFTs, setAllNFTs] = useState([]);
-  const [allPrices, setAllPrices] = useState();
-  const [allNums, setAllNums] = useState();
-  const [allStars, setAllStars] = useState();
-  const [allStatus, setAllStatus] = useState();
-  const [allVerify, setAllVerify] = useState();
+  const [allTPNFTs, setAllTPNFTs] = useState([]);
+  const [allTPPrices, setAllTPPrices] = useState();
+  const [allTPNums, setAllTPNums] = useState();
+  const [allTPStars, setAllTPStars] = useState();
+  const [allTPStatus, setAllTPStatus] = useState();
+  const [allTPVerify, setAllTPVerify] = useState();
+  const [allOONFTs, setAllOONFTs] = useState([]);
+  const [allOOPrices, setAllOOPrices] = useState();
+  const [allOONums, setAllOONums] = useState();
+  const [allOOStars, setAllOOStars] = useState();
+  const [allOOStatus, setAllOOStatus] = useState();
+  const [allOOVerify, setAllOOVerify] = useState();
+  const [allRGNFTs, setAllRGNFTs] = useState([]);
+  const [allRGPrices, setAllRGPrices] = useState();
+  const [allRGNums, setAllRGNums] = useState();
+  const [allRGStars, setAllRGStars] = useState();
+  const [allRGStatus, setAllRGStatus] = useState();
+  const [allRGVerify, setAllRGVerify] = useState();
   const [loading, setLoading] = useState(false);
 
   const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
@@ -31,80 +35,6 @@ export default function Index() {
     getNFTs();
   }, []);
 
-  const Hit = ({ hit }) => (
-    <>
-      <div className="card">
-        <Link href={{pathname: '/[id]', query: { id: hit.tokenID }}}>
-          <div className="nft-img-container">
-            <img
-            src={hit.image}
-            width={300}
-            className="nft-img"
-            onError={(e) => (e.target.src = '/fallback.jpeg')}
-            />
-          </div>
-        </Link>
-        <div className="name">{hit.name}</div>
-        <div className="name">by</div>
-        <div className="name">{hit.creator}</div>
-      </div>
-      <style>{`
-        .card {
-          border-radius: 8px;
-          padding: 15px;
-          box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 16px,
-            rgba(0, 0, 0, 0.05) 0px 0px 16px;
-        }
-
-        .card:hover {
-          box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 16px,
-            rgba(0, 0, 0, 0.1) 0px 0px 16px;
-        }
-
-        .nft-img-container {
-          min-width: 200px;
-          min-height: 200px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .nft-img {
-          max-width: 200px;
-          max-height: 200px;
-          cursor: pointer;
-          border-radius: 8px;
-        }
-
-        .name {
-          margin-top: 10px;
-          text-align: center;
-        }
-      `}</style>
-    </>
-  );
-
-  const SearchBox = ({ currentRefinement, refine }) => (
-    <>
-      <form noValidate action="" role="search">
-        <TextField
-          placeholder='Search for a specific work'
-          size='sm'
-          type="search"
-          value={currentRefinement}
-          onChange={event => refine(event.currentTarget.value)}
-          />
-      </form>
-      {currentRefinement ? (
-        <Hits hitComponent={Hit} />
-      ) : (
-        <></>
-      )}
-    </>
-  );  
-
-  const CustomSearchBox = connectSearchBox(SearchBox);
-
   // Get array of all token URI's stored in contract
   // Each URI is an IPFS url containing json metadata about the NFT, such as image and name
   const getNFTs = async () => {
@@ -112,57 +42,127 @@ export default function Index() {
 
     const uriList = await contract.methods.getEverything().call();
 
-    let prices = [];
-    let onMarket = [];
-    let nums = [];
-    let stars = [];
-    let nfts = [];
-    let verified = [];
+    let pricesTP = [];
+    let onMarketTP = [];
+    let numsTP = [];
+    let starsTP = [];
+    let nftsTP = [];
+    let verifiedTP = [];
+    
+    let pricesOO = [];
+    let onMarketOO = [];
+    let numsOO = [];
+    let starsOO = [];
+    let nftsOO = [];
+    let verifiedOO = [];
 
+    let pricesRG = [];
+    let onMarketRG = [];
+    let numsRG = [];
+    let starsRG = [];
+    let nftsRG = [];
+    let verifiedRG = [];
+
+    var j = 0;
     var i = 0;
     for (i = 0; i < uriList.length; ++i) {
-      if (uriList[i][8]) {
-        prices.push(uriList[i][2]);
-        verified.push(uriList[i][7]);
-        onMarket.push(uriList[i][6]);
-        nums.push(uriList[i][5])
-        stars.push(uriList[i][4]);
-        const response = await fetch(uriList[i][0]);
+      if (uriList[uriList.length - 1 - i][8]) {
+        const response = await fetch(uriList[uriList.length - 1 - i][0]);
         const data = await response.json();
-        nfts.push(data);
+        if (uriList[uriList.length - 1 - i][4] === "5") {
+            pricesTP.push(uriList[uriList.length - 1 - i][2]);
+            verifiedTP.push(uriList[uriList.length - 1 - i][7]);
+            onMarketTP.push(uriList[uriList.length - 1 - i][6]);
+            numsTP.push(uriList[uriList.length - 1 - i][5])
+            starsTP.push(uriList[uriList.length - 1 - i][4]);
+            nftsTP.push(data);
+        }
+        if (data["creator"] === "0x4feE4e9F9B253058103a5014cFd106F0eC4950E8") {
+            pricesOO.push(uriList[uriList.length - 1 - i][2]);
+            verifiedOO.push(uriList[uriList.length - 1 - i][7]);
+            onMarketOO.push(uriList[uriList.length - 1 - i][6]);
+            numsOO.push(uriList[uriList.length - 1 - i][5])
+            starsOO.push(uriList[uriList.length - 1 - i][4]);
+            nftsOO.push(data);
+        }
+        if (Math.random() < 0.7 && j < 4) {
+            pricesRG.push(uriList[uriList.length - 1 - i][2]);
+            verifiedRG.push(uriList[uriList.length - 1 - i][7]);
+            onMarketRG.push(uriList[uriList.length - 1 - i][6]);
+            numsRG.push(uriList[uriList.length - 1 - i][5])
+            starsRG.push(uriList[uriList.length - 1 - i][4]);
+            nftsRG.push(data);
+            j += 1;
+        }
       }
     }
 
-    setAllNFTs(nfts);
-    setAllPrices(prices);
-    setAllStatus(onMarket);
-    setAllNums(nums);
-    setAllStars(stars);
-    setAllVerify(verified);
+    setAllTPNFTs(nftsTP);
+    setAllTPPrices(pricesTP);
+    setAllTPStatus(onMarketTP);
+    setAllTPNums(numsTP);
+    setAllTPStars(starsTP);
+    setAllTPVerify(verifiedTP);
+
+    setAllOONFTs(nftsOO);
+    setAllOOPrices(pricesOO);
+    setAllOOStatus(onMarketOO);
+    setAllOONums(numsOO);
+    setAllOOStars(starsOO);
+    setAllOOVerify(verifiedOO);
+
+    setAllRGNFTs(nftsRG);
+    setAllRGPrices(pricesRG);
+    setAllRGStatus(onMarketRG);
+    setAllRGNums(numsRG);
+    setAllRGStars(starsRG);
+    setAllRGVerify(verifiedRG);
+
     setLoading(false);
   };
 
   return user ? (
     <div>
-      <div className='info'>
-      <h1>The Oustro Library</h1>
-      <p>Relax, you're here, take sometime to yourself and enjoy the work your peers have provided for you, completely free.</p>
-      </div>
-      <InstantSearch searchClient={searchClient} indexName="Oustro">
-        <CustomSearchBox />
-      </InstantSearch>
-      <Grid loading={loading} nfts={allNFTs} prices={allPrices} statuses={allStatus} type={true} stars={allStars} nums={allNums} go={true} takeAway={true} checkmark={allVerify} />
-      <style>{`
-        h1 {
-          font-weight: bold;
-          font-size: 28px;
-          margin: 20px;
-          min-height: 28px;
-        }
-        p {
-          margin: 20px;
-          min-height: 28px;
-        }
+        <h4>Top Picks</h4>
+        <h3>Here's what hot right now</h3>
+        <Grid loading={loading} nfts={allTPNFTs} prices={allTPPrices} statuses={allTPStatus} type={true} stars={allTPStars} nums={allTPNums} go={true} takeAway={true} checkmark={allTPVerify} />
+        <h2>Oustro Originals</h2>
+        <h3>From us, to you, for you</h3>
+        <Grid loading={loading} nfts={allOONFTs} prices={allOOPrices} statuses={allOOStatus} type={true} stars={allOOStars} nums={allOONums} go={true} takeAway={true} checkmark={allOOVerify} />
+        <h2>Random Gems</h2>
+        <h3>Why not right? Who knows, you might find an all time favorite</h3>
+        <Grid loading={loading} nfts={allRGNFTs} prices={allRGPrices} statuses={allRGStatus} type={true} stars={allRGStars} nums={allRGNums} go={true} takeAway={true} checkmark={allRGVerify} />
+        <style>{`
+            h1 {
+                font-weight: bold;
+                font-size: 28px;
+                margin: 20px;
+                min-height: 28px;
+            }
+            h2 {
+                font-weight: bold;
+                font-size: 20px;
+                margin-top: -80px;
+                margin-left: 20px;
+                min-height: 28px;
+            }
+            h4 {
+                font-weight: bold;
+                font-size: 20px;
+                margin-top: -10px;
+                margin-left: 20px;
+                min-height: 28px;
+            }
+            h3 {
+                font-weight: bold;
+                font-size: 15px;
+                margin-left: 20px;
+                min-height: 28px;
+            }
+            p {
+                margin: 20px;
+                min-height: 28px;
+            }
         `}</style>
     </div>
   ) : (

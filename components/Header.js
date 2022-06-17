@@ -98,11 +98,25 @@ const Header = () => {
             <>
               <div className="nav-container">
                 <div className="nav-div">
+                <li>
+                  <Link href={`/`}>
+                    <CallToAction
+                      color={
+                        router.pathname === '/'
+                          ? 'primary'
+                          : 'secondary'
+                      }
+                      size="sm"
+                    >
+                      For You
+                    </CallToAction>
+                  </Link>
+                  </li>
                   <li>
-                    <Link href="/">
+                    <Link href="/library">
                       <CallToAction
                         color={
-                          router.pathname === '/' ? 'primary' : 'secondary'
+                          router.pathname === '/library' ? 'primary' : 'secondary'
                         }
                         size="sm"
                       >
