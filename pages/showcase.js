@@ -107,7 +107,7 @@ export default function About() {
           font-size: 60px;
         }
         .three { 
-          margin-top:20px; 
+          margin-bottom:15px; 
           text-align:center; 
           font-size: 30px;
         }
