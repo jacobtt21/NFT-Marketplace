@@ -107,9 +107,12 @@ export default function About() {
           font-size: 60px;
         }
         .three { 
-          margin:20px; 
+          margin-top:20px; 
           text-align:center; 
           font-size: 30px;
+        }
+        .Imagine {
+          margin-top:-60px;
         }
         img {
           width: auto,
