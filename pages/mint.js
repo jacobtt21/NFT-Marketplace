@@ -8,6 +8,7 @@ import Loading from '../components/Loading';
 import algoliasearch from 'algoliasearch';
 import Link from 'next/link'
 import * as Panelbear from "@panelbear/panelbear-js";
+import Head from 'next/head';
 
 function Mint() {
   const [user] = useContext(UserContext);
@@ -22,6 +23,7 @@ function Mint() {
   const [mintStatus, setMintStatus] = useState('');
   const [ipfsWorkUrl, setIpfsWorkUrl] = useState('');
   const [price, setPrice] = useState('');
+  const [genre, setGenre] = useState('Choose from Below');
   const [inti, setInti] = useState(0);
   const imageInputRef = useRef();
   const workInputRef = useRef();
@@ -111,7 +113,7 @@ function Mint() {
         }
       }
       const tIndex = await contract.methods.getIndex().call();
-      const data = JSON.stringify({ name, image: ipfsImageUrl, work: ipfsWorkUrl, share: shareAddress, creator: user.publicAddress, socialLink: social, tokenID: tIndex });
+      const data = JSON.stringify({ name, image: ipfsImageUrl, work: ipfsWorkUrl, share: shareAddress, creator: user.publicAddress, socialLink: social, tokenID: tIndex, genre: genre });
       const ipfsData = await client.add(data);
       const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
 
@@ -153,13 +155,14 @@ function Mint() {
       clearForm();
     } catch (error) {
       setDisabled(false);
+      setMintStatus("An Error Occured, please try again later")
       console.log(error);
     }
   };
 
   const checkForErrors = async () => {
     // Throw error if missing input values
-    if (!name || !ipfsImageUrl || !ipfsWorkUrl) {
+    if (!name || !ipfsImageUrl || !ipfsWorkUrl || genre === "Choose from Below") {
       createToast({
         message: 'Missing Required Fields',
         type: 'error',
@@ -244,6 +247,15 @@ function Mint() {
         <Loading />
       ) : (
         <>
+          <Head>
+          <title>Publish | Oustro</title>
+          <meta name="description" content="Publishing has never been easier and supporting creators has never been so rewarding. Welcome to Oustro." />
+          <link
+            rel="canonical"
+            href="https://www.oustro.xyz/showcase"
+            key="canonical"
+          />
+        </Head>
           <h1>If only everything was as easy as publishing on Oustro</h1>
           <h2>Make sure everything is correct, minting cannot be undone.</h2>
           <br />
@@ -339,12 +351,42 @@ function Mint() {
                 <a target="_blank">
                   <CallToAction
                   color="primary"
+                  size='sm'
                   >
                     Check Your Work &rarr;
                   </CallToAction>
                 </a>
               </Link>
             )}
+            <div className='nname'>
+              <p>Select Type (Required): {genre} </p>
+            </div>
+            <CallToAction
+            disabled={disabled}
+            onClick={() => setGenre("Story")}
+            >
+              Story
+            </CallToAction>
+            <CallToAction
+            disabled={disabled}
+            onClick={() => setGenre("Publication")}>
+              Publication
+            </CallToAction>
+            <CallToAction
+            disabled={disabled}
+            onClick={() => setGenre("Poetry")}>
+              Poetry
+            </CallToAction>
+            <CallToAction
+            disabled={disabled}
+            onClick={() => setGenre("Script")}>
+              Script
+            </CallToAction>
+            <CallToAction
+            disabled={disabled}
+            onClick={() => setGenre("Academia")}>
+              Academia
+            </CallToAction>
             <br />
             <br />
             <TextField

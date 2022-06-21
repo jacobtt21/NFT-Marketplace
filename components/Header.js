@@ -155,7 +155,7 @@ const Header = () => {
                   <li>
                     <Link href="https://www.moonpay.com/buy">
                       <TextButton color="tertiary" size="sm">
-                        Balance: {balance.substring(0, 6)} rETH
+                        Balance: {balance.substring(0, 6)} ETH
                       </TextButton>
                     </Link>
                   </li>

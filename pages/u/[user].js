@@ -71,9 +71,25 @@ export default function Index() {
 
   return myStars ? (
     <div>
-      <h1>{router.query.user}'s Collection</h1>
-      <br/>
-      <p>I can't believe this was here the entire time, I might have to "borrow it"</p>
+      {router.query.user === "0x4feE4e9F9B253058103a5014cFd106F0eC4950E8" ? (
+        <>
+          <h1>Daffy Magazine</h1>
+          <br/>
+          <p>International news and current events, all free on Oustro</p>
+        </>
+      ) : router.query.user === "0x0280b8bcFBbeA568d506F4F6fC9314C96B7e9f33" ? (
+        <>
+          <h1>Oustro Originals</h1>
+          <br/>
+          <p>From us, for you, enjoy</p>
+        </>
+      ) : (
+        <>
+          <h1>{router.query.user}'s Collection</h1>
+          <br/>
+          <p>I can't believe this was here the entire time, I might have to "borrow it"</p>
+        </>
+      )}
       <Grid loading={loading} nfts={myNFTs} prices={myPrices} statuses={myStatus} type={true} stars={myStars} nums={myNums} checkmark={myVerify} go={route} takeAway={true} />
       <style>{`
         h1 {

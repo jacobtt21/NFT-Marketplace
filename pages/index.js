@@ -4,6 +4,8 @@ import { web3 } from '../lib/magic';
 import { abi } from '../contracts/abi';
 import Grid from '../components/Grid';
 import Loading from '../components/Loading';
+import { CallToAction } from '@magiclabs/ui';
+import Head from 'next/head';
 
 export default function Index() {
   const [user] = useContext(UserContext);
@@ -25,6 +27,14 @@ export default function Index() {
   const [allRGStars, setAllRGStars] = useState();
   const [allRGStatus, setAllRGStatus] = useState();
   const [allRGVerify, setAllRGVerify] = useState();
+  const [allNFTs, setAllNFTs] = useState([]);
+  const [allPrices, setAllPrices] = useState();
+  const [allNums, setAllNums] = useState();
+  const [allStars, setAllStars] = useState();
+  const [allStatus, setAllStatus] = useState();
+  const [allVerify, setAllVerify] = useState();
+  const [genre, setGenre] = useState("...");
+  const [setter, setSetter] = useState("1");
   const [loading, setLoading] = useState(false);
 
   const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
@@ -65,34 +75,42 @@ export default function Index() {
 
     var j = 0;
     var i = 0;
+    var k = 0;
+    var m = 0;
     for (i = 0; i < uriList.length; ++i) {
       if (uriList[uriList.length - 1 - i][8]) {
         const response = await fetch(uriList[uriList.length - 1 - i][0]);
         const data = await response.json();
-        if (uriList[uriList.length - 1 - i][4] === "5") {
-            pricesTP.push(uriList[uriList.length - 1 - i][2]);
-            verifiedTP.push(uriList[uriList.length - 1 - i][7]);
-            onMarketTP.push(uriList[uriList.length - 1 - i][6]);
-            numsTP.push(uriList[uriList.length - 1 - i][5])
-            starsTP.push(uriList[uriList.length - 1 - i][4]);
-            nftsTP.push(data);
+        if (k < 4) {
+          if (uriList[uriList.length - 1 - i][4] === "5") {
+          pricesTP.push(uriList[uriList.length - 1 - i][2]);
+          verifiedTP.push(uriList[uriList.length - 1 - i][7]);
+          onMarketTP.push(uriList[uriList.length - 1 - i][6]);
+          numsTP.push(uriList[uriList.length - 1 - i][5])
+          starsTP.push(uriList[uriList.length - 1 - i][4]);
+          nftsTP.push(data);
+          k += 1;
+          }
         }
-        if (data["creator"] === "0x4feE4e9F9B253058103a5014cFd106F0eC4950E8") {
+        if (m < 4) {
+          if (data["creator"] === "0x4feE4e9F9B253058103a5014cFd106F0eC4950E8") {
             pricesOO.push(uriList[uriList.length - 1 - i][2]);
             verifiedOO.push(uriList[uriList.length - 1 - i][7]);
             onMarketOO.push(uriList[uriList.length - 1 - i][6]);
             numsOO.push(uriList[uriList.length - 1 - i][5])
             starsOO.push(uriList[uriList.length - 1 - i][4]);
             nftsOO.push(data);
+            m += 1;
+          }
         }
-        if (Math.random() < 0.7 && j < 4) {
-            pricesRG.push(uriList[uriList.length - 1 - i][2]);
-            verifiedRG.push(uriList[uriList.length - 1 - i][7]);
-            onMarketRG.push(uriList[uriList.length - 1 - i][6]);
-            numsRG.push(uriList[uriList.length - 1 - i][5])
-            starsRG.push(uriList[uriList.length - 1 - i][4]);
-            nftsRG.push(data);
-            j += 1;
+        if ( j < 4) {
+          pricesRG.push(uriList[uriList.length - 1 - i][2]);
+          verifiedRG.push(uriList[uriList.length - 1 - i][7]);
+          onMarketRG.push(uriList[uriList.length - 1 - i][6]);
+          numsRG.push(uriList[uriList.length - 1 - i][5])
+          starsRG.push(uriList[uriList.length - 1 - i][4]);
+          nftsRG.push(data);
+          j += 1;
         }
       }
     }
@@ -118,14 +136,124 @@ export default function Index() {
     setAllRGStars(starsRG);
     setAllRGVerify(verifiedRG);
 
+    setAllNFTs(nftsRG);
+    setAllPrices(pricesRG);
+    setAllStatus(onMarketRG);
+    setAllNums(numsRG);
+    setAllStars(starsRG);
+    setAllVerify(verifiedRG);
+
     setLoading(false);
   };
 
+  async function outputG(type) {
+    setGenre(type);
+    const uriList = await contract.methods.getEverything().call();
+
+    let prices = [];
+    let onMarket = [];
+    let nums = [];
+    let stars = [];
+    let nfts = [];
+    let verified = [];
+
+    var i = 0;
+    var j = 0;
+    for (i = 0; i < uriList.length; ++i) {
+      if (j < 4) {
+        if (uriList[i][8]) {
+          prices.push(uriList[i][2]);
+          verified.push(uriList[i][7]);
+          onMarket.push(uriList[i][6]);
+          nums.push(uriList[i][5])
+          stars.push(uriList[i][4]);
+          const response = await fetch(uriList[i][0]);
+          const data = await response.json();
+          nfts.push(data);
+          j += 1;
+        }
+      }
+    }
+
+    setAllNFTs(nfts);
+    setAllPrices(prices);
+    setAllStatus(onMarket);
+    setAllNums(nums);
+    setAllStars(stars);
+    setAllVerify(verified);
+    setSetter("2")
+  }
+
   return user ? (
     <div>
+      <Head>
+        <title>For You | Oustro</title>
+        <meta name="description" content="Publishing has never been easier and supporting creators has never been so rewarding. Welcome to Oustro." />
+        <link
+          rel="canonical"
+          href="https://www.oustro.xyz/showcase"
+          key="canonical"
+        />
+      </Head>
         <h4>Top Picks</h4>
         <h3>Here's what hot right now</h3>
         <Grid loading={loading} nfts={allTPNFTs} prices={allTPPrices} statuses={allTPStatus} type={true} stars={allTPStars} nums={allTPNums} go={true} takeAway={true} checkmark={allTPVerify} />
+        <h2>I'm in the mood for {genre}</h2>
+        <CallToAction
+        style={{
+          margin: 10
+        }}
+        color="primary"
+        size='sm'
+        onClick={() => outputG("Publications")}
+        >
+          Publications
+        </CallToAction>
+        <CallToAction
+        style={{
+          margin: 10
+        }}
+        color="primary"
+        size='sm'
+        onClick={() => outputG("Poetry")}
+        >
+          Poetry
+        </CallToAction>
+        <CallToAction
+        style={{
+          margin: 10
+        }}
+        color="primary"
+        size='sm'
+        onClick={() => outputG("Stories")}
+        >
+          Stories
+        </CallToAction>
+        <CallToAction
+        style={{
+          margin: 10
+        }}
+        color="primary"
+        size='sm'
+        onClick={() => outputG("Scripts")}
+        >
+          Scripts
+        </CallToAction>
+        <CallToAction
+        style={{
+          margin: 10
+        }}
+        color="primary"
+        size='sm'
+        onClick={() => outputG("Academia")}
+        >
+          Academia
+        </CallToAction>
+        {setter === "1" ? (
+          <div className='hold'></div>
+        ) : (
+          <Grid loading={loading} nfts={allNFTs} prices={allPrices} statuses={allStatus} type={true} stars={allStars} nums={allNums} go={true} takeAway={true} checkmark={allVerify} />
+        )}
         <h2>Oustro Originals</h2>
         <h3>From us, to you, for you</h3>
         <Grid loading={loading} nfts={allOONFTs} prices={allOOPrices} statuses={allOOStatus} type={true} stars={allOOStars} nums={allOONums} go={true} takeAway={true} checkmark={allOOVerify} />
@@ -133,6 +261,12 @@ export default function Index() {
         <h3>Why not right? Who knows, you might find an all time favorite</h3>
         <Grid loading={loading} nfts={allRGNFTs} prices={allRGPrices} statuses={allRGStatus} type={true} stars={allRGStars} nums={allRGNums} go={true} takeAway={true} checkmark={allRGVerify} />
         <style>{`
+            CallToAction {
+              margin: 10px;
+            }
+            .hold {
+              min-height: 150px;
+            }
             h1 {
                 font-weight: bold;
                 font-size: 28px;

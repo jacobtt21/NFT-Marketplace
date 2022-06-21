@@ -7,6 +7,7 @@ import Loading from '../components/Loading';
 import { TextField, CallToAction, useToast, TextButton, MonochromeIcons } from '@magiclabs/ui';
 import Link from 'next/link'
 import * as Panelbear from "@panelbear/panelbear-js";
+import Head from 'next/head';
 
 
 export default function Index() {
@@ -227,6 +228,15 @@ export default function Index() {
     <div>
       {theData ? (
         <>
+          <Head>
+          <title>{theNFT.name} | Oustro</title>
+          <meta name="description" content="Publishing has never been easier and supporting creators has never been so rewarding. Welcome to Oustro." />
+          <link
+            rel="canonical"
+            href="https://www.oustro.xyz/showcase"
+            key="canonical"
+          />
+        </Head>
           <div className="mint-container">
             <Link href={theNFT.work}>
               <a target="_blank">
@@ -318,7 +328,7 @@ export default function Index() {
                   size="sm"
                   onClick={addRating}
                   >
-                    Submit Your Rating for 0.001 ETH
+                    Submit Your Rating for 0.0015 ETH
                   </TextButton>
                 )}
                 <br />

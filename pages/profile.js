@@ -5,6 +5,7 @@ import { abi } from '../contracts/abi';
 import Grid from '../components/Grid';
 import Loading from '../components/Loading';
 import { useToast, TextButton, CallToAction } from '@magiclabs/ui';
+import Head from 'next/head';
 
 export default function Index() {
   const [user] = useContext(UserContext);
@@ -74,6 +75,15 @@ export default function Index() {
 
   return user ? (
     <div>
+      <Head>
+        <title>Your Collection | Oustro</title>
+        <meta name="description" content="Publishing has never been easier and supporting creators has never been so rewarding. Welcome to Oustro." />
+        <link
+          rel="canonical"
+          href="https://www.oustro.xyz/showcase"
+          key="canonical"
+        />
+      </Head>
       <h1>Your rocking collection of works</h1>
       <p>Interesting taste...we're not judging, just noticing. ( 
         <TextButton

@@ -8,6 +8,7 @@ import algoliasearch from 'algoliasearch';
 import { InstantSearch, Hits, connectSearchBox } from "react-instantsearch-dom";
 import { TextField } from '@magiclabs/ui';
 import Link from 'next/link';
+import Head from 'next/head';
 
 export default function Index() {
   const searchClient = algoliasearch(
@@ -144,6 +145,15 @@ export default function Index() {
 
   return user ? (
     <div>
+      <Head>
+        <title>Library | Oustro</title>
+        <meta name="description" content="Publishing has never been easier and supporting creators has never been so rewarding. Welcome to Oustro." />
+        <link
+          rel="canonical"
+          href="https://www.oustro.xyz/showcase"
+          key="canonical"
+        />
+      </Head>
       <div className='info'>
       <h1>The Complete Oustro Library</h1>
       <p>Relax, you're here, take sometime to yourself and enjoy the work your peers have provided for you, completely free.</p>
