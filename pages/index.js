@@ -93,7 +93,7 @@ export default function Index() {
           }
         }
         if (m < 4) {
-          if (data["creator"] === "0x4feE4e9F9B253058103a5014cFd106F0eC4950E8") {
+          if (data["creator"] === "0x8c17bB1862B31f302e4c25bf364431f0a39614B1") {
             pricesOO.push(uriList[uriList.length - 1 - i][2]);
             verifiedOO.push(uriList[uriList.length - 1 - i][7]);
             onMarketOO.push(uriList[uriList.length - 1 - i][6]);
@@ -150,6 +150,8 @@ export default function Index() {
     setGenre(type);
     const uriList = await contract.methods.getEverything().call();
 
+    console.log(uriList)
+
     let prices = [];
     let onMarket = [];
     let nums = [];
@@ -161,14 +163,14 @@ export default function Index() {
     var j = 0;
     for (i = 0; i < uriList.length; ++i) {
       if (j < 4) {
-        if (uriList[i][8]) {
+        const response = await fetch(uriList[i][0]);
+        const data = await response.json();
+        if (data["genre"] === type) {
           prices.push(uriList[i][2]);
           verified.push(uriList[i][7]);
           onMarket.push(uriList[i][6]);
           nums.push(uriList[i][5])
           stars.push(uriList[i][4]);
-          const response = await fetch(uriList[i][0]);
-          const data = await response.json();
           nfts.push(data);
           j += 1;
         }
@@ -198,16 +200,16 @@ export default function Index() {
         <h4>Top Picks</h4>
         <h3>Here's what hot right now</h3>
         <Grid loading={loading} nfts={allTPNFTs} prices={allTPPrices} statuses={allTPStatus} type={true} stars={allTPStars} nums={allTPNums} go={true} takeAway={true} checkmark={allTPVerify} />
-        <h2>I'm in the mood for {genre}</h2>
+        <h2>Hey look where I find myself, the {genre} section!</h2>
         <CallToAction
         style={{
           margin: 10
         }}
         color="primary"
         size='sm'
-        onClick={() => outputG("Publications")}
+        onClick={() => outputG("Publication")}
         >
-          Publications
+          Publication
         </CallToAction>
         <CallToAction
         style={{
@@ -225,9 +227,9 @@ export default function Index() {
         }}
         color="primary"
         size='sm'
-        onClick={() => outputG("Stories")}
+        onClick={() => outputG("Story")}
         >
-          Stories
+          Story
         </CallToAction>
         <CallToAction
         style={{

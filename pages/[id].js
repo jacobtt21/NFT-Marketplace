@@ -69,7 +69,9 @@ export default function Index() {
         to: '0x4cB72Dca5C9299714bBf0D6D8F61d5B979a96940',
         value: 500000000000000
       });
-      const receipt = await contract.methods.rateNFT(parseInt(router.query.id), parseInt(newRating)).send({ from: user.publicAddress });
+      const receipt = await contract.methods.rateNFT(parseInt(router.query.id), parseInt(newRating)).send({ 
+        from: user.publicAddress 
+      });
       console.log(receipt)
       setNewRating('');
       setDisabled(false);
@@ -159,62 +161,50 @@ export default function Index() {
 
   const hasEnoughFunds = async (val) => {
     const cost = theData.price;
-    const gasLimit = await calculateGasFee(val);
+    const gasLimit = await calculateGasFee();
     const weiBalance = await web3.eth.getBalance(user.publicAddress);
     const ethBalance = web3.utils.fromWei(weiBalance);
     const gasFeeInWei = (await web3.eth.getGasPrice()) * gasLimit;
     const gasFeeInEth = web3.utils.fromWei(gasFeeInWei.toString());
     const total = web3.utils.fromWei(cost);
     if (val === 1) {
-      const neededFunds = gasFeeInEth  + 0.0004;
-      if (ethBalance - neededFunds > 0) {
+      const neededFunds = gasFeeInEth  + 0.001;
+      if (ethBalance > neededFunds) {
           return true;
       }
       return false;
     }
     else {
-      const neededFunds = gasFeeInEth  + (1.15 * total);
-      if (ethBalance - neededFunds > 0) {
+      const neededFunds = gasFeeInEth  + total;
+      if (ethBalance > neededFunds) {
           return true;
       }
       return false;
     }
   };
 
-  const getPrice = async (val) => {
-    const gasLimit = await calculateGasFee(val);
+  const getPrice = async () => {
+    const gasLimit = await calculateGasFee();
     const gasFeeInWei = (await web3.eth.getGasPrice()) * gasLimit;
     const gasFeeInEth = web3.utils.fromWei(gasFeeInWei.toString());
     const neededFunds = gasFeeInEth;
     return neededFunds;
   };
 
-  const calculateGasFee = async (val) => {
+  const calculateGasFee = async () => {
     // Pass in 74 character string (roughly same as IPFS URL) for accurate gas limit estimate
-    if (val === 2) {
-      return await contract.methods.transfer('0x0000000000000000000000000000000000000000', '0'.repeat(74), '0x0000000000000000000000000000000000000000').estimateGas(
-        {
-          from: user.publicAddress,
-        },
-        (error, estimatedGasLimit) => {
-          return estimatedGasLimit;
-        }
-      );
-    }
-    else if (val === 1) {
-      return await contract.methods.rateNFT('0'.repeat(74), '0'.repeat(74)).estimateGas(
-        {
-          from: user.publicAddress,
-        },
-        (error, estimatedGasLimit) => {
-          return estimatedGasLimit;
-        }
-      );
-    }
+    return await contract.methods.createNFT('0'.repeat(74), '0'.repeat(74), true).estimateGas(
+      {
+        from: user.publicAddress,
+      },
+      (error, estimatedGasLimit) => {
+        return estimatedGasLimit;
+      }
+    );
   };
 
   const mainFunction = async () => {
-    const result = await getPrice(1)
+    const result = await getPrice()
     return result
   }
 
@@ -270,7 +260,7 @@ export default function Index() {
             </Link>
             <br />            
             <br />
-            <h3>Price: {web3.utils.fromWei(theData.price)} rETH</h3>
+            <h3>Price: {web3.utils.fromWei(theData.price)} ETH</h3>
             <br />        
             <img
             src={theNFT.image}
@@ -328,9 +318,11 @@ export default function Index() {
                   size="sm"
                   onClick={addRating}
                   >
-                    Submit Your Rating for 0.0015 ETH
+                    Submit Your Rating for {(inti.toString()).substring(0, 6)} ETH
                   </TextButton>
                 )}
+                <br />
+                (0.0010 ETH + Gas)
                 <br />
                 <br />
                 {msg && (
@@ -349,7 +341,7 @@ export default function Index() {
                 </div>
               </>
             )}        
-            {theData.owner !== user.publicAddress ?
+            {(theData.owner).toUpperCase() !== (user.publicAddress).toUpperCase() ?
               (theData.onMarket ? (
                 <div className="name">
                   <CallToAction
@@ -358,7 +350,7 @@ export default function Index() {
                   size="sm"
                   onClick={buy}
                   >
-                    Buy this work for {web3.utils.fromWei(theData.price)} ETH
+                    Buy this work for { ((parseFloat(web3.utils.fromWei(theData.price)) + parseFloat(inti)).toString()).substring(0, 6) } ETH
                   </CallToAction>
                 </div>
               ) : (

@@ -77,7 +77,7 @@ export default function Index() {
           <br/>
           <p>International news and current events, all free on Oustro</p>
         </>
-      ) : router.query.user === "0x0280b8bcFBbeA568d506F4F6fC9314C96B7e9f33" ? (
+      ) : router.query.user === "0x8c17bB1862B31f302e4c25bf364431f0a39614B1" ? (
         <>
           <h1>Oustro Originals</h1>
           <br/>

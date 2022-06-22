@@ -133,7 +133,9 @@ function Mint() {
 
       const receipt = await contract.methods
         .createNFT(url, web3.utils.toWei(costo), show)
-        .send({ from: user.publicAddress });
+        .send({ 
+          from: user.publicAddress,
+        });
 
 
       setTxHash(receipt.transactionHash);
@@ -200,7 +202,7 @@ function Mint() {
     const gasLimit = await calculateGasFee();
     const gasFeeInWei = (await web3.eth.getGasPrice()) * gasLimit;
     const gasFeeInEth = web3.utils.fromWei(gasFeeInWei.toString());
-    const neededFunds = (parseInt(gasFeeInEth) + 0.0051).toString();
+    const neededFunds = (gasFeeInEth + 0.0051).toString();
     return neededFunds;
   };
 
@@ -379,7 +381,7 @@ function Mint() {
             </CallToAction>
             <CallToAction
             disabled={disabled}
-            onClick={() => setGenre("Script")}>
+            onClick={() => setGenre("Scripts")}>
               Script
             </CallToAction>
             <CallToAction
@@ -425,7 +427,7 @@ function Mint() {
               onClick={mintNFT}
               disabled={disabled}
               >
-                Mint NFT for -- ETH
+                Publish Work for -- ETH
               </CallToAction>
             ) : (
               <CallToAction
@@ -434,7 +436,7 @@ function Mint() {
               onClick={mintNFT}
               disabled={disabled}
               >
-                Mint Work for {(inti.toString().substring(0, 6))} ETH
+                Publish Work for {(inti.toString().substring(0, 6))} ETH
               </CallToAction>
             )}
             <div style={{ marginTop: '30px' }}>
