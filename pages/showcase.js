@@ -93,7 +93,7 @@ export default function About() {
         </div>
       </div>
       <div className='footer'>
-        <p>2023 Oustro Inc. v1.5-beta</p>
+        <p>2023 Oustro Inc. v2.0</p>
       </div>
       <style jsx>{`
         .one { 

@@ -25,7 +25,7 @@ export default function About() {
           <h2>and that starts by giving them a platform to speak.</h2>
         </div>
         <div className='footer'>
-          <p>2023 Oustro Inc. v1.5-beta</p>
+          <p>2023 Oustro Inc. v2.0</p>
         </div>
         <style jsx>{`
           .mint-container {
