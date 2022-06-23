@@ -322,7 +322,7 @@ export default function Index() {
                   </TextButton>
                 )}
                 <br />
-                (0.0010 ETH + Gas)
+                (0.001 ETH + Gas)
                 <br />
                 <br />
                 {msg && (
@@ -369,6 +369,9 @@ export default function Index() {
                 Give us a moment to get this wrapping paper on right before you hand it off to you...
               </>
             )}
+          </div>
+          <div className='name2'>
+          Note: this is a higher, safer gas estimation, unused gas is returned
           </div>
           <div className='name'>
             <Link href={{pathname: '/contact/[id]', query: { id: router.query.id }}}>
@@ -419,6 +422,10 @@ export default function Index() {
                     
             .name {
               margin-top: 40px;
+              text-align: center;
+            }
+            .name2 {
+              margin-top: 8px;
               text-align: center;
             }
           `}</style>
