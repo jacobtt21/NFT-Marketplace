@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Header from './Header';
+import Script from 'next/script'
 
 const Layout = (props) => (
   <>
@@ -21,6 +22,8 @@ const Layout = (props) => (
       <meta property="twitter:title" content="Oustro" />
       <meta property="twitter:description" content="Publishing has never been easier and supporting creators has never been so rewarding. Welcome to Oustro." />
       <meta property="twitter:image" content="https://i.imgur.com/uQRUzpt.png" />
+      <Script src="//static.ads-twitter.com/oct.js" type="text/javascript"></Script>
+      <Script type="text/javascript">{`twttr.conversion.trackPid('o96np', { tw_sale_amount: 0, tw_order_quantity: 0 });`}</Script>
     </Head>
     <Header />
     <main>
