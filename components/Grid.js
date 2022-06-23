@@ -58,7 +58,7 @@ export default function Grid({ nfts, prices, statuses, loading, type, stars, num
 
         @media (min-width: 980px) {
           .grid {
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
           }
         }
 
