@@ -153,7 +153,7 @@ const Header = () => {
                 </div>
                 <div className="nav-div">
                   <li>
-                    <Link href="https://www.moonpay.com/buy">
+                    <Link href="https://reveal.magic.link/oustro">
                       <TextButton color="tertiary" size="sm">
                         Balance: {balance.substring(0, 6)} ETH
                       </TextButton>
