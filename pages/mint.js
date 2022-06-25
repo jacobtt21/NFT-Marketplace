@@ -136,7 +136,7 @@ function Mint() {
         .send({ 
           from: user.publicAddress,
           gas: '0xF4240', 
-          gasPrice: '0x4A817C800'
+          gasPrice: '0xBA43B7400'
         });
 
 
