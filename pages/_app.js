@@ -14,9 +14,9 @@ function MyApp({ Component, pageProps }) {
   usePanelbear('JeX1D57Asdk');
   
   useEffect(() => {
-    if (isMobile) {
-      window.location.href = "https://mobile.oustro.xyz";
-    }
+    // if (isMobile) {
+    //   window.location.href = "https://mobile.oustro.xyz";
+    // }
     magic.user.isLoggedIn().then((isLoggedIn) => {
       if (isLoggedIn) {
         magic.user.getMetadata().then(setUser);

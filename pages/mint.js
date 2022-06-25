@@ -135,8 +135,6 @@ function Mint() {
         .createNFT(url, web3.utils.toWei(costo), show)
         .send({ 
           from: user.publicAddress,
-          gas: '0xF4240', 
-          gasPrice: '0xBA43B7400'
         });
 
 
