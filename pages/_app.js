@@ -14,8 +14,11 @@ function MyApp({ Component, pageProps }) {
   usePanelbear('JeX1D57Asdk');
   
   useEffect(() => {
+    if(!router.isReady) {
+      return;
+    }
     if (isMobile) {
-      window.location.href = "https://mobile.oustro.xyz";
+      window.location.href = "https://mobile.oustro.xyz" + router.asPath;
     }
     magic.user.isLoggedIn().then((isLoggedIn) => {
       if (isLoggedIn) {
@@ -38,7 +41,7 @@ function MyApp({ Component, pageProps }) {
         }
       }
     });
-  }, []);
+  }, [router.isReady]);
 
   return (
     <SSRProvider>
