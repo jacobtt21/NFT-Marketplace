@@ -1,7 +1,7 @@
 import { useCallback, useState, useContext } from 'react';
 import { UserContext } from '../lib/UserContext';
 import { magic } from '../lib/magic';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 import { Icon, MonochromeIcons, TextField, CallToAction } from '@magiclabs/ui';
 import Head from 'next/head';
 
@@ -10,6 +10,7 @@ export default function Login() {
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [, setUser] = useContext(UserContext);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
   /**
    * Perform login action via Magic's passwordless flow. Upon successuful
    * completion of the login flow, a user is redirected to the homepage.
@@ -29,8 +30,14 @@ export default function Login() {
         },
       });
       if (res.status === 200) {
-        setUser(await magic.user.getMetadata());
-        Router.push('/');
+        if (router.query.id) {
+          setUser(await magic.user.getMetadata());
+          Router.push('/'+router.query.id);
+        }
+        else {
+          setUser(await magic.user.getMetadata());
+          Router.push('/');
+        }
       }
     } catch {
       setIsLoggingIn(false);

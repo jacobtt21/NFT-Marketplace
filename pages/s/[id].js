@@ -49,7 +49,7 @@ export default function Index() {
             ) : (
               <>
                 {theData.show ? (
-                  <Link href="/login">                 
+                  <Link href={{pathname: '/login', query: { id: router.query.id }}}>                  
                     <CallToAction
                     color="primary"
                     >
