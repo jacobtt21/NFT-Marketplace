@@ -1,5 +1,6 @@
-import { CallToAction } from '@magiclabs/ui';
+import { CallToAction, TextButton } from '@magiclabs/ui';
 import Head from 'next/head';
+import Link from 'next/link';
 
 export default function About() {
   return (
@@ -14,7 +15,30 @@ export default function About() {
         />
       </Head>
       <div className='landing'>
-        <div className="mint-container">
+        <div>
+          <Link href="#mission">
+            <TextButton>
+              Our Mission |
+            </TextButton>
+          </Link>
+          <Link href="#how">
+            <TextButton>
+              How does Oustro Work?
+            </TextButton>
+          </Link>
+        </div>
+        <div className="mint-container" id="mission">
+          <h1>Our Mission is to give a chance for their voice to be heard</h1>
+          <img
+          src="/about-image.png"
+          width={300}
+          className="nft-img"
+          onError={(e) => (e.target.src = '/fallback.jpeg')}
+          />
+          <h2>and that starts by giving them a platform to speak.</h2>
+        </div>
+      
+        <div className="mint-container" id="how">
           <h1>Our Mission is to give a chance for their voice to be heard</h1>
           <img
           src="/about-image.png"
@@ -32,10 +56,7 @@ export default function About() {
             max-width: 400px;
             text-align: center;
             margin: 0 auto;
-            padding: 40px;
-            border-radius: 8px;
-            border: 1px solid #f9f9f9;
-            box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 16px;
+            margin-top: 30px;
           }
           .nft-img {
             margin:20px;

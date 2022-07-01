@@ -3,7 +3,7 @@ import { UserContext } from '../lib/UserContext';
 import { web3 } from '../lib/magic';
 import { abi } from '../contracts/abi';
 import { create } from 'ipfs-http-client';
-import { TextField, CallToAction, useToast} from '@magiclabs/ui';
+import { TextField, CallToAction, useToast } from '@magiclabs/ui';
 import Loading from '../components/Loading';
 import algoliasearch from 'algoliasearch';
 import Link from 'next/link'
@@ -388,6 +388,11 @@ function Mint() {
             disabled={disabled}
             onClick={() => setGenre("Academia")}>
               Academia
+            </CallToAction>
+            <CallToAction
+            disabled={disabled}
+            onClick={() => setGenre("Other")}>
+              Other
             </CallToAction>
             <br />
             <br />
