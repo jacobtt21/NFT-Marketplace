@@ -2,15 +2,17 @@ import { useCallback, useState, useContext } from 'react';
 import { UserContext } from '../lib/UserContext';
 import { magic } from '../lib/magic';
 import Router, { useRouter } from 'next/router';
-import { Icon, MonochromeIcons, TextField, CallToAction } from '@magiclabs/ui';
+import { Icon, MonochromeIcons, TextField, CallToAction, TextButton } from '@magiclabs/ui';
 import Head from 'next/head';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [, setUser] = useContext(UserContext);
+  const [promo, setPromo] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const getformURL = "https://getform.io/f/75702bd8-ad85-44d1-bfcf-0b3cea026d82"
   /**
    * Perform login action via Magic's passwordless flow. Upon successuful
    * completion of the login flow, a user is redirected to the homepage.
@@ -19,6 +21,17 @@ export default function Login() {
     setIsLoggingIn(true);
 
     try {
+      if (promo !== "SentFromTwitter") {
+        const formData = new FormData();
+        formData.append("email", email);
+        formData.append("message", "logged in using SFT");
+        await fetch(getformURL, {
+          method: "POST",
+          body: formData
+        }).then(console.log("Sent"));
+        console.log("here")
+      }
+
       // Grab auth token after user clicks magic link in email
       const didToken = await magic.auth.loginWithMagicLink({ email });
 
@@ -48,6 +61,10 @@ export default function Login() {
     setEmail(event.target.value);
   }, []);
 
+  const handleInputOnChange2 = useCallback((event) => {
+    setPromo(event.target.value);
+  }, []);
+
   return (
     <>
     <Head>
@@ -69,12 +86,47 @@ export default function Login() {
           type="email"
           name="email"
           placeholder='you@example.com'
+          label="Your Email"
           required="required"
           prefix={<Icon inline type={MonochromeIcons.Envelope} size={22} />}
           onChange={handleInputOnChange}
           disabled={isLoggingIn}
         />
-        <br />
+        <div className='dis2'>
+          <TextField
+            type="text"
+            name="promo"
+            placeholder='Promo Code'
+            label="Promo Code"
+            prefix={<Icon inline type={MonochromeIcons.SuccessOutlined} size={22} />}
+            value={promo}
+            onChange={handleInputOnChange2}
+            disabled={isLoggingIn}
+          />
+          {promo && (
+            <>
+              {promo === "SentFromTwitter" ? (
+                <TextButton
+                leadingIcon={MonochromeIcons.SuccessFilled}
+                color='success'
+                size="sm"
+                >
+                  Valid Promo Code
+                </TextButton>
+              ) : (
+                <>
+                  <TextButton
+                    leadingIcon={MonochromeIcons.Warning}
+                    color='error'
+                    size="sm"
+                  >
+                    Invalid Promo Code
+                  </TextButton>
+                </>
+              )}
+            </> 
+          )}
+        </div>
         <CallToAction
           leadingIcon={MonochromeIcons.PaperPlane}
           color="primary"
@@ -120,6 +172,11 @@ export default function Login() {
           margin-top: 9px;
           margin-bottom: 9px;
           font-size: 11px;
+        }
+        .dis2 {
+          margin-top: 25px;
+          margin-bottom: 45px;
+          font-size: 15px;
         }
 
         .footer {
