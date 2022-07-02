@@ -39,24 +39,30 @@ export default function About() {
         </div>
       
         <div className="mint-container" id="how">
-          <h1>Our Mission is to give a chance for their voice to be heard</h1>
+          <h1>How does Oustro Work?</h1>
           <img
-          src="/about-image.png"
+          src="/how.png"
           width={300}
           className="nft-img"
           onError={(e) => (e.target.src = '/fallback.jpeg')}
           />
-          <h2>and that starts by giving them a platform to speak.</h2>
+          <h4>
+            By Using NFTs, Oustro aims to provide a platform where creators, an generate
+            sustainable revenue, build communities, protect their IP, and share what they
+            want to share, free of fear of censorship.
+          </h4>
         </div>
         <div className='footer'>
           <p>2023 Oustro Inc. v2.0</p>
         </div>
         <style jsx>{`
           .mint-container {
+            border-top:1px solid #f0f0f0;
             max-width: 400px;
             text-align: center;
             margin: 0 auto;
             margin-top: 30px;
+            padding: 30px;
           }
           .nft-img {
             margin:20px;
