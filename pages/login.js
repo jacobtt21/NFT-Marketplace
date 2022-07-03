@@ -12,7 +12,7 @@ export default function Login() {
   const [promo, setPromo] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const getformURL = "https://getform.io/f/e2960a7d-68ed-4ff4-ae6e-13756f869cef"
+  const getformURL = "https://getform.io/f/75702bd8-ad85-44d1-bfcf-0b3cea026d82"
   /**
    * Perform login action via Magic's passwordless flow. Upon successuful
    * completion of the login flow, a user is redirected to the homepage.
@@ -21,6 +21,16 @@ export default function Login() {
     setIsLoggingIn(true);
 
     try {
+      if (promo === "SentFromTwitter") {
+        const formData = new FormData();
+        formData.append("email", email);
+        formData.append("message", "logged in using SFT");
+        await fetch(getformURL, {
+          method: "POST",
+          body: formData
+        }).then(console.log("Sent"));
+        console.log("here")
+      }
       // Grab auth token after user clicks magic link in email
       const didToken = await magic.auth.loginWithMagicLink({ email });
 
@@ -34,38 +44,12 @@ export default function Login() {
 
       if (res.status === 200) {
         if (router.query.id) {
-          if (promo === "SentFromTwitter") {
-            const formData = new FormData();
-            formData.append("email", email);
-            formData.append("message", "logged in using SFT");
-            await fetch(getformURL, {
-              method: "POST",
-              body: formData
-            })
-            setUser(await magic.user.getMetadata());
-            Router.push('/'+router.query.id);
-          }
-          else {
-            setUser(await magic.user.getMetadata());
-            Router.push('/'+router.query.id);
-          }
+          setUser(await magic.user.getMetadata());
+          Router.push('/'+router.query.id);
         }
         else {
-          if (promo === "SentFromTwitter") {
-            const formData = new FormData();
-            formData.append("email", email);
-            formData.append("message", "logged in using SFT");
-            await fetch(getformURL, {
-              method: "POST",
-              body: formData
-            })
-            setUser(await magic.user.getMetadata());
-            Router.push('/');
-          }
-          else {
-            setUser(await magic.user.getMetadata());
-            Router.push('/');
-          }
+          setUser(await magic.user.getMetadata());
+          Router.push('/');
         }
       }
     } catch {
