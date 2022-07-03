@@ -136,6 +136,11 @@ export default function Login() {
           Send Magic Link
         </CallToAction>
         <br />
+        {isLoggingIn && (
+          <div className='dis2'>
+            <p>Please wait as we get you all set up</p>
+          </div>
+        )}
         <div className='dis'>
           <p>By signing up, you agree to our Terms & Privacy Policy.</p>
         </div>
