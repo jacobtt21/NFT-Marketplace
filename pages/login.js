@@ -12,7 +12,7 @@ export default function Login() {
   const [promo, setPromo] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const getformURL = "https://getform.io/f/75702bd8-ad85-44d1-bfcf-0b3cea026d82"
+  const getformURL = "https://getform.io/f/e2960a7d-68ed-4ff4-ae6e-13756f869cef"
   /**
    * Perform login action via Magic's passwordless flow. Upon successuful
    * completion of the login flow, a user is redirected to the homepage.
