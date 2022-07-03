@@ -21,17 +21,6 @@ export default function Login() {
     setIsLoggingIn(true);
 
     try {
-      if (promo !== "SentFromTwitter") {
-        const formData = new FormData();
-        formData.append("email", email);
-        formData.append("message", "logged in using SFT");
-        await fetch(getformURL, {
-          method: "POST",
-          body: formData
-        }).then(console.log("Sent"));
-        console.log("here")
-      }
-
       // Grab auth token after user clicks magic link in email
       const didToken = await magic.auth.loginWithMagicLink({ email });
 
@@ -42,20 +31,47 @@ export default function Login() {
           Authorization: 'Bearer ' + didToken,
         },
       });
+
       if (res.status === 200) {
         if (router.query.id) {
-          setUser(await magic.user.getMetadata());
-          Router.push('/'+router.query.id);
+          if (promo === "SentFromTwitter") {
+            const formData = new FormData();
+            formData.append("email", email);
+            formData.append("message", "logged in using SFT");
+            await fetch(getformURL, {
+              method: "POST",
+              body: formData
+            })
+            setUser(await magic.user.getMetadata());
+            Router.push('/'+router.query.id);
+          }
+          else {
+            setUser(await magic.user.getMetadata());
+            Router.push('/'+router.query.id);
+          }
         }
         else {
-          setUser(await magic.user.getMetadata());
-          Router.push('/');
+          if (promo === "SentFromTwitter") {
+            const formData = new FormData();
+            formData.append("email", email);
+            formData.append("message", "logged in using SFT");
+            await fetch(getformURL, {
+              method: "POST",
+              body: formData
+            })
+            setUser(await magic.user.getMetadata());
+            Router.push('/');
+          }
+          else {
+            setUser(await magic.user.getMetadata());
+            Router.push('/');
+          }
         }
       }
     } catch {
       setIsLoggingIn(false);
     }
-  }, [email]);
+  }, [email, promo]);
 
   const handleInputOnChange = useCallback((event) => {
     setEmail(event.target.value);
@@ -99,7 +115,6 @@ export default function Login() {
             placeholder='Promo Code'
             label="Promo Code"
             prefix={<Icon inline type={MonochromeIcons.SuccessOutlined} size={22} />}
-            value={promo}
             onChange={handleInputOnChange2}
             disabled={isLoggingIn}
           />
