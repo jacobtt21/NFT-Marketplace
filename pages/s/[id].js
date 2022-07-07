@@ -70,7 +70,7 @@ export default function Index() {
               </>
             )}
             <h1>{theNFT.name}</h1>
-            <h3>Price: {web3.utils.fromWei(theData.price)} rETH</h3>
+            <h3>Price: {web3.utils.fromWei(theData.price)} ETH</h3>
             <img
             src={theNFT.image}
             width={300}
