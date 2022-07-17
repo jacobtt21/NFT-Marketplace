@@ -154,7 +154,7 @@ export default function About() {
             onError={(e) => (e.target.src = '/fallback.jpeg')}
             />
             <img
-            src="/magazine.svg"
+            src="https://raw.githubusercontent.com/jacobtt21/OustroImages/e1ea7e6a2846aac87c4c384c3ca83868f322adc2/Magazine.svg"
             width={300}
             className="nft-img"
             onError={(e) => (e.target.src = '/fallback.jpeg')}
