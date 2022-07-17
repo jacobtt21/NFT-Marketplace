@@ -26,7 +26,7 @@ export default function About() {
           <div className='align'>
             <div>
               <img 
-                src="https://raw.githubusercontent.com/jacobtt21/OustroImages/dd84137f0fb2677230c50c97777ed6e2803c869a/7.svg?token=ANG2UHWES57WYE2643ZBSF3C2OSP6"
+                src="https://rawcdn.githack.com/Oustro/OustroImages/2feb41f30f48674078a88786eefa89463c589d83/7.svg?min=1"
                 width="500" 
                 alt="" 
               /> 
