@@ -9,10 +9,8 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [, setUser] = useContext(UserContext);
-  const [promo, setPromo] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const getformURL = "https://getform.io/f/75702bd8-ad85-44d1-bfcf-0b3cea026d82"
   /**
    * Perform login action via Magic's passwordless flow. Upon successuful
    * completion of the login flow, a user is redirected to the homepage.
@@ -21,16 +19,6 @@ export default function Login() {
     setIsLoggingIn(true);
 
     try {
-      if (promo === "SentFromTwitter") {
-        const formData = new FormData();
-        formData.append("email", email);
-        formData.append("message", "logged in using SFT");
-        await fetch(getformURL, {
-          method: "POST",
-          body: formData
-        }).then(console.log("Sent"));
-        console.log("here")
-      }
       // Grab auth token after user clicks magic link in email
       const didToken = await magic.auth.loginWithMagicLink({ email });
 
@@ -55,14 +43,10 @@ export default function Login() {
     } catch {
       setIsLoggingIn(false);
     }
-  }, [email, promo]);
+  }, [email]);
 
   const handleInputOnChange = useCallback((event) => {
     setEmail(event.target.value);
-  }, []);
-
-  const handleInputOnChange2 = useCallback((event) => {
-    setPromo(event.target.value);
   }, []);
 
   return (
@@ -92,40 +76,7 @@ export default function Login() {
           onChange={handleInputOnChange}
           disabled={isLoggingIn}
         />
-        <div className='dis2'>
-          <TextField
-            type="text"
-            name="promo"
-            placeholder='Promo Code'
-            label="Promo Code"
-            prefix={<Icon inline type={MonochromeIcons.SuccessOutlined} size={22} />}
-            onChange={handleInputOnChange2}
-            disabled={isLoggingIn}
-          />
-          {promo && (
-            <>
-              {promo === "SentFromTwitter" ? (
-                <TextButton
-                leadingIcon={MonochromeIcons.SuccessFilled}
-                color='success'
-                size="sm"
-                >
-                  Valid Promo Code
-                </TextButton>
-              ) : (
-                <>
-                  <TextButton
-                    leadingIcon={MonochromeIcons.Warning}
-                    color='error'
-                    size="sm"
-                  >
-                    Invalid Promo Code
-                  </TextButton>
-                </>
-              )}
-            </> 
-          )}
-        </div>
+        <br />
         <CallToAction
           leadingIcon={MonochromeIcons.PaperPlane}
           color="primary"
@@ -173,8 +124,8 @@ export default function Login() {
         }
 
         .dis {
-          margin-top: 9px;
-          margin-bottom: 9px;
+          margin-top: 4px;
+          margin-bottom: 4px;
           font-size: 11px;
         }
         .dis2 {

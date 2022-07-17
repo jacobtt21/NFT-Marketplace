@@ -1,4 +1,3 @@
-
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.2;
 
@@ -85,7 +84,14 @@ contract Oustro is ERC721URIStorage {
 
     function changeMarketStatus(uint Id, address _currentOwner) public returns (uint) {
         if (nfts[Id - 1].owner == _currentOwner) {
-            nfts[Id - 1].onMarket = !nfts[Id - 1].onMarket;
+            bool newStatus = !nfts[Id - 1].onMarket;
+            if (newStatus == true) {
+                _transfer(msg.sender, address(this), Id);
+            }
+            else {
+                _transfer(address(this), _currentOwner, Id);
+            }
+            nfts[Id - 1].onMarket = newStatus;
         }
 
         return Id;
@@ -94,6 +100,8 @@ contract Oustro is ERC721URIStorage {
     function transfer(address _newOwner, uint Id, address _currentOwner) external {
         if (nfts[Id - 1].owner == _currentOwner) {
             nfts[Id - 1].owner = _newOwner;
+            nfts[Id - 1].onMarket = false;
+            _transfer(address(this), msg.sender, Id);
         }
     }
 

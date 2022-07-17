@@ -24,7 +24,6 @@ function Mint() {
   const [ipfsWorkUrl, setIpfsWorkUrl] = useState('');
   const [price, setPrice] = useState('');
   const [genre, setGenre] = useState('Choose from Below');
-  const [inti, setInti] = useState(0);
   const imageInputRef = useRef();
   const workInputRef = useRef();
   const { createToast } = useToast();
@@ -120,22 +119,31 @@ function Mint() {
       setTokenz("https://oustro.xyz/s/"+tIndex);
 
       setTxPending(true);
+      
+      setMintStatus("Getting Fees")
 
-      setMintStatus("Processing Minting Fees")
+      const response = await fetch('https://gasstation-mainnet.matic.network/v2');
+      const next = await response.json();
+
+      setMintStatus("Processing Fees")
 
       await web3.eth.sendTransaction({
         from: user.publicAddress,
         to: '0x4cB72Dca5C9299714bBf0D6D8F61d5B979a96940',
-        value: 5000000000000000
+        value: 2000000000000000000,
+        gas: 19000000,
+        maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
       });
 
-      setMintStatus("Minting In Progress")
+      setMintStatus("Publishing In Progress")
 
       const receipt = await contract.methods
-        .createNFT(url, web3.utils.toWei(costo), show)
-        .send({ 
-          from: user.publicAddress,
-        });
+      .createNFT(url, web3.utils.toWei(costo), show)
+      .send({ 
+        from: user.publicAddress,
+        gas: 19000000,
+        maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
+      });
 
 
       setTxHash(receipt.transactionHash);
@@ -173,49 +181,19 @@ function Mint() {
       return true;
     }
 
-    // Throw error if user does not have enough ETH for gas fee
-    if (!(await hasEnoughFunds())) {
+    const weiBalance = await web3.eth.getBalance(user.publicAddress);
+    const MaticBalance = web3.utils.fromWei(weiBalance);
+
+    if (MaticBalance < 2.5) {
       createToast({
-        message: 'ETH Balance Too Low',
+        message: 'Not enough Matic to Publish',
         type: 'error',
         lifespan: 2000,
       });
       return true;
     }
 
-    // No errors found
     return false;
-  };
-
-  const hasEnoughFunds = async () => {
-    const gasLimit = await calculateGasFee();
-    const weiBalance = await web3.eth.getBalance(user.publicAddress);
-    const ethBalance = web3.utils.fromWei(weiBalance);
-    const gasFeeInWei = (await web3.eth.getGasPrice()) * gasLimit;
-    const gasFeeInEth = web3.utils.fromWei(gasFeeInWei.toString());
-    const neededFunds = gasFeeInEth + 0.005;
-    if (ethBalance > neededFunds) return true;
-    return false;
-  };
-
-  const getPrice = async () => {
-    const gasLimit = await calculateGasFee();
-    const gasFeeInWei = (await web3.eth.getGasPrice()) * gasLimit;
-    const gasFeeInEth = web3.utils.fromWei(gasFeeInWei.toString());
-    const neededFunds = (gasFeeInEth + 0.0051).toString();
-    return neededFunds;
-  };
-
-  const calculateGasFee = async () => {
-    // Pass in 74 character string (roughly same as IPFS URL) for accurate gas limit estimate
-    return await contract.methods.createNFT('0'.repeat(74), '0'.repeat(74), true).estimateGas(
-      {
-        from: user.publicAddress,
-      },
-      (error, estimatedGasLimit) => {
-        return estimatedGasLimit;
-      }
-    );
   };
 
   const clearForm = async () => {
@@ -230,18 +208,6 @@ function Mint() {
     imageInputRef.current.value = '';
     workInputRef.current.value = '';
   };
-
-  const mainFunction = async () => {
-    const result = await getPrice()
-    return result
-  }
-
-  if (user) {
-    (async () => {
-      setInti(await mainFunction())
-    })()
-  }
-  
 
   return (
     <div>
@@ -391,6 +357,11 @@ function Mint() {
             </CallToAction>
             <CallToAction
             disabled={disabled}
+            onClick={() => setGenre("Whitepaper")}>
+              Whitepaper
+            </CallToAction>
+            <CallToAction
+            disabled={disabled}
             onClick={() => setGenre("Other")}>
               Other
             </CallToAction>
@@ -398,8 +369,8 @@ function Mint() {
             <br />
             <TextField
             disabled={disabled}
-            label="Sales Price in ETH (optional)"
-            placeholder="If empty, defaults to 0 ETH"
+            label="Sales Price in MATIC (optional)"
+            placeholder="If empty, defaults to 0 MATIC"
             type="number"
             onChange={(e) => setPrice(e.target.value)}
             value={price}
@@ -425,25 +396,14 @@ function Mint() {
             <br />
             <br />
             <br />
-            {inti === 0 ? (
-              <CallToAction
+            <CallToAction
               color="primary"
               size="sm"
               onClick={mintNFT}
               disabled={disabled}
               >
-                Publish Work for -- ETH
-              </CallToAction>
-            ) : (
-              <CallToAction
-              color="primary"
-              size="sm"
-              onClick={mintNFT}
-              disabled={disabled}
-              >
-                Publish Work for {(inti.toString().substring(0, 6))} ETH
-              </CallToAction>
-            )}
+                Publish (3 MATIC)
+            </CallToAction>
             <div style={{ marginTop: '30px' }}>
               {txPending && (
                 <>
@@ -511,6 +471,12 @@ function Mint() {
           max-width: 200px;
           max-height: 200px;
           margin: auto;
+        }
+
+        .image-logo {
+          margin-left: 5px;
+          margin-right: 5px;
+          max-width: 30px;
         }
 
         .nname {

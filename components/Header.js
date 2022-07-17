@@ -4,7 +4,7 @@ import { magic, web3 } from '../lib/magic';
 import Link from 'next/link';
 import Router from 'next/router';
 import { useRouter } from 'next/router';
-import { CallToAction, TextButton, useToast } from '@magiclabs/ui';
+import { CallToAction, TextButton, useToast, HoverActivatedTooltip, MonochromeIcons } from '@magiclabs/ui';
 
 const Header = () => {
   const [user, setUser] = useContext(UserContext);
@@ -153,17 +153,53 @@ const Header = () => {
                 </div>
                 <div className="nav-div">
                   <li>
-                    <Link href="https://reveal.magic.link/oustro">
-                      <TextButton color="tertiary" size="sm">
-                        Balance: {balance.substring(0, 6)} ETH
-                      </TextButton>
-                    </Link>
+                    <HoverActivatedTooltip
+                      arrow
+                      placement="top"
+                      waitForPointerExit
+                      delay={0.5}
+                    >
+                      <HoverActivatedTooltip.Anchor>
+                        <TextButton 
+                        color="tertiary" 
+                        size="sm"
+                        trailingIcon={MonochromeIcons.CaretDown}
+                        >
+                            <img className="image-logo" src="/p2.svg" />
+                            {balance.substring(0, 6)} MATIC
+                        </TextButton>
+                      </HoverActivatedTooltip.Anchor>
+                      <HoverActivatedTooltip.Content>
+                        <div>
+                          <Link href="https://www.moonpay.com/buy">
+                            <a target="_blank">
+                              <TextButton
+                              leadingIcon={MonochromeIcons.SocialShare}
+                              size='md'>
+                                Get MATIC
+                              </TextButton>
+                            </a>
+                          </Link>
+                          <br />
+                          <Link href="https://reveal.magic.link/oustro">
+                            <a target="_blank">
+                              <TextButton
+                              leadingIcon={MonochromeIcons.Fingerprint}
+                              size='md'>
+                                Reveal Secret Key
+                              </TextButton>
+                            </a>
+                        </Link>
+                        </div>
+                      </HoverActivatedTooltip.Content>
+                    </HoverActivatedTooltip>
                   </li>
                   <li>
                     <CallToAction
                       color="primary"
                       size="sm"
                       outline="none"
+                      leadingIcon={MonochromeIcons.Copy}
                       onPress={copyAddress}
                     >
                       {user.publicAddress.substring(0, 6)}...
@@ -187,6 +223,12 @@ const Header = () => {
           margin: 15px auto;
           min-height: 70px;
           padding: 1rem;
+        }
+
+        .image-logo {
+          margin-left: 5px;
+          margin-right: 5px;
+          max-width: 25px;
         }
 
         .nav-container,

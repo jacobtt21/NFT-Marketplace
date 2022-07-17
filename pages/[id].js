@@ -20,7 +20,6 @@ export default function Index() {
   const [msg, setMsg] = useState(false);
   const [msg1, setMsg1] = useState(false);
   const { createToast } = useToast();
-  const [inti, setInti] = useState(0);
 
   useEffect(() => {
     if (!user) {
@@ -59,18 +58,28 @@ export default function Index() {
     }
     try {
       setMsg(true)
+      const response = await fetch('https://gasstation-mainnet.matic.network/v2');
+      const next = await response.json();
       await web3.eth.sendTransaction({
         from: user.publicAddress,
-        to: theNFT.Creator,
-        value: 500000000000000
+        to: theNFT.creator,
+        value: 1000000000000000000,
+        gas: 19000000,
+        maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
       });
       await web3.eth.sendTransaction({
         from: user.publicAddress,
         to: '0x4cB72Dca5C9299714bBf0D6D8F61d5B979a96940',
-        value: 500000000000000
+        value: 1000000000000000000,
+        gas: 19000000,
+        maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
       });
-      const receipt = await contract.methods.rateNFT(parseInt(router.query.id), parseInt(newRating)).send({ 
-        from: user.publicAddress 
+      const receipt = await contract.methods
+      .rateNFT(parseInt(router.query.id), parseInt(newRating))
+      .send({ 
+        from: user.publicAddress,
+        gas: 19000000,
+        maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
       });
       console.log(receipt)
       setNewRating('');
@@ -95,37 +104,61 @@ export default function Index() {
     try {
       setDisabled(true);
       setMsg1(true);
+
+      const response = await fetch('https://gasstation-mainnet.matic.network/v2');
+      const next = await response.json();
+
       if (theNFT.share !== "NaN") {
         await web3.eth.sendTransaction({
           from: user.publicAddress,
           to: theNFT.share,
-          value: cost * 0.05
+          value: cost * 0.05,
+          gas: 19000000,
+          maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
         });
+
         await web3.eth.sendTransaction({
           from: user.publicAddress,
-          to: theNFT.Creator,
-          value: cost * 0.1
+          to: theNFT.creator,
+          value: cost * 0.1,
+          gas: 19000000,
+          maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
         });
+
         await web3.eth.sendTransaction({
           from: user.publicAddress,
           to: theData.owner,
-          value: cost - (cost * 0.15)
+          value: cost - (cost * 0.15),
+          gas: 19000000,
+          maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
         });
       }
       else {
         await web3.eth.sendTransaction({
           from: user.publicAddress,
-          to: theNFT.Creator,
-          value: cost * 0.15
+          to: theNFT.creator,
+          value: cost * 0.15,
+          gas: 19000000,
+          maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
         });
+
         await web3.eth.sendTransaction({
           from: user.publicAddress,
           to: theData.owner,
-          value: cost - (cost * 0.15)
+          value: cost - (cost * 0.15),
+          gas: 19000000,
+          maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
         });
       }
-      const receipt = await contract.methods.transfer(user.publicAddress, parseInt(router.query.id), theData.owner).send({ from: user.publicAddress });
-      console.log(receipt)
+
+      await contract.methods
+      .transfer(user.publicAddress, parseInt(router.query.id), theData.owner)
+      .send({ 
+        from: user.publicAddress,
+        gas: 19000000,
+        maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
+      });
+      
       setDisabled(false);
       setMsg1(false);
       router.reload(window.location.pathname);
@@ -138,85 +171,36 @@ export default function Index() {
   }
 
   const checkForErrors = async (val) => {
-    // Throw error if missing input values
-    var reason = '';
+    // Throw error if missing input values// Throw error if user does not have enough ETH for gas fee
+    const weiBalance = await web3.eth.getBalance(user.publicAddress);
+    const MaticBalance = web3.utils.fromWei(weiBalance);
     if (val === 1) {
-      reason = "Rate this Work"
+      if (MaticBalance < 2.5) {
+        createToast({
+          message: 'MATIC Balance Too Low to Rate this Work',
+          type: 'error',
+          lifespan: 2000,
+        });
+        return true;
+      }
     }
     else if (val === 2) {
-      reason = "Buy this NFT"
-    }
-    // Throw error if user does not have enough ETH for gas fee
-    if (!(await hasEnoughFunds(val))) {
-      createToast({
-        message: 'ETH Balance Too Low to ' + reason,
-        type: 'error',
-        lifespan: 2000,
-      });
-      return true;
+      if (MaticBalance < parseFloat(web3.utils.fromWei(theData.price)) + 0.001) {
+        createToast({
+          message: 'MATIC Balance Too Low to Buy this Work',
+          type: 'error',
+          lifespan: 2000,
+        });
+        return true;
+      }
     }
     // No errors found
     return false;
   };
 
-  const hasEnoughFunds = async (val) => {
-    const cost = theData.price;
-    const gasLimit = await calculateGasFee();
-    const weiBalance = await web3.eth.getBalance(user.publicAddress);
-    const ethBalance = web3.utils.fromWei(weiBalance);
-    const gasFeeInWei = (await web3.eth.getGasPrice()) * gasLimit;
-    const gasFeeInEth = web3.utils.fromWei(gasFeeInWei.toString());
-    const total = web3.utils.fromWei(cost);
-    if (val === 1) {
-      const neededFunds = gasFeeInEth  + 0.001;
-      if (ethBalance > neededFunds) {
-          return true;
-      }
-      return false;
-    }
-    else {
-      const neededFunds = gasFeeInEth  + total;
-      if (ethBalance > neededFunds) {
-          return true;
-      }
-      return false;
-    }
-  };
-
-  const getPrice = async () => {
-    const gasLimit = await calculateGasFee();
-    const gasFeeInWei = (await web3.eth.getGasPrice()) * gasLimit;
-    const gasFeeInEth = web3.utils.fromWei(gasFeeInWei.toString());
-    const neededFunds = gasFeeInEth;
-    return neededFunds;
-  };
-
-  const calculateGasFee = async () => {
-    // Pass in 74 character string (roughly same as IPFS URL) for accurate gas limit estimate
-    return await contract.methods.createNFT('0'.repeat(74), '0'.repeat(74), true).estimateGas(
-      {
-        from: user.publicAddress,
-      },
-      (error, estimatedGasLimit) => {
-        return estimatedGasLimit;
-      }
-    );
-  };
-
-  const mainFunction = async () => {
-    const result = await getPrice()
-    return result
-  }
-
-  if (user) {
-    (async () => {
-      setInti(await mainFunction())
-    })()
-  }
-
   return user ? (
     <div>
-      {theData ? (
+      {theData && theNFT ? (
         <>
           <Head>
           <title>{theNFT.name} | Oustro</title>
@@ -302,35 +286,19 @@ export default function Index() {
                 value={newRating}
                 />
                 <br />
-                {inti === 0 ? (
-                  <TextButton
+                <TextButton
                   disabled={disabled}
                   color="primary"
                   size="sm"
                   onClick={addRating}
                   >
-                    Submit Your Rating for -- ETH
-                  </TextButton>
-                ) : (
-                  <TextButton
-                  disabled={disabled}
-                  color="primary"
-                  size="sm"
-                  onClick={addRating}
-                  >
-                    Submit Your Rating for {(inti.toString()).substring(0, 6)} ETH
-                  </TextButton>
-                )}
-                <br />
-                (0.001 ETH + Gas)
-                <br />
-                <br />
+                    Submit Your Rating for 2.5 MATIC
+                </TextButton>
                 {msg && (
                   <>
                     <br />
-                    <div className="name">
-                      Give us a sec, we're explaining to the smart contract why you gave it this rating...it's very curious
-                    </div>
+                    <br />
+                    Give us a sec, we're explaining to the smart contract why you gave it this rating...it's very curious
                   </>
                 )}
               </div>
@@ -350,8 +318,11 @@ export default function Index() {
                   size="sm"
                   onClick={buy}
                   >
-                    Buy this work for { ((parseFloat(web3.utils.fromWei(theData.price)) + parseFloat(inti)).toString()).substring(0, 6) } ETH
+                    Buy this work for { (parseFloat(web3.utils.fromWei(theData.price)) + 0.001 )} MATIC
                   </CallToAction>
+                  <br />
+                  <br />
+                  (Price + Gas)
                 </div>
               ) : (
                 <div className="name">
@@ -369,9 +340,6 @@ export default function Index() {
                 Give us a moment to get this wrapping paper on right before you hand it off to you...
               </>
             )}
-          </div>
-          <div className='name2'>
-          Note: this is a higher, safer gas estimation, unused gas is returned
           </div>
           <div className='name'>
             <Link href={{pathname: '/contact/[id]', query: { id: router.query.id }}}>

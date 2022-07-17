@@ -3,7 +3,7 @@ import { UserContext } from '../lib/UserContext';
 import Link from 'next/link'
 import { web3 } from '../lib/magic';
 import { abi } from '../contracts/abi';
-import { TextField, CallToAction, TextButton, MonochromeIcons } from '@magiclabs/ui';
+import { TextField, CallToAction, TextButton, MonochromeIcons, useToast } from '@magiclabs/ui';
 import { useRouter } from 'next/router'
 
 
@@ -16,6 +16,7 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
   const [disabled, setDisabled] = useState(false);
   const [msg, setMsg] = useState(false);
   const [msg1, setMsg1] = useState(false);
+  const { createToast } = useToast();
 
   var path = '';
   const router = useRouter()
@@ -28,7 +29,15 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
     }
     try {
       setMsg(true);
-      const receipt = await contract.methods.changePrice(parseInt(nft.tokenID), web3.utils.toWei(newPrice), user.publicAddress).send({ from: user.publicAddress });
+      const response = await fetch('https://gasstation-mainnet.matic.network/v2');
+      const next = await response.json();
+      const receipt = await contract.methods
+      .changePrice(parseInt(nft.tokenID), web3.utils.toWei(newPrice), user.publicAddress)
+      .send({ 
+        from: user.publicAddress,
+        gas: 19000000,
+        maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
+      });
       console.log(receipt)
       setNewPrice('');
       setDisabled(false);
@@ -50,7 +59,15 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
     }
     try {
       setMsg1(true);
-      const receipt = await contract.methods.changeMarketStatus(parseInt(nft.tokenID), user.publicAddress).send({ from: user.publicAddress });
+      const response = await fetch('https://gasstation-mainnet.matic.network/v2');
+      const next = await response.json();
+      const receipt = await contract.methods
+      .changeMarketStatus(parseInt(nft.tokenID), user.publicAddress)
+      .send({ 
+        from: user.publicAddress,
+        gas: 19000000,
+        maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
+      });
       console.log(receipt)
       setDisabled(false);
       setMsg1(false);
@@ -67,15 +84,17 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
     // Throw error if missing input values
     var reason = '';
     if (val === 1) {
-      reason = "Take this off the Marketplace"
+      reason = "Take off the Marketplace"
     }
     else if (val === 2) {
       reason = "Change the Price"
     }
     // Throw error if user does not have enough ETH for gas fee
-    if (!(await hasEnoughFunds(val))) {
+    const weiBalance = await web3.eth.getBalance(user.publicAddress);
+    const MaticBalance = web3.utils.fromWei(weiBalance);
+    if (MaticBalance < 0.5) {
       createToast({
-        message: 'ETH Balance Too Low to ' + reason,
+        message: 'Wallet Balance Too Low to ' + reason,
         type: 'error',
         lifespan: 2000,
       });
@@ -83,30 +102,6 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
     }
     // No errors found
     return false;
-  };
-
-  const hasEnoughFunds = async (val) => {
-    const gasLimit = await calculateGasFee(val);
-    const weiBalance = await web3.eth.getBalance(user.publicAddress);
-    const ethBalance = web3.utils.fromWei(weiBalance);
-    const gasFeeInWei = (await web3.eth.getGasPrice()) * gasLimit;
-    const gasFeeInEth = web3.utils.fromWei(gasFeeInWei.toString());
-    const neededFunds = gasFeeInEth;
-    if (ethBalance - neededFunds > 0) {
-        return true;
-    }
-    return false;
-  };
-
-  const calculateGasFee = async () => {
-    return await contract.methods.createNFT('0'.repeat(74), '0'.repeat(74), true).estimateGas(
-      {
-        from: user.publicAddress,
-      },
-      (error, estimatedGasLimit) => {
-        return estimatedGasLimit;
-      }
-    );
   };
 
   if (going) {
@@ -181,7 +176,8 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
                       size="sm"
                       outline="none"
                       >
-                        { web3.utils.fromWei(price) } ETH
+                        <img className="image-logo" src="/p2.svg" />
+                        { web3.utils.fromWei(price) } MATIC
                       </CallToAction>
                     </div>
                   </>
@@ -190,7 +186,7 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
             ) : (
               <>
                 <div className="name">
-                  current price: { web3.utils.fromWei(price) } ETH 
+                  current price: { web3.utils.fromWei(price) } MATIC
                 </div>
                 <div className="name">
                   <TextField
@@ -212,6 +208,14 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
                   <br />
                   <br />
                 </div>
+                { price === 0 ? ( 
+                  <>
+                  yee
+                  </>
+                ) : (
+                  <>
+                  </>
+                )}
                 {status ? (
                   <>
                     <div className="name">
@@ -304,7 +308,7 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
                       size="sm"
                       outline="none"
                       >
-                        { web3.utils.fromWei(price) } ETH
+                        { web3.utils.fromWei(price) } MATIC
                       </CallToAction>
                     </Link>
                   </div>
@@ -314,58 +318,63 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
           ) : (
             <>
               <div className="name">
-                current price: { web3.utils.fromWei(price) } ETH </div>
-                <div className="name">
-                  <TextField
-                  disabled={disabled}
-                  placeholder="New Price"
-                  type="number"
-                  onChange={(e) => setNewPrice(e.target.value)}
-                  value={newPrice}
-                  />
-                  <br />
-                  <TextButton
-                  disabled={disabled}
-                  color="primary"
-                  size="sm"
-                  onClick={changePrice}
-                  >
-                    Change Price
-                  </TextButton>
-                  <br />
-                  {msg && (
-                    <div className='name'>
-                      Found the eraser, we'll be back real quick
-                    </div>
+                current price: { web3.utils.fromWei(price) } MATIC
+              </div>
+              <div className="name">
+                <TextField
+                disabled={disabled}
+                placeholder="New Price"
+                type="number"
+                onChange={(e) => setNewPrice(e.target.value)}
+                value={newPrice}
+                />
+                <br />
+                <TextButton
+                disabled={disabled}
+                color="primary"
+                size="sm"
+                onClick={changePrice}
+                >
+                  Change Price
+                </TextButton>
+                <br />
+                {msg && (
+                  <div className='name'>
+                    Found the eraser, we'll be back real quick
+                  </div>
+                )}
+                <br />
+              </div>
+              {price !== '0' && (
+                <>
+                  {status ? (
+                    <>
+                      <div className="name">
+                        <CallToAction
+                        disabled={disabled}
+                        color="primary"
+                        size="sm"
+                        onClick={changeStatus}
+                        >
+                          Take Off Market
+                        </CallToAction>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="name">
+                        <CallToAction
+                        disabled={disabled}
+                        color="primary"
+                        size="sm"
+                        onClick={changeStatus}
+                        >
+                          Put On Market
+                        </CallToAction>
+                      </div>
+                      <br />
+                    </>
                   )}
-                  <br />
-                </div>
-              {status ? (
-                <>
-                  <div className="name">
-                    <CallToAction
-                    disabled={disabled}
-                    color="primary"
-                    size="sm"
-                    onClick={changeStatus}
-                    >
-                      Take Off Market
-                    </CallToAction>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="name">
-                    <CallToAction
-                    disabled={disabled}
-                    color="primary"
-                    size="sm"
-                    onClick={changeStatus}
-                    >
-                      Put On Market
-                    </CallToAction>
-                  </div>
-                  <br />
                 </>
               )}
               {msg1 && (
@@ -378,6 +387,10 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
         </div>
       )}
       <style>{`
+        .image-logo {
+          margin-right: 5px;
+          max-width: 20px;
+        }
         .card {
           border-radius: 8px;
           padding: 15px;
