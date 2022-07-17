@@ -92,7 +92,7 @@ export default function About() {
         <div className='align'>
           <div>
             <img 
-              src="https://raw.githubusercontent.com/jacobtt21/OustroImages/dd84137f0fb2677230c50c97777ed6e2803c869a/1.svg?token=ANG2UHW5FYIN4T3QM5HPXB3C2OR2A"
+              src="https://raw.githubusercontent.com/jacobtt21/OustroImages/dd84137f0fb2677230c50c97777ed6e2803c869a/1.svg?token=ANG2UHXVJALXCK5BQS5BUNTC2OSXK"
               width="500" 
               alt="" 
             /> 
@@ -116,7 +116,7 @@ export default function About() {
           </div> 
           <div>
             <img 
-              src="https://raw.githubusercontent.com/jacobtt21/OustroImages/dd84137f0fb2677230c50c97777ed6e2803c869a/3.svg?token=ANG2UHXYJX7LIHKC5MT4FSDC2OSAY"
+              src="https://raw.githubusercontent.com/jacobtt21/OustroImages/dd84137f0fb2677230c50c97777ed6e2803c869a/3.svg?token=ANG2UHSO6HAE4JFBSM2L5R3C2OSZE"
               width="500" 
               alt="" 
             /> 
