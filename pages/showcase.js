@@ -92,7 +92,7 @@ export default function About() {
         <div className='align'>
           <div>
             <img 
-              src="/1.svg"
+              src="https://raw.githubusercontent.com/jacobtt21/OustroImages/dd84137f0fb2677230c50c97777ed6e2803c869a/1.svg?token=ANG2UHW5FYIN4T3QM5HPXB3C2OR2A"
               width="500" 
               alt="" 
             /> 
@@ -116,7 +116,7 @@ export default function About() {
           </div> 
           <div>
             <img 
-              src="/3.svg"
+              src="https://raw.githubusercontent.com/jacobtt21/OustroImages/dd84137f0fb2677230c50c97777ed6e2803c869a/3.svg?token=ANG2UHXYJX7LIHKC5MT4FSDC2OSAY"
               width="500" 
               alt="" 
             /> 
@@ -125,7 +125,7 @@ export default function About() {
         <div className='align'>
           <div>
             <img 
-              src="/2.svg"
+              src="https://raw.githubusercontent.com/jacobtt21/OustroImages/dd84137f0fb2677230c50c97777ed6e2803c869a/2.svg?token=ANG2UHXDMJRLK6MPQJILJ2LC2OSCW"
               width="500" 
               alt="" 
             /> 
@@ -154,7 +154,7 @@ export default function About() {
             onError={(e) => (e.target.src = '/fallback.jpeg')}
             />
             <img
-            src="https://raw.githubusercontent.com/jacobtt21/OustroImages/e1ea7e6a2846aac87c4c384c3ca83868f322adc2/Magazine.svg"
+            src="https://raw.githubusercontent.com/jacobtt21/OustroImages/dd84137f0fb2677230c50c97777ed6e2803c869a/Magazine.svg?token=ANG2UHW2T7YRA7S45J5344LC2OSE4"
             width={300}
             className="nft-img"
             onError={(e) => (e.target.src = '/fallback.jpeg')}

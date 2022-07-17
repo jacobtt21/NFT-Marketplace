@@ -37,7 +37,7 @@ export default function About() {
         <div className="mint-container" id="mission">
           <h1>Our Mission is to give everyone a chance for their voice to be heard</h1>
           <img
-          src="/4.svg"
+          src="https://raw.githubusercontent.com/jacobtt21/OustroImages/dd84137f0fb2677230c50c97777ed6e2803c869a/4.svg?token=ANG2UHQLQQQCEMLHAJ6NMOLC2OSH2"
           width="500"
           className="nft-img"
           onError={(e) => (e.target.src = '/fallback.jpeg')}
@@ -57,7 +57,7 @@ export default function About() {
             </div>
             <div>
               <img 
-                src="/5.svg"
+                src="https://raw.githubusercontent.com/jacobtt21/OustroImages/dd84137f0fb2677230c50c97777ed6e2803c869a/5.svg?token=ANG2UHWH5AMI2PL3R5MTIV3C2OSIY"
                 width="500" 
                 alt="" 
               /> 
@@ -73,7 +73,7 @@ export default function About() {
             keep Oustro what it was always meant to be.
           </h3>
           <img 
-            src="/6.svg"
+            src="https://raw.githubusercontent.com/jacobtt21/OustroImages/dd84137f0fb2677230c50c97777ed6e2803c869a/6.svg?token=ANG2UHWZ7DQNINAM24OUQ43C2OSJW"
             width="700" 
             alt="" 
           /> 
