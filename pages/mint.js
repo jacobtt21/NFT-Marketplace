@@ -306,7 +306,7 @@ function Mint() {
             <br />
             <input
             type="file"
-            accept=".pdf"
+            accept=".pdf, .html"
             onChange={onWorkUpload} 
             ref={workInputRef}
             disabled={disabled}
