@@ -91,6 +91,29 @@ export default function About() {
         </Link>
         <div className='align'>
           <div>
+            <h4>Share Your Voice...in Multiple Formats</h4> 
+            <h6>
+              Share what's on your mind in PDF or HTML formats and share them with quick, easy to remember URLs. With more
+              formats on the way and hosted on IPFS, we're so excited to hear what you have to say. 
+            </h6>
+            <br />
+            <Link href="/login?id=mint">
+              <CallToAction
+              >
+                Start Sharing
+              </CallToAction>
+            </Link>
+          </div> 
+          <div>
+            <img 
+              src="https://rawcdn.githack.com/Oustro/OustroImages/b7d2c4f52e1fe84ffd6e875c3a0f999ae4a8b4cd/8.svg"
+              width="500" 
+              alt="" 
+            /> 
+          </div>         
+        </div>
+        <div className='align'>
+          <div>
             <img 
               src="https://rawcdn.githack.com/Oustro/OustroImages/02c26a155c63134c77ba2a80b2a24a54ab7d7fe7/1.svg?min=1"
               width="500" 
@@ -104,6 +127,13 @@ export default function About() {
               around you. Become the steward of that work, set the price, and take ownership of what
               you feel the world needs to know about.
             </h6>
+            <br />
+            <Link href="/login?id=library">
+              <CallToAction
+              >
+                See What's Available
+              </CallToAction>
+            </Link>
           </div>        
         </div>
         <div className='align'>
@@ -113,6 +143,13 @@ export default function About() {
               Our creators are what make Oustro what we are. Support those who you feel have something to offer the world.
               Each time you give a rating to a work, we'll send the creator a thank you from you, on us.
             </h6>
+            <br />
+            <Link href="/login">
+              <CallToAction
+              >
+                Help Bring Dreams to Life
+              </CallToAction>
+            </Link>
           </div> 
           <div>
             <img 
@@ -136,6 +173,13 @@ export default function About() {
               The great thing about written work is that it has the capabilties to make you feel a certain way and
               make you connect with others with the same feeling, it's human nature, and we're all for it here.
             </h6>
+            <br />
+            <Link href="/login">
+              <CallToAction
+              >
+                Find Your People
+              </CallToAction>
+            </Link>
           </div>        
         </div>
         <div className='Logos'>
@@ -286,6 +330,7 @@ export default function About() {
           line-height: 1.6;
         }
         .two { 
+          font-weight: bold;
           margin:20px; 
           text-align:center; 
           font-size: 60px;
