@@ -144,24 +144,32 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
             </div>
             {check === '0' ? (
               <div className='name'>
+              <TextButton
+              color="primary"
+              outline="none"
+              >
+                {nft.name}
+              </TextButton>
+            </div>
+            ) : check === "1" ? (
+              <div className="name">
                 <TextButton
+                leadingIcon={MonochromeIcons.SuccessFilled}
                 color="primary"
                 outline="none"
                 >
                   {nft.name}
                 </TextButton>
-              </div>
+              </div> 
             ) : (
               <div className="name">
-                <Link href={{pathname: path, query: { id: nft.tokenID }}}>
-                  <TextButton
-                  leadingIcon={MonochromeIcons.SuccessFilled}
-                  color="primary"
-                  outline="none"
-                  >
-                    {nft.name}
-                  </TextButton>
-                </Link>
+                <TextButton
+                leadingIcon={MonochromeIcons.Exclaim}
+                color="primary"
+                outline="none"
+                >
+                  {nft.name}
+                </TextButton>
               </div> 
             )}
             <div className="name">created by {nft.creator.substring(0, 6)}..{nft.creator.substring(38)}</div>
@@ -284,10 +292,20 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
                 {nft.name}
               </TextButton>
             </div>
-          ) : (
+          ) : check === "1" ? (
             <div className="name">
               <TextButton
               leadingIcon={MonochromeIcons.SuccessFilled}
+              color="primary"
+              outline="none"
+              >
+                {nft.name}
+              </TextButton>
+            </div> 
+          ) : (
+            <div className="name">
+              <TextButton
+              leadingIcon={MonochromeIcons.Exclaim}
               color="primary"
               outline="none"
               >
