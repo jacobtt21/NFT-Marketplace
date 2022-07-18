@@ -397,7 +397,7 @@ export default function Index() {
               max-width: 400px;
               max-height: 400px;
               cursor: pointer;
-              border-radius: 8px;
+              border-radius: 15px;
             }
                     
             .name {
