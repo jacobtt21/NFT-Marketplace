@@ -6,6 +6,7 @@ import { abi } from '../../contracts/abi';
 import Loading from '../../components/Loading';
 import { CallToAction } from '@magiclabs/ui';
 import Link from 'next/link'
+import Head from 'next/head';
 
 
 export default function Index() {
@@ -35,7 +36,9 @@ export default function Index() {
 
   return (
     <div>
-      <Head>
+      {theData ? (
+        <>
+        <Head>
           <title>{theNFT.name} | Oustro</title>
           <meta name="description" content="Publishing has never been easier and supporting creators has never been so rewarding. Welcome to Oustro." />
           <link
@@ -58,8 +61,6 @@ export default function Index() {
           <meta property="twitter:description" content="Publishing has never been easier and supporting creators has never been so rewarding. Welcome to Oustro." />
           <meta property="twitter:image" content={theNFT.image} />
         </Head>
-      {theData ? (
-        <>
           <div className="mint-container">
             {user ? (
               <Link href={{pathname: '/[id]', query: { id: router.query.id }}}>   
