@@ -8,7 +8,7 @@ const Layout = (props) => (
       <title>Oustro</title>
       <link rel="icon" href="/favicon.ico" />
 
-      {/* <meta name="title" content="Oustro" />
+      <meta name="title" content="Oustro" />
       <meta name="description" content="Publishing has never been easier and supporting creators has never been so rewarding. Welcome to Oustro." />
 
       <meta property="og:type" content="website" />
@@ -21,7 +21,7 @@ const Layout = (props) => (
       <meta property="twitter:url" content="https://www.oustro.xyz" />
       <meta property="twitter:title" content="Oustro" />
       <meta property="twitter:description" content="Publishing has never been easier and supporting creators has never been so rewarding. Welcome to Oustro." />
-      <meta property="twitter:image" content="https://i.imgur.com/BXM0bAb.png" /> */}
+      <meta property="twitter:image" content="https://i.imgur.com/BXM0bAb.png" />
     </Head>
     <Header />
     <main>

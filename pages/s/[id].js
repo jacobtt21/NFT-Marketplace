@@ -6,7 +6,6 @@ import { abi } from '../../contracts/abi';
 import Loading from '../../components/Loading';
 import { CallToAction } from '@magiclabs/ui';
 import Link from 'next/link'
-import Head from 'next/head';
 
 
 export default function Index() {
@@ -38,29 +37,6 @@ export default function Index() {
     <div>
       {theData ? (
         <>
-        <Head>
-          <title>{theNFT.name} | Oustro</title>
-          <meta name="description" content="Publishing has never been easier and supporting creators has never been so rewarding. Welcome to Oustro." />
-          <link
-            rel="canonical"
-            href="https://www.oustro.xyz/showcase"
-            key="canonical"
-          />
-          <meta name="title" content={theNFT.name} />
-          <meta name="description" content="Publishing has never been easier and supporting creators has never been so rewarding. Welcome to Oustro." />
-
-          <meta property="og:type" content="website" />
-          <meta property="og:url" content="https://www.oustro.xyz" />
-          <meta property="og:title" content="Oustro" />
-          <meta property="og:description" content="Publishing has never been easier and supporting creators has never been so rewarding. Welcome to Oustro." />
-          <meta property="og:image" content={theNFT.image} />
-
-          <meta property="twitter:card" content="summary_large_image" />
-          <meta property="twitter:url" content="https://www.oustro.xyz" />
-          <meta property="twitter:title" content="Oustro" />
-          <meta property="twitter:description" content="Publishing has never been easier and supporting creators has never been so rewarding. Welcome to Oustro." />
-          <meta property="twitter:image" content={theNFT.image} />
-        </Head>
           <div className="mint-container">
             {user ? (
               <Link href={{pathname: '/[id]', query: { id: router.query.id }}}>   
