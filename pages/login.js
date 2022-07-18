@@ -158,8 +158,7 @@ export default function Login() {
           font-size: 11px;
         }
         .dis2 {
-          margin-top: 25px;
-          margin-bottom: 45px;
+          margin-bottom: 10px;
           font-size: 15px;
         }
 
