@@ -197,7 +197,7 @@ export default function Index() {
           key="canonical"
         />
       </Head>
-        <h4>Top Picks</h4>
+        <h4 className='what'>Top Picks</h4>
         <h3>Here's what hot right now</h3>
         <Grid loading={loading} nfts={allTPNFTs} prices={allTPPrices} statuses={allTPStatus} type={true} stars={allTPStars} nums={allTPNums} go={true} takeAway={true} checkmark={allTPVerify} />
         <h2>Hey look where I find myself, the {genre} section!</h2>
@@ -268,6 +268,9 @@ export default function Index() {
             }
             .hold {
               min-height: 150px;
+            }
+            .what {
+              margin: 20px;
             }
             h1 {
                 font-weight: bold;

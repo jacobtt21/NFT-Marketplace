@@ -222,13 +222,17 @@ const Header = () => {
           max-width: 80rem;
           margin: 15px auto;
           min-height: 70px;
-          padding: 1rem;
+          border-bottom: 1px solid #f0f0f0;
         }
 
         .image-logo {
           margin-left: 5px;
           margin-right: 5px;
           max-width: 25px;
+        }
+
+        .logo {
+          max-width: 250px;
         }
 
         .nav-container,

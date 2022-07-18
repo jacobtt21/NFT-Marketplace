@@ -51,81 +51,110 @@ export default function Login() {
 
   return (
     <>
-    <Head>
-      <title>Login | Oustro</title>
-      <meta name="description" content="Login and Get Started for free!" />
-      <link
-        rel="canonical"
-        href="https://www.oustro.xyz/login"
-        key="canonical"
-      />
-    </Head>
-    <div className='landing'>
-    <h1>Chapter 1: The Gates of Oustro</h1>
-      <div className="login-container">
-        <br />
-        <h3 className='form-header'>Login / Sign up</h3>
-        <br />
-        <TextField
-          type="email"
-          name="email"
-          placeholder='you@example.com'
-          label="Your Email"
-          required="required"
-          prefix={<Icon inline type={MonochromeIcons.Envelope} size={22} />}
-          onChange={handleInputOnChange}
-          disabled={isLoggingIn}
+      <Head>
+        <title>Login | Oustro</title>
+        <meta name="description" content="Login and Get Started for free!" />
+        <link
+          rel="canonical"
+          href="https://www.oustro.xyz/login"
+          key="canonical"
         />
-        <br />
-        <CallToAction
-          leadingIcon={MonochromeIcons.PaperPlane}
-          color="primary"
-          size="sm"
-          onClick={login}
-          disabled={isLoggingIn}
-        >
-          Send Magic Link
-        </CallToAction>
-        <br />
-        {isLoggingIn && (
-          <div className='dis2'>
-            <p>Please wait as we get you all set up</p>
+      </Head>
+      <div className='align'>
+        <div className="login-container">
+          <div className='form-header'>
+            <img src='/oustro_s_logo.svg' className='logo' />
+            <h3>Login / Sign up</h3>
           </div>
-        )}
-        <div className='dis'>
-          <p>By signing up, you agree to our Terms & Privacy Policy.</p>
+          <br />
+          <TextField
+            type="email"
+            name="email"
+            placeholder='you@example.com'
+            label="Your Email"
+            required="required"
+            prefix={<Icon inline type={MonochromeIcons.Envelope} size={22} />}
+            onChange={handleInputOnChange}
+            disabled={isLoggingIn}
+          />
+          <br />
+          <CallToAction
+            leadingIcon={MonochromeIcons.PaperPlane}
+            color="primary"
+            size="sm"
+            onClick={login}
+            disabled={isLoggingIn}
+          >
+            Send Magic Link
+          </CallToAction>
+          <br />
+          {isLoggingIn && (
+            <div className='dis2'>
+              <p>Please wait as we get you all set up</p>
+            </div>
+          )}
+          <div className='dis'>
+            <p>By signing up, you agree to our Terms & Privacy Policy.</p>
+          </div>
         </div>
-        <style>{`
-          h1 {
-            font-size: 45px;
-            margin: 70px;
-          }
-          .login-container {
-            font-size: 35px;
-            width: 380px;
-            margin: 0 auto;
-            border-radius: 30px;
-            border: 1px solid #f9f9f9;
-            box-shadow: rgba(0, 0, 0, 0.10) 0px 0px 16px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-            align-items: center;
-          }
-        `}</style>
-      </div>
-      <div className='footer'>
-        <p>2023 Oustro Inc. v2.0</p>
+        <div>
+          <img src='/10.svg' className='logo2' />
+        </div>
       </div>
       <style jsx>{`
-        .landing {
-          text-align:center;
-          font-size:50px
+        h1 {
+          font-size: 45px;
+          margin: 70px;
+        }
+        .login-container {
+          font-size: 35px;
+          width: 380px;
+          margin: 0 auto;
+          border-radius: 30px;
+          border: 1px solid #f9f9f9;
+          box-shadow: rgba(0, 0, 0, 0.10) 0px 0px 16px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-evenly;
+          align-items: center;
+        }
+
+        h3 {
+          margin-top: 30px;
+          font-weight: bold;
+        }
+        h1 {
+          font-size: 55px;
+          font-weight: bold;
+          text-align: center;
+        }
+
+        .logo {
+          max-width: 80px;
+        }
+
+        .logo {
+          max-width: 110px;
+        }
+
+        .align {
+          padding: 20px;
+          display: grid;
+          grid-gap: 20px;
+          grid-template-columns: 1fr 1fr;
+          margin-bottom: 10px;
+          margin-top: 70px;
+          align-items: center;
+          text-align: center;
+        }
+
+        .form-header {
+          margin-top: 20px;
         }
 
         .dis {
           margin-top: 4px;
-          margin-bottom: 4px;
+          margin-bottom: 15px;
           font-size: 11px;
         }
         .dis2 {
@@ -142,7 +171,6 @@ export default function Login() {
           font-size:15px
         }
       `}</style>
-    </div>
     </>
   );
 }

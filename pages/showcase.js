@@ -93,7 +93,7 @@ export default function About() {
           <div>
             <h4>Share Your Voice...in Multiple Formats</h4> 
             <h6>
-              Share what's on your mind in PDF or HTML formats and share them with quick, easy to remember URLs. With more
+              Share what's on your mind in PDF or HTML formats and share them with quick and easy to remember URLs. With more
               formats on the way and hosted on IPFS, we're so excited to hear what you have to say. 
             </h6>
             <br />
