@@ -251,6 +251,46 @@ export default function Index() {
         >
           Academia
         </CallToAction>
+        <CallToAction
+        style={{
+          margin: 10
+        }}
+        color="primary"
+        size='sm'
+        onClick={() => outputG("Whitepaper")}
+        >
+          Whitepaper
+        </CallToAction>
+        <CallToAction
+        style={{
+          margin: 10
+        }}
+        color="primary"
+        size='sm'
+        onClick={() => outputG("Game")}
+        >
+          Game
+        </CallToAction>
+        <CallToAction
+        style={{
+          margin: 10
+        }}
+        color="primary"
+        size='sm'
+        onClick={() => outputG("Web")}
+        >
+          Web
+        </CallToAction>
+        <CallToAction
+        style={{
+          margin: 10
+        }}
+        color="primary"
+        size='sm'
+        onClick={() => outputG("Other")}
+        >
+          Other
+        </CallToAction>
         {setter === "1" ? (
           <div className='hold'></div>
         ) : (

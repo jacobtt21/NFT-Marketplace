@@ -184,7 +184,7 @@ function Mint() {
     const weiBalance = await web3.eth.getBalance(user.publicAddress);
     const MaticBalance = web3.utils.fromWei(weiBalance);
 
-    if (MaticBalance < 2.5) {
+    if (MaticBalance < 3) {
       createToast({
         message: 'Not enough Matic to Publish',
         type: 'error',
@@ -359,6 +359,18 @@ function Mint() {
             disabled={disabled}
             onClick={() => setGenre("Whitepaper")}>
               Whitepaper
+            </CallToAction>
+            <CallToAction
+            disabled={disabled}
+            onClick={() => setGenre("Game")}
+            >
+              Game
+            </CallToAction>
+            <CallToAction
+            disabled={disabled}
+            onClick={() => setGenre("Web")}
+            >
+              Web Page
             </CallToAction>
             <CallToAction
             disabled={disabled}
