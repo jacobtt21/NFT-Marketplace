@@ -6,7 +6,7 @@ export default function About() {
   return (
     <>
       <Head>
-        <title>Verification | Oustro</title>
+        <title>Warning | Oustro</title>
         <meta name="description" content="Learn more about Oustro" />
         <link
           rel="canonical"
@@ -16,41 +16,19 @@ export default function About() {
       </Head>
       <div className='landing'>
         <div className='holder' id="how">
-          <h1>Verification on Oustro</h1>
+          <h1>The Following Contains Offensive Material</h1>
           <br />
           <h5>
-            Taken from other social medias, the verification on Oustro is meant to serve as a stamp that
-            the work is orginal, contains true information (if applicable), and upholds the values of Oustro. Verification
-            is done on a weekly basis by Oustro.
+            We just wanted to let you know, after reviewing this work, we would like to warn you that it contains
+            material that may cause distress, be offensive, or spread false information. Viewer discretion is advised.
           </h5>
-          <div className='align'>
-            <div>
-              <img 
-                src="https://raw.githubusercontent.com/Oustro/OustroImages/1c57d1dbdf5d079f453e6d5dfb8c7e6c8c14a77d/9.svg"
-                width="500" 
-                alt="" 
-              /> 
-            </div>  
-            <div>
-              <h2>Here is what we look for before a work gets the checkmark:</h2>
-              <br />
-              <h6>
-                1. Is this work popular?
-              </h6>
-              <h3>
-              we need to ensure that the works have a notable audience in order to merit us checking whether or not
-              it should be reviewed for verification. Metrics are community size and rating count.
-              </h3>
-              <br />
-              <h6>
-                2. Is this work original?
-              </h6>
-              <h3>
-              Original works can only be verified, some execptions can be made, but the original creator of the work itself
-              must approve of the work being posted on Oustro before it can be verified.
-              </h3>
-            </div>        
-          </div>
+        <div>
+            <img 
+            src="https://rawcdn.githack.com/Oustro/OustroImages/2feb41f30f48674078a88786eefa89463c589d83/7.svg?min=1"
+            width="500" 
+            alt="" 
+            /> 
+        </div>        
         </div>
         <style jsx>{`
           .mint-container {

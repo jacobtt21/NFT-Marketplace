@@ -223,11 +223,23 @@ export default function Index() {
             </Link>
             {theData.verify === '0' ? (
               <h1>{theNFT.name}</h1>
-            ) : (
+            ) : theData.verify === '1' ? (
               <h1>
                 <Link href="/verify">
                   <TextButton
                   leadingIcon={MonochromeIcons.SuccessFilled}
+                  color="primary"
+                  outline="none"
+                  >
+                  </TextButton>
+                </Link>
+                {theNFT.name}
+              </h1>
+            ) : (
+              <h1>
+                <Link href="/warning">
+                  <TextButton
+                  leadingIcon={MonochromeIcons.Exclaim}
                   color="primary"
                   outline="none"
                   >
