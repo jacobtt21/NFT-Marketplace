@@ -4,7 +4,7 @@ import { web3 } from '../../lib/magic';
 import { UserContext } from '../../lib/UserContext';
 import { abi } from '../../contracts/abi';
 import Loading from '../../components/Loading';
-import { CallToAction, TextButton } from '@magiclabs/ui';
+import { CallToAction, TextButton, MonochromeIcons } from '@magiclabs/ui';
 import Link from 'next/link'
 
 
@@ -30,7 +30,6 @@ export default function Index() {
     const data = await response.json();
     setTheNFT(data);
     setTheData(nft);
-    console.log(theData)
   };
 
   return (
@@ -69,7 +68,33 @@ export default function Index() {
                 )}
               </>
             )}
-            <h1>{theNFT.name}</h1>
+            {theData.verify === '0' ? (
+              <h1>{theNFT.name}</h1>
+            ) : theData.verify === '1' ? (
+              <h1>
+                <Link href="/verify">
+                  <TextButton
+                  leadingIcon={MonochromeIcons.SuccessFilled}
+                  color="primary"
+                  outline="none"
+                  >
+                  </TextButton>
+                </Link>
+                {theNFT.name}
+              </h1>
+            ) : (
+              <h1>
+                <Link href="/warning">
+                  <TextButton
+                  leadingIcon={MonochromeIcons.Exclaim}
+                  color="primary"
+                  outline="none"
+                  >
+                  </TextButton>
+                </Link>
+                {theNFT.name}
+              </h1>
+            )}
             <h3>
               <TextButton
               color='tertiary'>
