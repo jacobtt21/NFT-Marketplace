@@ -35,7 +35,7 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
       .changePrice(parseInt(nft.tokenID), web3.utils.toWei(newPrice), user.publicAddress)
       .send({ 
         from: user.publicAddress,
-        gas: 19000000,
+        gas: 1000000,
         maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
       });
       console.log(receipt)
@@ -65,7 +65,7 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
       .changeMarketStatus(parseInt(nft.tokenID), user.publicAddress)
       .send({ 
         from: user.publicAddress,
-        gas: 19000000,
+        gas: 1000000,
         maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
       });
       console.log(receipt)

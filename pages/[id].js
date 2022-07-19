@@ -64,21 +64,21 @@ export default function Index() {
         from: user.publicAddress,
         to: theNFT.creator,
         value: 1000000000000000000,
-        gas: 19000000,
+        gas: 1000000,
         maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
       });
       await web3.eth.sendTransaction({
         from: user.publicAddress,
         to: '0x4cB72Dca5C9299714bBf0D6D8F61d5B979a96940',
         value: 1000000000000000000,
-        gas: 19000000,
+        gas: 1000000,
         maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
       });
       const receipt = await contract.methods
       .rateNFT(parseInt(router.query.id), parseInt(newRating))
       .send({ 
         from: user.publicAddress,
-        gas: 19000000,
+        gas: 1000000,
         maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
       });
       console.log(receipt)
@@ -113,7 +113,7 @@ export default function Index() {
           from: user.publicAddress,
           to: theNFT.share,
           value: cost * 0.05,
-          gas: 19000000,
+          gas: 1000000,
           maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
         });
 
@@ -121,7 +121,7 @@ export default function Index() {
           from: user.publicAddress,
           to: theNFT.creator,
           value: cost * 0.1,
-          gas: 19000000,
+          gas: 1000000,
           maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
         });
 
@@ -129,7 +129,7 @@ export default function Index() {
           from: user.publicAddress,
           to: theData.owner,
           value: cost - (cost * 0.15),
-          gas: 19000000,
+          gas: 1000000,
           maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
         });
       }
@@ -138,7 +138,7 @@ export default function Index() {
           from: user.publicAddress,
           to: theNFT.creator,
           value: cost * 0.15,
-          gas: 19000000,
+          gas: 1000000,
           maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
         });
 
@@ -146,7 +146,7 @@ export default function Index() {
           from: user.publicAddress,
           to: theData.owner,
           value: cost - (cost * 0.15),
-          gas: 19000000,
+          gas: 1000000,
           maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
         });
       }
@@ -155,7 +155,7 @@ export default function Index() {
       .transfer(user.publicAddress, parseInt(router.query.id), theData.owner)
       .send({ 
         from: user.publicAddress,
-        gas: 19000000,
+        gas: 1000000,
         maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
       });
       

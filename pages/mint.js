@@ -131,7 +131,7 @@ function Mint() {
         from: user.publicAddress,
         to: '0x4cB72Dca5C9299714bBf0D6D8F61d5B979a96940',
         value: 2000000000000000000,
-        gas: 19000000,
+        gas: 1000000,
         maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
       });
 
@@ -141,7 +141,7 @@ function Mint() {
       .createNFT(url, web3.utils.toWei(costo), show)
       .send({ 
         from: user.publicAddress,
-        gas: 19000000,
+        gas: 1000000,
         maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
       });
 
