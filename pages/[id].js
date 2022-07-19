@@ -250,7 +250,13 @@ export default function Index() {
             </Link>
             <br />            
             <br />
-            <h3>Price: {web3.utils.fromWei(theData.price)} ETH</h3>
+            <h3>
+              <TextButton
+              color='tertiary'>
+              <img className="image-logo" src="/p2.svg" />
+              {web3.utils.fromWei(theData.price)} MATIC
+              </TextButton>
+            </h3>
             <br />        
             <img
             src={theNFT.image}
@@ -385,6 +391,12 @@ export default function Index() {
               border-radius: 8px;
               max-width: 200px;
               max-height: 200px;
+            }
+
+            .image-logo {
+              margin-left: 5px;
+              margin-right: 5px;
+              max-width: 25px;
             }
 
             .nft-img {

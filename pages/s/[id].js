@@ -4,7 +4,7 @@ import { web3 } from '../../lib/magic';
 import { UserContext } from '../../lib/UserContext';
 import { abi } from '../../contracts/abi';
 import Loading from '../../components/Loading';
-import { CallToAction } from '@magiclabs/ui';
+import { CallToAction, TextButton } from '@magiclabs/ui';
 import Link from 'next/link'
 
 
@@ -70,7 +70,13 @@ export default function Index() {
               </>
             )}
             <h1>{theNFT.name}</h1>
-            <h3>Price: {web3.utils.fromWei(theData.price)} ETH</h3>
+            <h3>
+              <TextButton
+              color='tertiary'>
+              <img className="image-logo" src="/p2.svg" />
+              {web3.utils.fromWei(theData.price)} MATIC
+              </TextButton>
+            </h3>
             <img
             src={theNFT.image}
             width={300}
@@ -116,6 +122,12 @@ export default function Index() {
               border-radius: 8px;
               max-width: 200px;
               max-height: 200px;
+            }
+
+            .image-logo {
+              margin-left: 5px;
+              margin-right: 5px;
+              max-width: 25px;
             }
 
             .nft-img {
