@@ -91,10 +91,11 @@ export default function About() {
         </Link>
         <div className='align'>
           <div>
-            <h4>Share Your Voice...in Multiple Formats</h4> 
+            <h4>Share Your Voice, Your Way</h4> 
             <h6>
-              Share what's on your mind in PDF or HTML formats and share them with quick and easy to remember URLs. With more
-              formats on the way and hosted on IPFS, we're so excited to hear what you have to say. 
+              The basic jist of Oustro is that we believe everyone has something to say, create, invent, and share. With that
+              we also believe that You should have a place to keep those work without fear of censorship. On Oustro provide a
+              platform to create and share what you want through PDFs and HTML pages, and share those works.
             </h6>
             <br />
             <Link href="/login?id=mint">
@@ -168,7 +169,7 @@ export default function About() {
             /> 
           </div>  
           <div>
-            <h4>Build Communities around Ideas</h4> 
+            <h4>Build Communities Around Ideas</h4> 
             <h6>
               The great thing about written work is that it has the capabilties to make you feel a certain way and
               make you connect with others with the same feeling, it's human nature, and we're all for it here.
