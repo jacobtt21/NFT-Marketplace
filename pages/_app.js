@@ -23,6 +23,9 @@ function MyApp({ Component, pageProps }) {
     magic.user.isLoggedIn().then((isLoggedIn) => {
       if (isLoggedIn) {
         magic.user.getMetadata().then(setUser);
+        if (router.pathname === '/login') {
+          Router.push('/');
+        }
       } else {
         if (router.pathname !== '/callback') {
           if (router.pathname === '/') {
