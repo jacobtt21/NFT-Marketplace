@@ -4,7 +4,7 @@ import { web3 } from '../lib/magic';
 import { abi } from '../contracts/abi';
 import Grid from '../components/Grid';
 import Loading from '../components/Loading';
-import { CallToAction } from '@magiclabs/ui';
+import { CallToAction, TextButton, MonochromeIcons } from '@magiclabs/ui';
 import Head from 'next/head';
 import Link from 'next/link';
 
@@ -119,8 +119,6 @@ export default function Index() {
     setGenre(type);
     const uriList = await contract.methods.getEverything().call();
 
-    console.log(uriList)
-
     let prices = [];
     let onMarket = [];
     let nums = [];
@@ -166,12 +164,18 @@ export default function Index() {
           key="canonical"
         />
       </Head>
-        <h4 className='what'>Editor's Choice</h4>
+        <h4 className='what'>
+          <TextButton
+          size='sm'
+          leadingIcon={MonochromeIcons.Astronaut}>
+          </TextButton>
+          Oustro Editor's Choice
+        </h4>
         <Link href="/3">
           <div className='banner'>
           </div>
         </Link>
-        <h4 className='what'>Top Picks</h4>
+        <h4 className='what1'>Top Picks</h4>
         <h3>Here's what hot right now</h3>
         <Grid loading={loading} nfts={allTPNFTs} prices={allTPPrices} statuses={allTPStatus} type={true} stars={allTPStars} nums={allTPNums} go={true} takeAway={true} checkmark={allTPVerify} />
         <h2>Hey look where I find myself, the {genre} section!</h2>
@@ -282,6 +286,12 @@ export default function Index() {
             }
             .what {
               margin-top: 20px;
+              font-size: 30px;
+              margin-bottom: 15px;
+            }
+            .what1 {
+              margin-top: 20px;
+              margin-bottom: 15px;
             }
             .banner {
               background-image: url('https://raw.githubusercontent.com/Oustro/OustroImages/ec2360fa08a442c9da49b943a608336deeac19b7/The%20Bottle.svg');
