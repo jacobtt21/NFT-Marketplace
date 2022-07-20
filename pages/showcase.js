@@ -9,31 +9,31 @@ export default function About() {
     const [loading, setLoading] = useState(false);
     const allNFTs = [
       {
-        creator: "0x581CDd503004FD4dBF52681710Cbe1A80d8fBC1d",
-        image: "https://bafybeid46x24mfghxs3phs54veor3zrszqlrf7qowqkjnu7w4wmzcba2ia.ipfs.infura-ipfs.io/",
-        name: "Quasr: Whitepaper",
-        tokenID: '5',
+        creator: "0x8c17bB1862B31f302e4c25bf364431f0a39614B1",
+        image: "https://ipfs.infura.io/ipfs/QmQDVsvkr5huFjQHfjvG8ehqhL3sRvdAsVrdUtf2n9Y5bf",
+        name: "Oustro's First Work on Polygon!",
+        tokenID: '1',
         work: "https://bafybeie5srm3bac476dokid2sde4xqxxfthfll4uqqz2qfcowsmigw673y.ipfs.infura-ipfs.io/"
       },
       {
-        creator: "0x4feE4e9F9B253058103a5014cFd106F0eC4950E8",
-        image: "https://bafybeidguhkc4njtzz32gakigrfxfomj7jytkzoiticj7xr7lsn57n5uvi.ipfs.infura-ipfs.io/",
-        name: "Dinner Script",
-        tokenID: "3",
+        creator: "0x8c17bB1862B31f302e4c25bf364431f0a39614B1",
+        image: "https://ipfs.infura.io/ipfs/Qmf2btT6oeoESpmJaZu4U4Wg2hnfwBtxoQzkujf5i8s9rM",
+        name: "Snake",
+        tokenID: "2",
         work: "https://bafybeickkrcva4x6egm3lx3mqdlupnvzh7o6d4zhcqgril4tmo7ebytaxq.ipfs.infura-ipfs.io/"
       },
       {
-        creator: "0x09516Eb251254aD5EF243E83e30E9395D5BcB2B6",
-        image: "https://bafybeicaak65tbrz3hqwxyzb36nfizadmau3hyyyifdfjccigeaovpat3a.ipfs.infura-ipfs.io/",
-        name: "Spaceland",
-        tokenID: "4",
+        creator: "0x944e45567ce148c63fbf56870148770ef17e1dd1",
+        image: "https://ipfs.infura.io/ipfs/QmQQFYa2a43aXVuY2sapv4wjp7dFDYEMGL9VKNqF1cMcvS",
+        name: "The Bottle",
+        tokenID: "3",
         work: "https://bafybeiegkxna2cysmky7dlx4vkmrlj5bje6n2k6yoambbmm5vd5xqab3jy.ipfs.infura-ipfs.io/"
       },
       {
-        creator: "0x4feE4e9F9B253058103a5014cFd106F0eC4950E8",
-        image: "https://bafybeig577fpz72sszvjurhki3ru2chgmm6yyrhj4psxxr7gr4uirxb6xq.ipfs.infura-ipfs.io/",
-        name: "AAOTI: Vol I",
-        tokenID: "2",
+        creator: "0x33175912b347c4b3fdd861f5418d70eb4083bc47",
+        image: "https://ipfs.infura.io/ipfs/QmP8Ynx6LypyYGY8ggFWErxpTCGKHb5qGMGkTgNVRdAXcy",
+        name: "Spaceland Synopsis",
+        tokenID: "4",
         work: "https://bafybeiakxs65n7vvw6gd4urkoqbjgpji7paf4pabqn4d72rgfmd7z3ftii.ipfs.infura-ipfs.io/"
       }
     ]
