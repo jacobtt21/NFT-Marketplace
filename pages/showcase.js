@@ -94,7 +94,7 @@ export default function About() {
             <h4>Share Your Voice, Your Way</h4> 
             <h6>
               The basic jist of Oustro is that we believe everyone has something to say, create, invent, and share. With that
-              we also believe that You should have a place to keep those work without fear of censorship. On Oustro, we provide a
+              we also believe that You should have a place to keep those works without fear of censorship. On Oustro, we provide a
               platform to create and share what you want through PDFs and HTML pages all hosted on IPFS.
             </h6>
             <br />
