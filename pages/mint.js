@@ -242,7 +242,7 @@ function Mint() {
             <TextField
             disabled={disabled}
             label="Social Links for this work (optional)"
-            placeholder="Discord, Reddit, Telegram etc. (Only 1 Link)"
+            placeholder="Discord, Reddit (ew), Telegram etc. (Only 1 Link)"
             type="text"
             onChange={(e) => setSocial(e.target.value)}
             value={social}
