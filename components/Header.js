@@ -40,7 +40,7 @@ const Header = () => {
 
   return (
     <header>
-      <nav>
+      <nav className={user ? 'nv1' : 'nv2'}>
         <ul>
           {!user ? (
             <>
@@ -157,7 +157,7 @@ const Header = () => {
                       arrow
                       placement="top"
                       waitForPointerExit
-                      delay={0.5}
+                      delay={2}
                     >
                       <HoverActivatedTooltip.Anchor>
                         <TextButton 
@@ -218,11 +218,17 @@ const Header = () => {
         </ul>
       </nav>
       <style jsx>{`
-        nav {
+        .nv2 {
           max-width: 80rem;
           margin: 15px auto;
           min-height: 70px;
           border-bottom: 1px solid #f0f0f0;
+        }
+
+        .nv1 {
+          max-width: 80rem;
+          margin: 15px auto;
+          min-height: 70px;
         }
 
         .image-logo {

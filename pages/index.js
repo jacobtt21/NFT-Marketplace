@@ -6,6 +6,7 @@ import Grid from '../components/Grid';
 import Loading from '../components/Loading';
 import { CallToAction } from '@magiclabs/ui';
 import Head from 'next/head';
+import Link from 'next/link';
 
 export default function Index() {
   const [user] = useContext(UserContext);
@@ -15,12 +16,6 @@ export default function Index() {
   const [allTPStars, setAllTPStars] = useState();
   const [allTPStatus, setAllTPStatus] = useState();
   const [allTPVerify, setAllTPVerify] = useState();
-  const [allOONFTs, setAllOONFTs] = useState([]);
-  const [allOOPrices, setAllOOPrices] = useState();
-  const [allOONums, setAllOONums] = useState();
-  const [allOOStars, setAllOOStars] = useState();
-  const [allOOStatus, setAllOOStatus] = useState();
-  const [allOOVerify, setAllOOVerify] = useState();
   const [allRGNFTs, setAllRGNFTs] = useState([]);
   const [allRGPrices, setAllRGPrices] = useState();
   const [allRGNums, setAllRGNums] = useState();
@@ -58,13 +53,6 @@ export default function Index() {
     let starsTP = [];
     let nftsTP = [];
     let verifiedTP = [];
-    
-    let pricesOO = [];
-    let onMarketOO = [];
-    let numsOO = [];
-    let starsOO = [];
-    let nftsOO = [];
-    let verifiedOO = [];
 
     let pricesRG = [];
     let onMarketRG = [];
@@ -76,7 +64,6 @@ export default function Index() {
     var j = 0;
     var i = 0;
     var k = 0;
-    var m = 0;
     for (i = 0; i < uriList.length; ++i) {
       if (uriList[uriList.length - 1 - i][8]) {
         const response = await fetch(uriList[uriList.length - 1 - i][0]);
@@ -92,18 +79,7 @@ export default function Index() {
           k += 1;
           }
         }
-        if (m < 4) {
-          if (data["creator"] === "0x8c17bB1862B31f302e4c25bf364431f0a39614B1") {
-            pricesOO.push(uriList[uriList.length - 1 - i][2]);
-            verifiedOO.push(uriList[uriList.length - 1 - i][7]);
-            onMarketOO.push(uriList[uriList.length - 1 - i][6]);
-            numsOO.push(uriList[uriList.length - 1 - i][5])
-            starsOO.push(uriList[uriList.length - 1 - i][4]);
-            nftsOO.push(data);
-            m += 1;
-          }
-        }
-        if ( j < 4) {
+        if (j < 8) {
           pricesRG.push(uriList[uriList.length - 1 - i][2]);
           verifiedRG.push(uriList[uriList.length - 1 - i][7]);
           onMarketRG.push(uriList[uriList.length - 1 - i][6]);
@@ -121,13 +97,6 @@ export default function Index() {
     setAllTPNums(numsTP);
     setAllTPStars(starsTP);
     setAllTPVerify(verifiedTP);
-
-    setAllOONFTs(nftsOO);
-    setAllOOPrices(pricesOO);
-    setAllOOStatus(onMarketOO);
-    setAllOONums(numsOO);
-    setAllOOStars(starsOO);
-    setAllOOVerify(verifiedOO);
 
     setAllRGNFTs(nftsRG);
     setAllRGPrices(pricesRG);
@@ -197,6 +166,10 @@ export default function Index() {
           key="canonical"
         />
       </Head>
+        <Link href="/3">
+          <div className='banner'>
+          </div>
+        </Link>
         <h4 className='what'>Top Picks</h4>
         <h3>Here's what hot right now</h3>
         <Grid loading={loading} nfts={allTPNFTs} prices={allTPPrices} statuses={allTPStatus} type={true} stars={allTPStars} nums={allTPNums} go={true} takeAway={true} checkmark={allTPVerify} />
@@ -296,9 +269,6 @@ export default function Index() {
         ) : (
           <Grid loading={loading} nfts={allNFTs} prices={allPrices} statuses={allStatus} type={true} stars={allStars} nums={allNums} go={true} takeAway={true} checkmark={allVerify} />
         )}
-        <h2>Oustro Originals</h2>
-        <h3>From us, to you, for you</h3>
-        <Grid loading={loading} nfts={allOONFTs} prices={allOOPrices} statuses={allOOStatus} type={true} stars={allOOStars} nums={allOONums} go={true} takeAway={true} checkmark={allOOVerify} />
         <h2>Random Gems</h2>
         <h3>Why not right? Who knows, you might find an all time favorite</h3>
         <Grid loading={loading} nfts={allRGNFTs} prices={allRGPrices} statuses={allRGStatus} type={true} stars={allRGStars} nums={allRGNums} go={true} takeAway={true} checkmark={allRGVerify} />
@@ -310,7 +280,20 @@ export default function Index() {
               min-height: 150px;
             }
             .what {
-              margin: 20px;
+              margin-top: 20px;
+            }
+            .banner {
+              background-image: url('https://raw.githubusercontent.com/Oustro/OustroImages/ec2360fa08a442c9da49b943a608336deeac19b7/The%20Bottle.svg');
+              height: 400px;
+              border-radius: 30px;
+              transition: 0.2s;
+            }
+            .banner:hover {
+              box-shadow: rgba(0, 0, 0, 0.29) 0px 0px 16px,
+              rgba(0, 0, 0, 0.1) 0px 0px 16px;
+            }
+            .imgs {
+              border-radius: 30px;
             }
             h1 {
                 font-weight: bold;

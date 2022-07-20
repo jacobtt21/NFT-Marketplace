@@ -119,7 +119,6 @@ function Contact() {
                     outline: none;
                     font-family: Verdana;
                     font-size: 15px;
-                    border: 1px solid;
                     transition: 0.2s;
                     border: 1px solid #E5E5E5;
                     padding: 10px;
