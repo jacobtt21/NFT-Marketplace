@@ -166,6 +166,7 @@ export default function Index() {
           key="canonical"
         />
       </Head>
+        <h4 className='what'>This Weeks Featured Work</h4>
         <Link href="/3">
           <div className='banner'>
           </div>
