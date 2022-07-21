@@ -1,10 +1,5 @@
-import { useState, useContext } from 'react';
-import { UserContext } from '../lib/UserContext';
-import Link from 'next/link'
-import { web3 } from '../lib/magic';
-import { abi } from '../contracts/abi';
-import { TextField, CallToAction, TextButton, MonochromeIcons } from '@magiclabs/ui';
-import { useRouter } from 'next/router'
+import Link from 'next/link';
+import { TextButton, MonochromeIcons } from '@magiclabs/ui';
 
 
 export default function NFTCard({ nft }) {
