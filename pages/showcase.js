@@ -38,16 +38,6 @@ export default function About() {
       }
     ]
 
-    const allPrices = [1, 1, 1, 1];
-
-    const allStatus = [false, false, false, false];
-
-    const allStars = [5, 5, 5, 5]
-
-    const allVeri = [0, 0, 0, 0]
-
-    const allNums = ['34', '78', '102', '94']
-
   return (
     <>
       <Head>
@@ -67,7 +57,7 @@ export default function About() {
           Check out our fully decentralized library of works. Buy and sell, support creators, and build communities around ideas.
         </div>
         Check out some of the featured works by creators on Oustro
-        <Grid loading={loading} nfts={allNFTs} prices={allPrices} statuses={allStatus} type={true} stars={allStars} nums={allNums} go={false} takeAway={true} checkmark={allVeri} real={false}/>
+        <Grid loading={loading} nfts={allNFTs} />
         <div className='Imagine'>
           <Link href="/login">
             <CallToAction
