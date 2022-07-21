@@ -121,7 +121,7 @@ export default function Index() {
     let verified = [];
 
     var i = 0;
-    for (i = 0; i < uriList.length; ++i) {
+    for (i = uriList.length - 1; i >= 0; --i) {
       if (uriList[i][8]) {
         prices.push(uriList[i][2]);
         verified.push(uriList[i][7]);
