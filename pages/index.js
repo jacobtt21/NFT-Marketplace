@@ -291,7 +291,6 @@ export default function Index() {
             }
             .what1 {
               margin-top: 20px;
-              margin-bottom: 15px;
             }
             .banner {
               background-image: url('https://raw.githubusercontent.com/Oustro/OustroImages/ec2360fa08a442c9da49b943a608336deeac19b7/The%20Bottle.svg');
