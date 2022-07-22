@@ -157,7 +157,7 @@ const Header = () => {
                       arrow
                       placement="top"
                       waitForPointerExit
-                      delay={2}
+                      appearance='none'
                     >
                       <HoverActivatedTooltip.Anchor>
                         <TextButton 
@@ -171,20 +171,10 @@ const Header = () => {
                       </HoverActivatedTooltip.Anchor>
                       <HoverActivatedTooltip.Content>
                         <div>
-                          <Link href="https://reveal.magic.link/oustro">
-                              <a target="_blank">
-                                <TextButton
-                                leadingIcon={MonochromeIcons.Fingerprint}
-                                size='md'>
-                                  Reveal Secret Key
-                                </TextButton>
-                              </a>
-                          </Link>
                           <iframe
-                            style="--border-radius: 10px; box-shadow: 0 2px 10px 0 rgba(0,0,0,.20); border-radius: var(--border-radius); margin: auto;max-width: 420px"
                             src="https://widget.onramper.com?color=266677&apiKey=pk_test_O5oTM6u9D3jXLHpXkPQWK_tD4dClwuplybJk0sZHyQc0"
-                            height="660px"
-                            width="482px"
+                            height="570px"
+                            width="330px"
                             title="Onramper widget"
                             frameborder="0"
                             allow="accelerometer; autoplay; camera; gyroscope; payment"
@@ -196,16 +186,36 @@ const Header = () => {
                     </HoverActivatedTooltip>
                   </li>
                   <li>
-                    <CallToAction
-                      color="primary"
-                      size="sm"
-                      outline="none"
-                      leadingIcon={MonochromeIcons.Copy}
-                      onPress={copyAddress}
+                    <HoverActivatedTooltip
+                      arrow
+                      placement="top"
+                      waitForPointerExit
                     >
-                      {user.publicAddress.substring(0, 6)}...
-                      {user.publicAddress.substring(38)}
-                    </CallToAction>
+                      <HoverActivatedTooltip.Anchor>
+                        <CallToAction
+                          color="primary"
+                          size="sm"
+                          outline="none"
+                          leadingIcon={MonochromeIcons.Copy}
+                          trailingIcon={MonochromeIcons.CaretDown}
+                          onPress={copyAddress}
+                        >
+                          {user.publicAddress.substring(0, 6)}...
+                          {user.publicAddress.substring(38)}
+                        </CallToAction>
+                      </HoverActivatedTooltip.Anchor>
+                      <HoverActivatedTooltip.Content>
+                        <Link href="https://reveal.magic.link/oustro">
+                              <a target="_blank">
+                                <TextButton
+                                leadingIcon={MonochromeIcons.Fingerprint}
+                                size='md'>
+                                  Reveal Secret Key
+                                </TextButton>
+                              </a>
+                        </Link>
+                      </HoverActivatedTooltip.Content>
+                    </HoverActivatedTooltip>
                   </li>
                   <li>
                     <CallToAction size="sm" onPress={logout}>
