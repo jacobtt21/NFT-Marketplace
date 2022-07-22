@@ -171,25 +171,26 @@ const Header = () => {
                       </HoverActivatedTooltip.Anchor>
                       <HoverActivatedTooltip.Content>
                         <div>
-                          <Link href="https://widget.onramper.com?color=266677&apiKey=pk_test_O5oTM6u9D3jXLHpXkPQWK_tD4dClwuplybJk0sZHyQc0">
-                            <a target="_blank">
-                              <TextButton
-                              leadingIcon={MonochromeIcons.SocialShare}
-                              size='md'>
-                                Get MATIC
-                              </TextButton>
-                            </a>
-                          </Link>
-                          <br />
                           <Link href="https://reveal.magic.link/oustro">
-                            <a target="_blank">
-                              <TextButton
-                              leadingIcon={MonochromeIcons.Fingerprint}
-                              size='md'>
-                                Reveal Secret Key
-                              </TextButton>
-                            </a>
-                        </Link>
+                              <a target="_blank">
+                                <TextButton
+                                leadingIcon={MonochromeIcons.Fingerprint}
+                                size='md'>
+                                  Reveal Secret Key
+                                </TextButton>
+                              </a>
+                          </Link>
+                          <iframe
+                            style="--border-radius: 10px; box-shadow: 0 2px 10px 0 rgba(0,0,0,.20); border-radius: var(--border-radius); margin: auto;max-width: 420px"
+                            src="https://widget.onramper.com?color=266677&apiKey=pk_test_O5oTM6u9D3jXLHpXkPQWK_tD4dClwuplybJk0sZHyQc0"
+                            height="660px"
+                            width="482px"
+                            title="Onramper widget"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; camera; gyroscope; payment"
+                          >
+                          </iframe>
+                          <br />
                         </div>
                       </HoverActivatedTooltip.Content>
                     </HoverActivatedTooltip>
