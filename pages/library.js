@@ -6,7 +6,7 @@ import Grid from '../components/Grid';
 import Loading from '../components/Loading';
 import algoliasearch from 'algoliasearch';
 import { InstantSearch, Hits, connectSearchBox } from "react-instantsearch-dom";
-import { TextField } from '@magiclabs/ui';
+import { TextField, CallToAction, TextButton, MonochromeIcons } from '@magiclabs/ui';
 import Link from 'next/link';
 import Head from 'next/head';
 
@@ -34,52 +34,65 @@ export default function Index() {
 
   const Hit = ({ hit }) => (
     <>
-      <div className="card">
-        <Link href={{pathname: '/[id]', query: { id: hit.tokenID }}}>
-          <div className="nft-img-container">
-            <img
+      <div className='align'>
+        <div
+        style={{
+          textAlign: 'center'
+        }}
+        >
+          <img 
             src={hit.image}
-            width={300}
-            className="nft-img"
-            onError={(e) => (e.target.src = '/fallback.jpeg')}
-            />
-          </div>
-        </Link>
-        <div className="name">{hit.name}</div>
-        <div className="name">by</div>
-        <div className="name">{hit.creator}</div>
+            width="400" 
+            alt="" 
+          /> 
+        </div>  
+        <div
+        style={{
+          textAlign: 'center'
+        }}>
+          <h4>{hit.name}</h4> 
+          <h6>
+            Created by 
+            <Link href={{pathname: "/u/[id]", query: { id: hit.creator }}}>
+              <TextButton>
+              {hit.creator.substring(0, 6)}...{hit.creator.substring(38)}
+              </TextButton>
+            </Link>
+          </h6>
+          <br />
+          <Link href={{pathname: "/[id]", query: { id: hit.tokenID }}}>
+            <CallToAction
+            >
+              Check out &rarr;
+            </CallToAction>
+          </Link>
+        </div> 
       </div>
-      <style>{`
-        .card {
-          border-radius: 8px;
-          padding: 15px;
-          box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 16px,
-            rgba(0, 0, 0, 0.05) 0px 0px 16px;
-        }
-
-        .card:hover {
-          box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 16px,
-            rgba(0, 0, 0, 0.1) 0px 0px 16px;
-        }
-
-        .nft-img-container {
-          min-width: 200px;
-          min-height: 200px;
-          display: flex;
+      <style jsx>{`
+        .align {
+          padding: 20px;
+          display: grid;
+          grid-gap: 20px;
+          grid-template-columns: 1fr 1fr;
+          margin-bottom: 30px;
+          margin-top: 0px;
           align-items: center;
-          justify-content: center;
+          border-bottom:1px solid #f0f0f0;
         }
 
-        .nft-img {
-          max-width: 200px;
-          max-height: 200px;
-          cursor: pointer;
-          border-radius: 8px;
+        h4 {
+          font-size: 40px;
+          font-weight: bold;
+          margin-bottom: 30px;
         }
 
-        .name {
-          margin-top: 10px;
-          text-align: center;
+        h6 {
+          font-size: 20px;
+
+        }
+
+        img {
+          border-radius: 15px;
         }
       `}</style>
     </>
