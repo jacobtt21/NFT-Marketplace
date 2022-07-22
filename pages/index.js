@@ -128,18 +128,21 @@ export default function Index() {
 
     var i = 0;
     var j = 0;
-    for (i = 0; i < uriList.length; ++i) {
-      if (j < 4) {
-        const response = await fetch(uriList[i][0]);
-        const data = await response.json();
-        if (data["genre"] === type) {
-          prices.push(uriList[i][2]);
-          verified.push(uriList[i][7]);
-          onMarket.push(uriList[i][6]);
-          nums.push(uriList[i][5])
-          stars.push(uriList[i][4]);
-          nfts.push(data);
-          j += 1;
+    console.log(uriList)
+    for (i = uriList.length - 1; i >= 0; --i) {
+      if (uriList[i][8]) {
+        if (j < 4) {
+          const response = await fetch(uriList[i][0]);
+          const data = await response.json();
+          if (data["genre"] === type) {
+            prices.push(uriList[i][2]);
+            verified.push(uriList[i][7]);
+            onMarket.push(uriList[i][6]);
+            nums.push(uriList[i][5])
+            stars.push(uriList[i][4]);
+            nfts.push(data);
+            j += 1;
+          }
         }
       }
     }
