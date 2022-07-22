@@ -161,6 +161,16 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
                   {nft.name}
                 </TextButton>
               </div> 
+            ) : check === "2" ? (
+              <div className="name">
+                <TextButton
+                leadingIcon={MonochromeIcons.AsteriskBold}
+                color="primary"
+                outline="none"
+                >
+                  {nft.name}
+                </TextButton>
+              </div> 
             ) : (
               <div className="name">
                 <TextButton
