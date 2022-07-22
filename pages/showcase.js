@@ -10,9 +10,9 @@ export default function About() {
     const allNFTs = [
       {
         creator: "0x8c17bB1862B31f302e4c25bf364431f0a39614B1",
-        image: "https://ipfs.infura.io/ipfs/QmcxXdCZNf2nkvMmesLgSpnza68A6mwJH1yuoahVuSbetS",
+        image: "https://ipfs.infura.io/ipfs/QmeW4tudfHQw5fGfRcBpQW3oSV86GaFXFic3rGoLvNdgYo",
         name: "Daffy",
-        tokenID: '5',
+        tokenID: '6',
         work: "https://bafybeie5srm3bac476dokid2sde4xqxxfthfll4uqqz2qfcowsmigw673y.ipfs.infura-ipfs.io/"
       },
       {
