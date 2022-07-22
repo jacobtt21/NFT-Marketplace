@@ -229,6 +229,18 @@ export default function Index() {
                 </Link>
                 {theNFT.name}
               </h1>
+            ) : theData.verify === '2' ? (
+              <h1>
+                <Link href="/mistake">
+                  <TextButton
+                  leadingIcon={MonochromeIcons.AsteriskBold}
+                  color="primary"
+                  outline="none"
+                  >
+                  </TextButton>
+                </Link>
+                {theNFT.name}
+              </h1>
             ) : (
               <h1>
                 <Link href="/warning">

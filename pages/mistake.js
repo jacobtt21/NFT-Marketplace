@@ -6,7 +6,7 @@ export default function About() {
   return (
     <>
       <Head>
-        <title>Warning | Oustro</title>
+        <title>Mistake | Oustro</title>
         <meta name="description" content="Learn more about Oustro" />
         <link
           rel="canonical"
@@ -16,12 +16,19 @@ export default function About() {
       </Head>
       <div className='landing'>
         <div className='holder' id="how">
-          <h1>The Following Contains Offensive Material</h1>
+          <h1>A Mistake Was Made in This Work</h1>
           <br />
           <h5>
-            We just wanted to let you know, after reviewing this work, we would like to warn you that it contains
-            material that may cause distress, be offensive, or spread false information. Viewer discretion is advised.
-          </h5>        
+              We're all human and we understand, sometimes we overlook things. By Request of the creator and owner of this work,
+              we've marked this as such. The listing status is also determined by the owner and creator.
+          </h5>
+        <div>
+            <img 
+            src="https://rawcdn.githack.com/Oustro/OustroImages/2feb41f30f48674078a88786eefa89463c589d83/7.svg?min=1"
+            width="500" 
+            alt="" 
+            /> 
+        </div>        
         </div>
         <style jsx>{`
           .mint-container {
@@ -54,7 +61,8 @@ export default function About() {
             margin-top: 40px;
           }
           .holder {
-            margin-top: 30px;x
+            margin-top: 30px;
+            border-bottom:1px solid #f0f0f0;
           }
           h6 {
             font-size: 25px;
