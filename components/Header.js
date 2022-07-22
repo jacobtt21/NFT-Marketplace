@@ -173,14 +173,12 @@ const Header = () => {
                         <div>
                           <iframe
                             src="https://widget.onramper.com?color=266677&apiKey=pk_test_O5oTM6u9D3jXLHpXkPQWK_tD4dClwuplybJk0sZHyQc0"
-                            height="570px"
-                            width="330px"
-                            title="Onramper widget"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; camera; gyroscope; payment"
+                            style={{
+                              height: 640,
+                              width: 300,
+                            }}
                           >
                           </iframe>
-                          <br />
                         </div>
                       </HoverActivatedTooltip.Content>
                     </HoverActivatedTooltip>
@@ -229,6 +227,10 @@ const Header = () => {
         </ul>
       </nav>
       <style jsx>{`
+
+        .wha {
+          min-width: 570px;
+        }
         .nv2 {
           max-width: 80rem;
           margin: 15px auto;
