@@ -171,7 +171,7 @@ const Header = () => {
                       </HoverActivatedTooltip.Anchor>
                       <HoverActivatedTooltip.Content>
                         <div>
-                          <Link href="https://www.moonpay.com/buy">
+                          <Link href="https://widget.onramper.com?color=266677&apiKey=pk_test_O5oTM6u9D3jXLHpXkPQWK_tD4dClwuplybJk0sZHyQc0">
                             <a target="_blank">
                               <TextButton
                               leadingIcon={MonochromeIcons.SocialShare}
