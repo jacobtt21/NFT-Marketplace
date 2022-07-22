@@ -479,7 +479,7 @@ function Mint() {
         }
 
         .image-preview {
-          border-radius: 8px;
+          border-radius: 15px;
           max-width: 200px;
           max-height: 200px;
           margin: auto;
