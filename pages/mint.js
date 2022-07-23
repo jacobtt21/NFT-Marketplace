@@ -314,7 +314,7 @@ function Mint() {
             <br />
             <input
             type="file"
-            // accept=".pdf, .html"
+            accept=".pdf, .html"
             onChange={onWorkUpload} 
             ref={workInputRef}
             disabled={disabled}
@@ -379,6 +379,16 @@ function Mint() {
             onClick={() => setGenre("Web")}
             >
               Web Page
+            </CallToAction>
+            <CallToAction
+            disabled={disabled}
+            onClick={() => setGenre("Short Film")}>
+              Short Film
+            </CallToAction>
+            <CallToAction
+            disabled={disabled}
+            onClick={() => setGenre("Feature Film")}>
+              Feature Film
             </CallToAction>
             <CallToAction
             disabled={disabled}

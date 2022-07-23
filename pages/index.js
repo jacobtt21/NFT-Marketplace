@@ -268,6 +268,26 @@ export default function Index() {
         }}
         color="primary"
         size='sm'
+        onClick={() => outputG("Short Film")}
+        >
+          Short Film
+        </CallToAction>
+        <CallToAction
+        style={{
+          margin: 10
+        }}
+        color="primary"
+        size='sm'
+        onClick={() => outputG("Feature Film")}
+        >
+          Feature Film
+        </CallToAction>
+        <CallToAction
+        style={{
+          margin: 10
+        }}
+        color="primary"
+        size='sm'
         onClick={() => outputG("Other")}
         >
           Other

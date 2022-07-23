@@ -42,15 +42,18 @@ export default function Index() {
     let verify = [];
 
     var i = 0;
-    for (i = 0; i < tokenURIs.length; ++i) {
-      prices[i] = tokenURIs[i][2];
-      onMarket[i] = tokenURIs[i][6];
-      nums[i] = tokenURIs[i][5];
-      stars[i] = tokenURIs[i][4];
-      verify[i] = tokenURIs[i][7];
-      const response = await fetch(tokenURIs[i].data);
-      const data = await response.json();
-      nfts.push(data);
+
+    for (i = tokenURIs.length - 1; i >= 0; --i) {
+      if (tokenURIs[i]["show"]) {
+        prices[i] = tokenURIs[i][2];
+        onMarket[i] = tokenURIs[i][6];
+        nums[i] = tokenURIs[i][5];
+        stars[i] = tokenURIs[i][4];
+        verify[i] = tokenURIs[i][7];
+        const response = await fetch(tokenURIs[i].data);
+        const data = await response.json();
+        nfts.push(data);
+      }
     }
 
     setMyNFTs(nfts);
