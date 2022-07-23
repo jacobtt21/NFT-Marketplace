@@ -3,7 +3,7 @@ import { UserContext } from '../lib/UserContext';
 import { web3 } from '../lib/magic';
 import { abi } from '../contracts/abi';
 import { create } from 'ipfs-http-client';
-import { TextField, CallToAction, useToast } from '@magiclabs/ui';
+import { TextField, CallToAction, useToast, TextButton } from '@magiclabs/ui';
 import Loading from '../components/Loading';
 import algoliasearch from 'algoliasearch';
 import Link from 'next/link'
@@ -300,13 +300,21 @@ function Mint() {
             <br />
             <br />
             <div className='nname'>
-              <p>Upload your work!</p>
+              <p>Upload your work! (PDF, HTML)</p>
             </div>
-            <p>(PDF file format)</p>
+            <p>
+              <Link href="/video">
+                <a target="_blank">
+                  <TextButton>
+                    I want to Upload a Video &rarr;
+                  </TextButton>
+                </a>
+              </Link>
+            </p>
             <br />
             <input
             type="file"
-            accept=".pdf, .html"
+            // accept=".pdf, .html"
             onChange={onWorkUpload} 
             ref={workInputRef}
             disabled={disabled}

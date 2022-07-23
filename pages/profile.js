@@ -91,7 +91,7 @@ export default function Index() {
         >
           Share it
         </TextButton>
-        )
+        ). Note, the rights of the works belong to the creators unless otherwise specified.
       </p>
       <Grid loading={loading} nfts={myNFTs} prices={myPrices} statuses={myStatus} type={false} stars={myStars} nums={myNums} checkmark={myVerify} go={true} takeAway={false} />
       <style>{`
