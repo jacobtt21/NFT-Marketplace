@@ -188,7 +188,7 @@ export default function Index() {
         >
           <HoverActivatedTooltip.Anchor>
             <TextButton
-            trailingIcon={MonochromeIcons.CaretDown}
+            trailingIcon={MonochromeIcons.CaretRight}
             style={{
               marginLeft: 19
             }}

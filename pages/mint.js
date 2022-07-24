@@ -250,37 +250,41 @@ function Mint() {
             {show ? (
               <>
                 <div className='nname'>
-                  <br />
-                  <p>Visability: Public</p>
-                  <br />
-                  <CallToAction
-                  disabled={disabled}
-                  color="primary"
-                  size='sm'
-                  onClick={ChangeVis}
-                  >
-                    Change to Private (Only Accessible by Link)
-                  </CallToAction>
-                  <br />
-                  <br />
+                  <div className='ones'>
+                    <br />
+                    <p>Visability: Public</p>
+                    <br />
+                    <CallToAction
+                    disabled={disabled}
+                    color="primary"
+                    size='sm'
+                    onClick={ChangeVis}
+                    >
+                      Change to Private (Only Accessible by Link)
+                    </CallToAction>
+                    <br />
+                    <br />
+                  </div>
                 </div>
               </>
             ) : (
               <>
                 <div className='nname'>
                   <br />
-                  <p>Visability: Private</p>
-                  <br />
-                  <CallToAction
-                  disabled={disabled}
-                  color="primary"
-                  size='sm'
-                  onClick={ChangeVis}
-                  >
-                    Change to Public (Open to Everyone)
-                  </CallToAction>
-                  <br />
-                  <br />
+                  <div className='ones'>
+                    <p>Visability: Private</p>
+                    <br />
+                    <CallToAction
+                    disabled={disabled}
+                    color="primary"
+                    size='sm'
+                    onClick={ChangeVis}
+                    >
+                      Change to Public (Open to Everyone)
+                    </CallToAction>
+                    <br />
+                    <br />
+                  </div>
                 </div>
               </>
             )}
@@ -319,92 +323,139 @@ function Mint() {
               {ipfsWorkUrl && (
                 <>
                   <br />
-                  <Link href={ipfsWorkUrl}>
-                    <a target="_blank">
-                      <CallToAction
-                      color="primary"
-                      size='sm'
-                      >
-                        Check Your Work &rarr;
-                      </CallToAction>
-                    </a>
-                  </Link>
-                  <br />
+                  <div className='ones'>
+                    <Link href={ipfsWorkUrl}>
+                      <a target="_blank">
+                        <CallToAction
+                        color="primary"
+                        size='sm'
+                        >
+                          Check Your Work &rarr;
+                        </CallToAction>
+                      </a>
+                    </Link>
+                  </div>
                 </>
               )}
               <br />
             </div>
             <div className='nname'>
               <p>Select Type (Required): </p>
+              <br />
               <HoverActivatedTooltip
                 arrow
+                placement="right"
               >
                 <HoverActivatedTooltip.Anchor>
-                  <TextButton
-                  trailingIcon={MonochromeIcons.CaretDown}
+                  <CallToAction
+                  trailingIcon={MonochromeIcons.CaretRight}
+                  size='sm'
                   style={{
                     marginRight: 'auto'
                   }}
                   >
                     {genre} 
-                  </TextButton>
+                  </CallToAction>
                 </HoverActivatedTooltip.Anchor>
                 <HoverActivatedTooltip.Content>
                   <div>
                     <CallToAction
                     disabled={disabled}
+                    style={{
+                      margin: 10
+                    }}
+                    size='sm'
                     onClick={() => setGenre("Story")}
                     >
                       Story
                     </CallToAction>
                     <CallToAction
+                    style={{
+                      margin: 10
+                    }}
+                    size='sm'
                     disabled={disabled}
                     onClick={() => setGenre("Publication")}>
                       Publication
                     </CallToAction>
                     <CallToAction
+                    style={{
+                      margin: 10
+                    }}
+                    size='sm'
                     disabled={disabled}
                     onClick={() => setGenre("Poetry")}>
                       Poetry
                     </CallToAction>
                     <CallToAction
+                    style={{
+                      margin: 10
+                    }}
+                    size='sm'
                     disabled={disabled}
                     onClick={() => setGenre("Scripts")}>
                       Script
                     </CallToAction>
                     <CallToAction
+                    style={{
+                      margin: 10
+                    }}
+                    size='sm'
                     disabled={disabled}
                     onClick={() => setGenre("Academia")}>
                       Academia
                     </CallToAction>
                     <CallToAction
+                    style={{
+                      margin: 10
+                    }}
                     disabled={disabled}
                     onClick={() => setGenre("Whitepaper")}>
                       Whitepaper
                     </CallToAction>
                     <CallToAction
+                    style={{
+                      margin: 10
+                    }}
+                    size='sm'
                     disabled={disabled}
                     onClick={() => setGenre("Game")}
                     >
                       Game
                     </CallToAction>
                     <CallToAction
+                    style={{
+                      margin: 10
+                    }}
+                    size='sm'
                     disabled={disabled}
                     onClick={() => setGenre("Web")}
                     >
                       Web Page
                     </CallToAction>
                     <CallToAction
+                    style={{
+                      margin: 10
+                    }}
+                    size='sm'
                     disabled={disabled}
                     onClick={() => setGenre("Short Film")}>
                       Short Film
                     </CallToAction>
                     <CallToAction
+                    style={{
+                      margin: 10
+                    }}
+                    size='sm'
                     disabled={disabled}
                     onClick={() => setGenre("Feature Film")}>
                       Feature Film
                     </CallToAction>
                     <CallToAction
+                    style={{
+                      margin: 10
+                    }}
+                    size='sm'
                     disabled={disabled}
                     onClick={() => setGenre("Other")}>
                       Other
@@ -526,6 +577,10 @@ function Mint() {
           max-width: 200px;
           max-height: 200px;
           margin: auto;
+        }
+
+        .ones {
+          text-align: center;
         }
 
         .image-logo {
