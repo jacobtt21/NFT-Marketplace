@@ -129,7 +129,15 @@ export default function Index() {
               {theData.rating} / 5 Rating
             </CallToAction>  
             <div className='name'>
-              <h3>by {theNFT.creator.substring(0, 6)}..{theNFT.creator.substring(38)}</h3> 
+              <h3>by 
+                <Link href={{pathname: '/u/[user]', query: { user: theNFT.creator }}}>   
+                  <TextButton
+                  color="primary"
+                  >
+                    {theNFT.creator.substring(0, 6)}..{theNFT.creator.substring(38)}
+                  </TextButton>
+                </Link>
+              </h3> 
             </div>
           </div>
           <style>{`
