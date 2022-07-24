@@ -3,7 +3,7 @@ import { UserContext } from '../lib/UserContext';
 import { web3 } from '../lib/magic';
 import { abi } from '../contracts/abi';
 import { create } from 'ipfs-http-client';
-import { TextField, CallToAction, useToast, TextButton } from '@magiclabs/ui';
+import { TextField, CallToAction, useToast, HoverActivatedTooltip, TextButton, MonochromeIcons } from '@magiclabs/ui';
 import Loading from '../components/Loading';
 import algoliasearch from 'algoliasearch';
 import Link from 'next/link'
@@ -23,7 +23,7 @@ function Mint() {
   const [mintStatus, setMintStatus] = useState('');
   const [ipfsWorkUrl, setIpfsWorkUrl] = useState('');
   const [price, setPrice] = useState('');
-  const [genre, setGenre] = useState('Choose from Below');
+  const [genre, setGenre] = useState('Choose');
   const imageInputRef = useRef();
   const workInputRef = useRef();
   const { createToast } = useToast();
@@ -172,7 +172,7 @@ function Mint() {
 
   const checkForErrors = async () => {
     // Throw error if missing input values
-    if (!name || !ipfsImageUrl || !ipfsWorkUrl || genre === "Choose from Below") {
+    if (!name || !ipfsImageUrl || !ipfsWorkUrl || genre === "Choose") {
       createToast({
         message: 'Missing Required Fields',
         type: 'error',
@@ -247,169 +247,197 @@ function Mint() {
             onChange={(e) => setSocial(e.target.value)}
             value={social}
             />
-            <br />
             {show ? (
               <>
                 <div className='nname'>
+                  <br />
                   <p>Visability: Public</p>
+                  <br />
+                  <CallToAction
+                  disabled={disabled}
+                  color="primary"
+                  size='sm'
+                  onClick={ChangeVis}
+                  >
+                    Change to Private (Only Accessible by Link)
+                  </CallToAction>
+                  <br />
+                  <br />
                 </div>
-                <CallToAction
-                disabled={disabled}
-                color="primary"
-                size='sm'
-                onClick={ChangeVis}
-                >
-                  Change to Private (Only Accessible by Link)
-                </CallToAction>
               </>
             ) : (
               <>
                 <div className='nname'>
+                  <br />
                   <p>Visability: Private</p>
-                </div>
-                <CallToAction
-                disabled={disabled}
-                color="primary"
-                size='sm'
-                onClick={ChangeVis}
-                >
-                  Change to Public (Open to Everyone)
-                </CallToAction>
-              </>
-            )}
-            <br />
-            <br />
-            <div className='nname'>
-              <p>Upload an image as a thumbnail for your work!</p>
-            </div>
-            <p>(500 x 500 Pixel works best)</p>
-            <br />
-            <input
-            type="file"
-            onChange={onImageUpload}
-            ref={imageInputRef}
-            disabled={disabled}
-            accept="image/*"
-            required="required"
-            >
-            </input>
-            <br />
-            {ipfsImageUrl && (
-              <img className="image-preview" src={ipfsImageUrl} />
-            )}
-            <br />
-            <br />
-            <div className='nname'>
-              <p>Upload your work! (PDF, HTML, MP4)</p>
-            </div>
-            <br />
-            <input
-            type="file"
-            accept=".pdf, .html, .mp4"
-            onChange={onWorkUpload} 
-            ref={workInputRef}
-            disabled={disabled}
-            required="required"
-            >
-            </input>
-            <br />
-            {ipfsWorkUrl && (
-              <Link href={ipfsWorkUrl}>
-                <a target="_blank">
+                  <br />
                   <CallToAction
+                  disabled={disabled}
                   color="primary"
                   size='sm'
+                  onClick={ChangeVis}
                   >
-                    Check Your Work &rarr;
+                    Change to Public (Open to Everyone)
                   </CallToAction>
-                </a>
-              </Link>
+                  <br />
+                  <br />
+                </div>
+              </>
             )}
             <div className='nname'>
-              <p>Select Type (Required): {genre} </p>
+              <p>Upload an image as a thumbnail for your work! (500 x 500 Pixel works best)</p>
+              <br />
+              <input
+              type="file"
+              onChange={onImageUpload}
+              ref={imageInputRef}
+              disabled={disabled}
+              accept="image/*"
+              required="required"
+              >
+              </input>
+              {ipfsImageUrl && (
+                <>
+                  <br />
+                  <img className="image-preview" src={ipfsImageUrl} />
+                </>
+              )}
+              <br />
             </div>
-            <CallToAction
-            disabled={disabled}
-            onClick={() => setGenre("Story")}
-            >
-              Story
-            </CallToAction>
-            <CallToAction
-            disabled={disabled}
-            onClick={() => setGenre("Publication")}>
-              Publication
-            </CallToAction>
-            <CallToAction
-            disabled={disabled}
-            onClick={() => setGenre("Poetry")}>
-              Poetry
-            </CallToAction>
-            <CallToAction
-            disabled={disabled}
-            onClick={() => setGenre("Scripts")}>
-              Script
-            </CallToAction>
-            <CallToAction
-            disabled={disabled}
-            onClick={() => setGenre("Academia")}>
-              Academia
-            </CallToAction>
-            <CallToAction
-            disabled={disabled}
-            onClick={() => setGenre("Whitepaper")}>
-              Whitepaper
-            </CallToAction>
-            <CallToAction
-            disabled={disabled}
-            onClick={() => setGenre("Game")}
-            >
-              Game
-            </CallToAction>
-            <CallToAction
-            disabled={disabled}
-            onClick={() => setGenre("Web")}
-            >
-              Web Page
-            </CallToAction>
-            <CallToAction
-            disabled={disabled}
-            onClick={() => setGenre("Short Film")}>
-              Short Film
-            </CallToAction>
-            <CallToAction
-            disabled={disabled}
-            onClick={() => setGenre("Feature Film")}>
-              Feature Film
-            </CallToAction>
-            <CallToAction
-            disabled={disabled}
-            onClick={() => setGenre("Other")}>
-              Other
-            </CallToAction>
-            <br />
-            <br />
-            <TextField
-            disabled={disabled}
-            label="Sales Price in MATIC (optional)"
-            placeholder="If empty, defaults to 0 MATIC"
-            type="number"
-            onChange={(e) => setPrice(e.target.value)}
-            value={price}
-            />
-            <br />
-            <br />
-            {price != '0' && price ? (
+            <div className='nname'>
+              <p>Upload your work! (PDF, HTML, MP4)</p>
+              <br />
+              <input
+              type="file"
+              accept=".pdf, .html, .mp4"
+              onChange={onWorkUpload} 
+              ref={workInputRef}
+              disabled={disabled}
+              required="required"
+              >
+              </input>
+              {ipfsWorkUrl && (
+                <>
+                  <br />
+                  <Link href={ipfsWorkUrl}>
+                    <a target="_blank">
+                      <CallToAction
+                      color="primary"
+                      size='sm'
+                      >
+                        Check Your Work &rarr;
+                      </CallToAction>
+                    </a>
+                  </Link>
+                  <br />
+                </>
+              )}
+              <br />
+            </div>
+            <div className='nname'>
+              <p>Select Type (Required): </p>
+              <HoverActivatedTooltip
+                arrow
+              >
+                <HoverActivatedTooltip.Anchor>
+                  <TextButton
+                  trailingIcon={MonochromeIcons.CaretDown}
+                  style={{
+                    marginRight: 'auto'
+                  }}
+                  >
+                    {genre} 
+                  </TextButton>
+                </HoverActivatedTooltip.Anchor>
+                <HoverActivatedTooltip.Content>
+                  <div>
+                    <CallToAction
+                    disabled={disabled}
+                    onClick={() => setGenre("Story")}
+                    >
+                      Story
+                    </CallToAction>
+                    <CallToAction
+                    disabled={disabled}
+                    onClick={() => setGenre("Publication")}>
+                      Publication
+                    </CallToAction>
+                    <CallToAction
+                    disabled={disabled}
+                    onClick={() => setGenre("Poetry")}>
+                      Poetry
+                    </CallToAction>
+                    <CallToAction
+                    disabled={disabled}
+                    onClick={() => setGenre("Scripts")}>
+                      Script
+                    </CallToAction>
+                    <CallToAction
+                    disabled={disabled}
+                    onClick={() => setGenre("Academia")}>
+                      Academia
+                    </CallToAction>
+                    <CallToAction
+                    disabled={disabled}
+                    onClick={() => setGenre("Whitepaper")}>
+                      Whitepaper
+                    </CallToAction>
+                    <CallToAction
+                    disabled={disabled}
+                    onClick={() => setGenre("Game")}
+                    >
+                      Game
+                    </CallToAction>
+                    <CallToAction
+                    disabled={disabled}
+                    onClick={() => setGenre("Web")}
+                    >
+                      Web Page
+                    </CallToAction>
+                    <CallToAction
+                    disabled={disabled}
+                    onClick={() => setGenre("Short Film")}>
+                      Short Film
+                    </CallToAction>
+                    <CallToAction
+                    disabled={disabled}
+                    onClick={() => setGenre("Feature Film")}>
+                      Feature Film
+                    </CallToAction>
+                    <CallToAction
+                    disabled={disabled}
+                    onClick={() => setGenre("Other")}>
+                      Other
+                    </CallToAction>
+                  </div>
+                </HoverActivatedTooltip.Content>
+              </HoverActivatedTooltip>
+            </div>
+            <div className='nname2'>
+              <br />
               <TextField
               disabled={disabled}
-              label="Wallet you would like to share royalties with (optional)"
-              placeholder="0x0.."
-              type="text"
-              onChange={(e) => setShare(e.target.value)}
-              value={sharing}
+              label="Sales Price in MATIC (optional)"
+              placeholder="If empty, defaults to 0 MATIC"
+              type="number"
+              onChange={(e) => setPrice(e.target.value)}
+              value={price}
               />
-            ) : (
-              <></>
-            )}
+              <br />
+              {price != '0' && price && (
+                <>
+                  <TextField
+                  disabled={disabled}
+                  label="Wallet you would like to share royalties with (optional)"
+                  placeholder="0x0.."
+                  type="text"
+                  onChange={(e) => setShare(e.target.value)}
+                  value={sharing}
+                  />
+                  <br />
+                </>
+              )}
+            </div>
             <br />
             By Default Works are not put on the marketplace, this can be changed in
             'Your Collection' tab.
@@ -417,37 +445,39 @@ function Mint() {
             <br />
             <br />
             <br />
-            <CallToAction
+            <div className='yeet'>
+              <CallToAction
               color="primary"
               size="sm"
               onClick={mintNFT}
               disabled={disabled}
               >
                 Publish (3 MATIC)
-            </CallToAction>
-            <div style={{ marginTop: '30px' }}>
-              {txPending && (
-                <>
-                  <div>{mintStatus}</div>
-                </>
-              )}
-              {txHash && (
-                <>
-                  <div className='name'>
-                    Thank you for your contribution to the Oustro Library of Work!
-                  </div>
-                  <br />
-                  <br />
-                  <CallToAction
-                  color="primary"
-                  size="sm"
-                  outline="none"
-                  onPress={copyLink}
-                  >
-                    Share your NFT using this link
-                  </CallToAction>
-                </>
-              )}
+              </CallToAction>
+              <div style={{ marginTop: '30px' }}>
+                {txPending && (
+                  <>
+                    <div>{mintStatus}</div>
+                  </>
+                )}
+                {txHash && (
+                  <>
+                    <div className='name'>
+                      Thank you for your contribution to the Oustro Library of Work!
+                    </div>
+                    <br />
+                    <br />
+                    <CallToAction
+                    color="primary"
+                    size="sm"
+                    outline="none"
+                    onPress={copyLink}
+                    >
+                      Share your NFT using this link
+                    </CallToAction>
+                  </>
+                )}
+              </div>
             </div>
           </div>
         </>
@@ -466,7 +496,7 @@ function Mint() {
           min-height: 28px;
         }
         p {
-          min-height: 28px;
+          line-height: 1.6;
         }
         .info {
           magrin: 20px;
@@ -474,12 +504,16 @@ function Mint() {
       
         .mint-container {
           max-width: 400px;
-          text-align: center;
+          text-align: left;
           margin: 0 auto;
           padding: 40px;
           border-radius: 30px;
           border: 1px solid #f9f9f9;
           box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 16px;
+        }
+
+        .yeet {
+          text-align: center;
         }
 
         input[type=file], .image-preview {
@@ -501,8 +535,8 @@ function Mint() {
         }
 
         .nname {
-          font-weight: bold;
-          margin-top: 15px;
+          border-bottom: 1px solid #f0f0f0;
+          padding: 15px;
         }
         .name {
           margin-top: 10px;
