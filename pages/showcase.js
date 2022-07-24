@@ -85,7 +85,7 @@ export default function About() {
             <h6>
               The basic jist of Oustro is that we believe everyone has something to say, create, invent, and share. With that
               we also believe that You should have a place to keep those works without fear of censorship. On Oustro, we provide a
-              platform to create and share what you want through PDFs and HTML pages all hosted on IPFS.
+              platform to create and share what you want through PDFs, HTML, MP4 files all hosted on IPFS.
             </h6>
             <br />
             <Link href="/login?id=mint">
