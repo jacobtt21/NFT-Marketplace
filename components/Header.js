@@ -156,7 +156,6 @@ const Header = () => {
                     <HoverActivatedTooltip
                       arrow
                       placement="top"
-                      waitForPointerExit
                       appearance='none'
                     >
                       <HoverActivatedTooltip.Anchor>
@@ -187,7 +186,6 @@ const Header = () => {
                     <HoverActivatedTooltip
                       arrow
                       placement="top"
-                      waitForPointerExit
                     >
                       <HoverActivatedTooltip.Anchor>
                         <CallToAction

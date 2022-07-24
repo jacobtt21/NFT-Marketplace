@@ -4,7 +4,7 @@ import { web3 } from '../lib/magic';
 import { abi } from '../contracts/abi';
 import Grid from '../components/Grid';
 import Loading from '../components/Loading';
-import { CallToAction, TextButton, MonochromeIcons } from '@magiclabs/ui';
+import { CallToAction, TextButton, MonochromeIcons, HoverActivatedTooltip } from '@magiclabs/ui';
 import Head from 'next/head';
 import Link from 'next/link';
 
@@ -28,7 +28,7 @@ export default function Index() {
   const [allStars, setAllStars] = useState();
   const [allStatus, setAllStatus] = useState();
   const [allVerify, setAllVerify] = useState();
-  const [genre, setGenre] = useState("...");
+  const [genre, setGenre] = useState("Select What you would like to view");
   const [setter, setSetter] = useState("1");
   const [loading, setLoading] = useState(false);
 
@@ -181,117 +181,136 @@ export default function Index() {
         <h4 className='what1'>Top Picks</h4>
         <h3>Here's what hot right now</h3>
         <Grid loading={loading} nfts={allTPNFTs} prices={allTPPrices} statuses={allTPStatus} type={true} stars={allTPStars} nums={allTPNums} go={true} takeAway={true} checkmark={allTPVerify} />
-        <h2>Hey look where I find myself, the {genre} section!</h2>
-        <CallToAction
-        style={{
-          margin: 10
-        }}
-        color="primary"
-        size='sm'
-        onClick={() => outputG("Publication")}
+        <h2>In the Mood for Something?</h2>
+        <HoverActivatedTooltip
+          arrow
+          placement="left"
         >
-          Publication
-        </CallToAction>
-        <CallToAction
-        style={{
-          margin: 10
-        }}
-        color="primary"
-        size='sm'
-        onClick={() => outputG("Poetry")}
-        >
-          Poetry
-        </CallToAction>
-        <CallToAction
-        style={{
-          margin: 10
-        }}
-        color="primary"
-        size='sm'
-        onClick={() => outputG("Story")}
-        >
-          Story
-        </CallToAction>
-        <CallToAction
-        style={{
-          margin: 10
-        }}
-        color="primary"
-        size='sm'
-        onClick={() => outputG("Scripts")}
-        >
-          Scripts
-        </CallToAction>
-        <CallToAction
-        style={{
-          margin: 10
-        }}
-        color="primary"
-        size='sm'
-        onClick={() => outputG("Academia")}
-        >
-          Academia
-        </CallToAction>
-        <CallToAction
-        style={{
-          margin: 10
-        }}
-        color="primary"
-        size='sm'
-        onClick={() => outputG("Whitepaper")}
-        >
-          Whitepaper
-        </CallToAction>
-        <CallToAction
-        style={{
-          margin: 10
-        }}
-        color="primary"
-        size='sm'
-        onClick={() => outputG("Game")}
-        >
-          Game
-        </CallToAction>
-        <CallToAction
-        style={{
-          margin: 10
-        }}
-        color="primary"
-        size='sm'
-        onClick={() => outputG("Web")}
-        >
-          Web
-        </CallToAction>
-        <CallToAction
-        style={{
-          margin: 10
-        }}
-        color="primary"
-        size='sm'
-        onClick={() => outputG("Short Film")}
-        >
-          Short Film
-        </CallToAction>
-        <CallToAction
-        style={{
-          margin: 10
-        }}
-        color="primary"
-        size='sm'
-        onClick={() => outputG("Feature Film")}
-        >
-          Feature Film
-        </CallToAction>
-        <CallToAction
-        style={{
-          margin: 10
-        }}
-        color="primary"
-        size='sm'
-        onClick={() => outputG("Other")}
-        >
-          Other
-        </CallToAction>
+          <HoverActivatedTooltip.Anchor>
+            <TextButton
+            trailingIcon={MonochromeIcons.CaretDown}
+            style={{
+              marginLeft: 19
+            }}
+            >
+              {genre} 
+            </TextButton>
+          </HoverActivatedTooltip.Anchor>
+          <HoverActivatedTooltip.Content>
+            <div>
+              <CallToAction
+              style={{
+                margin: 10
+              }}
+              color="primary"
+              size='sm'
+              onClick={() => outputG("Publication")}
+              >
+                Publication
+              </CallToAction>
+              <CallToAction
+              style={{
+                margin: 10
+              }}
+              color="primary"
+              size='sm'
+              onClick={() => outputG("Poetry")}
+              >
+                Poetry
+              </CallToAction>
+              <CallToAction
+              style={{
+                margin: 10
+              }}
+              color="primary"
+              size='sm'
+              onClick={() => outputG("Story")}
+              >
+                Story
+              </CallToAction>
+              <CallToAction
+              style={{
+                margin: 10
+              }}
+              color="primary"
+              size='sm'
+              onClick={() => outputG("Scripts")}
+              >
+                Scripts
+              </CallToAction>
+              <CallToAction
+              style={{
+                margin: 10
+              }}
+              color="primary"
+              size='sm'
+              onClick={() => outputG("Academia")}
+              >
+                Academia
+              </CallToAction>
+              <CallToAction
+              style={{
+                margin: 10
+              }}
+              color="primary"
+              size='sm'
+              onClick={() => outputG("Whitepaper")}
+              >
+                Whitepaper
+              </CallToAction>
+              <CallToAction
+              style={{
+                margin: 10
+              }}
+              color="primary"
+              size='sm'
+              onClick={() => outputG("Game")}
+              >
+                Game
+              </CallToAction>
+              <CallToAction
+              style={{
+                margin: 10
+              }}
+              color="primary"
+              size='sm'
+              onClick={() => outputG("Web")}
+              >
+                Web
+              </CallToAction>
+              <CallToAction
+              style={{
+                margin: 10
+              }}
+              color="primary"
+              size='sm'
+              onClick={() => outputG("Short Film")}
+              >
+                Short Film
+              </CallToAction>
+              <CallToAction
+              style={{
+                margin: 10
+              }}
+              color="primary"
+              size='sm'
+              onClick={() => outputG("Feature Film")}
+              >
+                Feature Film
+              </CallToAction>
+              <CallToAction
+              style={{
+                margin: 10
+              }}
+              color="primary"
+              size='sm'
+              onClick={() => outputG("Other")}
+              >
+                Other
+              </CallToAction>
+            </div>
+          </HoverActivatedTooltip.Content>
+        </HoverActivatedTooltip>
         {setter === "1" ? (
           <div className='hold'></div>
         ) : (
