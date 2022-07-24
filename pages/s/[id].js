@@ -52,7 +52,7 @@ export default function Index() {
                     <CallToAction
                     color="primary"
                     >
-                      Login / Sign Up to see more &rarr;
+                      Login / Sign Up to View Further &rarr;
                     </CallToAction>
                   </Link>
                 ) : (
