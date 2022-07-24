@@ -300,21 +300,12 @@ function Mint() {
             <br />
             <br />
             <div className='nname'>
-              <p>Upload your work! (PDF, HTML)</p>
+              <p>Upload your work! (PDF, HTML, MP4)</p>
             </div>
-            <p>
-              <Link href="/video">
-                <a target="_blank">
-                  <TextButton>
-                    I want to Upload a Video &rarr;
-                  </TextButton>
-                </a>
-              </Link>
-            </p>
             <br />
             <input
             type="file"
-            accept=".pdf, .html"
+            accept=".pdf, .html, .mp4"
             onChange={onWorkUpload} 
             ref={workInputRef}
             disabled={disabled}
