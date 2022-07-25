@@ -174,7 +174,7 @@ export default function Index() {
           </TextButton>
           Oustro Editor's Choice
         </h4>
-        <Link href="/3">
+        <Link href="/9">
           <div className='banner'>
           </div>
         </Link>
@@ -335,7 +335,7 @@ export default function Index() {
               margin-top: 20px;
             }
             .banner {
-              background-image: url('https://raw.githubusercontent.com/Oustro/OustroImages/ec2360fa08a442c9da49b943a608336deeac19b7/The%20Bottle.svg');
+              background-image: url('https://raw.githubusercontent.com/Oustro/OustroImages/0d9b2b8c938899bb79657bcad0ed7bdd8715ad99/Banner.svg');
               height: 400px;
               border-radius: 30px;
               transition: 0.2s;
