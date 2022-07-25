@@ -203,8 +203,8 @@ export default function Index() {
       {theData && theNFT ? (
         <>
           <Head>
-          <title>{theNFT.name} | Oustro</title>
-        </Head>
+            <title>{theNFT.name} | Oustro</title>
+          </Head>
           <div className="mint-container">
             <Link href={theNFT.work}>
               <a target="_blank">

@@ -36,6 +36,9 @@ export default function Index() {
     <div>
       {theData ? (
         <>
+          <Head>
+            <title>{theNFT.name} on Oustro</title>
+          </Head>
           <div className="mint-container">
             {user ? (
               <Link href={{pathname: '/[id]', query: { id: router.query.id }}}>   
