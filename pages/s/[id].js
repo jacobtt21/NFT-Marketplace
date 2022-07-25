@@ -6,6 +6,7 @@ import { abi } from '../../contracts/abi';
 import Loading from '../../components/Loading';
 import { CallToAction, TextButton, MonochromeIcons } from '@magiclabs/ui';
 import Link from 'next/link'
+import Head from 'next/head';
 
 
 export default function Index() {
