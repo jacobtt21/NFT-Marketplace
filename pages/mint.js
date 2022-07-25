@@ -409,6 +409,7 @@ function Mint() {
                     style={{
                       margin: 10
                     }}
+                    size='sm'
                     disabled={disabled}
                     onClick={() => setGenre("Whitepaper")}>
                       Whitepaper
