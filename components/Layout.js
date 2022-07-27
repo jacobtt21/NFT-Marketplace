@@ -1,12 +1,11 @@
 import Head from 'next/head';
 import Header from './Header';
-import Script from 'next/script'
 
 const Layout = (props) => (
   <>
     <Head>
       <title>Oustro</title>
-      {/* <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href="/favicon.ico" />
 
       <meta name="title" content="Oustro" />
       <meta name="description" content="We all have a story, tell yours" />
@@ -21,7 +20,7 @@ const Layout = (props) => (
       <meta property="twitter:url" content="https://www.oustro.xyz/showcase" />
       <meta property="twitter:title" content="Oustro" />
       <meta property="twitter:description" content="We all have a story, tell yours" />
-      <meta property="twitter:image" content="https://i.imgur.com/TKVuIhF.png" /> */}
+      <meta property="twitter:image" content="https://i.imgur.com/TKVuIhF.png" />
     </Head>
     <Header />
     <main>

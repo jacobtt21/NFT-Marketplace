@@ -7,10 +7,9 @@ import Loading from '../../components/Loading';
 import { CallToAction, TextButton, MonochromeIcons } from '@magiclabs/ui';
 import Link from 'next/link'
 import Head from 'next/head';
-import Web3 from 'web3';
 
 
-function Index({ title, image }) {
+export default function Index() {
   const [user] = useContext(UserContext);
   const router = useRouter();
   const [theNFT, setTheNFT] = useState();
@@ -36,25 +35,11 @@ function Index({ title, image }) {
 
   return (
     <div>
-      <Head>
-        <title>{title} on Oustro</title>
-        <meta name="title" content={title} />
-        <meta name="description" content="We all have a story, tell yours" />
-
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.oustro.xyz/showcase" />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content="We all have a story, tell yours" />
-        <meta property="og:image" content={image} />
-
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://www.oustro.xyz/showcase" />
-        <meta property="twitter:title" content={title} />
-        <meta property="twitter:description" content="We all have a story, tell yours" />
-        <meta property="twitter:image" content={image} />
-      </Head>
       {theData ? (
         <>
+          <Head>
+            <title>{theNFT.name} on Oustro</title>
+          </Head>
           <div className="mint-container">
             {user ? (
               <Link href={{pathname: '/[id]', query: { id: router.query.id }}}>   
@@ -213,15 +198,3 @@ function Index({ title, image }) {
     </div>
   )
 }
-
-Index.getInitialProps = async (ctx) => {
-  const web32 = new Web3(new Web3.providers.HttpProvider("https://polygon-mainnet.infura.io/v3/60bdb9f399554311a48b69ff2faefc8f"))
-  const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
-  const contract = new web32.eth.Contract(abi, contractAddress);
-  const nft = await contract.methods.getNFTbyId(parseInt(ctx.query.id)).call();
-  const response = await fetch(nft[0]);
-  const data = await response.json();
-  return { title: data.name, image: data.image }
-}
-
-export default Index
