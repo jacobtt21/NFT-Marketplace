@@ -37,6 +37,7 @@ function Index({ title, image }) {
   return (
     <div>
       <Head>
+        <title>{title} on Oustro</title>
         <meta name="title" content={title} />
         <meta name="description" content="We all have a story, tell yours" />
 
@@ -54,9 +55,6 @@ function Index({ title, image }) {
       </Head>
       {theData ? (
         <>
-          <Head>
-            <title>{theNFT.name} on Oustro</title>
-          </Head>
           <div className="mint-container">
             {user ? (
               <Link href={{pathname: '/[id]', query: { id: router.query.id }}}>   
