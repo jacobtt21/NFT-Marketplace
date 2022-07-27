@@ -53,7 +53,7 @@ export default function Index() {
     let verify = [];
 
     var i = 0;
-    for (i = 0; i < tokenURIs.length; ++i) {
+    for (i = tokenURIs.length - 1; i >= 0; --i) {
       prices[i] = tokenURIs[i][2];
       onMarket[i] = tokenURIs[i][6];
       nums[i] = tokenURIs[i][5];
