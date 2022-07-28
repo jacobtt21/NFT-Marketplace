@@ -42,7 +42,7 @@ export default function About() {
           className="nft-img"
           onError={(e) => (e.target.src = '/fallback.jpeg')}
           />
-          <h1>and that starts by giving them a platform to speak.</h1>
+          <h1>that starts by giving them a platform to speak.</h1>
         </div>
         <div className='holder' id="how">
           <h1>How does Oustro Work?</h1>
