@@ -4,7 +4,7 @@ import { web3 } from '../../lib/magic';
 import { UserContext } from '../../lib/UserContext';
 import { abi } from '../../contracts/abi';
 import Loading from '../../components/Loading';
-import { CallToAction, TextButton, MonochromeIcons } from '@magiclabs/ui';
+import { CallToAction, TextButton, MonochromeIcons, Linkable } from '@magiclabs/ui';
 import Link from 'next/link'
 import Head from 'next/head';
 
@@ -60,15 +60,18 @@ export default function Index() {
                     </CallToAction>
                   </Link>
                 ) : (
-                  <Link href={theNFT.work}>
-                    <a target="_blank">
+                  <Linkable>
+                    <a 
+                    target="_blank"
+                    href={theNFT.work}
+                    >
                       <CallToAction
                       color="primary"
                       >
                         Take a closer look &rarr;
                       </CallToAction>
                     </a>
-                  </Link>
+                  </Linkable>
                 )}
               </>
             )}

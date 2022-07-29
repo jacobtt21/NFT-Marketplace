@@ -3,7 +3,7 @@ import { UserContext } from '../lib/UserContext';
 import { web3 } from '../lib/magic';
 import { abi } from '../contracts/abi';
 import { create } from 'ipfs-http-client';
-import { TextField, CallToAction, useToast, HoverActivatedTooltip, TextButton, MonochromeIcons } from '@magiclabs/ui';
+import { TextField, CallToAction, useToast, HoverActivatedTooltip, Linkable, MonochromeIcons } from '@magiclabs/ui';
 import Loading from '../components/Loading';
 import algoliasearch from 'algoliasearch';
 import Link from 'next/link'
@@ -324,16 +324,19 @@ function Mint() {
                 <>
                   <br />
                   <div className='ones'>
-                    <Link href={ipfsWorkUrl}>
-                      <a target="_blank">
-                        <CallToAction
+                    <Linkable>
+                    <a 
+                    href={ipfsWorkUrl}
+                    target="_blank"
+                    >
+                      <CallToAction
                         color="primary"
                         size='sm'
                         >
                           Check Your Work &rarr;
                         </CallToAction>
                       </a>
-                    </Link>
+                    </Linkable>
                   </div>
                 </>
               )}
@@ -490,13 +493,18 @@ function Mint() {
                 </>
               )}
             </div>
-            <br />
-            By Default Works are not put on the marketplace, this can be changed in
-            'Your Collection' tab.
-            <br />
-            <br />
-            <br />
-            <br />
+            <div className='checkbox'>
+              By publishing you certifiy that you have read and understood the&nbsp; 
+                <Linkable>
+                  <a 
+                  href="/"
+                  target="_blank"
+                  >
+                    code of conduct
+                  </a>
+                </Linkable>
+                &nbsp;for works published on Oustro
+            </div>
             <div className='yeet'>
               <CallToAction
               color="primary"
@@ -515,7 +523,7 @@ function Mint() {
                 {txHash && (
                   <>
                     <div className='name'>
-                      Thank you for your contribution to the Oustro Library of Work!
+                      Thank you for your contribution to the Oustro Library of Work! 
                     </div>
                     <br />
                     <br />
@@ -524,8 +532,9 @@ function Mint() {
                     size="sm"
                     outline="none"
                     onPress={copyLink}
+                    leadingIcon={MonochromeIcons.Copy}
                     >
-                      Share your NFT using this link
+                      Share your work using this link
                     </CallToAction>
                   </>
                 )}
@@ -553,9 +562,15 @@ function Mint() {
         .info {
           magrin: 20px;
         }
+
+        .checkbox {
+          text-align: center;
+          margin-bottom: 25px;
+          margin-top: 35px;
+        }
       
         .mint-container {
-          max-width: 400px;
+          max-width: 489px;
           text-align: left;
           margin: 0 auto;
           padding: 40px;
@@ -596,6 +611,10 @@ function Mint() {
         }
         .name {
           margin-top: 10px;
+          text-align: center;
+        }
+        .name3 {
+          margin-top: 40px;
           text-align: center;
         }
       `}</style>

@@ -4,7 +4,7 @@ import { magic, web3 } from '../lib/magic';
 import Link from 'next/link';
 import Router from 'next/router';
 import { useRouter } from 'next/router';
-import { CallToAction, TextButton, useToast, HoverActivatedTooltip, MonochromeIcons } from '@magiclabs/ui';
+import { CallToAction, TextButton, useToast, HoverActivatedTooltip, MonochromeIcons, Linkable } from '@magiclabs/ui';
 
 const Header = () => {
   const [user, setUser] = useContext(UserContext);
@@ -201,15 +201,18 @@ const Header = () => {
                         </CallToAction>
                       </HoverActivatedTooltip.Anchor>
                       <HoverActivatedTooltip.Content>
-                        <Link href="https://reveal.magic.link/oustro">
-                              <a target="_blank">
-                                <TextButton
-                                leadingIcon={MonochromeIcons.Fingerprint}
-                                size='md'>
-                                  Reveal Secret Key
-                                </TextButton>
-                              </a>
-                        </Link>
+                        <Linkable>
+                          <a 
+                          target="_blank"
+                          href="https://reveal.magic.link/oustro"
+                          >
+                            <TextButton
+                            leadingIcon={MonochromeIcons.Fingerprint}
+                            size='md'>
+                              Reveal Secret Key
+                            </TextButton>
+                          </a>
+                        </Linkable>
                       </HoverActivatedTooltip.Content>
                     </HoverActivatedTooltip>
                   </li>

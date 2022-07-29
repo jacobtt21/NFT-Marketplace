@@ -4,7 +4,7 @@ import { UserContext } from '../lib/UserContext';
 import { web3 } from '../lib/magic';
 import { abi } from '../contracts/abi';
 import Loading from '../components/Loading';
-import { TextField, CallToAction, useToast, TextButton, MonochromeIcons } from '@magiclabs/ui';
+import { TextField, CallToAction, useToast, TextButton, MonochromeIcons, Linkable } from '@magiclabs/ui';
 import Link from 'next/link'
 import * as Panelbear from "@panelbear/panelbear-js";
 import Head from 'next/head';
@@ -206,15 +206,17 @@ export default function Index() {
             <title>{theNFT.name} | Oustro</title>
           </Head>
           <div className="mint-container">
-            <Link href={theNFT.work}>
-              <a target="_blank">
+            <Linkable>
+              <a 
+              href={theNFT.work}
+              target="_blank">
                 <CallToAction
                 color="primary"
                 >
                   Take me to the work &rarr;
                 </CallToAction>
               </a>
-            </Link>
+            </Linkable>
             {theData.verify === '0' ? (
               <h1>{theNFT.name}</h1>
             ) : theData.verify === '1' ? (
@@ -285,17 +287,20 @@ export default function Index() {
                 { theData.rating } / 5 Rating
               </CallToAction>
             </div>
-            { theNFT.socialLink !== '' && (
+            {theNFT.socialLink !== '' && (
               <div className='name'>
-                <Link href={theNFT.socialLink}>
-                  <a target="_blank">
+                <Linkable>
+                  <a 
+                  target="_blank"
+                  href={theNFT.socialLink}
+                  >
                     <CallToAction
                     color="primary"
                     >
                       Take me to the community &rarr;
                     </CallToAction>
                   </a>
-                </Link>
+                </Linkable>
               </div>
             )}
             {theNFT.creator !== user.publicAddress ? (
