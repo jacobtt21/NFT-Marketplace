@@ -79,7 +79,7 @@ export default function Index() {
           k += 1;
           }
         }
-        if (j < 8) {
+        if (j < 8 && Math.random() < 0.5) {
           pricesRG.push(uriList[uriList.length - 1 - i][2]);
           verifiedRG.push(uriList[uriList.length - 1 - i][7]);
           onMarketRG.push(uriList[uriList.length - 1 - i][6]);

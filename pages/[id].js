@@ -64,7 +64,7 @@ export default function Index() {
     var j = 0;
     for (i = uriList.length - 1; i >= 0; --i) {
       if (uriList[i][8]) {
-        if (j < 4) {
+        if (j < 4 && Math.random() < 0.5) {
           prices.push(uriList[i][2]);
           verified.push(uriList[i][7]);
           onMarket.push(uriList[i][6]);
@@ -255,7 +255,7 @@ export default function Index() {
           </Head>
           <div className="mint-container">
             <div className='align'>
-              <div>
+              <div className='whwa'>
               <img
               src={theNFT.image}
               className="nft-img2"
@@ -342,9 +342,8 @@ export default function Index() {
                     (Price + Gas)
                   </div>
                 ) : (
-                  <div className="name23">
-                    This work is currently not for sale
-                  </div>
+                  <>
+                  </>
                 )
               ) : (
                 <div className="name23">
@@ -466,11 +465,18 @@ export default function Index() {
                   <br />
                   <TextButton
                     disabled={disabled}
-                    color="primary"
-                    size="md"
+                    size="lg"
                     onClick={addRating}
                     >
-                      Submit a rating of {newRating} for 2.5 MATIC
+                      Submit a rating of&nbsp;
+                      <CallToAction
+                      disabled={disabled}
+                      size="md"
+                      onClick={addRating}
+                      >
+                       {newRating}
+                      </CallToAction> 
+                      &nbsp;for 2.5 MATIC
                   </TextButton>
                   {msg && (
                     <>
@@ -510,6 +516,17 @@ export default function Index() {
               font-size: 38px;
               margin: 20px;
               min-height: 28px;
+            }
+
+            .whwa {
+              padding: 40px;
+              border-radius: 30px;
+              border: 1px solid #f9f9f9;
+              box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 16px;
+            }
+
+            .hsd {
+              text-align: center
             }
 
             h2 {
