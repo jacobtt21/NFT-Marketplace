@@ -30,11 +30,14 @@ export default function Index() {
   const { createToast } = useToast();
 
   useEffect(() => {
+    if (!router.query.id) {
+      return;
+    }
     if (!user) {
       return;
     }
     getMyNFT();
-  }, [user]);
+  }, [user, router.query.id]);
 
   const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
   const contract = new web3.eth.Contract(abi, contractAddress);
