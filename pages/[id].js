@@ -4,10 +4,11 @@ import { UserContext } from '../lib/UserContext';
 import { web3 } from '../lib/magic';
 import { abi } from '../contracts/abi';
 import Loading from '../components/Loading';
-import { TextField, CallToAction, useToast, TextButton, MonochromeIcons, Linkable } from '@magiclabs/ui';
+import { CallToAction, useToast, TextButton, MonochromeIcons, Linkable } from '@magiclabs/ui';
 import Link from 'next/link'
 import * as Panelbear from "@panelbear/panelbear-js";
 import Head from 'next/head';
+import Grid from '../components/Grid';
 
 
 export default function Index() {
@@ -16,9 +17,16 @@ export default function Index() {
   const router = useRouter();
   const [theNFT, setTheNFT] = useState();
   const [theData, setTheData] = useState();
-  const [newRating, setNewRating] = useState();
+  const [newRating, setNewRating] = useState('--');
   const [msg, setMsg] = useState(false);
   const [msg1, setMsg1] = useState(false);
+  const [allNFTs, setAllNFTs] = useState([]);
+  const [allPrices, setAllPrices] = useState();
+  const [allNums, setAllNums] = useState();
+  const [allStars, setAllStars] = useState();
+  const [allStatus, setAllStatus] = useState();
+  const [allVerify, setAllVerify] = useState();
+  const [loading, setLoading] = useState(false);
   const { createToast } = useToast();
 
   useEffect(() => {
@@ -37,6 +45,43 @@ export default function Index() {
     const data = await response.json();
     setTheNFT(data);
     setTheData(nft);
+
+    setLoading(true);
+
+    const uriList = await contract.methods.getEverything().call();
+
+    let prices = [];
+    let onMarket = [];
+    let nums = [];
+    let stars = [];
+    let nfts = [];
+    let verified = [];
+
+    var i = 0;
+    var j = 0;
+    for (i = uriList.length - 1; i >= 0; --i) {
+      if (uriList[i][8]) {
+        if (j < 4) {
+          prices.push(uriList[i][2]);
+          verified.push(uriList[i][7]);
+          onMarket.push(uriList[i][6]);
+          nums.push(uriList[i][5])
+          stars.push(uriList[i][4]);
+          const response = await fetch(uriList[i][0]);
+          const data = await response.json();
+          nfts.push(data);
+          j += 1;
+        }
+      }
+    }
+
+    setAllNFTs(nfts);
+    setAllPrices(prices);
+    setAllStatus(onMarket);
+    setAllNums(nums);
+    setAllStars(stars);
+    setAllVerify(verified);
+    setLoading(false);
   };
 
   const addRating = async () => {
@@ -46,13 +91,13 @@ export default function Index() {
     if (errorsFound) {
       return setDisabled(false);
     }
-    if (parseInt(newRating) > 5 || parseInt(newRating) < 0) {
+    if (newRating === '--') {
       createToast({
-        message: 'Rating must be between 0 - 5',
+        message: 'Please select a number',
         type: 'error',
         lifespan: 2000,
       });
-      setNewRating('');
+      setNewRating('--');
       setMsg(false);
       return setDisabled(false);
     }
@@ -185,7 +230,7 @@ export default function Index() {
       }
     }
     else if (val === 2) {
-      if (MaticBalance < parseFloat(web3.utils.fromWei(theData.price)) + 0.001) {
+      if (MaticBalance < parseFloat(web3.utils.fromWei(theData.price)) + 0.5) {
         createToast({
           message: 'MATIC Balance Too Low to Buy this Work',
           type: 'error',
@@ -206,171 +251,220 @@ export default function Index() {
             <title>{theNFT.name} | Oustro</title>
           </Head>
           <div className="mint-container">
-            <Linkable>
-              <a 
-              href={theNFT.work}
-              target="_blank">
+            <div className='align'>
+              <img
+              src={theNFT.image}
+              className="nft-img2"
+              onError={(e) => (e.target.src = '/fallback.jpeg')}
+              /> 
+              <div>
+              {theData.verify === '0' ? (
+                <h1>{theNFT.name}</h1>
+              ) : theData.verify === '1' ? (
+                <h1>
+                  <Link href="/verify">
+                    <TextButton
+                    leadingIcon={MonochromeIcons.SuccessFilled}
+                    color="primary"
+                    outline="none"
+                    size='lg'
+                    >
+                    </TextButton>
+                  </Link>
+                  {theNFT.name}
+                </h1>
+              ) : theData.verify === '2' ? (
+                <h1>
+                  <Link href="/mistake">
+                    <TextButton
+                    leadingIcon={MonochromeIcons.AsteriskBold}
+                    color="primary"
+                    outline="none"
+                    >
+                    </TextButton>
+                  </Link>
+                  {theNFT.name}
+                </h1>
+              ) : (
+                <h1>
+                  <Link href="/warning">
+                    <TextButton
+                    leadingIcon={MonochromeIcons.Exclaim}
+                    color="primary"
+                    outline="none"
+                    >
+                    </TextButton>
+                  </Link>
+                  {theNFT.name}
+                </h1>
+              )}
+              <Linkable>
+                <a 
+                href={theNFT.work}
+                target="_blank">
+                  <CallToAction
+                  color="primary"
+                  size='lg'
+                  >
+                    Take me to the work &rarr;
+                  </CallToAction>
+                </a>
+              </Linkable>
+              <h3>created by</h3>
+              <Link href={{pathname: '/u/[user]', query: { user: theNFT.creator }}}>
+                <TextButton
+                size='md'
+                >
+                  {theNFT.creator.substring(0, 12)}...{theNFT.creator.substring(38)}
+                </TextButton>
+              </Link>
+              <br />           
+              <div className='name'>
                 <CallToAction
                 color="primary"
+                size="lg"
+                outline="none"
                 >
-                  Take me to the work &rarr;
+                  { theData.rating } / 5 Rating
                 </CallToAction>
-              </a>
-            </Linkable>
-            {theData.verify === '0' ? (
-              <h1>{theNFT.name}</h1>
-            ) : theData.verify === '1' ? (
-              <h1>
-                <Link href="/verify">
-                  <TextButton
-                  leadingIcon={MonochromeIcons.SuccessFilled}
-                  color="primary"
-                  outline="none"
-                  >
-                  </TextButton>
-                </Link>
-                {theNFT.name}
-              </h1>
-            ) : theData.verify === '2' ? (
-              <h1>
-                <Link href="/mistake">
-                  <TextButton
-                  leadingIcon={MonochromeIcons.AsteriskBold}
-                  color="primary"
-                  outline="none"
-                  >
-                  </TextButton>
-                </Link>
-                {theNFT.name}
-              </h1>
-            ) : (
-              <h1>
-                <Link href="/warning">
-                  <TextButton
-                  leadingIcon={MonochromeIcons.Exclaim}
-                  color="primary"
-                  outline="none"
-                  >
-                  </TextButton>
-                </Link>
-                {theNFT.name}
-              </h1>
-            )}
-            <h3>created by</h3>
-            <Link href={{pathname: '/u/[user]', query: { user: theNFT.creator }}}>
-              <TextButton>
-                {theNFT.creator.substring(0, 12)}...{theNFT.creator.substring(38)}
-              </TextButton>
-            </Link>
-            <br />            
-            <br />
-            <h3>
-              <TextButton
-              color='tertiary'>
-              <img className="image-logo" src="/p2.svg" />
-              {web3.utils.fromWei(theData.price)} MATIC
-              </TextButton>
-            </h3>
-            <br />        
-            <img
-            src={theNFT.image}
-            width={300}
-            className="nft-img"
-            onError={(e) => (e.target.src = '/fallback.jpeg')}
-            />    
-            <div className='name'>
-              <CallToAction
-              color="primary"
-              size="sm"
-              outline="none"
-              >
-                { theData.rating } / 5 Rating
-              </CallToAction>
-            </div>
-            {theNFT.socialLink !== '' && (
-              <div className='name'>
-                <Linkable>
-                  <a 
-                  target="_blank"
-                  href={theNFT.socialLink}
-                  >
-                    <CallToAction
-                    color="primary"
+              </div>
+              {theNFT.socialLink !== '' && (
+                <div className='name'>
+                  <Linkable>
+                    <a 
+                    target="_blank"
+                    href={theNFT.socialLink}
                     >
-                      Take me to the community &rarr;
-                    </CallToAction>
-                  </a>
-                </Linkable>
-              </div>
-            )}
-            {theNFT.creator !== user.publicAddress ? (
-              <div className="name">            
-                <TextField
-                disabled={disabled}
-                placeholder="Give this work a rating (on a scale to 0 - 5)"
-                type="number"
-                max="5"
-                min="0"
-                onChange={(e) => setNewRating(e.target.value)}
-                value={newRating}
-                />
-                <br />
-                <TextButton
-                  disabled={disabled}
-                  color="primary"
-                  size="sm"
-                  onClick={addRating}
-                  >
-                    Submit Your Rating for 2.5 MATIC
-                </TextButton>
-                {msg && (
-                  <>
-                    <br />
-                    <br />
-                    Give us a sec, we're explaining to the smart contract why you gave it this rating...it's very curious
-                  </>
-                )}
-              </div>
-            ) : (
-              <>
-                <div className="name">
-                  As the Creator of this Work, you can't rate it!
+                      <CallToAction
+                      color="primary"
+                      size='lg'
+                      >
+                        Take me to the community &rarr;
+                      </CallToAction>
+                    </a>
+                  </Linkable>
                 </div>
-              </>
-            )}        
-            {(theData.owner).toUpperCase() !== (user.publicAddress).toUpperCase() ?
-              (theData.onMarket ? (
-                <div className="name">
+              )}
+              {theNFT.creator !== user.publicAddress ? (
+                <div className="name"> 
+                <h2>Rate {theNFT.name}</h2>           
                   <CallToAction
-                  disabled={disabled}
-                  color="primary"
-                  size="sm"
-                  onClick={buy}
-                  >
-                    Buy this work for { (parseFloat(web3.utils.fromWei(theData.price)) + 0.001 )} MATIC
+                    disabled={disabled}
+                    style={{
+                      margin: 10
+                    }}
+                    size='lg'
+                    onClick={() => setNewRating("0")}
+                    >
+                      0
+                  </CallToAction>
+                  <CallToAction
+                    disabled={disabled}
+                    style={{
+                      margin: 10
+                    }}
+                    size='lg'
+                    onClick={() => setNewRating("1")}
+                    >
+                      1
+                  </CallToAction>
+                  <CallToAction
+                    disabled={disabled}
+                    style={{
+                      margin: 10
+                    }}
+                    size='lg'
+                    onClick={() => setNewRating("2")}
+                    >
+                      2
+                  </CallToAction>
+                  <CallToAction
+                    disabled={disabled}
+                    style={{
+                      margin: 10
+                    }}
+                    size='lg'
+                    onClick={() => setNewRating("3")}
+                    >
+                      3
+                  </CallToAction>
+                  <CallToAction
+                    disabled={disabled}
+                    style={{
+                      margin: 10
+                    }}
+                    size='lg'
+                    onClick={() => setNewRating("4")}
+                    >
+                      4
+                  </CallToAction>
+                  <CallToAction
+                    disabled={disabled}
+                    style={{
+                      margin: 10
+                    }}
+                    size='lg'
+                    onClick={() => setNewRating("5")}
+                    >
+                      5
                   </CallToAction>
                   <br />
                   <br />
-                  (Price + Gas)
+                  <TextButton
+                    disabled={disabled}
+                    color="primary"
+                    size="lg"
+                    onClick={addRating}
+                    >
+                      Submit a rating of {newRating} for 2.5 MATIC
+                  </TextButton>
+                  {msg && (
+                    <>
+                      <br />
+                      <br />
+                      Give us a sec, we're explaining to the smart contract why you gave it this rating...it's very curious
+                    </>
+                  )}
                 </div>
               ) : (
+                <>
+                  <div className="name">
+                    As the Creator of this Work, you can't rate it!
+                  </div>
+                </>
+              )}        
+              {(theData.owner).toUpperCase() !== (user.publicAddress).toUpperCase() ?
+                (theData.onMarket ? (
+                  <div className="name">
+                    <CallToAction
+                    disabled={disabled}
+                    color="primary"
+                    size="lg"
+                    onClick={buy}
+                    >
+                      Buy this work for { (parseFloat(web3.utils.fromWei(theData.price)) + 0.5 )} MATIC
+                    </CallToAction>
+                    <br />
+                    <br />
+                    (Price + Gas)
+                  </div>
+                ) : (
+                  <div className="name">
+                    This work is currently not for sale
+                  </div>
+                )
+              ) : (
                 <div className="name">
-                  This NFT is currently not for sale
+                  You own this work
                 </div>
-              )
-            ) : (
-              <div className="name">
-                You own this NFT
-              </div>
-            )}
-            {msg1 && (
-              <>
-                <br />
-                Give us a moment to get this wrapping paper on right before you hand it off to you...
-              </>
-            )}
-          </div>
-          <div className='name'>
+              )}
+              {msg1 && (
+                <>
+                  <br />
+                  Give us a moment to get this wrapping paper on right before you hand it off to you...
+                </>
+              )}
+              <div className='name'>
             <Link href={{pathname: '/contact/[id]', query: { id: router.query.id }}}>
               <TextButton
               color="error"
@@ -379,26 +473,51 @@ export default function Index() {
               </TextButton>
             </Link>
           </div>
+              </div>
+            </div>
+          </div>
+          <div className='name2'>
+            <h2>More works we thing you'd like</h2>
+          </div>
+          <Grid loading={loading} nfts={allNFTs} prices={allPrices} statuses={allStatus} type={true} stars={allStars} nums={allNums} go={true} takeAway={true} checkmark={allVerify} />
           <br />
-
           <style>{`
             h1 {
               font-weight: bold;
-              font-size: 28px;
+              font-size: 38px;
               margin: 20px;
               min-height: 28px;
             }
+
+            h2 {
+              font-weight: bold;
+              font-size: 25px;
+              margin: 20px;
+            }
+
+            TextButton {
+              font-size: 25px;
+            }
                 
+            .align {
+              padding: 20px;
+              display: grid;
+              grid-gap: 20px;
+              grid-template-columns: 2fr 2fr;
+              margin-bottom: 30px;
+              margin-top: 0px;
+              align-items: center;
+            }
             .mint-container {
-              max-width: 400px;
               text-align: center;
               margin: 0 auto;
               padding: 40px;
               border-radius: 30px;
-              border: 1px solid #f9f9f9;
-              box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 16px;
             }
-
+            h3 {
+              margin-top: 20px;
+              font-size: 20px;
+            }
             input[type=file], .image-preview {
               display: block;
               margin: 20px 5px;
@@ -416,19 +535,19 @@ export default function Index() {
               max-width: 25px;
             }
 
-            .nft-img {
-              max-width: 400px;
-              max-height: 400px;
+            .nft-img2 {
+              max-width: 600px;
+              max-height: 600px;
               cursor: pointer;
               border-radius: 15px;
             }
                     
             .name {
-              margin-top: 40px;
+              margin-top: 30px;
               text-align: center;
             }
             .name2 {
-              margin-top: 8px;
+              margin-top: -30px;
               text-align: center;
             }
           `}</style>
