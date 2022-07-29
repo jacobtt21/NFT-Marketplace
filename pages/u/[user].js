@@ -45,11 +45,11 @@ export default function Index() {
 
     for (i = tokenURIs.length - 1; i >= 0; --i) {
       if (tokenURIs[i]["show"]) {
-        prices[i] = tokenURIs[i][2];
-        onMarket[i] = tokenURIs[i][6];
-        nums[i] = tokenURIs[i][5];
-        stars[i] = tokenURIs[i][4];
-        verify[i] = tokenURIs[i][7];
+        prices.push(tokenURIs[i][2]);
+        onMarket.push(tokenURIs[i][6]);
+        nums.push(tokenURIs[i][5]);
+        stars.push(tokenURIs[i][4]);
+        verify.push(tokenURIs[i][7]);
         const response = await fetch(tokenURIs[i].data);
         const data = await response.json();
         nfts.push(data);

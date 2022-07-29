@@ -386,13 +386,17 @@ export default function Index() {
               </div>
               {theNFT.creator !== user.publicAddress ? (
                 <div className="name23"> 
-                  <h2>Rate {theNFT.name}</h2>           
+                  <h2>Add a rating for {theNFT.name}</h2>           
                   <CallToAction
                     disabled={disabled}
                     style={{
                       margin: 10
                     }}
-                    color="error"
+                    color={
+                      newRating === '1'
+                      ? 'primary'
+                      : 'secondary'
+                    }
                     size='lg'
                     onClick={() => setNewRating("1")}
                     >
@@ -403,7 +407,11 @@ export default function Index() {
                     style={{
                       marginRight: 10
                     }}
-                    color="warning"
+                    color={
+                      newRating === '2'
+                      ? 'primary'
+                      : 'secondary'
+                    }
                     size='lg'
                     onClick={() => setNewRating("2")}
                     >
@@ -415,7 +423,11 @@ export default function Index() {
                       margin: 10
                     }}
                     size='lg'
-                    color="tertiary"
+                    color={
+                      newRating === '3'
+                      ? 'primary'
+                      : 'secondary'
+                    }
                     onClick={() => setNewRating("3")}
                     >
                       3
@@ -425,6 +437,11 @@ export default function Index() {
                     style={{
                       marginLeft: 10
                     }}
+                    color={
+                      newRating === '4'
+                      ? 'primary'
+                      : 'secondary'
+                    }
                     size='lg'
                     onClick={() => setNewRating("4")}
                     >
@@ -435,7 +452,11 @@ export default function Index() {
                     style={{
                       margin: 10
                     }}
-                    color='success'
+                    color={
+                      newRating === '5'
+                      ? 'primary'
+                      : 'secondary'
+                    }
                     size='lg'
                     onClick={() => setNewRating("5")}
                     >
