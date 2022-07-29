@@ -255,11 +255,28 @@ export default function Index() {
           </Head>
           <div className="mint-container">
             <div className='align'>
+              <div>
               <img
               src={theNFT.image}
               className="nft-img2"
               onError={(e) => (e.target.src = '/fallback.jpeg')}
+              style={{
+                marginBottom: 20
+              }}
               /> 
+              <Linkable>
+                <a 
+                href={theNFT.work}
+                target="_blank">
+                  <CallToAction
+                  color="primary"
+                  size='lg'
+                  >
+                    Take me to the work &rarr;
+                  </CallToAction>
+                </a>
+              </Linkable>
+              </div>
               <div>
               {theData.verify === '0' ? (
                 <h1>{theNFT.name}</h1>
@@ -301,18 +318,6 @@ export default function Index() {
                   {theNFT.name}
                 </h1>
               )}
-              <Linkable>
-                <a 
-                href={theNFT.work}
-                target="_blank">
-                  <CallToAction
-                  color="primary"
-                  size='lg'
-                  >
-                    Take me to the work &rarr;
-                  </CallToAction>
-                </a>
-              </Linkable>
               <h3>created by</h3>
               <Link href={{pathname: '/u/[user]', query: { user: theNFT.creator }}}>
                 <TextButton
@@ -321,18 +326,39 @@ export default function Index() {
                   {theNFT.creator.substring(0, 12)}...{theNFT.creator.substring(38)}
                 </TextButton>
               </Link>
-              <br />           
-              <div className='name'>
-                <CallToAction
-                color="primary"
-                size="lg"
-                outline="none"
-                >
-                  { theData.rating } / 5 Rating
-                </CallToAction>
-              </div>
+              {(theData.owner).toUpperCase() !== (user.publicAddress).toUpperCase() ?
+                (theData.onMarket ? (
+                  <div className="name23">
+                    <CallToAction
+                    disabled={disabled}
+                    color="primary"
+                    size="lg"
+                    onClick={buy}
+                    >
+                      Buy this work for { (parseFloat(web3.utils.fromWei(theData.price)) + 0.5 )} MATIC
+                    </CallToAction>
+                    <br />
+                    <br />
+                    (Price + Gas)
+                  </div>
+                ) : (
+                  <div className="name23">
+                    This work is currently not for sale
+                  </div>
+                )
+              ) : (
+                <div className="name23">
+                  You own this work
+                </div>
+              )}
+              {msg1 && (
+                <>
+                  <br />
+                  Give us a moment to get this wrapping paper on right before you hand it off to you...
+                </>
+              )}
               {theNFT.socialLink !== '' && (
-                <div className='name'>
+                <div className='name23'>
                   <Linkable>
                     <a 
                     target="_blank"
@@ -348,24 +374,25 @@ export default function Index() {
                   </Linkable>
                 </div>
               )}
+              <br />           
+              <div className='name23'>
+                <CallToAction
+                color="primary"
+                size="lg"
+                outline="none"
+                >
+                  { theData.rating } / 5 Rating
+                </CallToAction>
+              </div>
               {theNFT.creator !== user.publicAddress ? (
-                <div className="name"> 
-                <h2>Rate {theNFT.name}</h2>           
+                <div className="name23"> 
+                  <h2>Rate {theNFT.name}</h2>           
                   <CallToAction
                     disabled={disabled}
                     style={{
                       margin: 10
                     }}
-                    size='lg'
-                    onClick={() => setNewRating("0")}
-                    >
-                      0
-                  </CallToAction>
-                  <CallToAction
-                    disabled={disabled}
-                    style={{
-                      margin: 10
-                    }}
+                    color="error"
                     size='lg'
                     onClick={() => setNewRating("1")}
                     >
@@ -374,8 +401,9 @@ export default function Index() {
                   <CallToAction
                     disabled={disabled}
                     style={{
-                      margin: 10
+                      marginRight: 10
                     }}
+                    color="warning"
                     size='lg'
                     onClick={() => setNewRating("2")}
                     >
@@ -387,6 +415,7 @@ export default function Index() {
                       margin: 10
                     }}
                     size='lg'
+                    color="tertiary"
                     onClick={() => setNewRating("3")}
                     >
                       3
@@ -394,7 +423,7 @@ export default function Index() {
                   <CallToAction
                     disabled={disabled}
                     style={{
-                      margin: 10
+                      marginLeft: 10
                     }}
                     size='lg'
                     onClick={() => setNewRating("4")}
@@ -406,6 +435,7 @@ export default function Index() {
                     style={{
                       margin: 10
                     }}
+                    color='success'
                     size='lg'
                     onClick={() => setNewRating("5")}
                     >
@@ -416,7 +446,7 @@ export default function Index() {
                   <TextButton
                     disabled={disabled}
                     color="primary"
-                    size="lg"
+                    size="md"
                     onClick={addRating}
                     >
                       Submit a rating of {newRating} for 2.5 MATIC
@@ -431,43 +461,12 @@ export default function Index() {
                 </div>
               ) : (
                 <>
-                  <div className="name">
+                  <div className="name23">
                     As the Creator of this Work, you can't rate it!
                   </div>
                 </>
               )}        
-              {(theData.owner).toUpperCase() !== (user.publicAddress).toUpperCase() ?
-                (theData.onMarket ? (
-                  <div className="name">
-                    <CallToAction
-                    disabled={disabled}
-                    color="primary"
-                    size="lg"
-                    onClick={buy}
-                    >
-                      Buy this work for { (parseFloat(web3.utils.fromWei(theData.price)) + 0.5 )} MATIC
-                    </CallToAction>
-                    <br />
-                    <br />
-                    (Price + Gas)
-                  </div>
-                ) : (
-                  <div className="name">
-                    This work is currently not for sale
-                  </div>
-                )
-              ) : (
-                <div className="name">
-                  You own this work
-                </div>
-              )}
-              {msg1 && (
-                <>
-                  <br />
-                  Give us a moment to get this wrapping paper on right before you hand it off to you...
-                </>
-              )}
-              <div className='name'>
+              <div className='name23'>
             <Link href={{pathname: '/contact/[id]', query: { id: router.query.id }}}>
               <TextButton
               color="error"
@@ -545,7 +544,7 @@ export default function Index() {
               border-radius: 15px;
             }
                     
-            .name {
+            .name23 {
               margin-top: 30px;
               text-align: center;
             }
