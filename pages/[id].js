@@ -405,7 +405,7 @@ export default function Index() {
                   <CallToAction
                     disabled={disabled}
                     style={{
-                      marginRight: 10
+                      margin: 10
                     }}
                     color={
                       newRating === '2'
@@ -435,7 +435,7 @@ export default function Index() {
                   <CallToAction
                     disabled={disabled}
                     style={{
-                      marginLeft: 10
+                      margin: 10
                     }}
                     color={
                       newRating === '4'
