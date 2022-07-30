@@ -37,6 +37,9 @@ function MyApp({ Component, pageProps }) {
           else if (router.pathname === '/u/[user]') {
             
           }
+          else if (router.pathname === '/code') {
+            
+          }
           else if (router.pathname === '/contact') {
             router.push('/login?id=contact')
           }
