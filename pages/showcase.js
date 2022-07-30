@@ -1,4 +1,4 @@
-import { CallToAction, TextButton, MonochromeIcons } from '@magiclabs/ui';
+import { CallToAction, TextButton, Linkable } from '@magiclabs/ui';
 import { useState } from 'react';
 import Typical from 'react-typical'
 import Link from "next/link";
@@ -224,22 +224,44 @@ export default function About() {
               Resouces
             </h5>
             <h5>
-              Press
+              <a 
+              href="/login?id=contact"
+              target="_blank"
+              >
+                Press
+              </a>
             </h5>
             <h5>
-              Help Center
+              <a 
+              href="https://oustro.zendesk.com/hc/en-us"
+              target="_blank"
+              >
+                Help Center
+              </a>
             </h5>
             <h5>
-              Legal
+              <a 
+              href="/code"
+              target="_blank"
+              >
+                Legal
+              </a>
             </h5>
             <h5>
-              Ads
+              <a 
+              href="https://discord.gg/V3k3uRDy"
+              target="_blank"
+              >
+                Community
+              </a>
             </h5>
             <h5>
-              Community
-            </h5>
-            <h5>
-              Status
+            <a 
+              href="https://oustro.statuspage.io/"
+              target="_blank"
+              >
+                Status
+              </a>
             </h5>
           </div> 
           <div>
@@ -247,19 +269,36 @@ export default function About() {
               Company
             </h5>
             <h5>
-              Press Kit
+              <a 
+              href="/"
+              target="_blank"
+              >
+                Blog
+              </a>
             </h5>
             <h5>
-              Blog
+              <a 
+              href="/"
+              target="_blank"
+              >
+                Careers
+              </a>
             </h5>
             <h5>
-              Careers
+              <a 
+              href="https://linktr.ee/oustro"
+              target="_blank"
+              >
+                Social Media
+              </a>
             </h5>
             <h5>
-              Contact Us
-            </h5>
-            <h5>
-              Social Media
+              <a 
+                href="/contact"
+                target="_blank"
+                >
+                  Contact
+                </a>
             </h5>
           </div> 
           <div>
@@ -274,9 +313,6 @@ export default function About() {
             </h5>
             <h5>
               Oustro Orginals
-            </h5>
-            <h5>
-              Daffy Magazine
             </h5>
           </div> 
           <div>
@@ -303,6 +339,20 @@ export default function About() {
         }
         .howU {
           font-weight: bold;
+        }
+        a {
+          color: black;
+          background-color: transparent;
+          text-decoration: none;
+          transition: 0.3s;
+          font-family: 'Poppins', sans-serif;
+          font-size: 15px;
+        }
+        a:hover {
+          transition: 0.3s;
+          color: #6851FF;
+          background-color: transparent;
+          text-decoration: underline;
         }
         h6 {
           font-size: 20px;
