@@ -2,10 +2,10 @@ import Link from 'next/link';
 import { TextButton, MonochromeIcons } from '@magiclabs/ui';
 
 
-export default function NFTCard({ nft }) {
+export default function NFTCard({ nft, going }) {
   return (
     <>
-      <Link href={{pathname: "/s/[id]", query: { id: nft.tokenID }}}>
+      <Link href={going ? {pathname: "/s/[id]", query: { id: nft.tokenID }} : "/showcase"}>
           <div className="card">
             <div className="nft-img-container">
               <img

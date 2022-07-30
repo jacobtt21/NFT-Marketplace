@@ -2,7 +2,19 @@ import NFTCard from './NFTCard2';
 import Link from 'next/link';
 import { Skeleton, TextButton } from '@magiclabs/ui';
 
-export default function Grid({ nfts, loading }) {
+export default function Grid({ nfts, loading, go }) {
+  if (typeof window !== 'undefined') {
+    // detect window screen width function
+    if (window.innerWidth < 1300) {
+      var i = 0;
+      let nfts3 = []
+      for (i = 0; i < 3; ++i) {
+        nfts3.push(nfts[i])
+      }
+      nfts = nfts3;
+    }
+  }
+  
   return (
     <>
       <div className="grid">
@@ -26,7 +38,7 @@ export default function Grid({ nfts, loading }) {
           nfts.map((nft, i) => {
             return (
               <div key={i}>
-                <NFTCard nft={nft} />
+                <NFTCard nft={nft} going={go}/>
               </div>
             );
           })
@@ -53,7 +65,7 @@ export default function Grid({ nfts, loading }) {
 
         @media (min-width: 980px) {
           .grid {
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
           }
         }
 

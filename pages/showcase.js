@@ -37,6 +37,36 @@ export default function About() {
         work: "https://bafybeiakxs65n7vvw6gd4urkoqbjgpji7paf4pabqn4d72rgfmd7z3ftii.ipfs.infura-ipfs.io/"
       }
     ]
+    const allNFTs2 = [
+      {
+        creator: "0x8c17bB1862B31f302e4c25bf364431f0a39614B1",
+        image: "https://raw.githubusercontent.com/Oustro/OustroImages/1c57d1dbdf5d079f453e6d5dfb8c7e6c8c14a77d/9.svg",
+        name: "Daffy",
+        tokenID: '6',
+        work: "https://bafybeie5srm3bac476dokid2sde4xqxxfthfll4uqqz2qfcowsmigw673y.ipfs.infura-ipfs.io/"
+      },
+      {
+        creator: "0x8c17bB1862B31f302e4c25bf364431f0a39614B1",
+        image: "https://ipfs.infura.io/ipfs/QmXpVk2JSnWmNKQk8jUfFTGr6AputP13shqufexzXuSauh",
+        name: "Snake",
+        tokenID: "2",
+        work: "https://bafybeickkrcva4x6egm3lx3mqdlupnvzh7o6d4zhcqgril4tmo7ebytaxq.ipfs.infura-ipfs.io/"
+      },
+      {
+        creator: "0x944e45567ce148c63fbf56870148770ef17e1dd1",
+        image: "https://ipfs.infura.io/ipfs/QmeBbjdrebR7VBBtt7QsQymXbvps3k6XasZZoVkZuUQzW3",
+        name: "The Bottle",
+        tokenID: "3",
+        work: "https://raw.githubusercontent.com/Oustro/OustroImages/1c57d1dbdf5d079f453e6d5dfb8c7e6c8c14a77d/9.svg"
+      },
+      {
+        creator: "0x33175912b347c4b3fdd861f5418d70eb4083bc47",
+        image: "https://ipfs.infura.io/ipfs/QmQDVsvkr5huFjQHfjvG8ehqhL3sRvdAsVrdUtf2n9Y5bf",
+        name: "Spaceland Synopsis",
+        tokenID: "4",
+        work: "https://bafybeihr5kms3piv26gzzzvkbqc3pqvyabwmjmltollrc3dywi6wdphakm.ipfs.infura-ipfs.io/"
+      }
+    ]
 
   return (
     <>
@@ -76,10 +106,14 @@ export default function About() {
           Check out our fully decentralized library of works. Buy and sell, support creators, and build communities around ideas.        
         </div>
         Check out some of the featured works by creators on Oustro
-        <Grid loading={loading} nfts={allNFTs} />
+        <Grid loading={loading} nfts={allNFTs} go={true} />
+        <div className='vlur'>
+          <Grid loading={loading} nfts={allNFTs2} go={false} />
+        </div>        
         <div className='Imagine'>
           <Link href="/login">
             <CallToAction
+            size='lg'
             >
               Feeling inspired?
             </CallToAction>
@@ -425,6 +459,7 @@ export default function About() {
         }
         .three9 { 
           margin-top:30px;  
+          text-align: center;
           font-size: 24px;
           font-weight:normal;
         }
@@ -433,8 +468,14 @@ export default function About() {
           text-align:center; 
           font-size: 30px;
         }
+        .vlur{
+          filter: blur(17px);
+          margin-top:-120px;
+        }
         .Imagine {
-          margin-top:-60px;
+          margin-top:-340px;
+          margin-bottom: 250px;
+          // filter: blur(5px);
         }
         img {
           width: auto,
