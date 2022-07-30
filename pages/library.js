@@ -169,7 +169,7 @@ export default function Index() {
       </Head>
       <div className='info'>
       <h1>The Complete Oustro Library</h1>
-      <p>Relax, you're here, take sometime to yourself and enjoy the work your peers have provided for you, completely free.</p>
+      <p>Relax and take your time enjoying some of the work by creators, library card not necessary.</p>
       </div>
       <InstantSearch searchClient={searchClient} indexName="Oustro">
         <CustomSearchBox />

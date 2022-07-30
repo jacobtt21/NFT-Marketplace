@@ -178,7 +178,9 @@ export default function Index() {
           <div className='banner'>
           </div>
         </Link>
-        <h4 className='what1'>Top Picks</h4>
+        <div className='huhs'>
+          <h4 className='what1'>Top Picks</h4>
+        </div>
         <h3>Here's what hot right now</h3>
         <Grid loading={loading} nfts={allTPNFTs} prices={allTPPrices} statuses={allTPStatus} type={true} stars={allTPStars} nums={allTPNums} go={true} takeAway={true} checkmark={allTPVerify} />
         <h2>In the Mood for Something?</h2>
@@ -317,7 +319,7 @@ export default function Index() {
           <Grid loading={loading} nfts={allNFTs} prices={allPrices} statuses={allStatus} type={true} stars={allStars} nums={allNums} go={true} takeAway={true} checkmark={allVerify} />
         )}
         <h2>Random Gems</h2>
-        <h3>Why not right? Who knows, you might find an all time favorite</h3>
+        <h3>Why not right?</h3>
         <Grid loading={loading} nfts={allRGNFTs} prices={allRGPrices} statuses={allRGStatus} type={true} stars={allRGStars} nums={allRGNums} go={true} takeAway={true} checkmark={allRGVerify} />
         <style>{`
             CallToAction {
@@ -331,8 +333,13 @@ export default function Index() {
               font-size: 30px;
               margin-bottom: 15px;
             }
+            .huhs {
+              margin-top: 40px;
+              border-top: 4px solid #f0f0f0;
+            }
             .what1 {
-              margin-top: 20px;
+              margin-top: 40px;
+              font-size: 30px;
             }
             .banner {
               background-image: url('https://raw.githubusercontent.com/Oustro/OustroImages/0d9b2b8c938899bb79657bcad0ed7bdd8715ad99/Banner.svg');
@@ -355,7 +362,8 @@ export default function Index() {
             }
             h2 {
                 font-weight: bold;
-                font-size: 20px;
+                font-size: 30px;
+                margin-bottom: 15px;
                 margin-top: -80px;
                 margin-left: 20px;
                 min-height: 28px;
@@ -370,6 +378,7 @@ export default function Index() {
             h3 {
                 font-weight: bold;
                 font-size: 15px;
+                margin-top: 15px;
                 margin-left: 20px;
                 min-height: 28px;
             }

@@ -50,11 +50,30 @@ export default function About() {
         />
       </Head>
       <div className='one'>
-        <div className='two'>
-          <Typical steps={['We all have a story, tell yours', 10000]} wrapper="h1"/>
+        <div className='align5'>
+          <div className='two'>
+            <Typical steps={['We all have a story. Tell us yours...', 10000]} wrapper="h1"/>
+            <div className='three9'>
+            A modern social library and marketplace that pulls together all of the expression outlets of the modern web.
+            </div>
+            <div className='three91'>
+              <Link href='/login'>
+                <CallToAction>
+                  Welcome to Oustro
+                </CallToAction>
+              </Link>
+            </div>
+          </div>
+          <div className='three'>
+            <img 
+              src="/falling.svg"
+              width="500" 
+              alt="" 
+            /> 
+          </div>
         </div>
-        <div className='three'>
-          Check out our fully decentralized library of works. Buy and sell, support creators, and build communities around ideas.
+        <div className='grow'>
+          Check out our fully decentralized library of works. Buy and sell, support creators, and build communities around ideas.        
         </div>
         Check out some of the featured works by creators on Oustro
         <Grid loading={loading} nfts={allNFTs} />
@@ -83,9 +102,9 @@ export default function About() {
           <div>
             <h4>Share Your Voice, Your Way</h4> 
             <h6>
-              The basic jist of Oustro is that we believe everyone has something to say, create, invent, and share. With that
-              we also believe that You should have a place to keep those works without fear of censorship. On Oustro, we provide a
-              platform to create and share what you want through PDFs, HTML, MP4 files all hosted on IPFS.
+              We believe everyone has something to say, create, invent, and share. We also believe that You should have a 
+              place to keep those works without fear of censorship. On Oustro, we provide a platform to create and share 
+              what you want through PDFs, HTML, MP4 files all hosted on IPFS.
             </h6>
             <br />
             <Link href="/login?id=mint">
@@ -114,9 +133,10 @@ export default function About() {
           <div>
             <h4>Buy What Moves You</h4> 
             <h6>
-              Buy what moves you, what inspires you, what gives you another perspective on the world
-              around you. Become the steward of that work, set the price, and take ownership of what
-              you feel the world needs to know about.
+              With so many works on Oustro, you're bound to find something that inspires you and 
+              gives you another perspective on the world around you. 
+              Become the steward of that work, set the price, and take ownership of what you feel the world needs to 
+              know about.
             </h6>
             <br />
             <Link href="/login?id=library">
@@ -131,8 +151,8 @@ export default function About() {
           <div>
             <h4>Support Dream(er)s</h4> 
             <h6>
-              Our creators are what make Oustro what we are. Support those who you feel have something to offer the world.
-              Each time you give a rating to a work, we'll send the creator a thank you from you, on us.
+              Our creators are what make Oustro what we are. Support them and their work by sharing and rating their work.
+              Fund them directly or through Oustro and help them pursue their calling.
             </h6>
             <br />
             <Link href="/login">
@@ -161,8 +181,8 @@ export default function About() {
           <div>
             <h4>Build Communities Around Ideas</h4> 
             <h6>
-              The great thing about written work is that it has the capabilties to make you feel a certain way and
-              make you connect with others with the same feeling, it's human nature, and we're all for it here.
+              Great things are often written down and put on display. Join us as we put our ideas out there for the world
+              and connect with what, and who, you believe in.
             </h6>
             <br />
             <Link href="/login">
@@ -293,6 +313,10 @@ export default function About() {
           margin-top: 15px;
           text-align: left;
         }
+
+        .three91 {
+          text-align: center;
+        }
         .one { 
           margin: 80px; 
           text-align:center; 
@@ -306,6 +330,18 @@ export default function About() {
           margin-bottom: 30px;
           margin-top: 0px;
           align-items: center;
+        }
+        .align5 {
+          padding: 20px;
+          display: grid;
+          grid-gap: 20px;
+          grid-template-columns: 3fr 2fr;
+          margin-bottom: 30px;
+          margin-top: 0px;
+        }
+        .grow {
+          font-size: 35px;
+          margin-bottom: 15px;
         }
         .Logos {
           border-top:1px solid #f0f0f0;
@@ -323,19 +359,24 @@ export default function About() {
         .two { 
           font-weight: bold;
           margin:20px; 
-          text-align:center; 
+          text-align:left; 
           font-size: 60px;
         }
         .three { 
           margin-bottom:15px; 
           text-align:center; 
-          font-size: 30px;
+          font-size: 25px;
         }
         .three2 { 
           margin-top:35px; 
           text-align:center; 
           font-size: 30px;
           font-weight: bold;
+        }
+        .three9 { 
+          margin-top:30px;  
+          font-size: 24px;
+          font-weight:normal;
         }
         .three3 { 
           margin-top:15px; 

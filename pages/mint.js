@@ -32,7 +32,7 @@ function Mint() {
   const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
   const contract = new web3.eth.Contract(abi, contractAddress);
 
-  const client = create('https://ipfs.infura.io:5001/api/v0');
+  const client = create('https://ipfs.infura.io:5001');
 
   const searchClient = algoliasearch(
     process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
@@ -225,12 +225,12 @@ function Mint() {
           />
         </Head>
           <h1>If only everything was as easy as publishing on Oustro</h1>
-          <h2>Make sure everything is correct, minting cannot be undone.</h2>
+          <h2>Make sure everything is correct, revisions cannot be done.</h2>
           <br />
           <div className="mint-container">
             <TextField
             disabled={disabled}
-            label="Name of your Work"
+            label="Name"
             placeholder="Give your work a great name!"
             type="text"
             onChange={(e) => setName(e.target.value)}
@@ -242,7 +242,7 @@ function Mint() {
             <TextField
             disabled={disabled}
             label="Social Links for this work (optional)"
-            placeholder="Discord, Reddit (ew), Telegram etc. (Only 1 Link)"
+            placeholder="Discord, Reddit, Telegram etc. (Only 1 Link)"
             type="text"
             onChange={(e) => setSocial(e.target.value)}
             value={social}
@@ -497,13 +497,16 @@ function Mint() {
               By publishing you certifiy that you have read and understood the&nbsp; 
                 <Linkable>
                   <a 
-                  href="/"
+                  href="/code"
                   target="_blank"
                   >
                     code of conduct
                   </a>
                 </Linkable>
-                &nbsp;for works published on Oustro
+                &nbsp;for works published on Oustro. 
+                <br />
+                <br />
+                Once published, works cannot be changed. 
             </div>
             <div className='yeet'>
               <CallToAction

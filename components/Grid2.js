@@ -32,19 +32,7 @@ export default function Grid({ nfts, loading }) {
           })
         ) : (
           <div>
-            No NFTs. Click{' '}
-            <Link href="/mint">
-              <TextButton color="primary" size="sm">
-                here
-              </TextButton>
-            </Link>{' '}
-            to mint your first and 
-            <Link href="/">
-              <TextButton color="primary" size="sm">
-                here
-              </TextButton>
-            </Link>{' '}
-            to buy your first!
+            There's nothing here!
           </div>
         )}
       </div>

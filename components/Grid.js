@@ -31,13 +31,7 @@ export default function Grid({ nfts, prices, statuses, loading, type, stars, num
           })
         ) : (
           <div>
-            Click{' '}
-            <Link href="/mint">
-              <TextButton color="primary" size="md">
-                here
-              </TextButton>
-            </Link>{' '}
-            to publish the first
+           There's nothing here!
           </div>
         )}
       </div>

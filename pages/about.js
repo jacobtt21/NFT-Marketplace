@@ -49,10 +49,12 @@ export default function About() {
           <div className='align'> 
             <div>
               <h6>
-                It's quite simple really. Oustro runs on the Polygon Blockchain and the works
-                published on Oustro are all ERC-721 NFTs. Safe and secure on the blockchain, works cannot
-                be tampered with, ownership remains safe and Oustro is 100% decentralized. That's right, we don't
-                store anything, not even login info, that's all on the blockchain too!
+              The NFT Industry doesn’t cater to other forms of media apart from images and music. 
+              Our marketplace does. At Oustro, we believe in the ownership of personal expression. What does this mean? 
+              Simply put, anything can be made into an NFT, authenticating its uniqueness, and thus granting the freedom of 
+              redistribution to its respective creators. Hope to sell your work? Go ahead and list it. Want to display it 
+              just for show? It remains untouchable. No longer must creators or users suffer through advertisements, multiple 
+              platforms, and subscription fees in order to monetize their ideas. We cut out the middleman. 
               </h6>
             </div>
             <div>
@@ -67,15 +69,22 @@ export default function About() {
         <div className="mint-container1" id="safety">
           <h1>Keeping Oustro a Safe Place for Everyone</h1>
           <h3>
-            We are committed to keeping Oustro a place where anyone can publish anything, while at the same time ensuring that
-            everyone feels welcome and accepted. We monitor everything being published and delist works we feel go against what
-            we believe in. Additionally, we have implemented robust reporting features and encourage our users to report works to
-            keep Oustro what it was always meant to be.
+            At Oustro, we strive to promote the freedom of personal expression. Our aim is to build a 
+            platform for our users to formulate ideas, inspire movements, and unite over common passions. 
+            Oustro does not tolerate any content deemed dangerous to either the Oustro community or the world. 
           </h3>
+          <Link href="/code">
+            <TextButton>
+              Read our Code of Conduct &rarr;
+            </TextButton>
+          </Link>
+          <br />
+          <br />
           <img 
             src="https://rawcdn.githack.com/Oustro/OustroImages/2feb41f30f48674078a88786eefa89463c589d83/6.svg?min=1"
             width="700" 
             alt="" 
+            className='hw'
           /> 
         </div>
         <div className='Imagine'>
@@ -201,6 +210,9 @@ export default function About() {
           h5 {
             margin-top: 15px;
             text-align: left;
+          }
+          .hw {
+            margin-top: 15px;
           }
           .align {
             padding: 20px;

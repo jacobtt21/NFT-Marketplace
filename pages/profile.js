@@ -4,7 +4,7 @@ import { web3 } from '../lib/magic';
 import { abi } from '../contracts/abi';
 import Grid from '../components/Grid';
 import Loading from '../components/Loading';
-import { useToast, TextButton, CallToAction } from '@magiclabs/ui';
+import { useToast, MonochromeIcons, CallToAction } from '@magiclabs/ui';
 import Head from 'next/head';
 
 export default function Index() {
@@ -87,14 +87,16 @@ export default function Index() {
           key="canonical"
         />
       </Head>
-      <h1>Your rocking collection of works</h1>
-      <p>Interesting taste...we're not judging, just noticing. ( 
-        <TextButton
+      <h1>Your rocking collection of works &nbsp;
+        <CallToAction
         onPress={copyLink}
+        size='md'
+        leadingIcon={MonochromeIcons.Copy}
         >
-          Share it
-        </TextButton>
-        ). Note, the rights of the works belong to the creators unless otherwise specified.
+          Copy Profile Link
+        </CallToAction>
+      </h1>
+      <p>Interesting taste...we're not judging, just noticing. Note, the rights of the works belong to the creators unless otherwise specified.
       </p>
       <Grid loading={loading} nfts={myNFTs} prices={myPrices} statuses={myStatus} type={false} stars={myStars} nums={myNums} checkmark={myVerify} go={true} takeAway={false} />
       <style>{`
