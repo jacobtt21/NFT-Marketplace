@@ -1,6 +1,6 @@
 import { CallToAction, TextButton, Linkable } from '@magiclabs/ui';
 import { useState } from 'react';
-import Typical from 'react-typical'
+// import Typical from 'react-typical'
 import Link from "next/link";
 import Grid from '../components/Grid2';
 import Head from 'next/head';
@@ -80,7 +80,7 @@ export default function About() {
         />
       </Head>
       <div className='one'>
-        <div className='align5'>
+        {/* <div className='align5'>
           <div className='two'>
             <Typical steps={['We all have a story. Tell us yours...', 10000]} wrapper="h1"/>
             <div className='three9'>
@@ -101,15 +101,23 @@ export default function About() {
               alt="" 
             /> 
           </div>
-        </div>
+        </div> */}
         <div className='grow'>
-          Check out our fully decentralized library of works. Buy and sell, support creators, and build communities around ideas.        
+            <h1>Publish, browse, and own</h1>
+            <h2>Oustro is the world's first community-driven decentralized library and marketplace</h2>
         </div>
         Check out some of the featured works by creators on Oustro
         <Grid loading={loading} nfts={allNFTs} go={true} />
-        <div className='vlur'>
+        <div
+        style={{
+          marginTop: -120
+        }}
+        >
           <Grid loading={loading} nfts={allNFTs2} go={false} />
-        </div>        
+          <div className='vlur'>
+            &nbsp;
+          </div>  
+        </div>       
         <div className='Imagine'>
           <Link href="/login">
             <CallToAction
@@ -129,16 +137,16 @@ export default function About() {
         <Link href="/about#safety">
           <TextButton
           size='md'>
-            Learn how we protect Oustro &rarr;
+            Find out what this means &rarr;
           </TextButton>
         </Link>
         <div className='align'>
           <div>
             <h4>Share Your Voice, Your Way</h4> 
             <h6>
-              We believe everyone has something to say, create, invent, and share. We also believe that You should have a 
-              place to keep those works without fear of censorship. On Oustro, we provide a platform to create and share 
-              what you want through PDFs, HTML, MP4 files all hosted on IPFS.
+              Publish and display your work in various formats, all chosen to give you the most creative freedom, 
+              as NFTs. Be it an academic paper you've written, a short film you've made, or a webpage you've developed, 
+              it's all welcome on Oustro.
             </h6>
             <br />
             <Link href="/login?id=mint">
@@ -167,10 +175,7 @@ export default function About() {
           <div>
             <h4>Buy What Moves You</h4> 
             <h6>
-              With so many works on Oustro, you're bound to find something that inspires you and 
-              gives you another perspective on the world around you. 
-              Become the steward of that work, set the price, and take ownership of what you feel the world needs to 
-              know about.
+              Works on Oustro can be bought and sold safely while bringing value to their owners.
             </h6>
             <br />
             <Link href="/login?id=library">
@@ -185,8 +190,8 @@ export default function About() {
           <div>
             <h4>Support Dream(er)s</h4> 
             <h6>
-              Our creators are what make Oustro what we are. Support them and their work by sharing and rating their work.
-              Fund them directly or through Oustro and help them pursue their calling.
+            Help fund creators on Oustro by donating directly to their public Polygon address or 
+            indirectly by providing feedback on their work.
             </h6>
             <br />
             <Link href="/login">
@@ -215,8 +220,8 @@ export default function About() {
           <div>
             <h4>Build Communities Around Ideas</h4> 
             <h6>
-              Great things are often written down and put on display. Join us as we put our ideas out there for the world
-              and connect with what, and who, you believe in.
+            With built-in community-building tools, Oustro provides creators a way to rally their audiences 
+            around ideas, stories, and so much more.
             </h6>
             <br />
             <Link href="/login">
@@ -399,10 +404,11 @@ export default function About() {
         }
 
         .three91 {
+          margin-top: 5px;
           text-align: center;
         }
         .one { 
-          margin: 80px; 
+          margin-top: 80px; 
           text-align:center; 
           font-size: 17px;
         }
@@ -423,9 +429,17 @@ export default function About() {
           margin-bottom: 30px;
           margin-top: 0px;
         }
+        h1 {
+          font-size: 60px;
+          font-weight: bold;
+        }
+        h2 {
+          font-size: 25px;
+          margin-top: 15px;
+        }
         .grow {
-          font-size: 35px;
-          margin-bottom: 15px;
+          margin-top: -45px;
+          margin-bottom: 25px;
         }
         .Logos {
           border-top:1px solid #f0f0f0;
@@ -469,13 +483,15 @@ export default function About() {
           font-size: 30px;
         }
         .vlur{
-          filter: blur(17px);
-          margin-top:-120px;
+          background: white;
+          margin-top: -350px;
+          height: 290px;
+          opacity: 98%;
+          filter: blur(27px);
         }
         .Imagine {
-          margin-top:-340px;
-          margin-bottom: 250px;
-          // filter: blur(5px);
+          margin-top:-200px;
+          margin-bottom: 150px;
         }
         img {
           width: auto,
