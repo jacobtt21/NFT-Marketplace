@@ -103,7 +103,23 @@ export default function About() {
               Feeling inspired?
             </CallToAction>
           </Link>
-        </div>
+          <br />
+          <h1
+          style={{
+            marginTop: 140
+            }}
+          >
+            New media like HTML, PDF, and MP4 
+            <img
+            src="/falling.svg"
+            width={2000}
+            className="nft-img"
+            onError={(e) => (e.target.src = '/fallback.jpeg')}
+            /> 
+            <br />
+            for new NFTs.
+          </h1>
+        </div> 
         <div className='three2'>
           We ❤️ decentralization, which means one thing:
         </div>
@@ -669,7 +685,7 @@ export default function About() {
           font-size: 25px;
         }
         .three2 { 
-          margin-top:35px; 
+          margin-top:-80px; 
           text-align:center; 
           font-size: 30px;
           font-weight: bold;
