@@ -106,7 +106,8 @@ export default function About() {
           <br />
           <h1
           style={{
-            marginTop: 140
+            marginTop: 140,
+            marginBottom: 30
             }}
           >
             New media like HTML, PDF, and MP4 
@@ -119,6 +120,12 @@ export default function About() {
             <br />
             for new NFTs.
           </h1>
+          <Link href="/about">
+          <TextButton
+          size='md'>
+            Find out what this means &rarr;
+          </TextButton>
+        </Link>
         </div> 
         <div className='three2'>
           We ❤️ decentralization, which means one thing:
@@ -127,12 +134,6 @@ export default function About() {
           What's published on Oustro, stays on Oustro.
         </div>
         <br />
-        <Link href="/about#safety">
-          <TextButton
-          size='md'>
-            Find out what this means &rarr;
-          </TextButton>
-        </Link>
         <div className='align'>
           <div>
             <h4>Share Your Voice, Your Way</h4> 
