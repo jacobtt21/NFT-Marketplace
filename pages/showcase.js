@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Link from "next/link";
 import Grid from '../components/Grid2';
 import Head from 'next/head';
+import Typical from 'react-typical'
 
 export default function About() {
     const [loading, setLoading] = useState(false);
@@ -103,29 +104,6 @@ export default function About() {
               Feeling inspired?
             </CallToAction>
           </Link>
-          <br />
-          <h1
-          style={{
-            marginTop: 140,
-            marginBottom: 30
-            }}
-          >
-            New media like HTML, PDF, and MP4 
-            <img
-            src="/falling.svg"
-            width={2000}
-            className="nft-img"
-            onError={(e) => (e.target.src = '/fallback.jpeg')}
-            /> 
-            <br />
-            for new NFTs.
-          </h1>
-          <Link href="/about">
-          <TextButton
-          size='md'>
-            Find out what this means &rarr;
-          </TextButton>
-        </Link>
         </div> 
         <div className='three2'>
           We ❤️ decentralization, which means one thing:
@@ -133,6 +111,18 @@ export default function About() {
         <div className='three3'>
           What's published on Oustro, stays on Oustro.
         </div>
+        <h1
+          style={{
+            marginTop: 80,
+            }}
+          >
+            Get paid for your
+            <Typical steps={['Stories', 4000, 'Scripts', 4000,
+            'Magazines', 4000, 'Research Papers', 4000,
+            'Websites', 4000, 'Short Films', 4000]} 
+            loop={Infinity}
+            wrapper="h1"/>
+          </h1>
         <br />
         <div className='align'>
           <div>
@@ -686,13 +676,13 @@ export default function About() {
           font-size: 25px;
         }
         .three2 { 
-          margin-top:-80px; 
+          margin-top:80px; 
           text-align:center; 
           font-size: 30px;
           font-weight: bold;
         }
         .three9 { 
-          margin-top:30px;  
+          margin-top:50px;  
           text-align: center;
           font-size: 24px;
           font-weight:normal;

@@ -75,7 +75,7 @@ const Header = () => {
                         }
                         size="sm"
                       >
-                        Confused?
+                        About Oustro
                       </CallToAction>
                     </Link>
                   </li>
