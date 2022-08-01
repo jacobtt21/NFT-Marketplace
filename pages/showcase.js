@@ -237,7 +237,7 @@ export default function About() {
             </div> 
             <div className='com'>
               <img 
-                src="/rari.svg"
+                src="https://raw.githubusercontent.com/Oustro/OustroImages/f6400a42e43a7e0ca1a80b1b03d00283a7c0e755/Rari.svg"
                 width="50" 
                 alt="" 
               /> 
@@ -263,11 +263,14 @@ export default function About() {
               leadingIcon={MonochromeIcons.SuccessFilled}>
               </TextButton>
             </div> 
-            <div className='com'>
+            <div className='coms'>
+              Support MP4 up to 100MB
             </div>  
-            <div className='com'>
+            <div className='coms'>
+              Support MP4 up to 100MB
             </div> 
-            <div className='com'>
+            <div className='coms'>
+              Support MP4 up to 50MB
             </div>          
           </div>
           <div className='align5'>
@@ -620,6 +623,11 @@ export default function About() {
         .com {
           align-items: center;
           text-align: center;
+        }
+        .coms {
+          align-items: center;
+          text-align: center;
+          font-size: 15px;
         }
         .compare {
           width: 1200px;
