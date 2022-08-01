@@ -68,18 +68,6 @@ const Header = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/about">
-                      <CallToAction
-                        color={
-                          router.pathname === '/about' ? 'primary' : 'secondary'
-                        }
-                        size="sm"
-                      >
-                        About Oustro
-                      </CallToAction>
-                    </Link>
-                  </li>
-                  <li>
                     <Link href="/login">
                       <CallToAction
                         color={

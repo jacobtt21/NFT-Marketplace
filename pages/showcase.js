@@ -105,15 +105,10 @@ export default function About() {
             </CallToAction>
           </Link>
         </div> 
-        <div className='three2'>
-          We ❤️ decentralization, which means one thing:
-        </div>
-        <div className='three3'>
-          What's published on Oustro, stays on Oustro.
-        </div>
         <h1
           style={{
-            marginTop: 80,
+            marginTop: -5,
+            marginBottom: 10,
             }}
           >
             Get paid for your
@@ -142,7 +137,7 @@ export default function About() {
           </div> 
           <div>
             <img 
-              src="https://rawcdn.githack.com/Oustro/OustroImages/b7d2c4f52e1fe84ffd6e875c3a0f999ae4a8b4cd/8.svg"
+              src="https://raw.githubusercontent.com/Oustro/OustroImages/9709cb8452cb9be70a2b225e40de954f07a928b7/8.svg"
               width="500" 
               alt="" 
             /> 
@@ -151,7 +146,7 @@ export default function About() {
         <div className='align'>
           <div>
             <img 
-              src="https://rawcdn.githack.com/Oustro/OustroImages/02c26a155c63134c77ba2a80b2a24a54ab7d7fe7/1.svg?min=1"
+              src="https://raw.githubusercontent.com/Oustro/OustroImages/e36c2a3c46529c2498d84ac81697dd2265d0896c/1.svg"
               width="500" 
               alt="" 
             /> 
@@ -159,7 +154,8 @@ export default function About() {
           <div>
             <h4>Buy What Moves You</h4> 
             <h6>
-              Works on Oustro can be bought and sold safely while bringing value to their owners.
+            Unlike previous NFT marketplaces, creators may now sell exclusive rights to a variety of content aside from images. 
+            Furthermore, creators may choose to share royalties earned from their works.
             </h6>
             <br />
             <Link href="/login?id=library">
@@ -175,7 +171,7 @@ export default function About() {
             <h4>Support Dream(er)s</h4> 
             <h6>
             Help fund creators on Oustro by donating directly to their public Polygon address or 
-            indirectly by providing feedback on their work.
+            by providing feedback on their work.
             </h6>
             <br />
             <Link href="/login">
@@ -187,7 +183,7 @@ export default function About() {
           </div> 
           <div>
             <img 
-              src="https://rawcdn.githack.com/Oustro/OustroImages/2feb41f30f48674078a88786eefa89463c589d83/3.svg?min=1"
+              src="https://raw.githubusercontent.com/Oustro/OustroImages/c95e01491d100885b3345971c7fa21bff73aeaef/3.svg"
               width="500" 
               alt="" 
             /> 
@@ -196,7 +192,7 @@ export default function About() {
         <div className='align'>
           <div>
             <img 
-              src="https://rawcdn.githack.com/Oustro/OustroImages/2feb41f30f48674078a88786eefa89463c589d83/2.svg?min=1"
+              src="https://raw.githubusercontent.com/Oustro/OustroImages/3bd7a8deee3f0995d0e3b1f7a1fb5135ad91395d/2.svg"
               width="500" 
               alt="" 
             /> 
@@ -216,7 +212,7 @@ export default function About() {
             </Link>
           </div>        
         </div>
-        <div className='compare'>
+        <div className='compare' id="why">
           <h4>Why Oustro?</h4>
           <h6>
             Here's a complete comparsion between Oustro and similiar applications.
