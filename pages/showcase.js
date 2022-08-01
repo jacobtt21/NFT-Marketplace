@@ -1,6 +1,5 @@
-import { CallToAction, TextButton, Linkable } from '@magiclabs/ui';
+import { CallToAction, TextButton, MonochromeIcons } from '@magiclabs/ui';
 import { useState } from 'react';
-// import Typical from 'react-typical'
 import Link from "next/link";
 import Grid from '../components/Grid2';
 import Head from 'next/head';
@@ -80,31 +79,9 @@ export default function About() {
         />
       </Head>
       <div className='one'>
-        {/* <div className='align5'>
-          <div className='two'>
-            <Typical steps={['We all have a story. Tell us yours...', 10000]} wrapper="h1"/>
-            <div className='three9'>
-            A modern social library and marketplace that pulls together all of the expression outlets of the modern web.
-            </div>
-            <div className='three91'>
-              <Link href='/login'>
-                <CallToAction>
-                  Welcome to Oustro
-                </CallToAction>
-              </Link>
-            </div>
-          </div>
-          <div className='three'>
-            <img 
-              src="/falling.svg"
-              width="500" 
-              alt="" 
-            /> 
-          </div>
-        </div> */}
         <div className='grow'>
             <h1>Publish, browse, and own</h1>
-            <h2>Oustro is the world's first community-driven decentralized library and marketplace</h2>
+            <h2>Oustro is the first library and marketplace for NFTs that aren't just images.</h2>
         </div>
         Check out some of the featured works by creators on Oustro
         <Grid loading={loading} nfts={allNFTs} go={true} />
@@ -232,6 +209,202 @@ export default function About() {
             </Link>
           </div>        
         </div>
+        <div className='compare'>
+          <h4>Why Oustro?</h4>
+          <h6>
+            Here's a complete comparsion between Oustro and similiar applications.
+            </h6>
+          <div className='align5'>
+            <div className='com'>
+            </div> 
+            <div className='com'>
+              <img 
+                src="/oustro_s_logo.svg"
+                width="50" 
+                alt="" 
+              /> 
+              <br/>
+              Oustro
+            </div>  
+            <div className='com'>
+              <img 
+                src="https://logosarchive.com/wp-content/uploads/2022/02/OpenSea-icon.svg"
+                width="50" 
+                alt="" 
+              /> 
+              <br/>
+              OpenSea
+            </div> 
+            <div className='com'>
+              <img 
+                src="/rari.svg"
+                width="50" 
+                alt="" 
+              /> 
+              <br/>
+              Rarible
+            </div>  
+            <div className='com'>
+              <img 
+                src="/mirror.svg"
+                width="60" 
+                alt="" 
+              /> 
+              <br/>
+              Mirror
+            </div>        
+          </div>
+          <div className='align5'>
+            <div className='com'>
+              Support HTML, PDF, and MP4 files as NFTs. 
+            </div> 
+            <div className='com'>
+              <TextButton
+              leadingIcon={MonochromeIcons.SuccessFilled}>
+              </TextButton>
+            </div> 
+            <div className='com'>
+            </div>  
+            <div className='com'>
+            </div> 
+            <div className='com'>
+            </div>          
+          </div>
+          <div className='align5'>
+            <div className='com'>
+              Allow creators to make money without having to sell
+              their work
+            </div> 
+            <div className='com'>
+              <TextButton
+              leadingIcon={MonochromeIcons.SuccessFilled}>
+              </TextButton>
+            </div>  
+            <div className='com'>
+            </div> 
+            <div className='com'>
+            </div> 
+            <div className='com'>
+              <TextButton
+                leadingIcon={MonochromeIcons.SuccessFilled}>
+              </TextButton>
+            </div>          
+          </div>
+          <div className='align5'>
+            <div className='com'>
+              Carbon neutral/negative NFTs
+            </div> 
+            <div className='com'>
+              <TextButton
+              leadingIcon={MonochromeIcons.SuccessFilled}>
+              </TextButton>
+            </div>  
+            <div className='com'>
+            </div> 
+            <div className='com'>
+            </div> 
+            <div className='com'>
+            </div>          
+          </div>
+          <div className='align5'>
+            <div className='com'>
+              Create, buy, and sell NFTs
+            </div> 
+            <div className='com'>
+              <TextButton
+              leadingIcon={MonochromeIcons.SuccessFilled}>
+              </TextButton>
+            </div>  
+            <div className='com'>
+              <TextButton
+              leadingIcon={MonochromeIcons.SuccessFilled}>
+              </TextButton>
+            </div> 
+            <div className='com'>
+              <TextButton
+              leadingIcon={MonochromeIcons.SuccessFilled}>
+              </TextButton>
+            </div> 
+            <div className='com'>
+              <TextButton
+              leadingIcon={MonochromeIcons.SuccessFilled}>
+              </TextButton>
+            </div>          
+          </div>
+          <div className='align5'>
+            <div className='com'>
+              Free access to everything
+            </div> 
+            <div className='com'>
+              <TextButton
+              leadingIcon={MonochromeIcons.SuccessFilled}>
+              </TextButton>
+            </div>  
+            <div className='com'>
+              <TextButton
+              leadingIcon={MonochromeIcons.SuccessFilled}>
+              </TextButton>
+            </div> 
+            <div className='com'>
+              <TextButton
+              leadingIcon={MonochromeIcons.SuccessFilled}>
+              </TextButton>
+            </div> 
+            <div className='com'>
+            </div>          
+          </div>
+          <div className='align5'>
+            <div className='com'>
+              Seemless web3 onboarding
+            </div> 
+            <div className='com'>
+              <TextButton
+              leadingIcon={MonochromeIcons.SuccessFilled}>
+              </TextButton>
+            </div>  
+            <div className='com'>
+            </div> 
+            <div className='com'>
+            </div> 
+            <div className='com'>
+            </div>          
+          </div>
+          <div className='align5'>
+            <div className='com'>
+              Share royalties with multiple users
+            </div> 
+            <div className='com'>
+              <TextButton
+              leadingIcon={MonochromeIcons.SuccessFilled}>
+              </TextButton>
+            </div>  
+            <div className='com'>
+              <TextButton
+              leadingIcon={MonochromeIcons.SuccessFilled}>
+              </TextButton>
+            </div> 
+            <div className='com'>
+            </div> 
+            <div className='com'>
+            </div>          
+          </div>
+          <div className='align5s'>
+            <div className='com'>
+              100% Decentralized
+            </div> 
+            <div className='com'>
+              <TextButton
+              leadingIcon={MonochromeIcons.SuccessFilled}>
+              </TextButton>
+            </div> 
+            <div className='com'>
+            </div>
+            <div className='com'>
+            </div>
+            <div className='com'>
+            </div>       
+          </div>
+        </div>
         <div className='Logos'>
           <h4>Oustro is Proud to be Featured in</h4>
           <div className='Inv'>
@@ -264,8 +437,7 @@ export default function About() {
             </h5>
             <h5>
               <a 
-              href="/login?id=contact"
-              target="_blank"
+              href="/contact"
               >
                 Press
               </a>
@@ -281,17 +453,15 @@ export default function About() {
             <h5>
               <a 
               href="/code"
-              target="_blank"
               >
                 Legal
               </a>
             </h5>
             <h5>
               <a 
-              href="https://discord.gg/V3k3uRDy"
-              target="_blank"
+              href="/"
               >
-                Community
+                FAQs
               </a>
             </h5>
             <h5>
@@ -310,7 +480,6 @@ export default function About() {
             <h5>
               <a 
               href="/"
-              target="_blank"
               >
                 Blog
               </a>
@@ -318,7 +487,6 @@ export default function About() {
             <h5>
               <a 
               href="/"
-              target="_blank"
               >
                 Careers
               </a>
@@ -333,11 +501,10 @@ export default function About() {
             </h5>
             <h5>
               <a 
-                href="/contact"
-                target="_blank"
-                >
-                  Contact
-                </a>
+              href="/contact"
+              >
+                Contact
+              </a>
             </h5>
           </div> 
           <div>
@@ -345,13 +512,25 @@ export default function About() {
               Products
             </h5>
             <h5>
-              Oustro Publishing
+              <a 
+              href="/"
+              >
+                Oustro Publishing
+              </a>
             </h5>
             <h5>
-              Oustro Daffy
+              <a 
+              href="/s/6"
+              >
+                Oustro Daffy
+              </a>
             </h5>
             <h5>
-              Oustro Orginals
+              <a 
+              href="/u/0x8c17bB1862B31f302e4c25bf364431f0a39614B1"
+              >
+                Oustro Orginals
+              </a>
             </h5>
           </div> 
           <div>
@@ -425,9 +604,26 @@ export default function About() {
           padding: 20px;
           display: grid;
           grid-gap: 20px;
-          grid-template-columns: 3fr 2fr;
-          margin-bottom: 30px;
-          margin-top: 0px;
+          grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+          border-bottom:2px solid #f0f0f0;
+          padding: 30px;
+        }
+        .align5s {
+          padding: 20px;
+          display: grid;
+          grid-gap: 20px;
+          grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+          padding: 30px;
+          margin-bottom: 40px;
+          font-weight: bold;
+        }
+        .com {
+          align-items: center;
+          text-align: center;
+        }
+        .compare {
+          width: 1200px;
+          margin: 0 auto;
         }
         h1 {
           font-size: 60px;
@@ -442,7 +638,6 @@ export default function About() {
           margin-bottom: 25px;
         }
         .Logos {
-          border-top:1px solid #f0f0f0;
           padding: 30px;
         }
         .align2 {
