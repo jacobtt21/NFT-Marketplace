@@ -652,6 +652,7 @@ export default function About() {
           margin-top: 15px;
         }
         .grow {
+          font-weight: bold;
           margin-top: -45px;
           margin-bottom: 25px;
         }
