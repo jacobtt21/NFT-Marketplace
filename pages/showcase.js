@@ -81,10 +81,10 @@ export default function About() {
       </Head>
       <div className='one'>
         <div className='grow'>
-            <h1>Publish, browse, and own</h1>
-            <h2>Oustro is the first library and marketplace for NFTs that aren't just images.</h2>
+            <h1>Words, film, and webpages just became NFTs</h1>
+            <h2>Oustro is the first marketplace for NFTs in written, film, and HTML format</h2>
         </div>
-        Check out some of the featured works by creators on Oustro
+        Check out some examples of NFTs made by creators not found anywhere else.
         <Grid loading={loading} nfts={allNFTs} go={true} />
         <div
         style={{
@@ -637,11 +637,11 @@ export default function About() {
           margin: 0 auto;
         }
         h1 {
-          font-size: 60px;
+          font-size: 55px;
           font-weight: bold;
         }
         h2 {
-          font-size: 25px;
+          font-size: 30px;
           margin-top: 15px;
         }
         .grow {
