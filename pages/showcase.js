@@ -85,7 +85,7 @@ export default function About() {
             <h2>Oustro is the first marketplace for NFTs in PDF, MP4, and HTML format</h2>
         </div>
         <div className='checkout'>
-          Check out some unique examples of what NFTs can be, found nowhere else but Oustro.
+          Check out some unique examples of what NFTs can be, only found on Oustro.
         </div>
         <Grid loading={loading} nfts={allNFTs} go={true} />
         <div
