@@ -83,6 +83,14 @@ export default function About() {
         <div className='grow'>
             <h1>Words, film, and webpages just became NFTs</h1>
             <h2>Oustro is the first marketplace for NFTs in PDF, MP4, and HTML format</h2>
+            <img
+              style={{
+                marginTop: 30
+              }}
+              src="/falling.svg"
+              width="1000" 
+              alt="" 
+            />
         </div>
         <div className='checkout'>
           Check out some unique examples of what NFTs can be, only found on Oustro.
@@ -653,7 +661,7 @@ export default function About() {
         }
         .grow {
           font-weight: bold;
-          margin-top: -45px;
+          margin-top: -120px;
           margin-bottom: 25px;
         }
         .Logos {
