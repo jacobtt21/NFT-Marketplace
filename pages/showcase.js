@@ -82,11 +82,11 @@ export default function About() {
       <div className='one'>
         <div className='grow'>
           <h1>
-            <Typical steps={['On Oustro, NFTs are Films', 4000, 'On Oustro, NFTs are Web Games', 4000,
-            'On Oustro, NFTs are Books', 4000, 'On Oustro, NFTs are Research Papers', 4000, 
-            'On Oustro, NFTs are Scripts', 4000, 'On Oustro, NFTs are Music', 4000,
-            'On Oustro, NFTs are Poems', 4000, 'On Oustro, NFTs are Art', 4000,
-            'On Oustro, NFTs are Magazines', 4000]} 
+            <Typical steps={['On Oustro, NFTs are Films', 3000, 'On Oustro, NFTs are Web Games', 3000,
+            'On Oustro, NFTs are Books', 3000, 'On Oustro, NFTs are Research Papers', 3000, 
+            'On Oustro, NFTs are Scripts', 3000, 'On Oustro, NFTs are Music', 3000,
+            'On Oustro, NFTs are Poems', 3000, 'On Oustro, NFTs are Art', 3000,
+            'On Oustro, NFTs are Magazines', 3000]} 
             loop={Infinity}
             />
           </h1>
