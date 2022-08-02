@@ -111,7 +111,7 @@ export default function About() {
             marginBottom: 10,
             }}
           >
-            Get paid for your
+            On Oustro you can get paid for your
             <Typical steps={['Stories', 4000, 'Scripts', 4000,
             'Magazines', 4000, 'Research Papers', 4000,
             'Websites', 4000, 'Short Films', 4000]} 
