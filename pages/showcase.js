@@ -81,19 +81,25 @@ export default function About() {
       </Head>
       <div className='one'>
         <div className='grow'>
-            <h1>Words, film, and webpages just became NFTs</h1>
-            <h2>Oustro is the world's first place to mint and sell written works, films, and webpages as NFTs</h2>
-            <img
-              style={{
-                marginTop: 30
-              }}
+          <h1>
+            <Typical steps={['On Oustro, NFTs are Films', 4000, 'On Oustro, NFTs are Web Games', 4000,
+            'On Oustro, NFTs are Books', 4000, 'On Oustro, NFTs are Research Papers', 4000, 
+            'On Oustro, NFTs are Scripts', 4000, 'On Oustro, NFTs are Music', 4000,
+            'On Oustro, NFTs are Poems', 4000, 'On Oustro, NFTs are Art', 4000,
+            'On Oustro, NFTs are Magazines', 4000]} 
+            loop={Infinity}
+            />
+          </h1>
+          <h2>Oustro is the first marketplace for NFTs that are not just images</h2>
+          <img 
               src="/falling.svg"
               width="1000" 
               alt="" 
-            />
+            /> 
         </div>
         <div className='checkout'>
-          Check out some unique examples of what NFTs can be, only found on Oustro.
+          The world’s first and only web3 home to filmmakers, musicians, academics, artists, and more. 
+          Check out some of their works below, uniquely created as NFTs and only found on Oustro
         </div>
         <Grid loading={loading} nfts={allNFTs} go={true} />
         <div
@@ -115,20 +121,6 @@ export default function About() {
             </CallToAction>
           </Link>
         </div> 
-        <h1
-          style={{
-            marginTop: -5,
-            marginBottom: 10,
-            }}
-          >
-            On Oustro you can get paid for your
-            <Typical steps={['Stories', 4000, 'Scripts', 4000,
-            'Magazines', 4000, 'Research Papers', 4000,
-            'Websites', 4000, 'Short Films', 4000]} 
-            loop={Infinity}
-            wrapper="h1"/>
-          </h1>
-        <br />
         <div className='align'>
           <div>
             <h4>Share Your Voice, Your Way</h4> 
@@ -594,12 +586,15 @@ export default function About() {
           line-height: 1.6;
         }
         .checkout {
-          margin-top: 100px;
+          margin-top: 10px;
           font-size: 25px;
         }
         h5 {
           margin-top: 15px;
           text-align: left;
+        }
+        .uner {
+          text-decoration: underline
         }
 
         .three91 {
@@ -610,6 +605,7 @@ export default function About() {
           margin-top: 150px; 
           text-align:center; 
           font-size: 17px;
+          text-align: center;
         }
         .align {
           padding: 20px;
@@ -651,18 +647,20 @@ export default function About() {
           margin: 0 auto;
         }
         h1 {
-          font-size: 55px;
+          font-size: 60px;
           margin-bottom: 30px;
           font-weight: bold;
         }
         h2 {
-          font-size: 25px;
+          font-size: 35px;
           margin-top: 15px;
+          text-align: center;
         }
         .grow {
           font-weight: bold;
           margin-top: -120px;
           margin-bottom: 25px;
+          text-align: center;
         }
         .Logos {
           padding: 30px;
