@@ -82,7 +82,7 @@ export default function About() {
       <div className='one'>
         <div className='grow'>
             <h1>Words, film, and webpages just became NFTs</h1>
-            <h2>Oustro is the first marketplace for NFTs in PDF, MP4, and HTML format</h2>
+            <h2>Oustro is the world's first place to mint and sell written works, films, and webpages as NFTs</h2>
             <img
               style={{
                 marginTop: 30
@@ -656,7 +656,7 @@ export default function About() {
           font-weight: bold;
         }
         h2 {
-          font-size: 30px;
+          font-size: 25px;
           margin-top: 15px;
         }
         .grow {
