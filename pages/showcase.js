@@ -90,7 +90,7 @@ export default function About() {
             loop={Infinity}
             />
           </h1>
-          <h2>Oustro is the first marketplace for NFTs that are not just images</h2>
+          {/* <h2>The first marketplace for NFTs that are not just images</h2> */}
           <img 
               src="/falling.svg"
               width="1000" 
@@ -98,9 +98,9 @@ export default function About() {
             /> 
         </div>
         <div className='checkout'>
-          The world’s first and only web3 home to filmmakers, musicians, academics, artists, and more. 
-          Check out some of their works below, uniquely created as NFTs and only found on Oustro
+          The world's only web3 home to filmmakers, musicians, academics, artists, and more. 
         </div>
+        Check out some of their works below, uniquely created as NFTs and only found on Oustro
         <Grid loading={loading} nfts={allNFTs} go={true} />
         <div
         style={{
@@ -587,7 +587,9 @@ export default function About() {
         }
         .checkout {
           margin-top: 10px;
-          font-size: 25px;
+          margin-bottom: 30px;
+          font-size: 30px;
+          font-weight: bold;
         }
         h5 {
           margin-top: 15px;
