@@ -4,6 +4,7 @@ import { magic } from '../lib/magic';
 import Router, { useRouter } from 'next/router';
 import { Icon, MonochromeIcons, TextField, CallToAction, TextButton } from '@magiclabs/ui';
 import Head from 'next/head';
+import Image from 'next/image'
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -98,7 +99,11 @@ export default function Login() {
           </div>
         </div>
         <div>
-          <img src='https://raw.githubusercontent.com/Oustro/OustroImages/d3ac17e51c8b88ee39a6550a21c22a0b18b558b2/10.svg' className='logo2' />
+          <Image 
+          src='https://raw.githubusercontent.com/Oustro/OustroImages/d3ac17e51c8b88ee39a6550a21c22a0b18b558b2/10.svg' 
+          height="500"
+          width="500" 
+          />
         </div>
       </div>
       <style jsx>{`

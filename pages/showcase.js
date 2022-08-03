@@ -4,6 +4,7 @@ import Link from "next/link";
 import Grid from '../components/Grid2';
 import Head from 'next/head';
 import Typical from 'react-typical'
+import Image from 'next/image'
 
 export default function About() {
     const [loading, setLoading] = useState(false);
@@ -90,12 +91,11 @@ export default function About() {
             loop={Infinity}
             />
           </h1>
-          {/* <h2>The first marketplace for NFTs that are not just images</h2> */}
-          <img 
-              src="/falling.svg"
-              width="1000" 
-              alt="" 
-            /> 
+          <Image
+            src="/falling.svg"
+            width="1100"
+            height="425"
+          />
         </div>
         <div className='checkout'>
           The world's only web3 home to filmmakers, musicians, academics, artists, and more. 
@@ -138,18 +138,20 @@ export default function About() {
             </Link>
           </div> 
           <div>
-            <img 
+            <Image
               src="https://raw.githubusercontent.com/Oustro/OustroImages/9709cb8452cb9be70a2b225e40de954f07a928b7/8.svg"
               width="500" 
+              height="500"
               alt="" 
             /> 
           </div>         
         </div>
         <div className='align'>
           <div>
-            <img 
+            <Image
               src="https://raw.githubusercontent.com/Oustro/OustroImages/e36c2a3c46529c2498d84ac81697dd2265d0896c/1.svg"
-              width="500" 
+              width="500"
+              height="500" 
               alt="" 
             /> 
           </div>  
@@ -184,8 +186,9 @@ export default function About() {
             </Link>
           </div> 
           <div>
-            <img 
+            <Image
               src="https://raw.githubusercontent.com/Oustro/OustroImages/c95e01491d100885b3345971c7fa21bff73aeaef/3.svg"
+              height="500"
               width="500" 
               alt="" 
             /> 
@@ -193,9 +196,10 @@ export default function About() {
         </div>
         <div className='align'>
           <div>
-            <img 
+            <Image
               src="https://raw.githubusercontent.com/Oustro/OustroImages/3bd7a8deee3f0995d0e3b1f7a1fb5135ad91395d/2.svg"
-              width="500" 
+              width="500"
+              height="500" 
               alt="" 
             /> 
           </div>  
@@ -223,36 +227,40 @@ export default function About() {
             <div className='com'>
             </div> 
             <div className='com'>
-              <img 
+              <Image
                 src="/oustro_s_logo.svg"
-                width="50" 
+                width="50"
+                height="50"  
                 alt="" 
               /> 
               <br/>
               Oustro
             </div>  
             <div className='com'>
-              <img 
+              <Image
                 src="https://logosarchive.com/wp-content/uploads/2022/02/OpenSea-icon.svg"
                 width="50" 
+                height="50" 
                 alt="" 
               /> 
               <br/>
               OpenSea
             </div> 
             <div className='com'>
-              <img 
+              <Image
                 src="https://raw.githubusercontent.com/Oustro/OustroImages/f6400a42e43a7e0ca1a80b1b03d00283a7c0e755/Rari.svg"
-                width="50" 
+                width="50"
+                height="50"  
                 alt="" 
               /> 
               <br/>
               Rarible
             </div>  
             <div className='com'>
-              <img 
+              <Image
                 src="/mirror.svg"
                 width="60" 
+                height="60"
                 alt="" 
               /> 
               <br/>
