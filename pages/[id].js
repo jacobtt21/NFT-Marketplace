@@ -498,10 +498,9 @@ export default function Index() {
                   </div>
                 </>
               )}
-              {msg && (
+              {!msg && (
                 <div className='message'>
                   <CallToAction
-                  color='success'
                   size='lg'
                   outline
                   >
