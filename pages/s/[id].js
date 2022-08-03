@@ -50,11 +50,19 @@ export default function Index() {
                   marginBottom: 30
                 }}
               /> 
-              <CallToAction>
-                Check out the work
-              </CallToAction>
+              <br />
+              <Linkable>
+                <a
+                href={theNFT.work}
+                target="_blank">
+                  <CallToAction>
+                    View {theNFT.name}
+                  </CallToAction>
+                </a>
+              </Linkable>
             </div>
             <div>
+              <div className='align'>
                 <div>
                   {theData.verify === '1' ? (
                     <Link href="/verify">
@@ -91,20 +99,29 @@ export default function Index() {
                     {theNFT.name}
                   </h1>
                 </div>
-                <div>
-                  <h2>
-                    <CallToAction
-                    outline>
-                      {theData.rating} / 5
-                    </CallToAction>
-                    &nbsp;out of {theData.raters} ratings
-                  </h2>
-                </div>
+                <Link
+                href="/login">
+                  <CallToAction>
+                    See More Works &rarr;
+                  </CallToAction>
+                </Link>
+              </div>
+              <div>
+                <h2>
+                  <CallToAction
+                  outline>
+                    {theData.rating} / 5
+                  </CallToAction>
+                  &nbsp;out of {theData.raters} ratings
+                </h2>
+              </div>
               <h2>
                 Created by &nbsp;
-                <TextButton>
-                  {theNFT.creator}
-                </TextButton>
+                <Link href={{pathname: '/u/[user]', query: { user: theNFT.creator }}}>
+                  <TextButton>
+                   {theNFT.creator}
+                  </TextButton>
+                </Link>
               </h2>
               <div className='hidden-features'>
                 <h3>Rate the Work</h3>
@@ -159,14 +176,17 @@ export default function Index() {
                   If you're reading this, You shouldn't be
                 </TextButton>
               </div>
-              <div className='centered-div'>
-                <CallToAction
-                style={{
-                  margin: 10
-                }}
-                >
-                  See More Works &rarr;
-                </CallToAction>
+              <div className='hover'>
+                <Link href={{pathname: '/login', query: { id: router.query.id }}}>
+                  <CallToAction
+                  style={{
+                    margin: 10
+                  }}
+                  color="tertiary"
+                  >
+                    ThumbsUp&#8482; {theNFT.name}
+                  </CallToAction>
+                </Link>
               </div>
             </div>
           </div>
@@ -196,8 +216,6 @@ export default function Index() {
               display: grid;
               grid-gap: 20px;
               grid-template-columns: 1fr 1fr;
-              margin-bottom: 30px;
-              margin-top: 0px;
               align-items: center;
             }
             .centered-div {
@@ -206,8 +224,12 @@ export default function Index() {
               margin-top: 30px;
             }    
             .hidden-features {
-              filter: blur(10px);
+              filter: blur(15px);
               text-align: center;
+            }
+            .hover {
+              text-align: center;
+              margin-top: -170px;
             }
           `}</style>
         </>
