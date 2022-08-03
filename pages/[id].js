@@ -19,7 +19,6 @@ export default function Index() {
   const [theData, setTheData] = useState();
   const [newRating, setNewRating] = useState('--');
   const [msg, setMsg] = useState(false);
-  const [msg1, setMsg1] = useState(false);
   const [allNFTs, setAllNFTs] = useState([]);
   const [allPrices, setAllPrices] = useState();
   const [allNums, setAllNums] = useState();
@@ -151,7 +150,7 @@ export default function Index() {
     }
     try {
       setDisabled(true);
-      setMsg1(true);
+      setMsg(true);
 
       const response = await fetch('https://gasstation-mainnet.matic.network/v2');
       const next = await response.json();
@@ -208,12 +207,12 @@ export default function Index() {
       });
       
       setDisabled(false);
-      setMsg1(false);
+      setMsg(false);
       router.reload(window.location.pathname);
     } 
     catch (error) {
       console.log(error);
-      setMsg1(false);
+      setMsg(false);
       setDisabled(false);
     }
   }
@@ -252,343 +251,320 @@ export default function Index() {
         <>
           <Head>
             <title>{theNFT.name} | Oustro</title>
-            </Head>
-            <div className="mint-container">
+          </Head>
+          <div className='align'>
+            <div className='img-holder'>
+              <img
+                src={theNFT.image}
+                className="nft-img-large"
+                onError={(e) => (e.target.src = '/fallback.jpeg')}
+                style={{
+                  marginBottom: 30
+                }}
+              /> 
+              <br />
+              <Linkable>
+                <a
+                href={theNFT.work}
+                target="_blank">
+                  <CallToAction>
+                    View {theNFT.name}
+                  </CallToAction>
+                </a>
+              </Linkable>
+            </div>
+            <div>
               <div className='align'>
-                <div className='whwa'>
-                  <img
-                  src={theNFT.image}
-                  className="nft-img2"
-                  onError={(e) => (e.target.src = '/fallback.jpeg')}
-                  style={{
-                    marginBottom: 20
-                  }}
-                  /> 
-                  <Linkable>
-                    <a 
-                    href={theNFT.work}
-                    target="_blank">
-                      <CallToAction
-                      color="primary"
-                      size='lg'
-                      >
-                        Take me to the work &rarr;
-                      </CallToAction>
-                    </a>
-                  </Linkable>
-                </div>
                 <div>
-                {theData.verify === '0' ? (
-                  <h1>{theNFT.name}</h1>
-                ) : theData.verify === '1' ? (
-                  <h1>
+                  {theData.verify === '1' ? (
                     <Link href="/verify">
                       <TextButton
                       leadingIcon={MonochromeIcons.SuccessFilled}
                       color="primary"
                       outline="none"
-                      size='lg'
                       >
+                        This is a verified work
                       </TextButton>
                     </Link>
-                    {theNFT.name}
-                  </h1>
-                ) : theData.verify === '2' ? (
-                  <h1>
+                  ) : theData.verify === '2' ? (
                     <Link href="/mistake">
                       <TextButton
                       leadingIcon={MonochromeIcons.AsteriskBold}
                       color="primary"
                       outline="none"
                       >
+                        This work has a mistake in it
                       </TextButton>
                     </Link>
-                    {theNFT.name}
-                  </h1>
-                ) : (
-                  <h1>
+                  ) : (
                     <Link href="/warning">
                       <TextButton
                       leadingIcon={MonochromeIcons.Exclaim}
                       color="primary"
                       outline="none"
                       >
+                        This work might be offensive
                       </TextButton>
                     </Link>
+                  )}
+                  <h1>
                     {theNFT.name}
                   </h1>
-                )}
-                <h3>created by</h3>
+                </div>
+                <div>
+                  {(theData.owner).toUpperCase() !== (user.publicAddress).toUpperCase() ? (
+                    <CallToAction
+                    disabled={disabled ? true : !theData.onMarket ? ( true ) : (false)}
+                    onClick={buy}
+                    >
+                      {!theData.onMarket ? ( "This NFT is not for sale" ) : ("Buy this work for " + (parseFloat(web3.utils.fromWei(theData.price)) + 0.5 ) +" MATIC")}
+                    </CallToAction>
+                  ) : (
+                    <CallToAction
+                    disabled
+                    >
+                      You own this work
+                    </CallToAction>
+                  )}
+                </div>
+              </div>
+              <div>
+                <h2>
+                  <CallToAction
+                  outline>
+                    {theData.rating} / 5
+                  </CallToAction>
+                  &nbsp;out of {theData.raters} ratings
+                </h2>
+              </div>
+              <h2>
+                Created by &nbsp;
                 <Link href={{pathname: '/u/[user]', query: { user: theNFT.creator }}}>
-                  <TextButton
-                  size='md'
-                  >
-                    {theNFT.creator.substring(0, 12)}...{theNFT.creator.substring(38)}
+                  <TextButton>
+                   {theNFT.creator}
                   </TextButton>
                 </Link>
-                {(theData.owner).toUpperCase() !== (user.publicAddress).toUpperCase() ?
-                  (theData.onMarket ? (
-                    <div className="name23">
-                      <CallToAction
-                      disabled={disabled}
-                      color="primary"
-                      size="lg"
-                      onClick={buy}
-                      >
-                        Buy this work for { (parseFloat(web3.utils.fromWei(theData.price)) + 0.5 )} MATIC
-                      </CallToAction>
-                      <br />
-                      <br />
-                      (Price + Gas)
-                    </div>
-                  ) : (
-                    <>
-                    </>
-                  )
-                ) : (
-                  <div className="name23">
-                  You own this work
-                  </div>
-                )}
-                {msg1 && (
-                  <>
-                    <br />
-                    Give us a moment to get this wrapping paper on right before you hand it off to you...
-                  </>
-                )}
-                {theNFT.socialLink !== '' && (
-                  <div className='name23'>
-                    <Linkable>
-                      <a 
-                      target="_blank"
-                      href={theNFT.socialLink}
-                      >
-                        <CallToAction
-                        color="primary"
-                        size='lg'
-                        >
-                          Take me to the community &rarr;
-                        </CallToAction>
-                      </a>
-                    </Linkable>
-                  </div>
-                )}
-                <br />           
-                <div className='name23'>
-                  <CallToAction
-                  color="primary"
-                  size="lg"
-                  outline="none"
-                  >
-                    { theData.rating } / 5 Rating
-                  </CallToAction>
-                </div>
-                {theNFT.creator !== user.publicAddress ? (
-                  <div className="name23"> 
-                    <h2>Add a rating for {theNFT.name}</h2>           
+              </h2>
+              {theNFT.creator !== user.publicAddress ? (
+                <div className='ThumbUps'>
+                  <h3>ThumbsUp&#8482; {theNFT.name}</h3>
+                  <div
+                  style={{
+                    marginBottom: 30
+                  }}>
                     <CallToAction
                     disabled={disabled}
-                    style={{
-                      margin: 10
-                    }}
                     color={
                       newRating === '1'
                       ? 'primary'
                       : 'secondary'
                     }
-                    size='lg'
+                    style={{
+                      margin: 10
+                    }}
                     onClick={() => setNewRating("1")}
                     >
                       1
                     </CallToAction>
                     <CallToAction
                     disabled={disabled}
-                    style={{
-                      margin: 10
-                    }}
                     color={
                       newRating === '2'
                       ? 'primary'
                       : 'secondary'
                     }
-                    size='lg'
+                    style={{
+                      margin: 10
+                    }}
                     onClick={() => setNewRating("2")}
                     >
                       2
                     </CallToAction>
                     <CallToAction
                     disabled={disabled}
-                    style={{
-                      margin: 10
-                    }}
-                    size='lg'
                     color={
                       newRating === '3'
                       ? 'primary'
                       : 'secondary'
                     }
+                    style={{
+                      margin: 10
+                    }}
                     onClick={() => setNewRating("3")}
                     >
                       3
                     </CallToAction>
                     <CallToAction
                     disabled={disabled}
-                    style={{
-                      margin: 10
-                    }}
                     color={
                       newRating === '4'
                       ? 'primary'
                       : 'secondary'
                     }
-                    size='lg'
+                    style={{
+                      margin: 10
+                    }}
                     onClick={() => setNewRating("4")}
                     >
                       4
                     </CallToAction>
                     <CallToAction
                     disabled={disabled}
-                    style={{
-                      margin: 10
-                    }}
                     color={
                       newRating === '5'
                       ? 'primary'
                       : 'secondary'
                     }
-                    size='lg'
+                    style={{
+                      margin: 10
+                    }}
                     onClick={() => setNewRating("5")}
                     >
                       5
                     </CallToAction>
-                    <br />
-                    <br />
-                    <TextButton
-                    disabled={disabled}
-                    size="lg"
-                    onClick={addRating}
-                    >
-                      Submit a rating of&nbsp;
-                      <CallToAction
-                      disabled={disabled}
-                      size="md"
-                      onClick={addRating}
-                      >
-                       {newRating}
-                      </CallToAction> 
-                      &nbsp;for 2.5 MATIC
-                    </TextButton>
-                    {msg && (
-                      <>
-                        <br />
-                        <br />
-                        Give us a sec, we're explaining to the smart contract why you gave it this rating...it's very curious
-                      </>
-                    )}
                   </div>
-                ) : (
-                  <>
-                    <div className="name23">
-                      As the Creator of this Work, you can't rate it!
-                    </div>
-                  </>
-                )}        
-                <div className='name23'>
-                  <Link href={{pathname: '/contact/[id]', query: { id: router.query.id }}}>
-                    <TextButton
-                    color="error"
-                    >
-                    Report this Work
-                    </TextButton>
-                  </Link>
+                  <TextButton
+                  disabled={disabled}
+                  size="md"
+                  onClick={addRating}
+                  >
+                    Submit your ThumbsUp&#8482; for 2.5 MATIC
+                  </TextButton>
                 </div>
-              </div>
+              ) : (
+                <>
+                <div className='ThumbUps-hide'>
+                  <h3>Rate the Work</h3>
+                  <div
+                  style={{
+                    marginBottom: 30
+                  }}>
+                    <CallToAction
+                    disabled
+                    style={{
+                      margin: 10
+                    }}
+                    >
+                      1
+                    </CallToAction>
+                      <CallToAction
+                      disabled
+                      style={{
+                        margin: 10
+                      }}
+                      >
+                        2
+                      </CallToAction>
+                      <CallToAction
+                      disabled
+                      style={{
+                        margin: 10
+                      }}
+                      >
+                        3
+                      </CallToAction>
+                      <CallToAction
+                      disabled
+                      style={{
+                        margin: 10
+                      }}
+                      >
+                        4
+                      </CallToAction>
+                      <CallToAction
+                      disabled
+                      style={{
+                        margin: 10
+                      }}
+                      >
+                        5
+                      </CallToAction>
+                    </div>
+                    <TextButton
+                    disabled
+                    >
+                      If you're reading this, You shouldn't be
+                    </TextButton>
+                  </div>
+                  <div className='hover'>
+                    <CallToAction
+                    style={{
+                      margin: 10
+                    }}
+                    color="tertiary"
+                    >
+                      You cannot rate your own work
+                    </CallToAction>
+                  </div>
+                </>
+              )}
+              {msg && (
+                <div className='message'>
+                  <CallToAction
+                  color='success'
+                  size='lg'
+                  outline
+                  >
+                    Please wait
+                  </CallToAction>
+                </div>
+              )}
             </div>
           </div>
-          <div className='name2'>
+          <div className='more-header'>
             <h2>More works we thing you'd like</h2>
           </div>
           <Grid loading={loading} nfts={allNFTs} prices={allPrices} statuses={allStatus} type={true} stars={allStars} nums={allNums} go={true} takeAway={true} checkmark={allVerify} />
-          <br />
           <style>{`
-            h1 {
-              font-weight: bold;
-              font-size: 38px;
-              margin: 20px;
-              min-height: 28px;
-            }
-
-            .whwa {
-              padding: 40px;
-              border-radius: 30px;
-              border: 1px solid #f9f9f9;
-              box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 16px;
-            }
-
-            .hsd {
-              text-align: center
-            }
-
-            h2 {
-              font-weight: bold;
-              font-size: 25px;
-              margin: 20px;
-            }
-
-            TextButton {
-              font-size: 25px;
-            }
-                
             .align {
               padding: 20px;
               display: grid;
               grid-gap: 20px;
-              grid-template-columns: 2fr 2fr;
-              margin-bottom: 30px;
-              margin-top: 0px;
+              grid-template-columns: 1fr 1fr;
               align-items: center;
             }
-            .mint-container {
+            .img-holder {
               text-align: center;
-              margin: 0 auto;
-              padding: 40px;
+              border-right: 2px solid #f0f0f0;
+            }
+            .nft-img-large {
               border-radius: 30px;
             }
+            .more-header {
+              margin-top: 40px;
+              text-align: center;
+              font-size: 30px;
+            }
+            h1 {
+              font-size: 60px;
+              font-weight: bold;
+              margin-bottom: 40px;
+            }
+            h2 {
+              margin-bottom: 15px;
+            }
+            .ThumbUps {
+              text-align: center;
+            }
+            .ThumbUps-hide {
+              filter: blur(15px);
+              text-align: center;
+            }
             h3 {
-              margin-top: 20px;
-              font-size: 20px;
-            }
-            input[type=file], .image-preview {
-              display: block;
-              margin: 20px 5px;
-            }
-
-            .image-preview {
-              border-radius: 8px;
-              max-width: 200px;
-              max-height: 200px;
-            }
-
-            .image-logo {
-              margin-left: 5px;
-              margin-right: 5px;
-              max-width: 25px;
-            }
-
-            .nft-img2 {
-              max-width: 600px;
-              max-height: 600px;
-              cursor: pointer;
-              border-radius: 15px;
-            }
-                    
-            .name23 {
+              font-size: 25px;
               margin-top: 30px;
-              text-align: center;
+              margin-bottom: 30px;
+              font-weight: bold;
             }
-            .name2 {
-              margin-top: -30px;
+            .message {
               text-align: center;
+              font-size: 25px;
+              margin-top: 30px;
+              margin-bottom: 30px;
+            }
+            .hover {
+              text-align: center;
+              margin-top: -170px;
             }
           `}</style>
         </>
