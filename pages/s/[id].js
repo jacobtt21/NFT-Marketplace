@@ -40,157 +40,173 @@ export default function Index() {
           <Head>
             <title>{theNFT.name} on Oustro</title>
           </Head>
-          <div className="mint-container">
-            {user ? (
-              <Link href={{pathname: '/[id]', query: { id: router.query.id }}}>   
-                <CallToAction
-                color="primary"
-                >
-                  Take a closer look &rarr;
-                </CallToAction>
-              </Link>
-            ) : (
-              <>
-                {theData.show ? (
-                  <Link href={{pathname: '/login', query: { id: router.query.id }}}>                  
-                    <CallToAction
-                    color="primary"
-                    >
-                      Login / Sign Up to View Further &rarr;
-                    </CallToAction>
-                  </Link>
-                ) : (
-                  <Linkable>
-                    <a 
-                    target="_blank"
-                    href={theNFT.work}
-                    >
-                      <CallToAction
+          <div className='align'>
+            <div className='img-holder'>
+              <img
+                src={theNFT.image}
+                className="nft-img"
+                onError={(e) => (e.target.src = '/fallback.jpeg')}
+                style={{
+                  marginBottom: 30
+                }}
+              /> 
+              <CallToAction>
+                Check out the work
+              </CallToAction>
+            </div>
+            <div>
+                <div>
+                  {theData.verify === '1' ? (
+                    <Link href="/verify">
+                      <TextButton
+                      leadingIcon={MonochromeIcons.SuccessFilled}
                       color="primary"
+                      outline="none"
                       >
-                        Take a closer look &rarr;
-                      </CallToAction>
-                    </a>
-                  </Linkable>
-                )}
-              </>
-            )}
-            {theData.verify === '0' ? (
-              <h1>{theNFT.name}</h1>
-            ) : theData.verify === '1' ? (
-              <h1>
-                <Link href="/verify">
-                  <TextButton
-                  leadingIcon={MonochromeIcons.SuccessFilled}
-                  color="primary"
-                  outline="none"
+                        This is a verified work
+                      </TextButton>
+                    </Link>
+                  ) : theData.verify === '2' ? (
+                    <Link href="/mistake">
+                      <TextButton
+                      leadingIcon={MonochromeIcons.AsteriskBold}
+                      color="primary"
+                      outline="none"
+                      >
+                        This work has a mistake in it
+                      </TextButton>
+                    </Link>
+                  ) : (
+                    <Link href="/warning">
+                      <TextButton
+                      leadingIcon={MonochromeIcons.Exclaim}
+                      color="primary"
+                      outline="none"
+                      >
+                        This work might be offensive
+                      </TextButton>
+                    </Link>
+                  )}
+                  <h1>
+                    {theNFT.name}
+                  </h1>
+                </div>
+                <div>
+                  <h2>
+                    <CallToAction
+                    outline>
+                      {theData.rating} / 5
+                    </CallToAction>
+                    &nbsp;out of {theData.raters} ratings
+                  </h2>
+                </div>
+              <h2>
+                Created by &nbsp;
+                <TextButton>
+                  {theNFT.creator}
+                </TextButton>
+              </h2>
+              <div className='hidden-features'>
+                <h3>Rate the Work</h3>
+                <div
+                style={{
+                  marginBottom: 30
+                }}>
+                  <CallToAction
+                  disabled
+                  style={{
+                    margin: 10
+                  }}
                   >
-                  </TextButton>
-                </Link>
-                {theNFT.name}
-              </h1>
-            ) : theData.verify === '2' ? (
-              <h1>
-                <Link href="/mistake">
-                  <TextButton
-                  leadingIcon={MonochromeIcons.AsteriskBold}
-                  color="primary"
-                  outline="none"
+                    1
+                  </CallToAction>
+                  <CallToAction
+                  disabled
+                  style={{
+                    margin: 10
+                  }}
                   >
-                  </TextButton>
-                </Link>
-                {theNFT.name}
-              </h1>
-            ) : (
-              <h1>
-                <Link href="/warning">
-                  <TextButton
-                  leadingIcon={MonochromeIcons.Exclaim}
-                  color="primary"
-                  outline="none"
+                    2
+                  </CallToAction>
+                  <CallToAction
+                  disabled
+                  style={{
+                    margin: 10
+                  }}
                   >
-                  </TextButton>
-                </Link>
-                {theNFT.name}
-              </h1>
-            )}
-            <h3>
-              <TextButton
-              color='tertiary'>
-              <img className="image-logo" src="/p2.svg" />
-              {web3.utils.fromWei(theData.price)} MATIC
-              </TextButton>
-            </h3>
-            <img
-            src={theNFT.image}
-            width={300}
-            className="nft-img"
-            onError={(e) => (e.target.src = '/fallback.jpeg')}
-            />
-            <br />
-            <CallToAction
-            color="primary"
-            size="sm"
-            outline="none"
-            >
-              {theData.rating} / 5 Rating
-            </CallToAction>  
-            <div className='name'>
-              <h3>by 
-                <Link href={{pathname: '/u/[user]', query: { user: theNFT.creator }}}>   
-                  <TextButton
-                  color="primary"
+                    3
+                  </CallToAction>
+                  <CallToAction
+                  disabled
+                  style={{
+                    margin: 10
+                  }}
                   >
-                    {theNFT.creator.substring(0, 6)}..{theNFT.creator.substring(38)}
-                  </TextButton>
-                </Link>
-              </h3> 
+                    4
+                  </CallToAction>
+                  <CallToAction
+                  disabled
+                  style={{
+                    margin: 10
+                  }}
+                  >
+                    5
+                  </CallToAction>
+                </div>
+                <TextButton
+                disabled
+                >
+                  If you're reading this, You shouldn't be
+                </TextButton>
+              </div>
+              <div className='centered-div'>
+                <CallToAction
+                style={{
+                  margin: 10
+                }}
+                >
+                  See More Works &rarr;
+                </CallToAction>
+              </div>
             </div>
           </div>
-          <style>{`
-            h1 {
-              font-weight: bold;
-              font-size: 28px;
-              margin: 20px;
-              min-height: 28px;
-            }
-        
-            .mint-container {
-              max-width: 400px;
+          <style jsx>{`
+            .img-holder {
               text-align: center;
-              margin: 0 auto;
-              padding: 40px;
-              border-radius: 30px;
-              border: 1px solid #f9f9f9;
-              box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 16px;
+              border-right: 2px solid #f0f0f0;
             }
-
-            input[type=file], .image-preview {
-              display: block;
-              margin: 20px 5px;
-            }
-
-            .image-preview {
-              border-radius: 8px;
-              max-width: 200px;
-              max-height: 200px;
-            }
-
-            .image-logo {
-              margin-left: 5px;
-              margin-right: 5px;
-              max-width: 25px;
-            }
-
             .nft-img {
-              max-width: 400px;
-              max-height: 400px;
-              cursor: pointer;
-              border-radius: 15px;
-              margin: 25px;
+              border-radius: 30px;
             }
-            .name {
-              margin-top: 40px;
+            h1 {
+              font-size: 60px;
+              font-weight: bold;
+              margin-bottom: 40px;
+            }
+            h2 {
+              margin-bottom: 15px;
+            }
+            h3 {
+              font-size: 40px;
+              margin-top: 30px;
+              margin-bottom: 30px;
+            }
+            .align {
+              padding: 20px;
+              display: grid;
+              grid-gap: 20px;
+              grid-template-columns: 1fr 1fr;
+              margin-bottom: 30px;
+              margin-top: 0px;
+              align-items: center;
+            }
+            .centered-div {
+              display: grid;
+              grid-template-columns: 0.5fr 0.5fr;
+              margin-top: 30px;
+            }    
+            .hidden-features {
+              filter: blur(10px);
               text-align: center;
             }
           `}</style>

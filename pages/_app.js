@@ -26,10 +26,16 @@ function MyApp({ Component, pageProps }) {
         if (router.pathname === '/login') {
           Router.push('/');
         }
+        else if (router.pathname === '/s/[id]') {
+          Router.push('/'+router.query.id);
+        }
       } else {
         if (router.pathname !== '/callback') {
           if (router.pathname === '/') {
             Router.push('/showcase');
+          }
+          else if (router.pathname === '/showcase') {
+            
           }
           else if (router.pathname === '/s/[id]') {
             
