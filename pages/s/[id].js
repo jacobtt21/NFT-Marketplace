@@ -44,6 +44,7 @@ export default function Index() {
             <div className='img-holder'>
               <img
                 src={theNFT.image}
+                width={500}
                 className="nft-img"
                 onError={(e) => (e.target.src = '/fallback.jpeg')}
                 style={{
