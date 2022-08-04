@@ -23,6 +23,7 @@ export default function About() {
         }
         h2 {
           margin-top: 30px;
+          line-height: 25px;
         }
         .cards {
           margin-top: 40px;
