@@ -86,7 +86,7 @@ export default function Login() {
             onClick={login}
             disabled={isLoggingIn}
           >
-            Send Magic Link
+            Let's go
           </CallToAction>
           <br />
           {isLoggingIn && (

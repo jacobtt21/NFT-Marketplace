@@ -468,7 +468,7 @@ export default function About() {
             </h5>
             <h5>
               <a 
-              href="/code"
+              href="/legal"
               >
                 Legal
               </a>
@@ -517,9 +517,9 @@ export default function About() {
             </h5>
             <h5>
               <a 
-              href="/contact"
+              href="/about"
               >
-                Contact
+                About
               </a>
             </h5>
           </div> 
@@ -546,6 +546,13 @@ export default function About() {
               href="/u/0x8c17bB1862B31f302e4c25bf364431f0a39614B1"
               >
                 Oustro Orginals
+              </a>
+            </h5>
+            <h5>
+              <a 
+              href="/u/0x8c17bB1862B31f302e4c25bf364431f0a39614B1"
+              >
+                ThumbsUp&#8482;
               </a>
             </h5>
           </div> 

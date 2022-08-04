@@ -46,6 +46,9 @@ function MyApp({ Component, pageProps }) {
           else if (router.pathname === '/code') {
             
           }
+          else if (router.pathname === '/legal') {
+            
+          }
           else if (router.pathname === '/contact') {
             router.push('/login?id=contact')
           }
