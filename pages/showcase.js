@@ -91,7 +91,7 @@ export default function About() {
             loop={Infinity}
             />
           </h1>
-          <Image
+          <img
             src="/falling.svg"
             width="1100"
             height="425"
@@ -424,24 +424,42 @@ export default function About() {
         <div className='Logos'>
           <h4>Oustro is Proud to be Featured in</h4>
           <div className='Inv'>
-            <img
-            src="https://s.gitcoin.co/static/v2/images/presskit/logotype.41fe3e22f370.svg"
-            width={300}
-            className="nft-img"
-            onError={(e) => (e.target.src = '/fallback.jpeg')}
-            />  
-            <img
-            src="https://upload.wikimedia.org/wikipedia/commons/8/89/Product_Hunt_Logo.svg"
-            width={300}
-            className="nft-img"
-            onError={(e) => (e.target.src = '/fallback.jpeg')}
-            />
-            <img
-            src="https://rawcdn.githack.com/Oustro/OustroImages/2feb41f30f48674078a88786eefa89463c589d83/Magazine.svg?min=1"
-            width={300}
-            className="nft-img"
-            onError={(e) => (e.target.src = '/fallback.jpeg')}
-            />  
+            <div
+            style={{
+              alignText: 'center'
+            }}
+            >
+              <img
+              src="https://s.gitcoin.co/static/v2/images/presskit/logotype.41fe3e22f370.svg"
+              width={300}
+              className="nft-img"
+              onError={(e) => (e.target.src = '/fallback.jpeg')}
+              /> 
+            </div>
+            <div
+            style={{
+              alignText: 'center'
+            }}
+            >
+              <img
+              src="https://rawcdn.githack.com/Oustro/OustroImages/2feb41f30f48674078a88786eefa89463c589d83/Magazine.svg?min=1"
+              width={300}
+              className="nft-img"
+              onError={(e) => (e.target.src = '/fallback.jpeg')}
+              /> 
+            </div>
+            <div
+            style={{
+              alignText: 'center'
+            }}
+            >
+              <img
+              src="https://upload.wikimedia.org/wikipedia/commons/8/89/Product_Hunt_Logo.svg"
+              width={300}
+              className="nft-img"
+              onError={(e) => (e.target.src = '/fallback.jpeg')}
+              />  
+            </div>
           </div>
         </div>
       </div>
@@ -475,7 +493,7 @@ export default function About() {
             </h5>
             <h5>
               <a 
-              href="/"
+              href="/faq"
               >
                 FAQs
               </a>
@@ -563,7 +581,7 @@ export default function About() {
               <img src='/oustro_logo.svg' className='logo' />
             </Link>
             <h3>
-              315 Boyett St, College Station, TX 77840
+              315 Boyett St, Austin, TX 77840
             </h3>
             <br />
             <h3>
@@ -617,6 +635,12 @@ export default function About() {
         .three91 {
           margin-top: 5px;
           text-align: center;
+        }
+        .Image {
+          pointer-events: none;
+        }
+        img {
+          pointer-events: none;
         }
         .one { 
           margin-top: 150px; 
@@ -681,6 +705,7 @@ export default function About() {
         }
         .Logos {
           padding: 30px;
+          margin: auto;
         }
         .align2 {
           padding: 20px;

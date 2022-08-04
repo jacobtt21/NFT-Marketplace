@@ -37,6 +37,12 @@ function MyApp({ Component, pageProps }) {
           else if (router.pathname === '/showcase') {
             
           }
+          else if (router.pathname === '/faq') {
+            
+          }
+          else if (router.pathname === '/about') {
+            
+          }
           else if (router.pathname === '/s/[id]') {
             
           }

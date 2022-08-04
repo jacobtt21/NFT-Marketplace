@@ -6,7 +6,7 @@ export default function About() {
   return (
     <>
       <Head>
-        <title>Confused? | Oustro</title>
+        <title>About | Oustro</title>
         <meta name="description" content="Learn more about Oustro" />
         <link
           rel="canonical"
