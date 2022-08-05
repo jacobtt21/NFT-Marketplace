@@ -64,35 +64,55 @@ export default function About() {
           <div className='toc'>
             <h5>More places that might have answers</h5>
             <h6>
-              <TextButton>
-                Blog
-              </TextButton>
+              <Link
+              href="/"
+              >
+                <TextButton>
+                  Blog
+                </TextButton>
+              </Link>
             </h6>
             <h6>
-              <TextButton>
-                Helpdesk
-              </TextButton>
+              <Link
+              href="https://oustro.zendesk.com/hc/en-us"
+              >
+                <TextButton>
+                  Help center
+                </TextButton>
+              </Link>
             </h6>
             <h6>
-              <TextButton>
-                Status
-              </TextButton>
+              <Link
+              href="https://oustro.statuspage.io/"
+              >
+                <TextButton>
+                  Status
+                </TextButton>
+              </Link>
             </h6>
             <h6>
-              <TextButton>
-                Privacy Policy
-              </TextButton>
+              <Link
+              href="/legal"
+              >
+                <TextButton>
+                  Privacy policy
+                </TextButton>
+              </Link>
             </h6>
             <h6>
-              <TextButton>
-                Terms of Service
-              </TextButton>
+              <Link
+              href="/legal"
+              >
+                <TextButton>
+                  Terms of service
+                </TextButton>
+              </Link>
             </h6>
             <h6>
               <Link
               href="/code">
                 <TextButton>
-                  Code of Conduct
+                  Code of conduct
                 </TextButton>
               </Link>
             </h6>
