@@ -18,18 +18,26 @@ export default function About() {
         <div className='align'>
           <div className='toc'>
             <h6>
-              <TextButton>
-                Intro
-              </TextButton>
-            </h6>
-            <h6>
-              <TextButton>
-                Rules
-              </TextButton>
+              <Link
+              href="#intro"
+              >
+                <TextButton>
+                  Intro
+                </TextButton>
+              </Link>
             </h6>
             <h6>
               <Link
-              href="/code"
+              href="#rules"
+              >
+                <TextButton>
+                  Rules
+                </TextButton>
+              </Link>
+            </h6>
+            <h6>
+              <Link
+              href="#how"
               >
                 <TextButton>
                   How you can help
@@ -38,7 +46,7 @@ export default function About() {
             </h6>
             <h6>
               <Link
-              href="/code"
+              href="#after"
               >
                 <TextButton>
                   What happens after
@@ -47,7 +55,7 @@ export default function About() {
             </h6>
             <h6>
               <Link
-              href="/code"
+              href="#conclusion"
               >
                 <TextButton>
                   Conclusion
@@ -57,9 +65,9 @@ export default function About() {
           </div>
           <div>
             <h1>Oustro's Code of Conduct</h1>
-            <h2>Intro</h2>
-            <h3>At Oustro, we strive to promote the freedom of personal expression. Our aim is to build a platform for our users to formulate ideas, inspire movements, and unite over common passions. Oustro does not tolerate any content deemed dangerous to either the Oustro community or the world. Oustro reserves the right to remove any uploads to the platform if deemed a violation of any of the following:</h3>
-            <h2>Rules</h2>
+            <h2 id="intro">Intro</h2>
+            <h3>At Oustro, we strive to promote the freedom of personal expression. We aim to build a platform for our users to formulate ideas, inspire movements, and unite over shared passions. Oustro does not tolerate any content deemed dangerous to the Oustro community or the world. Oustro reserves the right to remove any uploads to the platform if deemed a violation of any of the following:</h3>
+            <h2 id="rules">Rules</h2>
             <h6>
               1. Hate speech/abuse/bullying directed toward any group
             </h6>
@@ -83,12 +91,12 @@ export default function About() {
             <h6>
               7. Promotion of self-harm
             </h6>
-            <h2>How you can help</h2>
-            <h3>If you see something that goes against any of our guidelines, please help us locate it as soon as possible! Every post contains a button to allow a user to report the material, which will be reviewed by our team immediately.</h3>
-            <h2>What happens after</h2>
-            <h3>If a user has their work removed, they will be notified via their listed email. The email shall contain an explanation of the removal, paired with a link to appeal if the user deems the decision unjust. If the removal of the material is upheld, the work will not be published back to the site.</h3>
-            <h2>Conclusion</h2>
-            <h3>Everyone is welcome here, and we will forever stand by that. Let’s work together to make Oustro a safe community not only for ourselves, but for the entire world.</h3>
+            <h2 id="how">How you can help</h2>
+            <h3>If you see something that goes against our guidelines, please help us locate it as soon as possible! Every post contains a button to allow a user to report the material, which will be reviewed by our team immediately.</h3>
+            <h2 id="after">What happens after</h2>
+            <h3>Users will be notified via their listed email if they have their work removed. The email shall contain an explanation of the removal and a link to appeal if the user deems the decision unjust. Unless the decision is overturned following the appeal, the work will not be published back on the site.</h3>
+            <h2 id="conclusion">Conclusion</h2>
+            <h3>Everyone is welcome here, and we will forever stand by that. Let us work together to make Oustro a safe community for ourselves and the world.</h3>
           </div>
         </div>
       </div>

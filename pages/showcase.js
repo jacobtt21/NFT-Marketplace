@@ -125,9 +125,9 @@ export default function About() {
           <div>
             <h4>Share Your Voice, Your Way</h4> 
             <h6>
-              Publish and display your work in various formats, all chosen to give you the most creative freedom, 
-              as NFTs. Be it an academic paper you've written, a short film you've made, or a webpage you've developed, 
-              it's all welcome on Oustro.
+            Publish and display your work in various formats, all chosen to give you the most creative freedom, as NFTs. 
+            Be it an academic paper you have written, a short film you have made, or a webpage you have developed, it is all 
+            welcome on Oustro.
             </h6>
             <br />
             <Link href="/login?id=mint">
@@ -158,7 +158,7 @@ export default function About() {
           <div>
             <h4>Buy What Moves You</h4> 
             <h6>
-            Unlike previous NFT marketplaces, creators may now sell exclusive rights to a variety of content aside from images. 
+            Unlike previous NFT marketplaces, creators may now sell exclusive rights to various content aside from images. 
             Furthermore, creators may choose to share royalties earned from their works.
             </h6>
             <br />
@@ -175,7 +175,7 @@ export default function About() {
             <h4>Support Dream(er)s</h4> 
             <h6>
             Help fund creators on Oustro by donating directly to their public Polygon address or 
-            by providing feedback on their work.
+            through ThumbsUp&#8482;, Oustro's reward-feedback system.
             </h6>
             <br />
             <Link href="/login">
@@ -207,7 +207,7 @@ export default function About() {
             <h4>Build Communities Around Ideas</h4> 
             <h6>
             With built-in community-building tools, Oustro provides creators a way to rally their audiences 
-            around ideas, stories, and so much more.
+            around ideas, stories, and much more.
             </h6>
             <br />
             <Link href="/login">
@@ -221,8 +221,8 @@ export default function About() {
         <div className='compare' id="why">
           <h4>Why Oustro?</h4>
           <h6>
-            Here's a complete comparsion between Oustro and similiar applications.
-            </h6>
+            Here is a complete comparison between Oustro and similar applications.
+          </h6>
           <div className='align5'>
             <div className='com'>
             </div> 
