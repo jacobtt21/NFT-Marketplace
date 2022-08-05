@@ -4,7 +4,7 @@ import { web3 } from '../../lib/magic';
 import { UserContext } from '../../lib/UserContext';
 import { abi } from '../../contracts/abi';
 import Loading from '../../components/Loading';
-import { CallToAction, TextButton, MonochromeIcons, Linkable } from '@magiclabs/ui';
+import { CallToAction, TextButton, MonochromeIcons, Linkable, HoverActivatedTooltip } from '@magiclabs/ui';
 import Link from 'next/link'
 import Head from 'next/head';
 
@@ -65,37 +65,59 @@ export default function Index() {
             <div>
               <div className='align'>
                 <div>
-                  {theData.verify === '1' ? (
-                    <Link href="/verify">
-                      <TextButton
-                      leadingIcon={MonochromeIcons.SuccessFilled}
-                      color="primary"
-                      outline="none"
-                      >
-                        This is a verified work
-                      </TextButton>
-                    </Link>
-                  ) : theData.verify === '2' ? (
-                    <Link href="/mistake">
-                      <TextButton
-                      leadingIcon={MonochromeIcons.AsteriskBold}
-                      color="primary"
-                      outline="none"
-                      >
-                        This work has a mistake in it
-                      </TextButton>
-                    </Link>
-                  ) : (
-                    <Link href="/warning">
-                      <TextButton
-                      leadingIcon={MonochromeIcons.Exclaim}
-                      color="primary"
-                      outline="none"
-                      >
-                        This work might be offensive
-                      </TextButton>
-                    </Link>
-                  )}
+                  <HoverActivatedTooltip
+                    arrow
+                    placement="top"
+                  >
+                    <HoverActivatedTooltip.Anchor>
+                      {theData.verify === '0' ? (
+                        <>
+                        </>
+                      ) : theData.verify === '1' ? (
+                          <TextButton
+                          leadingIcon={MonochromeIcons.SuccessFilled}
+                          color="primary"
+                          outline="none"
+                          >
+                            This is a verified work
+                          </TextButton>
+                      ) : theData.verify === '2' ? (
+                          <TextButton
+                          leadingIcon={MonochromeIcons.AsteriskBold}
+                          color="primary"
+                          outline="none"
+                          >
+                            This work has a mistake in it
+                          </TextButton>
+                      ) : (
+                          <TextButton
+                          leadingIcon={MonochromeIcons.Exclaim}
+                          color="primary"
+                          outline="none"
+                          >
+                            This work might be offensive
+                          </TextButton>
+                      )}
+                    </HoverActivatedTooltip.Anchor>
+                    <HoverActivatedTooltip.Content>
+                      {theData.verify === '1' ? (
+                        <>
+                          Verification means this work is original, contains correct information (if applicable), 
+                          and has a significant presence.
+                        </>
+                      ) : theData.verify === '2' ? (
+                        <>
+                         By request from the owner and creator, we have marked this work as having a mistake. 
+                        </>
+                      ) : (
+                        <>
+                          We just wanted to let you know, that after reviewing this work, we would like to warn 
+                          you that it contains material that may cause distress, be offensive, or spread false 
+                          information.
+                        </>
+                      )}
+                    </HoverActivatedTooltip.Content>
+                  </HoverActivatedTooltip>
                   <h1>
                     {theNFT.name}
                   </h1>
