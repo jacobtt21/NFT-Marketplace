@@ -273,6 +273,21 @@ export default function Index() {
                   </CallToAction>
                 </a>
               </Linkable>
+              {theNFT.socialLink !== "" && (
+                <Linkable>
+                  <a
+                  href={theNFT.socialLink}
+                  target="_blank">
+                    <CallToAction
+                    style={{
+                      margin: 5
+                    }}
+                    >
+                      Take me to the community &rarr;
+                    </CallToAction>
+                  </a>
+                </Linkable>
+              )}
             </div>
             <div>
               <div className='align'>
