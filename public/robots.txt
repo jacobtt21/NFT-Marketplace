@@ -6,4 +6,4 @@ Disallow: /contact/
 Disallow: /profile
 Disallow: /library
 
-Sitemap: http://www.oustro.xyz/sitemap.xml
+Sitemap: https://www.oustro.xyz/sitemap.xml
