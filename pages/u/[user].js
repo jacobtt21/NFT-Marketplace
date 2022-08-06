@@ -1,13 +1,15 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { Router, useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import { UserContext } from '../../lib/UserContext';
 import { web3 } from '../../lib/magic';
 import { abi } from '../../contracts/abi';
 import Grid from '../../components/Grid';
 import Loading from '../../components/Loading';
+import { customNames } from '../../lib/users';
 
 export default function Index() {
   const [user] = useContext(UserContext);
+  const [userName, setUsername] = useState('');
   const [myNFTs, setMyNFTs] = useState([]);
   const [myPrices, setMyPrices] = useState();
   const [myStatus, setMyStatus] = useState();
@@ -25,10 +27,18 @@ export default function Index() {
     if (!router.query.user) {
       return;
     }
+    setUsername('');
     getMyNFTs();
   }, [router.query.user]);
 
   const getMyNFTs = async () => {
+    var i;
+    for (i = 0; i < customNames.length; ++i) {
+      if (customNames[i].address == router.query.user) {
+        setUsername(customNames[i].username);
+        break;
+      }
+    }
     setLoading(true);
     // Get array of token URI's stored in contract for given user
     // Each URI is an IPFS url containing json metadata about the NFT, such as image and name
@@ -74,36 +84,37 @@ export default function Index() {
 
   return myStars ? (
     <div>
-      {router.query.user === "0x4feE4e9F9B253058103a5014cFd106F0eC4950E8" ? (
+      {userName ? (
         <>
-          <h1>Daffy Magazine</h1>
-          <br/>
-          <p>International news and current events, all free on Oustro</p>
-        </>
-      ) : router.query.user === "0x8c17bB1862B31f302e4c25bf364431f0a39614B1" ? (
-        <>
-          <h1>Oustro Originals</h1>
-          <br/>
-          <p>From us, for you, enjoy</p>
+          <h1>{userName}</h1>
         </>
       ) : (
         <>
-          <h1>{router.query.user}'s Collection</h1>
-          <br/>
-          <p>I can't believe this was here the entire time, I might have to "borrow it"</p>
+          <p>{router.query.user}</p>
         </>
       )}
       <Grid loading={loading} nfts={myNFTs} prices={myPrices} statuses={myStatus} type={true} stars={myStars} nums={myNums} checkmark={myVerify} go={route} takeAway={true} />
       <style>{`
         h1 {
           font-weight: bold;
-          font-size: 28px;
-          text-align: center;
-          min-height: 28px;
+          font-size: 68px;
+          margin-left: 20px;
+          margin-top: 55px;
+          margin-bottom: 25px;
+        }
+        h2 {
+          font-weight: bold;
+          font-size: 68px;
+          margin-left: 20px;
+          margin-top: 55px;
+          margin-bottom: 25px;
         }
         p {
-          text-align: center;
           min-height: 28px;
+          font-size: 28px;
+          margin-left: 20px;
+          margin-top: 25px;
+          margin-bottom: 25px;
         }
       `}</style>
     </div>
