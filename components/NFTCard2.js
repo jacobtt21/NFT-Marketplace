@@ -13,6 +13,7 @@ export default function NFTCard({ nft, going }) {
               width={300}
               className="nft-img"
               onError={(e) => (e.target.src = '/fallback.jpeg')}
+              alt={nft.name}
               />
             </div>
               <div className="name">

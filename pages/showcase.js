@@ -95,6 +95,7 @@ export default function About() {
             src="/falling.svg"
             width="1100"
             height="425"
+            alt='imgBig'
           />
         </div>
         <div className='checkout'>
@@ -142,7 +143,7 @@ export default function About() {
               src="https://raw.githubusercontent.com/Oustro/OustroImages/9709cb8452cb9be70a2b225e40de954f07a928b7/8.svg"
               width="500" 
               height="500"
-              alt="" 
+              alt="person sharing" 
             /> 
           </div>         
         </div>
@@ -152,7 +153,7 @@ export default function About() {
               src="https://raw.githubusercontent.com/Oustro/OustroImages/e36c2a3c46529c2498d84ac81697dd2265d0896c/1.svg"
               width="500"
               height="500" 
-              alt="" 
+              alt="sitting on couch" 
             /> 
           </div>  
           <div>
@@ -190,7 +191,7 @@ export default function About() {
               src="https://raw.githubusercontent.com/Oustro/OustroImages/c95e01491d100885b3345971c7fa21bff73aeaef/3.svg"
               height="500"
               width="500" 
-              alt="" 
+              alt="person with kite" 
             /> 
           </div>         
         </div>
@@ -200,7 +201,7 @@ export default function About() {
               src="https://raw.githubusercontent.com/Oustro/OustroImages/3bd7a8deee3f0995d0e3b1f7a1fb5135ad91395d/2.svg"
               width="500"
               height="500" 
-              alt="" 
+              alt="person with hat" 
             /> 
           </div>  
           <div>
@@ -231,7 +232,7 @@ export default function About() {
                 src="/oustro_s_logo.svg"
                 width="50"
                 height="50"  
-                alt="" 
+                alt="OUstro logo" 
               /> 
               <br/>
               Oustro
@@ -241,7 +242,7 @@ export default function About() {
                 src="https://logosarchive.com/wp-content/uploads/2022/02/OpenSea-icon.svg"
                 width="50" 
                 height="50" 
-                alt="" 
+                alt="logo fo another" 
               /> 
               <br/>
               OpenSea
@@ -251,7 +252,7 @@ export default function About() {
                 src="https://raw.githubusercontent.com/Oustro/OustroImages/f6400a42e43a7e0ca1a80b1b03d00283a7c0e755/Rari.svg"
                 width="50"
                 height="50"  
-                alt="" 
+                alt="ratible " 
               /> 
               <br/>
               Rarible
@@ -261,7 +262,7 @@ export default function About() {
                 src="/mirror.svg"
                 width="60" 
                 height="60"
-                alt="" 
+                alt="logo Mirror" 
               /> 
               <br/>
               Mirror
@@ -434,6 +435,7 @@ export default function About() {
               width={300}
               className="nft-img"
               onError={(e) => (e.target.src = '/fallback.jpeg')}
+              alt='hmsd f'
               /> 
             </div>
             <div
@@ -446,6 +448,7 @@ export default function About() {
               width={300}
               className="nft-img"
               onError={(e) => (e.target.src = '/fallback.jpeg')}
+              alt='daffy magzaine'
               /> 
             </div>
             <div
@@ -458,6 +461,7 @@ export default function About() {
               width={300}
               className="nft-img"
               onError={(e) => (e.target.src = '/fallback.jpeg')}
+              alt='product hunt'
               />  
             </div>
           </div>
@@ -578,7 +582,10 @@ export default function About() {
           </div>
           <div>
             <Link href="/showcase">
-              <img src='/oustro_logo.svg' className='logo' />
+              <img src='/oustro_logo.svg' 
+              className='logo' 
+              alt='oustro logo'
+              />
             </Link>
             <h3>
               315 Boyett St, Austin, TX 77840
