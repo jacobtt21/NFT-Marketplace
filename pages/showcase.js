@@ -140,7 +140,7 @@ export default function About() {
           </div> 
           <div>
             <Image
-              src="https://raw.githubusercontent.com/Oustro/OustroImages/9709cb8452cb9be70a2b225e40de954f07a928b7/8.svg"
+              src="/syvyw.png"
               width="500" 
               height="500"
               alt="person sharing" 
@@ -150,7 +150,7 @@ export default function About() {
         <div className='align'>
           <div>
             <Image
-              src="https://raw.githubusercontent.com/Oustro/OustroImages/e36c2a3c46529c2498d84ac81697dd2265d0896c/1.svg"
+              src="/bwmy.png"
               width="500"
               height="500" 
               alt="sitting on couch" 
@@ -188,7 +188,7 @@ export default function About() {
           </div> 
           <div>
             <Image
-              src="https://raw.githubusercontent.com/Oustro/OustroImages/c95e01491d100885b3345971c7fa21bff73aeaef/3.svg"
+              src="/sd.png"
               height="500"
               width="500" 
               alt="person with kite" 
@@ -198,7 +198,7 @@ export default function About() {
         <div className='align'>
           <div>
             <Image
-              src="https://raw.githubusercontent.com/Oustro/OustroImages/3bd7a8deee3f0995d0e3b1f7a1fb5135ad91395d/2.svg"
+              src="/bcai.png"
               width="500"
               height="500" 
               alt="person with hat" 
