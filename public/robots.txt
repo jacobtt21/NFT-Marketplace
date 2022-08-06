@@ -1,9 +1,4 @@
 User-agent: *
-Disallow: /mint
-Disallow: /callback
-Disallow: /api/
-Disallow: /contact/
-Disallow: /profile
-Disallow: /library
+Allow: /
 
 Sitemap: https://www.oustro.xyz/sitemap.xml
