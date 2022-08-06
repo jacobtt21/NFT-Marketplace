@@ -91,8 +91,9 @@ export default function About() {
             loop={Infinity}
             />
           </h1>
-          <img
+          <Image
             src="/falling.svg"
+            priority
             width="1100"
             height="425"
             alt='imgBig'
