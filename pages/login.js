@@ -100,7 +100,7 @@ export default function Login() {
         </div>
         <div>
           <Image 
-          src='/lg.png' 
+          src='https://raw.githubusercontent.com/Oustro/OustroImages/d3ac17e51c8b88ee39a6550a21c22a0b18b558b2/10.svg' 
           height="500"
           width="500" 
           />
