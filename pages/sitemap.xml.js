@@ -7,51 +7,85 @@ const EXTERNAL_DATA_URL_S = 'https://www.oustro.xyz/s';
 
 function generateSiteMap(posts) {
   return `<?xml version="1.0" encoding="UTF-8"?>
-   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-     <!--We manually set the two URLs we know already-->
-     <url>
-       <loc>https://www.oustro.xyz/showcase</loc>
-     </url>
-     <url>
-       <loc>https://www.oustro.xyz/about</loc>
-     </url>
-     <url>
-       <loc>https://www.oustro.xyz/login</loc>
-     </url>
-     <url>
-       <loc>https://www.oustro.xyz/faq</loc>
-     </url>
-     <url>
-       <loc>https://www.oustro.xyz/code</loc>
-     </url>
-     <url>
-       <loc>https://www.oustro.xyz/legal</loc>
-     </url>
-     <url>
-       <loc>https://www.oustro.xyz/library</loc>
-     </url>
-     <url>
-       <loc>https://www.oustro.xyz/</loc>
-     </url>
-     <url>
-       <loc>https://www.oustro.xyz/mint</loc>
-     </url>
-     <url>
-       <loc>https://www.oustro.xyz/profile</loc>
-     </url>
-     ${posts
-       .map(({ id }) => {
-         return `
-       <url>
-           <loc>${`${EXTERNAL_DATA_URL}/${id}`}</loc>
-       </url>
-       <url>
-           <loc>${`${EXTERNAL_DATA_URL_S}/${id}`}</loc>
-       </url>
-     `;
-       })
-       .join('')}
-   </urlset>
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      <!--We manually set the two URLs we know already-->
+      <url>
+          <loc>https://www.oustro.xyz/showcase</loc>
+          <lastmod>${new Date().toISOString()}</lastmod>
+          <changefreq>monthly</changefreq>
+          <priority>1.0</priority>
+      </url>
+      <url>
+          <loc>https://www.oustro.xyz/about</loc>
+          <lastmod>${new Date().toISOString()}</lastmod>
+          <changefreq>monthly</changefreq>
+          <priority>1.0</priority>
+      </url>
+      <url>
+          <loc>https://www.oustro.xyz/login</loc>
+          <lastmod>${new Date().toISOString()}</lastmod>
+          <changefreq>monthly</changefreq>
+          <priority>1.0</priority>
+      </url>
+      <url>
+          <loc>https://www.oustro.xyz/faq</loc>
+          <lastmod>${new Date().toISOString()}</lastmod>
+          <changefreq>monthly</changefreq>
+          <priority>1.0</priority>
+      </url>
+      <url>
+          <loc>https://www.oustro.xyz/code</loc>
+          <lastmod>${new Date().toISOString()}</lastmod>
+          <changefreq>monthly</changefreq>
+          <priority>1.0</priority>
+      </url>
+      <url>
+          <loc>https://www.oustro.xyz/legal</loc>
+          <lastmod>${new Date().toISOString()}</lastmod>
+          <changefreq>monthly</changefreq>
+          <priority>1.0</priority>
+      </url>
+      <url>
+          <loc>https://www.oustro.xyz/library</loc>
+          <lastmod>${new Date().toISOString()}</lastmod>
+          <changefreq>monthly</changefreq>
+          <priority>1.0</priority>
+      </url>
+      <url>
+          <loc>https://www.oustro.xyz/</loc>
+          <lastmod>${new Date().toISOString()}</lastmod>
+          <changefreq>monthly</changefreq>
+          <priority>1.0</priority>
+      </url>
+      <url>
+          <loc>https://www.oustro.xyz/mint</loc>
+          <lastmod>${new Date().toISOString()}</lastmod>
+          <changefreq>monthly</changefreq>
+          <priority>1.0</priority>
+      </url>
+      <url>
+          <loc>https://www.oustro.xyz/profile</loc>
+          <lastmod>${new Date().toISOString()}</lastmod>
+          <changefreq>monthly</changefreq>
+          <priority>1.0</priority>
+      </url>
+      ${posts.map(({ id }) => {
+        return `
+          <url>
+            <loc>${`${EXTERNAL_DATA_URL}/${id}`}</loc>
+            <lastmod>${new Date().toISOString()}</lastmod>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+          </url>
+          <url>
+            <loc>${`${EXTERNAL_DATA_URL_S}/${id}`}</loc>
+            <lastmod>${new Date().toISOString()}</lastmod>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+          </url>
+        `;
+      }).join('')}
+    </urlset>
  `;
 }
 
