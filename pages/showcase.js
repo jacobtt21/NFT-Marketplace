@@ -91,13 +91,13 @@ export default function About() {
             loop={Infinity}
             />
           </h1>
-          <Image
+          {/* <Image
             src="/falling.svg"
             priority
             width="1100"
             height="425"
             alt='imgBig'
-          />
+          /> */}
         </div>
         <div className='checkout'>
           The world's only web3 home to filmmakers, musicians, academics, artists, and more. 
