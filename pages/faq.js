@@ -52,7 +52,6 @@ export default function About() {
     <>
       <Head>
         <title>FAQs | Oustro</title>
-        <meta name="description" content="Learn more about Oustro" />
         <link
           rel="canonical"
           href="https://www.oustro.xyz/about"

@@ -54,7 +54,6 @@ export default function Login() {
     <>
       <Head>
         <title>Login | Oustro</title>
-        <meta name="description" content="Login and Get Started for free!" />
         <link
           rel="canonical"
           href="https://www.oustro.xyz/login"

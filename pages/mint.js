@@ -217,7 +217,6 @@ function Mint() {
         <>
           <Head>
           <title>Publish | Oustro</title>
-          <meta name="description" content="Publishing has never been easier and supporting creators has never been so rewarding. Welcome to Oustro." />
           <link
             rel="canonical"
             href="https://www.oustro.xyz/showcase"

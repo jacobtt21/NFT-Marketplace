@@ -73,7 +73,7 @@ export default function About() {
     <>
       <Head>
         <title>Showcase | Oustro</title>
-        <meta name="description" content="Publishing has never been easier and supporting creators has never been so rewarding. Welcome to Oustro." />
+        <meta name="description" content="The world's only web3 home to filmmakers, musicians, academics, artists, and more." />
         <link
           rel="canonical"
           href="https://www.oustro.xyz/showcase"
