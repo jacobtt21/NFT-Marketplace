@@ -100,9 +100,13 @@ export default function About() {
           /> */}
         </div>
         <div className='checkout'>
-          The world's only web3 home to filmmakers, musicians, academics, artists, and more. 
+          The world first NFT marketplace for more than just images and the only web3 home to filmmakers, musicians, academics, artists, and more.
         </div>
-        Check out some of their works below, uniquely created as NFTs and only found on Oustro
+        <div style={{
+          marginTop: 30
+        }}>
+          Check out some of their works below, uniquely created as NFTs and only found on Oustro
+        </div> 
         <Grid loading={loading} nfts={allNFTs} go={true} />
         <div
         style={{
@@ -631,6 +635,8 @@ export default function About() {
           margin-bottom: 30px;
           font-size: 30px;
           font-weight: bold;
+          width: 1000px;
+          margin: auto;
         }
         h5 {
           margin-top: 15px;
