@@ -124,7 +124,7 @@ export default function Index() {
     const userProfiles = await contractUser.methods.getAllUsers().call();
     var i;
     for (i = 0; i < userProfiles.length; ++i) {
-      if (userProfiles[i].username === newUserName) {
+      if ((userProfiles[i].username).toUpperCase() === newUserName.toUpperCase()) {
         createToast({
           message: 'Username taken',
           type: 'error',
@@ -244,8 +244,11 @@ export default function Index() {
     }
     const userProfiles = await contractUser.methods.getAllUsers().call();
     var i;
+    console.log()
     for (i = 0; i < userProfiles.length; ++i) {
-      if (userProfiles[i].username === newUserName) {
+      console.log((userProfiles[i].username).toUpperCase())
+      console.log(newUserName.toUpperCase())
+      if ((userProfiles[i].username).toUpperCase() === newUserName.toUpperCase()) {
         createToast({
           message: 'Username taken',
           type: 'error',
@@ -266,7 +269,7 @@ export default function Index() {
     }
     const weiBalance = await web3.eth.getBalance(user.publicAddress);
     const MaticBalance = web3.utils.fromWei(weiBalance);
-    if (MaticBalance < 0.5) {
+    if (MaticBalance < 100) {
       createToast({
         message: 'Wallet Balance Too Low to change your profile picture (need at least 0.5 Matic)',
         type: 'error',
@@ -313,6 +316,7 @@ export default function Index() {
           <img
             src={dp ? dp : "/default.png"}
             width={300}
+            height={300}
             className="profile-img"
             onError={(e) => (e.target.src = '/fallback.jpeg')}
           />
@@ -458,9 +462,9 @@ export default function Index() {
           align-items: center;
         }
         h1 {
+          margin-top: 30px;
           font-weight: bold;
           font-size: 28px;
-          min-height: 28px;
         }
         .profile-change {
           text-align: center;
