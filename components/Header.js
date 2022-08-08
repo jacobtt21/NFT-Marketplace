@@ -158,18 +158,45 @@ const Header = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link href={`/profile`}>
-                      <CallToAction
-                        color={
-                          router.pathname === '/profile'
-                            ? 'primary'
-                            : 'secondary'
-                        }
-                        size="sm"
-                      >
-                        Profile
-                      </CallToAction>
-                    </Link>
+                  <HoverActivatedTooltip
+                    arrow
+                    placement="top"
+                  >
+                    <HoverActivatedTooltip.Anchor>
+                      <Link href={`/profile`}>
+                        <CallToAction
+                          trailingIcon={MonochromeIcons.CaretDown}
+                          color={
+                            router.pathname === '/profile'
+                              ? 'primary'
+                              : 'secondary'
+                          }
+                          size="sm"
+                        >
+                          Profile
+                        </CallToAction>
+                      </Link>
+                    </HoverActivatedTooltip.Anchor>
+                    <HoverActivatedTooltip.Content>
+                      <div>
+                        <Link href="/collection">
+                          <TextButton
+                            size="sm"
+                          >
+                            Your Collection
+                          </TextButton>
+                        </Link>
+                        <br />
+                        <Link href="/profile">
+                          <TextButton
+                            size="sm"
+                          >
+                            Edit Profile
+                          </TextButton>
+                        </Link>
+                      </div>
+                    </HoverActivatedTooltip.Content>
+                  </HoverActivatedTooltip>
                   </li>
                 </div>
                 <div className="nav-div">

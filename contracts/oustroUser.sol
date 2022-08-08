@@ -10,16 +10,19 @@ contract oustroUser {
         address userAddress;
         string username;
         string displayPic;
+        string bio;
         bool verify;
     }
 
     function createUser(address newAddress, string memory username, string memory profile) public returns (uint) {
         // Mint NFT
+        string memory newBio = "I'm new here!";
         userlist.push(
             Users(
                 newAddress,
                 username,
                 profile,
+                newBio,
                 false
             )
         );
@@ -51,6 +54,15 @@ contract oustroUser {
         for (uint i = 0; i < userlist.length; ++i) {
             if (_owner == userlist[i].userAddress) {
                 userlist[i].username = newName; 
+            }
+        }
+        return userlist.length;
+    }
+
+    function changeBio(address _owner, string memory updatedBio) public returns (uint) {
+        for (uint i = 0; i < userlist.length; ++i) {
+            if (_owner == userlist[i].userAddress) {
+                userlist[i].bio = updatedBio; 
             }
         }
         return userlist.length;

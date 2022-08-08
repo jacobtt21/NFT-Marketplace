@@ -11,6 +11,7 @@ import { MonochromeIcons, TextButton } from '@magiclabs/ui';
 export default function Index() {
   const [user] = useContext(UserContext);
   const [userName, setUsername] = useState('');
+  const [bio, setBio] = useState('');
   const [dp, setDP] = useState('');
   const [userVerify, setUserVerify] = useState(false);
   const [myNFTs, setMyNFTs] = useState([]);
@@ -81,6 +82,7 @@ export default function Index() {
         setUsername(userProfiles[i].username);
         setDP(userProfiles[i].displayPic);
         setUserVerify(userProfiles[i].verify)
+        setBio(userProfiles[i].bio)
         return
       }
     }
@@ -110,6 +112,17 @@ export default function Index() {
           ></TextButton>
         )}
       </h1>
+      <h2>
+        {bio ? (
+          <>
+          {bio}
+          </>
+        ) : (
+          <>
+            I'm new here!
+          </>
+        )}
+      </h2>
       </div>
       <Grid loading={loading} nfts={myNFTs} prices={myPrices} statuses={myStatus} type={true} stars={myStars} nums={myNums} checkmark={myVerify} go={route} takeAway={true} />
       <style>{`
@@ -127,9 +140,9 @@ export default function Index() {
         }
         h2 {
           font-weight: bold;
-          font-size: 68px;
+          font-size: 18px;
           margin-left: 20px;
-          margin-top: 55px;
+          margin-top: 25px;
           margin-bottom: 25px;
         }
         p {

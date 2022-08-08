@@ -1,9 +1,7 @@
 import React, { useEffect, useContext, useState, useRef } from 'react';
 import { UserContext } from '../lib/UserContext';
 import { web3 } from '../lib/magic';
-import { abi } from '../contracts/abi';
 import { abiU } from '../contracts/abiU';
-import Grid from '../components/Grid';
 import Loading from '../components/Loading';
 import { useToast, MonochromeIcons, TextButton, CallToAction, TextField } from '@magiclabs/ui';
 import Head from 'next/head';
@@ -17,22 +15,16 @@ export default function Index() {
   const [newUserName, setNewUserName] = useState('');
   const [waiting, setWaiting] = useState(false);
   const [dp, setDP] = useState('');
+  const [bio, setBio] = useState('');
+  const [newBio, setNewBio] = useState('');
   const [userVerify, setUserVerify] = useState(false);
-  const [myNFTs, setMyNFTs] = useState([]);
-  const [myPrices, setMyPrices] = useState();
-  const [myStatus, setMyStatus] = useState();
-  const [myVerify, setMyVerify] = useState();
-  const [myNums, setMyNums] = useState();
-  const [myStars, setMyStars] = useState();
   const [loading, setLoading] = useState(false);
   const { createToast } = useToast();
   const [ipfsImageUrl, setIpfsImageUrl] = useState('');
   const imageInputRef = useRef();
   const router = useRouter()
 
-  const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
   const userAddress = process.env.NEXT_PUBLIC_USER_ADDRESS;
-  const contract = new web3.eth.Contract(abi, contractAddress);
   const contractUser = new web3.eth.Contract(abiU, userAddress);
 
   const client = create('https://ipfs.infura.io:5001');
@@ -58,45 +50,15 @@ export default function Index() {
 
   const getMyNFTs = async () => {
     setLoading(true);
-
-    // Get array of token URI's stored in contract for given user
-    // Each URI is an IPFS url containing json metadata about the NFT, such as image and name
-    const tokenURIs = await contract.methods.getNFTsByOwner(user.publicAddress).call();
-
-    let prices = []
-    let onMarket = []
-    let nums = [];
-    let stars = []
-    let nfts = [];
-    let verify = [];
-
-    var i = 0;
-    for (i = tokenURIs.length - 1; i >= 0; --i) {
-      prices.push(tokenURIs[i][2]);
-      onMarket.push(tokenURIs[i][6]);
-      nums.push(tokenURIs[i][5]);
-      stars.push(tokenURIs[i][4]);
-      verify.push(tokenURIs[i][7]);
-      const response = await fetch(tokenURIs[i].data);
-      const data = await response.json();
-      nfts.push(data);
-    }
-
-    setMyNFTs(nfts);
-    setMyPrices(prices);
-    setMyStatus(onMarket);
-    setMyNums(nums);
-    setMyVerify(verify);
-    setMyStars(stars);
-    setLoading(false);
-
     const userProfiles = await contractUser.methods.getAllUsers().call();
+    console.log(userProfiles)
     var i;
     for (i = 0; i < userProfiles.length; ++i) {
       if ((userProfiles[i].userAddress).toUpperCase() === (user.publicAddress).toUpperCase()) {
         setUsername(userProfiles[i].username);
         setDP(userProfiles[i].displayPic);
-        setUserVerify(userProfiles[i].verify)
+        setUserVerify(userProfiles[i].verify);
+        setBio(userProfiles[i].bio);
       }
     }
   };
@@ -213,6 +175,52 @@ export default function Index() {
     }
   }
 
+  const changeBio = async () => {
+    setDisabled1(true)
+    if (newBio === "") {
+      createToast({
+        message: 'Missing Bio',
+        type: 'error',
+        lifespan: 2000,
+      });
+      setDisabled1(false)
+      return;
+    }
+    const weiBalance = await web3.eth.getBalance(user.publicAddress);
+    const MaticBalance = web3.utils.fromWei(weiBalance);
+    if (MaticBalance < 0.5) {
+      createToast({
+        message: 'Wallet Balance Too Low to change your profile picture (need at least 0.5 Matic)',
+        type: 'error',
+        lifespan: 2000,
+      });
+      setDisabled1(false)
+      return;
+    }
+    try {
+      setWaiting(true)
+      const response = await fetch('https://gasstation-mainnet.matic.network/v2');
+      const next = await response.json();
+      const receipt = await contractUser.methods
+      .changeBio(user.publicAddress, newBio)
+      .send({ 
+        from: user.publicAddress,
+        gas: 1000000,
+        maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
+      });
+      console.log(receipt)
+      setDisabled1(false);
+      setWaiting(false);
+      router.reload(window.location.pathname);
+    }
+    catch (error) {
+      console.log(error);
+      setDisabled1(false)
+      setWaiting(false)
+    }
+
+  }
+
   const createProfile = async () => {
     setDisabled1(true)
     if (!ipfsImageUrl) {
@@ -269,7 +277,7 @@ export default function Index() {
     }
     const weiBalance = await web3.eth.getBalance(user.publicAddress);
     const MaticBalance = web3.utils.fromWei(weiBalance);
-    if (MaticBalance < 100) {
+    if (MaticBalance < 0.5) {
       createToast({
         message: 'Wallet Balance Too Low to change your profile picture (need at least 0.5 Matic)',
         type: 'error',
@@ -304,7 +312,7 @@ export default function Index() {
   return user ? (
     <div>
       <Head>
-        <title>Your Collection | Oustro</title>
+        <title>Edit Profile | Oustro</title>
         <link
           rel="canonical"
           href="https://www.oustro.xyz/showcase"
@@ -315,8 +323,8 @@ export default function Index() {
         <div className='profile'>
           <img
             src={dp ? dp : "/default.png"}
-            width={300}
-            height={300}
+            width={400}
+            height={400}
             className="profile-img"
             onError={(e) => (e.target.src = '/fallback.jpeg')}
           />
@@ -328,24 +336,30 @@ export default function Index() {
               ></TextButton>
             )}
           </h1>
+          <h2>
+            {bio ? (
+            <>
+              {bio}
+            </>
+            ) : (
+              <>
+                Set up your profile by giving yourself a username and profile picture!
+              </>
+            )}
+          </h2>
         </div>
         <div>
           {userName ? (
-            <div className='align'>
-              <div
-                style={{
-                  textAlign: 'center'
-                }}
-              >
+            <div className='change-img'>
+              <div className='newName'>
+                <p>Set your new Username</p>
                 <TextField
                 disabled={disabled1}
-                label={userName + " is becoming..."}
-                placeholder="Only number and letters"
+                placeholder="Change New Username (A-z, 0-9)"
                 type="text"
                 onChange={(e) => setNewUserName(e.target.value)}
                 value={newUserName}
                 >
-
                 </TextField>
                 <CallToAction
                 style={{
@@ -359,7 +373,9 @@ export default function Index() {
                   Change username
                 </CallToAction>
               </div>
-              <div>
+              <div className='newName'>
+                <p>Set your new profile pic</p>
+                <p>(500 x 500px)</p>
                 <input
                   type="file"
                   onChange={onImageUpload}
@@ -376,6 +392,7 @@ export default function Index() {
                     <img className="dp-preview" src={ipfsImageUrl} />
                   </>
                 )}
+                <br />
                 <CallToAction
                 disabled={disabled1}
                 color="primary"
@@ -388,17 +405,32 @@ export default function Index() {
                   Change profile picture
                 </CallToAction>
               </div>
+              <p>Change your bio</p>
+              <textarea
+              aria-label="update Bio"
+              placeholder='This bio is all about you, add whatever you want!'
+              onChange={(e) => setNewBio(e.target.value)}
+              value={newBio}
+              >
+              </textarea>
+              <CallToAction
+              disabled={disabled1}
+              color="primary"
+              size="md"
+              style={{
+                marginTop: 10
+              }}
+              onClick={changeBio}
+              >
+                Update bio
+              </CallToAction>
             </div>
           ) : (
-            <div className='align'>
-              <div
-                style={{
-                  textAlign: 'center'
-                }}
-              >
+            <div className='change-img'>
+              <div className='newName'>
+                <p>Set your new Username</p>
                 <TextField
                 disabled={disabled1}
-                label={user.publicAddress + " is becoming..."}
                 placeholder="Only numbers and letters"
                 type="text"
                 onChange={(e) => setNewUserName(e.target.value)}
@@ -406,7 +438,9 @@ export default function Index() {
                 >
                 </TextField>
               </div>
-              <div>
+              <div className='newName2'>
+                <p>Set your new profile pic</p>
+                <p>(500 x 500px)</p>
                 <input
                   type="file"
                   onChange={onImageUpload}
@@ -425,23 +459,19 @@ export default function Index() {
                 )}
               </div>
               <CallToAction
-            disabled={disabled1}
-            color="primary"
-            size="md"
-            style={{
-              marginTop: 10,
-              marginBottom: 20
-            }}
-            onClick={createProfile}
-            >
-              Set Profile
-            </CallToAction>
+              disabled={disabled1}
+              color="primary"
+              size="md"
+              onClick={createProfile}
+              >
+                Set Profile
+              </CallToAction>
             </div>
-
           )}
           <div
           style={{
-          textAlign: 'center'
+          textAlign: 'center',
+          marginTop: 40
           }}
           >
             {waiting && (
@@ -450,8 +480,14 @@ export default function Index() {
           </div>
         </div>
       </div>
-      <Grid loading={loading} nfts={myNFTs} prices={myPrices} statuses={myStatus} type={false} stars={myStars} nums={myNums} checkmark={myVerify} go={true} takeAway={false} />
       <style>{`
+        .newName {
+          padding: 30px;
+          border-bottom:2px solid #f0f0f0;
+        }
+        .newName2 {
+          padding: 30px;
+        }
         .align {
           padding: 20px;
           display: grid;
@@ -461,10 +497,40 @@ export default function Index() {
           margin-top: 0px;
           align-items: center;
         }
+        textarea {
+          min-width: 380px;
+          min-height: 150px;
+          border-radius: 10px;
+          resize: none;
+          outline: none;
+          font-family: Verdana;
+          font-size: 15px;
+          transition: 0.2s;
+          border: 1px solid #E5E5E5;
+          padding: 10px;
+        }
+        textarea:hover {
+          outline: none !important;
+          border: 1px solid #6851FF;
+        }
+        textarea:focus {
+          transition: 0.2s;
+          outline: none !important;
+          border: 1px solid #6851FF;
+          box-shadow: 0 0 1px 2px #6851FF; 
+        }
         h1 {
           margin-top: 30px;
           font-weight: bold;
           font-size: 28px;
+          margin-bottom: 30px;
+          text-align: center;
+        }
+        h2 {
+          margin-top: 30px;
+          text-align: center;
+          font-weight: bold;
+          font-size: 18px;
         }
         .profile-change {
           text-align: center;
@@ -472,8 +538,8 @@ export default function Index() {
           margin: auto;
         }
         p {
-          margin: 25px;
-          min-height: 28px;
+          margin-top: 15px;
+          margin-bottom: 15px;
         }
         .profile-container {
           margin-right: 20px;
@@ -481,8 +547,13 @@ export default function Index() {
         .profile {
           text-align: center;
         }
+        .change-img {
+          width: 380px;
+          text-align: center;
+          margin: auto;
+        }
         .profile-img {
-          border-radius: 150px;
+          border-radius: 200px;
         }
         .dp-preview {
           border-radius: 150px;

@@ -8,6 +8,30 @@ export const abiU = [
 			},
 			{
 				"internalType": "string",
+				"name": "updatedBio",
+				"type": "string"
+			}
+		],
+		"name": "changeBio",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_owner",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
 				"name": "newDP",
 				"type": "string"
 			}
@@ -117,6 +141,11 @@ export const abiU = [
 						"type": "string"
 					},
 					{
+						"internalType": "string",
+						"name": "bio",
+						"type": "string"
+					},
+					{
 						"internalType": "bool",
 						"name": "verify",
 						"type": "bool"
@@ -155,6 +184,11 @@ export const abiU = [
 					{
 						"internalType": "string",
 						"name": "displayPic",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "bio",
 						"type": "string"
 					},
 					{
