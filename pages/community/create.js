@@ -9,14 +9,21 @@ export default function Index() {
   return user ? (
     <div>
       <Head>
-        <title>Create a community | Oustro</title>
+        <title>Communities | Oustro</title>
         <link
           rel="canonical"
           href="https://www.oustro.xyz/showcase"
           key="canonical"
         />
       </Head>
-      <h1>Communities on Oustro</h1>
+      <h1>Communities on Oustro coming soon!</h1>
+      <style jsx>{`
+        h1 {
+          font-size: 30px;
+          margin-top: 300px;
+          text-align: center;
+        }
+      `}</style>
     </div>
   ) : (
     <>
