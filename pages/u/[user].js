@@ -101,6 +101,7 @@ export default function Index() {
       <img
         src={dp ? dp : "/default.png"}
         width={200}
+        height={200}
         className="profile-img"
         onError={(e) => (e.target.src = '/fallback.jpeg')}
       />
