@@ -1,25 +1,50 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { UserContext } from '../lib/UserContext';
 import Link from 'next/link'
 import { web3 } from '../lib/magic';
 import { abi } from '../contracts/abi';
+import { abiU } from '../contracts/abiU';
 import { TextField, CallToAction, TextButton, MonochromeIcons, useToast } from '@magiclabs/ui';
 import { useRouter } from 'next/router'
 
 
 export default function NFTCard({ nft, price, status, types, star, num, check, going, take }) {
   const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
+  const userAddress = process.env.NEXT_PUBLIC_USER_ADDRESS;
   const contract = new web3.eth.Contract(abi, contractAddress);
+  const contractUser = new web3.eth.Contract(abiU, userAddress);
 
   const [user] = useContext(UserContext);
   const [newPrice, setNewPrice] = useState();
   const [disabled, setDisabled] = useState(false);
   const [msg, setMsg] = useState(false);
   const [msg1, setMsg1] = useState(false);
+  const [creator, setCreator] = useState(nft.creator);
+  const [changed, setChanged] = useState(false);
+  const [userVerify, setUserVerify] = useState(false);
   const { createToast } = useToast();
 
   var path = '';
   const router = useRouter()
+
+  useEffect(() => {
+    if (!user && router.pathname !== '/u/[user]') {
+      return;
+    }
+    getMyNFTs();
+  }, [user]);
+
+  const getMyNFTs = async () => {
+    const userProfiles = await contractUser.methods.getAllUsers().call();
+    var i;
+    for (i = 0; i < userProfiles.length; ++i) {
+      if ((userProfiles[i].userAddress).toUpperCase() === (nft.creator).toUpperCase()) {
+        setCreator(userProfiles[i].username);
+        setChanged(true);
+        setUserVerify(userProfiles[i].verify)
+      }
+    }
+  }
 
   const changePrice = async () => {
     setDisabled(true);
@@ -142,30 +167,20 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
               onError={(e) => (e.target.src = '/fallback.jpeg')}
               />
             </div>
-            {check === '0' ? (
+            {check === '0' || check === '1' ? (
               <div className='name'>
               <TextButton
-              color="primary"
+              color="tertiary"
               outline="none"
               >
                 {nft.name}
               </TextButton>
             </div>
-            ) : check === "1" ? (
-              <div className="name">
-                <TextButton
-                leadingIcon={MonochromeIcons.SuccessFilled}
-                color="primary"
-                outline="none"
-                >
-                  {nft.name}
-                </TextButton>
-              </div> 
             ) : check === "2" ? (
               <div className="name">
                 <TextButton
                 leadingIcon={MonochromeIcons.AsteriskBold}
-                color="primary"
+                color="warning"
                 outline="none"
                 >
                   {nft.name}
@@ -175,14 +190,34 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
               <div className="name">
                 <TextButton
                 leadingIcon={MonochromeIcons.Exclaim}
-                color="primary"
+                color="error"
                 outline="none"
                 >
                   {nft.name}
                 </TextButton>
               </div> 
             )}
-            <div className="name">created by {nft.creator.substring(0, 6)}..{nft.creator.substring(38)}</div>
+            {changed ? (
+              <div className="name">
+                <Link href={{pathname: '/u/[user]', query: { user: nft.creator }}}>
+                  <TextButton
+                  trailingIcon={userVerify && (MonochromeIcons.SuccessFilled)}
+                  >
+                    {creator}
+                  </TextButton>
+                </Link>
+              </div>
+            ) : (
+              <div className="name">
+                <Link href={{pathname: '/u/[user]', query: { user: nft.creator }}}>
+                  <TextButton
+                  trailingIcon={userVerify && (MonochromeIcons.SuccessFilled)}
+                  >
+                    {creator.substring(0, 6)}...{creator.substring(38)}
+                  </TextButton>
+                </Link>
+              </div>
+            )}
             <br />
             {types ? (
               <>
@@ -293,30 +328,20 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
             onError={(e) => (e.target.src = '/fallback.jpeg')}
             />
           </div>
-          {check === '0' ? (
+          {check === '0' || check === '1' ? (
             <div className='name'>
               <TextButton
-              color="primary"
+              color="tertiary"
               outline="none"
               >
                 {nft.name}
               </TextButton>
             </div>
-          ) : check === "1" ? (
-            <div className="name">
-              <TextButton
-              leadingIcon={MonochromeIcons.SuccessFilled}
-              color="primary"
-              outline="none"
-              >
-                {nft.name}
-              </TextButton>
-            </div> 
           ) : check === "2" ? (
             <div className="name">
               <TextButton
               leadingIcon={MonochromeIcons.AsteriskBold}
-              color="primary"
+              color="warning"
               outline="none"
               >
                 {nft.name}
@@ -326,14 +351,34 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
             <div className="name">
               <TextButton
               leadingIcon={MonochromeIcons.Exclaim}
-              color="primary"
+              color="error"
               outline="none"
               >
                 {nft.name}
               </TextButton>
             </div> 
           )}
-          <div className="name">by {nft.creator.substring(0, 6)}..{nft.creator.substring(38)}</div>
+          {changed ? (
+            <div className="name">
+              <Link href={{pathname: '/u/[user]', query: { user: nft.creator }}}>
+                <TextButton
+                trailingIcon={userVerify && (MonochromeIcons.SuccessFilled)}
+                >
+                  {creator}
+                </TextButton>
+              </Link>
+            </div>
+          ): (
+            <div className="name">
+              <Link href={{pathname: '/u/[user]', query: { user: nft.creator }}}>
+                <TextButton
+                trailingIcon={userVerify && (MonochromeIcons.SuccessFilled)}
+                >
+                  {creator.substring(0, 6)}...{creator.substring(38)}
+                </TextButton>
+              </Link>
+            </div>
+          )}
           <br />
           {types ? (
             <>
@@ -434,6 +479,11 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
           padding: 15px;
           box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 16px, rgba(0, 0, 0, 0.05) 0px 0px 16px;
           transition: 0.2s;
+        }
+
+        .verify-img {
+          display: inline
+          vertical-align: middle
         }
 
         .card:hover {

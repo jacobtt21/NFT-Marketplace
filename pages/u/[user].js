@@ -3,13 +3,16 @@ import { useRouter } from 'next/router'
 import { UserContext } from '../../lib/UserContext';
 import { web3 } from '../../lib/magic';
 import { abi } from '../../contracts/abi';
+import { abiU } from '../../contracts/abiU';
 import Grid from '../../components/Grid';
 import Loading from '../../components/Loading';
-import { customNames } from '../../lib/users';
+import { MonochromeIcons, TextButton } from '@magiclabs/ui';
 
 export default function Index() {
   const [user] = useContext(UserContext);
   const [userName, setUsername] = useState('');
+  const [dp, setDP] = useState('');
+  const [userVerify, setUserVerify] = useState(false);
   const [myNFTs, setMyNFTs] = useState([]);
   const [myPrices, setMyPrices] = useState();
   const [myStatus, setMyStatus] = useState();
@@ -21,25 +24,20 @@ export default function Index() {
   var route = false;
 
   const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
+  const userAddress = process.env.NEXT_PUBLIC_USER_ADDRESS;
   const contract = new web3.eth.Contract(abi, contractAddress);
+  const contractUser = new web3.eth.Contract(abiU, userAddress);
 
   useEffect(() => {
     if (!router.query.user) {
       return;
     }
-    setUsername('');
     getMyNFTs();
   }, [router.query.user]);
 
   const getMyNFTs = async () => {
-    var i;
-    for (i = 0; i < customNames.length; ++i) {
-      if (customNames[i].address == router.query.user) {
-        setUsername(customNames[i].username);
-        break;
-      }
-    }
     setLoading(true);
+
     // Get array of token URI's stored in contract for given user
     // Each URI is an IPFS url containing json metadata about the NFT, such as image and name
     const tokenURIs = await contract.methods.getNFTsByOwner(router.query.user).call();
@@ -73,6 +71,19 @@ export default function Index() {
     setMyNums(nums);
     setMyStars(stars);
     setLoading(false);
+
+    setUsername(router.query.user)
+
+    const userProfiles = await contractUser.methods.getAllUsers().call();
+    var i;
+    for (i = 0; i < userProfiles.length; ++i) {
+      if ((userProfiles[i].userAddress).toUpperCase() === (router.query.user).toUpperCase()) {
+        setUsername(userProfiles[i].username);
+        setDP(userProfiles[i].displayPic);
+        setUserVerify(userProfiles[i].verify)
+        return
+      }
+    }
   };
 
   if (user) {
@@ -84,23 +95,35 @@ export default function Index() {
 
   return myStars ? (
     <div>
-      {userName ? (
-        <>
-          <h1>{userName}</h1>
-        </>
-      ) : (
-        <>
-          <p>{router.query.user}</p>
-        </>
-      )}
+      <div className='profile'>
+      <img
+        src={dp ? dp : "/default.png"}
+        width={200}
+        className="profile-img"
+        onError={(e) => (e.target.src = '/fallback.jpeg')}
+      />
+      <h1>
+        {userName}
+        {userVerify && (
+          <TextButton
+          leadingIcon={MonochromeIcons.SuccessFilled}
+          ></TextButton>
+        )}
+      </h1>
+      </div>
       <Grid loading={loading} nfts={myNFTs} prices={myPrices} statuses={myStatus} type={true} stars={myStars} nums={myNums} checkmark={myVerify} go={route} takeAway={true} />
       <style>{`
         h1 {
           font-weight: bold;
-          font-size: 68px;
-          margin-left: 20px;
-          margin-top: 55px;
+          font-size: 28px;
+          margin-top: 35px;
           margin-bottom: 25px;
+        }
+        .profile-img {
+          border-radius: 150px;
+        }
+        .profile {
+          text-align: center;
         }
         h2 {
           font-weight: bold;

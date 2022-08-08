@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { web3 } from '../../lib/magic';
 import { UserContext } from '../../lib/UserContext';
 import { abi } from '../../contracts/abi';
+import { abiU } from '../../contracts/abiU';
 import Loading from '../../components/Loading';
 import { CallToAction, TextButton, MonochromeIcons, Linkable, HoverActivatedTooltip } from '@magiclabs/ui';
 import Link from 'next/link'
@@ -12,11 +13,15 @@ import Head from 'next/head';
 export default function Index() {
   const [user] = useContext(UserContext);
   const router = useRouter();
+  const [creatorz, setCreatorz] = useState('');
+  const [userVerifyz, setUserVerifyz] = useState(false);
   const [theNFT, setTheNFT] = useState();
   const [theData, setTheData] = useState();
 
   const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
+  const userAddress = process.env.NEXT_PUBLIC_USER_ADDRESS;
   const contract = new web3.eth.Contract(abi, contractAddress);
+  const contractUser = new web3.eth.Contract(abiU, userAddress);
 
   useEffect(() => {
     if (!router.query.id) {
@@ -31,6 +36,16 @@ export default function Index() {
     const data = await response.json();
     setTheNFT(data);
     setTheData(nft);
+    setCreatorz(data.creator)
+    const userProfiles = await contractUser.methods.getAllUsers().call();
+    var i;
+    console.log(userProfiles)
+    for (i = 0; i < userProfiles.length; ++i) {
+      if ((userProfiles[i].userAddress).toUpperCase() === (data.creator).toUpperCase()) {
+        setCreatorz(userProfiles[i].username);
+        setUserVerifyz(userProfiles[i].verify)
+      }
+    }
   };
 
   return (
@@ -70,21 +85,13 @@ export default function Index() {
                     placement="top"
                   >
                     <HoverActivatedTooltip.Anchor>
-                      {theData.verify === '0' ? (
+                      {theData.verify === '0' || theData.verify === '1' ? (
                         <>
                         </>
-                      ) : theData.verify === '1' ? (
-                          <TextButton
-                          leadingIcon={MonochromeIcons.SuccessFilled}
-                          color="primary"
-                          outline="none"
-                          >
-                            This is a verified work
-                          </TextButton>
                       ) : theData.verify === '2' ? (
                           <TextButton
                           leadingIcon={MonochromeIcons.AsteriskBold}
-                          color="primary"
+                          color="warning"
                           outline="none"
                           >
                             This work has a mistake in it
@@ -92,7 +99,7 @@ export default function Index() {
                       ) : (
                           <TextButton
                           leadingIcon={MonochromeIcons.Exclaim}
-                          color="primary"
+                          color="error"
                           outline="none"
                           >
                             This work might be offensive
@@ -100,12 +107,7 @@ export default function Index() {
                       )}
                     </HoverActivatedTooltip.Anchor>
                     <HoverActivatedTooltip.Content>
-                      {theData.verify === '1' ? (
-                        <>
-                          Verification means this work is original, contains correct information (if applicable), 
-                          and has a significant presence.
-                        </>
-                      ) : theData.verify === '2' ? (
+                      {theData.verify === '2' ? (
                         <>
                          By request from the owner and creator, we have marked this work as having a mistake. 
                         </>
@@ -139,10 +141,12 @@ export default function Index() {
                 </h2>
               </div>
               <h2>
-                Created by &nbsp;
+                Created by
                 <Link href={{pathname: '/u/[user]', query: { user: theNFT.creator }}}>
-                  <TextButton>
-                   {theNFT.creator}
+                  <TextButton
+                  trailingIcon={userVerifyz && MonochromeIcons.SuccessFilled}
+                  >
+                   {creatorz}
                   </TextButton>
                 </Link>
               </h2>

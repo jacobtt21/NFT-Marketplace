@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { UserContext } from '../lib/UserContext';
 import { web3 } from '../lib/magic';
 import { abi } from '../contracts/abi';
+import { abiU } from '../contracts/abiU';
 import Loading from '../components/Loading';
 import { CallToAction, useToast, TextButton, MonochromeIcons, Linkable, HoverActivatedTooltip } from '@magiclabs/ui';
 import Link from 'next/link'
@@ -26,6 +27,8 @@ export default function Index() {
   const [allStatus, setAllStatus] = useState();
   const [allVerify, setAllVerify] = useState();
   const [loading, setLoading] = useState(false);
+  const [creatorz, setCreatorz] = useState('');
+  const [userVerifyz, setUserVerifyz] = useState(false);
   const { createToast } = useToast();
 
   useEffect(() => {
@@ -39,7 +42,9 @@ export default function Index() {
   }, [user, router.query.id]);
 
   const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
+  const userAddress = process.env.NEXT_PUBLIC_USER_ADDRESS;
   const contract = new web3.eth.Contract(abi, contractAddress);
+  const contractUser = new web3.eth.Contract(abiU, userAddress);
 
   const getMyNFT = async () => {
     const nft = await contract.methods.getNFTbyId(parseInt(router.query.id)).call();
@@ -84,6 +89,18 @@ export default function Index() {
     setAllStars(stars);
     setAllVerify(verified);
     setLoading(false);
+
+    setCreatorz(data.creator)
+
+    const userProfiles = await contractUser.methods.getAllUsers().call();
+    var i;
+    console.log(userProfiles)
+    for (i = 0; i < userProfiles.length; ++i) {
+      if ((userProfiles[i].userAddress).toUpperCase() === (data.creator).toUpperCase()) {
+        setCreatorz(userProfiles[i].username);
+        setUserVerifyz(userProfiles[i].verify)
+      }
+    }
   };
 
   const addRating = async () => {
@@ -292,59 +309,6 @@ export default function Index() {
             <div>
               <div className='align'>
                 <div>
-                <HoverActivatedTooltip
-                  arrow
-                  placement="top"
-                >
-                  <HoverActivatedTooltip.Anchor>
-                    {theData.verify === '0' ? (
-                      <>
-                      </>
-                    ) : theData.verify === '1' ? (
-                      <TextButton
-                      leadingIcon={MonochromeIcons.SuccessFilled}
-                      color="primary"
-                      outline="none"
-                      >
-                        This is a verified work
-                      </TextButton>
-                    ) : theData.verify === '2' ? (
-                      <TextButton
-                      leadingIcon={MonochromeIcons.AsteriskBold}
-                      color="primary"
-                      outline="none"
-                      >
-                        This work has a mistake in it
-                      </TextButton>
-                    ) : (
-                      <TextButton
-                      leadingIcon={MonochromeIcons.Exclaim}
-                      color="primary"
-                      outline="none"
-                      >
-                        This work might be offensive
-                      </TextButton>
-                    )}
-                    </HoverActivatedTooltip.Anchor>
-                    <HoverActivatedTooltip.Content>
-                      {theData.verify === '1' ? (
-                        <>
-                          Verification means this work is original, contains correct information (if applicable), 
-                          and has a significant presence.
-                        </>
-                      ) : theData.verify === '2' ? (
-                        <>
-                         By request from the owner and creator, we have marked this work as having a mistake. 
-                        </>
-                      ) : (
-                        <>
-                          We just wanted to let you know, that after reviewing this work, we would like to warn 
-                          you that it contains material that may cause distress, be offensive, or spread false 
-                          information.
-                        </>
-                      )}
-                    </HoverActivatedTooltip.Content>
-                  </HoverActivatedTooltip>
                   <h1>
                     {theNFT.name}
                   </h1>
@@ -376,10 +340,12 @@ export default function Index() {
                 </h2>
               </div>
               <h2>
-                Created by &nbsp;
+                Created by
                 <Link href={{pathname: '/u/[user]', query: { user: theNFT.creator }}}>
-                  <TextButton>
-                   {theNFT.creator}
+                  <TextButton
+                  trailingIcon={userVerifyz && MonochromeIcons.SuccessFilled}
+                  >
+                   {creatorz}
                   </TextButton>
                 </Link>
               </h2>

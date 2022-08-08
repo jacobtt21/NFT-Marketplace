@@ -9,6 +9,8 @@ import { CallToAction, TextButton, useToast, HoverActivatedTooltip, MonochromeIc
 const Header = () => {
   const [user, setUser] = useContext(UserContext);
   const [balance, setBalance] = useState('0');
+  const [what, setWhat] = useState('For You')
+  const [link, setLink] = useState('/')
   const router = useRouter();
   const { createToast } = useToast();
 
@@ -89,28 +91,57 @@ const Header = () => {
               <div className="nav-container">
                 <div className="nav-div">
                 <li>
-                  <Link href={`/`}>
-                    <CallToAction
-                      color={
-                        router.pathname === '/'
-                          ? 'primary'
-                          : 'secondary'
-                      }
-                      size="sm"
-                    >
-                      For You
-                    </CallToAction>
-                  </Link>
+                  <HoverActivatedTooltip
+                    arrow
+                    placement="top"
+                  >
+                    <HoverActivatedTooltip.Anchor>
+                      <Link href={link}>
+                        <CallToAction
+                          color={
+                            router.pathname === '/' || router.pathname === '/library'
+                              ? 'primary'
+                              : 'secondary'
+                          }
+                          trailingIcon={MonochromeIcons.CaretDown}
+                          size="sm"
+                        >
+                          {what}
+                        </CallToAction>
+                      </Link>
+                    </HoverActivatedTooltip.Anchor>
+                    <HoverActivatedTooltip.Content>
+                      <div>
+                        <Link href="/">
+                          <TextButton
+                            size="sm"
+                            onClick={() => setWhat("For You")}
+                          >
+                            For You
+                          </TextButton>
+                        </Link>
+                        <br />
+                        <Link href="/library">
+                          <TextButton
+                            size="sm"
+                            onClick={() => setWhat("Library")}
+                          >
+                            The Complete Library
+                          </TextButton>
+                        </Link>
+                      </div>
+                    </HoverActivatedTooltip.Content>
+                  </HoverActivatedTooltip>
                   </li>
                   <li>
-                    <Link href="/library">
+                    <Link href="/community">
                       <CallToAction
                         color={
-                          router.pathname === '/library' ? 'primary' : 'secondary'
+                          router.pathname === '/community' ? 'primary' : 'secondary'
                         }
                         size="sm"
                       >
-                        Library
+                        Communities
                       </CallToAction>
                     </Link>
                   </li>
@@ -136,7 +167,7 @@ const Header = () => {
                         }
                         size="sm"
                       >
-                        Your Collection
+                        Profile
                       </CallToAction>
                     </Link>
                   </li>

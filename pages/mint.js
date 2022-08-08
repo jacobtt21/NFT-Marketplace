@@ -223,7 +223,7 @@ function Mint() {
             key="canonical"
           />
         </Head>
-          <h1>If only everything was as easy as publishing on Oustro</h1>
+          <h1>If only everything was as easy as publishing an NFT on Oustro</h1>
           <h2>Make sure everything is correct, revisions cannot be done.</h2>
           <br />
           <div className="mint-container">
@@ -350,6 +350,7 @@ function Mint() {
               >
                 <HoverActivatedTooltip.Anchor>
                   <CallToAction
+                  disabled={disabled}
                   trailingIcon={MonochromeIcons.CaretRight}
                   size='sm'
                   style={{
