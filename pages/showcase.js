@@ -91,19 +91,15 @@ export default function About() {
             loop={Infinity}
             />
           </h1>
-          {/* <Image
-            src="/falling.svg"
-            priority
-            width="1100"
-            height="425"
-            alt='imgBig'
-          /> */}
         </div>
         <div className='checkout'>
-          The world first NFT marketplace for more than just images and the only web3 home to filmmakers, musicians, academics, artists, and more.
+          The world's first NFT marketplace for more than just images.       
+        </div>
+        <div className='checkout2'>
+          The only web3 home to filmmakers, musicians, academics, artists, and more.        
         </div>
         <div style={{
-          marginTop: 30
+          marginTop: 10
         }}>
           Check out some of their works below, uniquely created as NFTs and only found on Oustro
         </div> 
@@ -635,12 +631,18 @@ export default function About() {
           line-height: 1.6;
         }
         .checkout {
+          color: #6851FF;
           margin-top: 10px;
           margin-bottom: 30px;
-          font-size: 30px;
+          font-size: 33px;
           font-weight: bold;
           width: 1000px;
           margin: auto;
+        }
+        .checkout2 {
+          margin-top: 50px;
+          font-size: 25px;
+          margin-right: auto;
         }
         h5 {
           margin-top: 15px;
@@ -706,7 +708,7 @@ export default function About() {
           margin: 0 auto;
         }
         h1 {
-          font-size: 60px;
+          font-size: 70px;
           margin-bottom: 30px;
           font-weight: bold;
         }
