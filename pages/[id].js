@@ -300,7 +300,7 @@ export default function Index() {
                       margin: 5
                     }}
                     >
-                      Take me to the community &rarr;
+                      Take me to the discussion
                     </CallToAction>
                   </a>
                 </Linkable>
