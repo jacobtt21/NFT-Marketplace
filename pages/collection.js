@@ -25,7 +25,7 @@ export default function Index() {
     const tokenz = "https://www.oustro.xyz/u/"+user.publicAddress;
     navigator.clipboard.writeText(tokenz);
     createToast({
-      message: 'Link Copied!',
+      message: 'Profile link copied!',
       type: 'success',
       lifespan: 2000,
     });
@@ -86,16 +86,16 @@ export default function Index() {
           key="canonical"
         />
       </Head>
-      <h1>Your rocking collection of works &nbsp;
+      <h1>Here's your fantastic collection &nbsp;
         <CallToAction
         onPress={copyLink}
         size='md'
         leadingIcon={MonochromeIcons.Copy}
         >
-          Copy Profile Link
+          Share your collection
         </CallToAction>
       </h1>
-      <p>Interesting taste...we're not judging, just noticing. Note, the rights of the works belong to the creators unless otherwise specified.
+      <p>Note that the rights of the works belong to the creators unless otherwise specified.
       </p>
       <Grid loading={loading} nfts={myNFTs} prices={myPrices} statuses={myStatus} type={false} stars={myStars} nums={myNums} checkmark={myVerify} go={true} takeAway={false} />
       <style>{`

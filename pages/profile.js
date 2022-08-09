@@ -374,7 +374,7 @@ export default function Index() {
                 </CallToAction>
               </div>
               <div className='newName'>
-                <p>Set your new profile pic</p>
+                <p>Set your new profile picture</p>
                 <p>(500 x 500px)</p>
                 <input
                   type="file"

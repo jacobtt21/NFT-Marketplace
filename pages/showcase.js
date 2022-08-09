@@ -10,28 +10,28 @@ export default function About() {
     const [loading, setLoading] = useState(false);
     const allNFTs = [
       {
-        creator: "0x8c17bB1862B31f302e4c25bf364431f0a39614B1",
+        creator: "Oustro",
         image: "https://ipfs.infura.io/ipfs/QmeW4tudfHQw5fGfRcBpQW3oSV86GaFXFic3rGoLvNdgYo",
         name: "Daffy",
         tokenID: '6',
         work: "https://bafybeie5srm3bac476dokid2sde4xqxxfthfll4uqqz2qfcowsmigw673y.ipfs.infura-ipfs.io/"
       },
       {
-        creator: "0x8c17bB1862B31f302e4c25bf364431f0a39614B1",
+        creator: "Oustro",
         image: "https://ipfs.infura.io/ipfs/Qmf2btT6oeoESpmJaZu4U4Wg2hnfwBtxoQzkujf5i8s9rM",
         name: "Snake",
         tokenID: "2",
         work: "https://bafybeickkrcva4x6egm3lx3mqdlupnvzh7o6d4zhcqgril4tmo7ebytaxq.ipfs.infura-ipfs.io/"
       },
       {
-        creator: "0x944e45567ce148c63fbf56870148770ef17e1dd1",
+        creator: "HRDerrick",
         image: "https://ipfs.infura.io/ipfs/QmQQFYa2a43aXVuY2sapv4wjp7dFDYEMGL9VKNqF1cMcvS",
         name: "The Bottle",
         tokenID: "3",
         work: "https://bafybeiegkxna2cysmky7dlx4vkmrlj5bje6n2k6yoambbmm5vd5xqab3jy.ipfs.infura-ipfs.io/"
       },
       {
-        creator: "0x33175912b347c4b3fdd861f5418d70eb4083bc47",
+        creator: "Spaceland",
         image: "https://ipfs.infura.io/ipfs/QmP8Ynx6LypyYGY8ggFWErxpTCGKHb5qGMGkTgNVRdAXcy",
         name: "Spaceland Synopsis",
         tokenID: "4",
@@ -40,28 +40,28 @@ export default function About() {
     ]
     const allNFTs2 = [
       {
-        creator: "0x8c17bB1862B31f302e4c25bf364431f0a39614B1",
+        creator: "0x944e..1dd1",
         image: "https://raw.githubusercontent.com/Oustro/OustroImages/1c57d1dbdf5d079f453e6d5dfb8c7e6c8c14a77d/9.svg",
         name: "Daffy",
         tokenID: '6',
         work: "https://bafybeie5srm3bac476dokid2sde4xqxxfthfll4uqqz2qfcowsmigw673y.ipfs.infura-ipfs.io/"
       },
       {
-        creator: "0x8c17bB1862B31f302e4c25bf364431f0a39614B1",
+        creator: "0x944e..1dd1",
         image: "https://ipfs.infura.io/ipfs/QmXpVk2JSnWmNKQk8jUfFTGr6AputP13shqufexzXuSauh",
         name: "Snake",
         tokenID: "2",
         work: "https://bafybeickkrcva4x6egm3lx3mqdlupnvzh7o6d4zhcqgril4tmo7ebytaxq.ipfs.infura-ipfs.io/"
       },
       {
-        creator: "0x944e45567ce148c63fbf56870148770ef17e1dd1",
+        creator: "0x944e..1dd1",
         image: "https://ipfs.infura.io/ipfs/QmeBbjdrebR7VBBtt7QsQymXbvps3k6XasZZoVkZuUQzW3",
         name: "The Bottle",
         tokenID: "3",
         work: "https://raw.githubusercontent.com/Oustro/OustroImages/1c57d1dbdf5d079f453e6d5dfb8c7e6c8c14a77d/9.svg"
       },
       {
-        creator: "0x33175912b347c4b3fdd861f5418d70eb4083bc47",
+        creator: "0x944e..1dd1",
         image: "https://ipfs.infura.io/ipfs/QmQDVsvkr5huFjQHfjvG8ehqhL3sRvdAsVrdUtf2n9Y5bf",
         name: "Spaceland Synopsis",
         tokenID: "4",
@@ -93,15 +93,15 @@ export default function About() {
           </h1>
         </div>
         <div className='checkout'>
-          The world's first NFT marketplace for more than just images.       
+          Explore the world's first NFT marketplace for more than just images.       
         </div>
         <div className='checkout2'>
-          The only web3 home to filmmakers, musicians, academics, artists, and more.        
+          Join the only web3 community for filmmakers, musicians, academics, artists, and more.       
         </div>
         <div style={{
           marginTop: 10
         }}>
-          Check out some of their works below, uniquely created as NFTs and only found on Oustro
+          Buy, sell, or browse some of their works below, uniquely created as NFTs and only found on Oustro.
         </div> 
         <Grid loading={loading} nfts={allNFTs} go={true} />
         <div
@@ -636,7 +636,7 @@ export default function About() {
           margin-bottom: 30px;
           font-size: 33px;
           font-weight: bold;
-          width: 1000px;
+          width: 1200px;
           margin: auto;
         }
         .checkout2 {

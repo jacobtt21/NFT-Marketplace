@@ -28,7 +28,7 @@ export default function Index() {
   const [allStars, setAllStars] = useState();
   const [allStatus, setAllStatus] = useState();
   const [allVerify, setAllVerify] = useState();
-  const [genre, setGenre] = useState("Select What you would like to view");
+  const [genre, setGenre] = useState("What would you like to view?");
   const [setter, setSetter] = useState("1");
   const [loading, setLoading] = useState(false);
 
@@ -180,9 +180,9 @@ export default function Index() {
         <div className='huhs'>
           <h4 className='what1'>Top Picks</h4>
         </div>
-        <h3>Here's what hot right now</h3>
+        <h3>Here's what's hot right now</h3>
         <Grid loading={loading} nfts={allTPNFTs} prices={allTPPrices} statuses={allTPStatus} type={true} stars={allTPStars} nums={allTPNums} go={true} takeAway={true} checkmark={allTPVerify} />
-        <h2>In the Mood for Something?</h2>
+        <h2>In the Mood for Something Specific?</h2>
         <HoverActivatedTooltip
           arrow
           placement="left"
@@ -318,7 +318,7 @@ export default function Index() {
           <Grid loading={loading} nfts={allNFTs} prices={allPrices} statuses={allStatus} type={true} stars={allStars} nums={allNums} go={true} takeAway={true} checkmark={allVerify} />
         )}
         <h2>Random Gems</h2>
-        <h3>Why not right?</h3>
+        <h3>Explore a little. Learn something new. Live a little.</h3>
         <Grid loading={loading} nfts={allRGNFTs} prices={allRGPrices} statuses={allRGStatus} type={true} stars={allRGStars} nums={allRGNums} go={true} takeAway={true} checkmark={allRGVerify} />
         <style>{`
             CallToAction {

@@ -19,15 +19,23 @@ export default function NFTCard({ nft, going }) {
               <div className="name">
                 <Link href={{pathname: "/s/[id]", query: { id: nft.tokenID }}}>
                   <TextButton
-                  leadingIcon={MonochromeIcons.SuccessFilled}
-                  color="primary"
+                  color="tertiary"
                   outline="none"
                   >
                     {nft.name}
                   </TextButton>
                 </Link>
               </div>
-            <div className="name">created by {nft.creator.substring(0, 6)}..{nft.creator.substring(38)}</div>
+            <div className="name">
+              <Link href={{pathname: "/s/[id]", query: { id: nft.tokenID }}}>
+                <TextButton
+                trailingIcon={MonochromeIcons.SuccessFilled}
+                outline="none"
+                >
+                  {nft.creator}
+                </TextButton>
+              </Link>
+            </div>
           </div>
         </Link>
       <style>{`
