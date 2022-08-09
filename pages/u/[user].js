@@ -89,7 +89,7 @@ export default function Index() {
   };
 
   if (user) {
-    if (user.publicAddress === router.query.user) {
+    if ((user.publicAddress).toUpperCase() === (router.query.user).toUpperCase()) {
         router.push('/profile');
     }
     route = true;
