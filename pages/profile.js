@@ -71,6 +71,14 @@ export default function Index() {
     }
   };
 
+  const reqVerificatio = async () => {
+    createToast({
+      message: 'Verification Requested',
+      type: 'success',
+      lifespan: 2000,
+    });
+  }
+
   const changeUsername = async () => {
     setDisabled1(true)
     if (newUserName === '') {
@@ -433,7 +441,16 @@ export default function Index() {
               >
                 Update bio
               </CallToAction>
+              <h1>
+                <TextButton
+                disabled={userVerify ? true : disabled1}
+                onClick={reqVerificatio}
+                >
+                  Request Verification
+                </TextButton>
+              </h1>
             </div>
+            
           ) : (
             <div className='change-img'>
               <div className='newName'>
