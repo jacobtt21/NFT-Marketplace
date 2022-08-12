@@ -119,7 +119,7 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
     const MaticBalance = web3.utils.fromWei(weiBalance);
     if (MaticBalance < 0.5) {
       createToast({
-        message: 'Wallet Balance Too Low to ' + reason,
+        message: 'Wallet Balance Too Low to ' + reason + " (gas fees).",
         type: 'error',
         lifespan: 2000,
       });

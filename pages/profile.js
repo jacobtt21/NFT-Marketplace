@@ -116,7 +116,7 @@ export default function Index() {
     const MaticBalance = web3.utils.fromWei(weiBalance);
     if (MaticBalance < 0.5) {
       createToast({
-        message: 'Wallet Balance Too Low to change your profile picture (need at least 0.5 Matic)',
+        message: 'Wallet Balance Too Low to change your profile picture (need at least 0.5 Matic for gas fees)',
         type: 'error',
         lifespan: 2000,
       });
@@ -161,7 +161,7 @@ export default function Index() {
     const MaticBalance = web3.utils.fromWei(weiBalance);
     if (MaticBalance < 0.5) {
       createToast({
-        message: 'Wallet Balance Too Low to change your profile picture (need at least 0.5 Matic)',
+        message: 'Wallet Balance Too Low to change your profile picture (need at least 0.5 Matic for gas fees)',
         type: 'error',
         lifespan: 2000,
       });
@@ -206,7 +206,7 @@ export default function Index() {
     const MaticBalance = web3.utils.fromWei(weiBalance);
     if (MaticBalance < 0.5) {
       createToast({
-        message: 'Wallet Balance Too Low to change your profile picture (need at least 0.5 Matic)',
+        message: 'Wallet Balance Too Low to change your profile picture (need at least 0.5 Matic for gas fees)',
         type: 'error',
         lifespan: 2000,
       });
@@ -295,7 +295,7 @@ export default function Index() {
     const MaticBalance = web3.utils.fromWei(weiBalance);
     if (MaticBalance < 0.5) {
       createToast({
-        message: 'Wallet Balance Too Low to change your profile picture (need at least 0.5 Matic)',
+        message: 'Wallet Balance Too Low to change your profile picture (need at least 0.5 Matic for gas fees)',
         type: 'error',
         lifespan: 2000,
       });

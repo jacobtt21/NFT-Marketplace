@@ -29,6 +29,9 @@ function MyApp({ Component, pageProps }) {
         else if (router.pathname === '/s/[id]') {
           Router.push('/'+router.query.id);
         }
+        else if (router.pathname === '/showcase') {
+          Router.push('/');
+        }
       } else {
         if (router.pathname !== '/callback') {
           if (router.pathname === '/') {
