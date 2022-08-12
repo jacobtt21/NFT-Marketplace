@@ -2,11 +2,12 @@ import { useState, useContext, useRef } from 'react';
 import { UserContext } from '../lib/UserContext';
 import { web3 } from '../lib/magic';
 import { abi } from '../contracts/abi';
-import { create } from 'ipfs-http-client';
+import { abiC } from '../contracts/abiC';
+// import { create } from 'ipfs-http-client';
 import { TextField, CallToAction, useToast, HoverActivatedTooltip, Linkable, MonochromeIcons } from '@magiclabs/ui';
 import Loading from '../components/Loading';
 import algoliasearch from 'algoliasearch';
-import Link from 'next/link'
+import { useRouter } from 'next/router';
 import * as Panelbear from "@panelbear/panelbear-js";
 import Head from 'next/head';
 
@@ -28,11 +29,26 @@ function Mint() {
   const workInputRef = useRef();
   const { createToast } = useToast();
   const [tokenz, setTokenz] = useState('');
+  const router = useRouter();
 
   const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
   const contract = new web3.eth.Contract(abi, contractAddress);
+  const commAddress = process.env.NEXT_PUBLIC_COMM_ADDRESS;
+  const contractComm = new web3.eth.Contract(abiC, commAddress);
 
-  const client = create('https://ipfs.infura.io:5001');
+  // const projectId = '2DAwV2eIqTyQ6muzlX4wWX01j9S';
+  // const projectSecret = '89dd32cf0b2ac60c594b4d94344825fa';
+  // const auth = 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
+
+  // const client = create({
+  //   host: 'ipfs.infura.io',
+  //   port: 5001,
+  //   protocol: 'https',
+  //   apiPath: '/api/v0',
+  //   headers: {
+  //     Authorization: auth,
+  //   },
+  // });
 
   const searchClient = algoliasearch(
     process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
@@ -45,9 +61,18 @@ function Mint() {
   async function onImageUpload(e) {
     const file = e.target.files[0];
     try {
-      const ipfsData = await client.add(file);
-      const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
-      setIpfsImageUrl(url);
+      // const ipfsData = await client.add(file);
+      // const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
+      // setIpfsImageUrl(url);
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await fetch('https://ipfs-upload-oustro.herokuapp.com/', {
+        method: "POST",
+        body: formData
+      })
+      const url = await res.json();
+      console.log(url)
+      setIpfsImageUrl(url["url"])
     } 
     catch (error) {
       console.log(error);
@@ -57,9 +82,18 @@ function Mint() {
   async function onWorkUpload(e) {
     const file = e.target.files[0];
     try {
-      const ipfsData = await client.add(file);
-      const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
-      setIpfsWorkUrl(url);
+      // const ipfsData = await client.add(file);
+      // const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
+      // setIpfsWorkUrl(url);
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await fetch('https://ipfs-upload-oustro.herokuapp.com/', {
+        method: "POST",
+        body: formData
+      })
+      const url = await res.json();
+      console.log(url)
+      setIpfsWorkUrl(url["url"])
     } 
     catch (error) {
       console.log(error);
@@ -111,20 +145,41 @@ function Mint() {
           shareAddress = "NaN";
         }
       }
+      setMintStatus("Getting Fees")
       const tIndex = await contract.methods.getIndex().call();
-      const data = JSON.stringify({ name, image: ipfsImageUrl, work: ipfsWorkUrl, share: shareAddress, creator: user.publicAddress, socialLink: social, tokenID: tIndex, genre: genre });
-      const ipfsData = await client.add(data);
-      const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
+      const response = await fetch('https://gasstation-mainnet.matic.network/v2');
+      const next = await response.json();
+      var data;
+      if (router.query.comm) {
+        setMintStatus("Connecting with Community")
+        data = JSON.stringify({ name, image: ipfsImageUrl, work: ipfsWorkUrl, share: shareAddress, creator: user.publicAddress, socialLink: social, tokenID: tIndex, genre: genre, comm: router.query.comm });
+        const receipt1 = await contractComm.methods
+        .addContributor(router.query.comm)
+        .send({ 
+          from: user.publicAddress,
+          gas: 1000000,
+          maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
+        });
+      }
+      else {
+        data = JSON.stringify({ name, image: ipfsImageUrl, work: ipfsWorkUrl, share: shareAddress, creator: user.publicAddress, socialLink: social, tokenID: tIndex, genre: genre });
+      }
+      // const ipfsData = await client.add(data);
+      // const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
+      const formData = new FormData();
+      formData.append("data", data);
+      const res = await fetch('https://ipfs-data-upload-oustro.herokuapp.com/', {
+        method: "POST",
+        body: formData
+      })
+      const urlRes = await res.json();
+      console.log(urlRes)
+      const url = urlRes["url"]
 
       setTokenz("https://oustro.xyz/s/"+tIndex);
 
       setTxPending(true);
       
-      setMintStatus("Getting Fees")
-
-      const response = await fetch('https://gasstation-mainnet.matic.network/v2');
-      const next = await response.json();
-
       setMintStatus("Processing Fees")
 
       await web3.eth.sendTransaction({

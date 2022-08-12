@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../lib/UserContext';
 import { magic, web3 } from '../lib/magic';
+import { abiU } from '../contracts/abiU';
 import Link from 'next/link';
 import Router from 'next/router';
 import { useRouter } from 'next/router';
@@ -9,10 +10,16 @@ import { CallToAction, TextButton, useToast, HoverActivatedTooltip, MonochromeIc
 const Header = () => {
   const [user, setUser] = useContext(UserContext);
   const [balance, setBalance] = useState('0');
+  const [dp, setDP] = useState('');
   const [what, setWhat] = useState('For You')
   const [link, setLink] = useState('/')
+  const [whatC, setWhatC] = useState('Top Communities')
+  const [linkC, setLinkC] = useState('/community')
   const router = useRouter();
   const { createToast } = useToast();
+
+  const userAddress = process.env.NEXT_PUBLIC_USER_ADDRESS;
+  const contractUser = new web3.eth.Contract(abiU, userAddress);
 
   useEffect(() => {
     if (!user) return;
@@ -29,6 +36,13 @@ const Header = () => {
   const getBalance = async (address) => {
     const balance = await web3.eth.getBalance(address);
     setBalance(web3.utils.fromWei(balance));
+    const userProfiles = await contractUser.methods.getAllUsers().call();
+    var i;
+    for (i = 0; i < userProfiles.length; ++i) {
+      if ((userProfiles[i].userAddress).toUpperCase() === (user.publicAddress).toUpperCase()) {
+        setDP(userProfiles[i].displayPic);
+      }
+    }
   };
 
   const copyAddress = async () => {
@@ -39,6 +53,29 @@ const Header = () => {
       lifespan: 2000,
     });
   };
+
+  async function changeDirectionwork(type) {
+    setWhat(type)
+    if (type === "For You") {
+      setLink('/')
+    }
+    else if (type === "Library") {
+      setLink('/library')
+    }
+  }
+
+  async function changeDirectioncomm(type) {
+    setWhatC(type)
+    if (type === "Top Communities") {
+      setLinkC('/community/')
+    }
+    else if (type === "All Communities") {
+      setLinkC('/community/all')
+    }
+    else if (type === "Create a Community") {
+      setLinkC('/community/create')
+    }
+  }
 
   return (
     <header>
@@ -114,8 +151,9 @@ const Header = () => {
                       <div>
                         <Link href="/">
                           <TextButton
+                            leadingIcon={MonochromeIcons.Profile}
                             size="sm"
-                            onClick={() => setWhat("For You")}
+                            onClick={() => changeDirectionwork("For You")}
                           >
                             For You
                           </TextButton>
@@ -124,9 +162,10 @@ const Header = () => {
                         <Link href="/library">
                           <TextButton
                             size="sm"
-                            onClick={() => setWhat("Library")}
+                            leadingIcon={MonochromeIcons.Lightbulb}
+                            onClick={() => changeDirectionwork("Library")}
                           >
-                            The Complete Library
+                            Library
                           </TextButton>
                         </Link>
                       </div>
@@ -134,16 +173,59 @@ const Header = () => {
                   </HoverActivatedTooltip>
                   </li>
                   <li>
-                    <Link href="/community">
-                      <CallToAction
-                        color={
-                          router.pathname === '/community' ? 'primary' : 'secondary'
-                        }
-                        size="sm"
-                      >
-                        Communities
-                      </CallToAction>
-                    </Link>
+                    <HoverActivatedTooltip
+                      arrow
+                      placement="top"
+                    >
+                      <HoverActivatedTooltip.Anchor>
+                        <Link href={linkC}>
+                          <CallToAction
+                            trailingIcon={MonochromeIcons.CaretDown}
+                            color={
+                              router.pathname === '/community' || 
+                              router.pathname === '/community/all' || 
+                              router.pathname === '/community/create' ? 'primary' : 'secondary'
+                            }
+                            size="sm"
+                          >
+                            {whatC}
+                          </CallToAction>
+                        </Link>
+                      </HoverActivatedTooltip.Anchor>
+                      <HoverActivatedTooltip.Content>
+                        <div>
+                          <Link href="/community/">
+                            <TextButton
+                              leadingIcon={MonochromeIcons.Comment}
+                              size="sm"
+                              onClick={() => changeDirectioncomm("Top Communities")}
+                            >
+                              Top Communities
+                            </TextButton>
+                          </Link>
+                          <br />
+                          <Link href="/community/all">
+                            <TextButton
+                              size="sm"
+                              leadingIcon={MonochromeIcons.Home}
+                              onClick={() => changeDirectioncomm("All Communities")}
+                            >
+                              All Communities
+                            </TextButton>
+                          </Link>
+                          <br />
+                          <Link href="/community/create">
+                            <TextButton
+                              size="sm"
+                              leadingIcon={MonochromeIcons.Add}
+                              onClick={() => changeDirectioncomm("Create a Community")}
+                            >
+                              Create a Community
+                            </TextButton>
+                          </Link>
+                        </div>
+                      </HoverActivatedTooltip.Content>
+                    </HoverActivatedTooltip>
                   </li>
                   <li>
                     <Link href="/mint">
@@ -158,45 +240,14 @@ const Header = () => {
                     </Link>
                   </li>
                   <li>
-                  <HoverActivatedTooltip
-                    arrow
-                    placement="top"
-                  >
-                    <HoverActivatedTooltip.Anchor>
-                      <Link href={`/profile`}>
-                        <CallToAction
-                          trailingIcon={MonochromeIcons.CaretDown}
-                          color={
-                            router.pathname === '/profile'
-                              ? 'primary'
-                              : 'secondary'
-                          }
-                          size="sm"
-                        >
-                          Profile
-                        </CallToAction>
-                      </Link>
-                    </HoverActivatedTooltip.Anchor>
-                    <HoverActivatedTooltip.Content>
-                      <div>
-                        <Link href="/collection">
-                          <TextButton
-                            size="sm"
-                          >
-                            Your Collection
-                          </TextButton>
-                        </Link>
-                        <br />
-                        <Link href="/profile">
-                          <TextButton
-                            size="sm"
-                          >
-                            Edit Profile
-                          </TextButton>
-                        </Link>
-                      </div>
-                    </HoverActivatedTooltip.Content>
-                  </HoverActivatedTooltip>
+                    <Link href='/collection'>
+                      <CallToAction
+                        color={router.pathname === '/collection' ? 'primary' : 'secondary'}
+                        size="sm"
+                      >
+                        Collection
+                      </CallToAction>
+                    </Link>
                   </li>
                 </div>
                 <div className="nav-div">
@@ -265,9 +316,35 @@ const Header = () => {
                     </HoverActivatedTooltip>
                   </li>
                   <li>
-                    <CallToAction size="sm" onPress={logout}>
-                      Logout
-                    </CallToAction>
+                    <HoverActivatedTooltip
+                      arrow
+                      placement="top"
+                    >
+                      <HoverActivatedTooltip.Anchor>
+                        <img
+                        src={dp ? dp : "/default.png"}
+                        width={50}
+                        className="nft-img-profile-pic"
+                        onError={(e) => (e.target.src = '/fallback.jpeg')}
+                        />
+                      </HoverActivatedTooltip.Anchor>
+                      <HoverActivatedTooltip.Content>
+                        <Link href="/profile">
+                          <TextButton
+                            size="sm"
+                          >
+                            Profile
+                          </TextButton>
+                        </Link>
+                        <TextButton
+                        size="sm" 
+                        color='error'
+                        onPress={logout}
+                        >
+                          Logout
+                        </TextButton>
+                      </HoverActivatedTooltip.Content>
+                    </HoverActivatedTooltip>
                   </li>
                 </div>
               </div>
@@ -291,6 +368,10 @@ const Header = () => {
           max-width: 80rem;
           margin: 15px auto;
           min-height: 70px;
+        }
+
+        .nft-img-profile-pic {
+          border-radius: 25px;
         }
 
         .image-logo {

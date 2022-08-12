@@ -331,6 +331,19 @@ export default function Index() {
                 </div>
               </div>
               <div>
+                {theNFT.comm && (
+                  <h4>
+                    <Link href={{pathname: '/community/[cname]', query: { cname: theNFT.comm }}}>
+                      <CallToAction
+                      disabled={disabled}
+                      >
+                        {theNFT.comm} Community &rarr;
+                      </CallToAction>
+                    </Link>
+                  </h4>
+                )}
+              </div>
+              <div>
                 <h2>
                   <CallToAction
                   outline>
@@ -541,13 +554,17 @@ export default function Index() {
             h1 {
               font-size: 60px;
               font-weight: bold;
-              margin-bottom: 40px;
+              margin-bottom: 20px;
             }
             h2 {
               margin-bottom: 15px;
             }
             .ThumbUps {
               text-align: center;
+            }
+            h4 {
+              text-align: center;
+              margin-bottom: 15px;
             }
             .ThumbUps-hide {
               filter: blur(15px);

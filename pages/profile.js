@@ -32,9 +32,18 @@ export default function Index() {
   async function onImageUpload(e) {
     const file = e.target.files[0];
     try {
-      const ipfsData = await client.add(file);
-      const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
-      setIpfsImageUrl(url);
+      // const ipfsData = await client.add(file);
+      // const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
+      // setIpfsImageUrl(url);
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await fetch('https://ipfs-upload-oustro.herokuapp.com/', {
+        method: "POST",
+        body: formData
+      })
+      const url = await res.json();
+      console.log(url)
+      setIpfsImageUrl(url["url"])
     } 
     catch (error) {
       console.log(error);
@@ -51,7 +60,6 @@ export default function Index() {
   const getMyNFTs = async () => {
     setLoading(true);
     const userProfiles = await contractUser.methods.getAllUsers().call();
-    console.log(userProfiles)
     var i;
     for (i = 0; i < userProfiles.length; ++i) {
       if ((userProfiles[i].userAddress).toUpperCase() === (user.publicAddress).toUpperCase()) {
@@ -407,6 +415,7 @@ export default function Index() {
               </div>
               <p>Change your bio</p>
               <textarea
+              disabled={disabled1}
               aria-label="update Bio"
               placeholder='This bio is all about you, add whatever you want!'
               onChange={(e) => setNewBio(e.target.value)}
@@ -439,7 +448,7 @@ export default function Index() {
                 </TextField>
               </div>
               <div className='newName2'>
-                <p>Set your new profile pic</p>
+                <p>Set your new profile picture</p>
                 <p>(500 x 500px)</p>
                 <input
                   type="file"

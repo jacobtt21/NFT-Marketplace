@@ -320,6 +320,19 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
               </CallToAction> from { num } ratings
             </div>
           )}
+          <div className='comms'>
+            {nft.comm && (
+              <Link href={{pathname: '/community/[cname]', query: { cname: nft.comm }}}>
+                <CallToAction
+                size='sm'
+                outline
+                disabled={disabled}
+                >
+                  {nft.comm} &rarr;
+                </CallToAction>
+              </Link>
+            )}
+          </div>
           <div className="nft-img-container">
             <img
             src={nft.image}
@@ -363,6 +376,7 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
               <Link href={{pathname: '/u/[user]', query: { user: nft.creator }}}>
                 <TextButton
                 trailingIcon={userVerify && (MonochromeIcons.SuccessFilled)}
+                disabled={disabled}
                 >
                   {creator}
                 </TextButton>
@@ -373,6 +387,7 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
               <Link href={{pathname: '/u/[user]', query: { user: nft.creator }}}>
                 <TextButton
                 trailingIcon={userVerify && (MonochromeIcons.SuccessFilled)}
+                disabled={disabled}
                 >
                   {creator.substring(0, 6)}...{creator.substring(38)}
                 </TextButton>
@@ -476,7 +491,7 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
         }
         .card {
           border-radius: 20px;
-          padding: 15px;
+          padding: 10px;
           box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 16px, rgba(0, 0, 0, 0.05) 0px 0px 16px;
           transition: 0.2s;
         }
@@ -505,6 +520,12 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
           max-height: 200px;
           cursor: pointer;
           border-radius: 15px;
+        }
+
+        .comms {
+          margin-top: 15px;
+          margin-bottom: 15px;
+          text-align: center;
         }
 
         .name {

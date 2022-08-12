@@ -17,9 +17,9 @@ function MyApp({ Component, pageProps }) {
     if(!router.isReady) {
       return;
     }
-    if (isMobile) {
-      window.location.href = "https://mobile.oustro.xyz" + router.asPath;
-    }
+    // if (isMobile) {
+    //   window.location.href = "https://mobile.oustro.xyz" + router.asPath;
+    // }
     magic.user.isLoggedIn().then((isLoggedIn) => {
       if (isLoggedIn) {
         magic.user.getMetadata().then(setUser);
@@ -47,6 +47,9 @@ function MyApp({ Component, pageProps }) {
             
           }
           else if (router.pathname === '/u/[user]') {
+            
+          }
+          else if (router.pathname === '/community/[cname]') {
             
           }
           else if (router.pathname === '/code') {
