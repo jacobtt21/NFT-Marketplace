@@ -22,7 +22,7 @@ export default function Index() {
   return user ? (
     <div>
       <Head>
-        <title>All Communities | Oustro</title>
+        <title>Community Leaderboard | Oustro</title>
         <link
           rel="canonical"
           href="https://www.oustro.xyz/showcase"

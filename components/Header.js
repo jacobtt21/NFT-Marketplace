@@ -11,9 +11,9 @@ const Header = () => {
   const [user, setUser] = useContext(UserContext);
   const [balance, setBalance] = useState('0');
   const [dp, setDP] = useState('');
-  const [what, setWhat] = useState('For You')
+  const [what, setWhat] = useState('NFTs')
   const [link, setLink] = useState('/')
-  const [whatC, setWhatC] = useState('Top Communities')
+  const [whatC, setWhatC] = useState('Community')
   const [linkC, setLinkC] = useState('/community')
   const router = useRouter();
   const { createToast } = useToast();
@@ -66,7 +66,7 @@ const Header = () => {
 
   async function changeDirectioncomm(type) {
     setWhatC(type)
-    if (type === "Top Communities") {
+    if (type === "Community Leaderboard") {
       setLinkC('/community/')
     }
     else if (type === "All Communities") {
@@ -198,9 +198,9 @@ const Header = () => {
                             <TextButton
                               leadingIcon={MonochromeIcons.Comment}
                               size="sm"
-                              onClick={() => changeDirectioncomm("Top Communities")}
+                              onClick={() => changeDirectioncomm("Community Leaderboard")}
                             >
-                              Top Communities
+                              Community Learderboard
                             </TextButton>
                           </Link>
                           <br />
