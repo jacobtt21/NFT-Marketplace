@@ -173,7 +173,7 @@ export default function Index() {
           </TextButton>
           Oustro Editor's Choice
         </h4>
-        <Link href="/9">
+        <Link href="/3">
           <div className='banner'>
           </div>
         </Link>
