@@ -97,8 +97,8 @@ const Header = () => {
                   <li>
                     <Link href="/login">
                       <CallToAction
-                        color={
-                          router.pathname === '/login' ? 'primary' : 'secondary'
+                        outline={
+                          router.pathname !== '/login' ? true : false
                         }
                         size="sm"
                       >
