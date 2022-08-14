@@ -10,31 +10,31 @@ export default function About() {
     const [loading, setLoading] = useState(false);
     const allNFTs = [
       {
-        creator: "Oustro",
-        image: "https://ipfs.infura.io/ipfs/QmeW4tudfHQw5fGfRcBpQW3oSV86GaFXFic3rGoLvNdgYo",
-        name: "Daffy",
-        tokenID: '6',
+        creator: "jacob",
+        image: "https://oustro.infura-ipfs.io/ipfs/QmeBbjdrebR7VBBtt7QsQymXbvps3k6XasZZoVkZuUQzW3",
+        name: "Starlight",
+        tokenID: '3',
         work: "https://bafybeie5srm3bac476dokid2sde4xqxxfthfll4uqqz2qfcowsmigw673y.ipfs.infura-ipfs.io/"
       },
       {
         creator: "Oustro",
-        image: "https://ipfs.infura.io/ipfs/Qmf2btT6oeoESpmJaZu4U4Wg2hnfwBtxoQzkujf5i8s9rM",
-        name: "Snake",
-        tokenID: "2",
+        image: "https://oustro.infura-ipfs.io/ipfs/QmeW4tudfHQw5fGfRcBpQW3oSV86GaFXFic3rGoLvNdgYo",
+        name: "Daffy",
+        tokenID: "5",
         work: "https://bafybeickkrcva4x6egm3lx3mqdlupnvzh7o6d4zhcqgril4tmo7ebytaxq.ipfs.infura-ipfs.io/"
       },
       {
-        creator: "HRDerrick",
-        image: "https://ipfs.infura.io/ipfs/QmQQFYa2a43aXVuY2sapv4wjp7dFDYEMGL9VKNqF1cMcvS",
-        name: "The Bottle",
-        tokenID: "3",
+        creator: "jacob",
+        image: "https://oustro.infura-ipfs.io/ipfs/Qmf2btT6oeoESpmJaZu4U4Wg2hnfwBtxoQzkujf5i8s9rM",
+        name: "Snake",
+        tokenID: "2",
         work: "https://bafybeiegkxna2cysmky7dlx4vkmrlj5bje6n2k6yoambbmm5vd5xqab3jy.ipfs.infura-ipfs.io/"
       },
       {
-        creator: "Spaceland",
-        image: "https://ipfs.infura.io/ipfs/QmP8Ynx6LypyYGY8ggFWErxpTCGKHb5qGMGkTgNVRdAXcy",
-        name: "Spaceland Synopsis",
-        tokenID: "4",
+        creator: "HRDerrick",
+        image: "https://oustro.infura-ipfs.io/ipfs/QmQQFYa2a43aXVuY2sapv4wjp7dFDYEMGL9VKNqF1cMcvS",
+        name: "The Bottle",
+        tokenID: "6",
         work: "https://bafybeiakxs65n7vvw6gd4urkoqbjgpji7paf4pabqn4d72rgfmd7z3ftii.ipfs.infura-ipfs.io/"
       }
     ]
@@ -48,21 +48,21 @@ export default function About() {
       },
       {
         creator: "0x944e..1dd1",
-        image: "https://ipfs.infura.io/ipfs/QmXpVk2JSnWmNKQk8jUfFTGr6AputP13shqufexzXuSauh",
+        image: "https://oustro.infura-ipfs.io/ipfs/QmeJuH7VT55fZEU28jAquKi8h6q4Wsmmv6tCjmiMutFKuS",
         name: "Snake",
         tokenID: "2",
         work: "https://bafybeickkrcva4x6egm3lx3mqdlupnvzh7o6d4zhcqgril4tmo7ebytaxq.ipfs.infura-ipfs.io/"
       },
       {
         creator: "0x944e..1dd1",
-        image: "https://ipfs.infura.io/ipfs/QmeBbjdrebR7VBBtt7QsQymXbvps3k6XasZZoVkZuUQzW3",
+        image: "https://oustro.infura-ipfs.io/ipfs/QmXpVk2JSnWmNKQk8jUfFTGr6AputP13shqufexzXuSauh",
         name: "The Bottle",
         tokenID: "3",
         work: "https://raw.githubusercontent.com/Oustro/OustroImages/1c57d1dbdf5d079f453e6d5dfb8c7e6c8c14a77d/9.svg"
       },
       {
         creator: "0x944e..1dd1",
-        image: "https://ipfs.infura.io/ipfs/QmQDVsvkr5huFjQHfjvG8ehqhL3sRvdAsVrdUtf2n9Y5bf",
+        image: "https://oustro.infura-ipfs.io/ipfs/QmQoYR8oCaUxS2i7Q4utwD38g6iQoDkRGHjfuKA2o3UuQ9",
         name: "Spaceland Synopsis",
         tokenID: "4",
         work: "https://bafybeihr5kms3piv26gzzzvkbqc3pqvyabwmjmltollrc3dywi6wdphakm.ipfs.infura-ipfs.io/"
