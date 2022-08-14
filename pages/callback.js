@@ -38,5 +38,17 @@ export default function Callback() {
     }
   };
 
-  return <Loading />;
+  return (
+    <> 
+      <Loading />
+      <h1>Please wait while you get you set up...</h1>
+      <style jsx>{`
+        h1 {
+          text-align: center;
+          margin-top: 35px;
+          font-size: 30px;
+        }
+      `}</style>
+    </>
+  );
 }

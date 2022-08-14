@@ -90,7 +90,7 @@ export default function Login() {
           <br />
           {isLoggingIn && (
             <div className='dis2'>
-              <p>Please wait as we get you all set up</p>
+              <p>Please wait while we get you set up...</p>
             </div>
           )}
           <div className='dis'>
@@ -166,13 +166,8 @@ export default function Login() {
         }
         .dis2 {
           margin-bottom: 10px;
-          font-size: 20px;
-          color: #6851FF;
-          font-weight: bold;
-        }
-
-        p {
-          font-weight: bold;
+          font-size: 16px;
+          // font-weight: bold;
         }
 
         .footer {
