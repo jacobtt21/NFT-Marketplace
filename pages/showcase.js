@@ -377,7 +377,7 @@ export default function About() {
           </div>
           <div className='align5'>
             <div className='com'>
-              Seemless web3 onboarding
+              Seamless web3 onboarding
             </div> 
             <div className='com'>
               <TextButton
