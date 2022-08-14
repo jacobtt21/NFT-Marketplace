@@ -94,16 +94,18 @@ export default function Login() {
             </div>
           )}
           <div className='dis'>
-            <p>By signing up, you agree to our Terms & Privacy Policy.</p>
+            <h6>By signing up, you agree to our Terms & Privacy Policy.</h6>
           </div>
         </div>
         <div>
-          <Image 
-          src='https://raw.githubusercontent.com/Oustro/OustroImages/d3ac17e51c8b88ee39a6550a21c22a0b18b558b2/10.svg' 
-          height="500"
-          priority
-          width="500" 
-          />
+          <h1>The creators secure, passwordless, seemless gateway to web3.</h1>
+          <h1
+          style={{
+            color: '#6851FF'
+          }}
+          >
+            Welcome to Oustro
+          </h1>
         </div>
       </div>
       <style jsx>{`
@@ -129,9 +131,9 @@ export default function Login() {
           font-weight: bold;
         }
         h1 {
-          font-size: 55px;
+          font-size: 50px;
           font-weight: bold;
-          text-align: center;
+          text-align: left;
         }
 
         .logo {
@@ -164,7 +166,13 @@ export default function Login() {
         }
         .dis2 {
           margin-bottom: 10px;
-          font-size: 15px;
+          font-size: 20px;
+          color: #6851FF;
+          font-weight: bold;
+        }
+
+        p {
+          font-weight: bold;
         }
 
         .footer {
