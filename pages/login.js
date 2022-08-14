@@ -98,13 +98,13 @@ export default function Login() {
           </div>
         </div>
         <div>
-          <h1>The creators secure, passwordless, seemless gateway to web3.</h1>
+          <h1>The creators secure, passwordless, seamless gateway to web3.</h1>
           <h1
           style={{
             color: '#6851FF'
           }}
           >
-            Welcome to Oustro
+            Welcome to Oustro.
           </h1>
         </div>
       </div>
