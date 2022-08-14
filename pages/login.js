@@ -21,7 +21,7 @@ export default function Login() {
 
     try {
       // Grab auth token after user clicks magic link in email
-      const didToken = await magic.auth.loginWithMagicLink({ email });
+      const didToken = await magic.auth.loginWithMagicLink({ email, redirectURI: new URL('/callback', window.location.origin).href });
 
       // Validate auth token with server
       const res = await fetch('/api/login', {
