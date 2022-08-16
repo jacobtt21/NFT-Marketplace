@@ -11,7 +11,7 @@ const Header = () => {
   const [user, setUser] = useContext(UserContext);
   const [balance, setBalance] = useState('0');
   const [dp, setDP] = useState('');
-  const [what, setWhat] = useState('NFTs')
+  const [what, setWhat] = useState('Explore')
   const [link, setLink] = useState('/')
   const [whatC, setWhatC] = useState('Community')
   const [linkC, setLinkC] = useState('/community')
