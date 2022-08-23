@@ -476,7 +476,7 @@ export default function About() {
         <div className='align2'> 
           <div>
             <h5 className='howU'>
-              Resouces
+              Resources
             </h5>
             <h5>
               <a 
