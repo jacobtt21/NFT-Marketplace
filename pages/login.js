@@ -98,7 +98,7 @@ export default function Login() {
           </div>
         </div>
         <div>
-          <h1>The creators secure, passwordless, seamless gateway to web3.</h1>
+          <h1>A secure, passwordless, seamless gateway to web3.</h1>
           <h1
           style={{
             color: '#6851FF'
