@@ -96,10 +96,10 @@ export default function Index() {
         src={comm.cPic} 
       />
       <h1>
-        {router.query.cname} &nbsp;
+        {router.query.cname} &nbsp;&nbsp;
         <Link href={{pathname: '/mint', query: { comm: router.query.cname }}}>
           <CallToAction
-          trailingIcon={MonochromeIcons.Add}
+          leadingIcon={MonochromeIcons.Add}
           >
             Contribute
           </CallToAction>
@@ -125,6 +125,9 @@ export default function Index() {
         p {
           margin: 20px;
           min-height: 28px;
+        }
+        .info {
+          text-align: center;
         }
         `}</style>
     </div>
