@@ -41,7 +41,7 @@ export default function Callback() {
   return (
     <> 
       <Loading />
-      <h1>Please wait while you get you set up...</h1>
+      <h1>Please wait while we get you set up...</h1>
       <style jsx>{`
         h1 {
           text-align: center;
