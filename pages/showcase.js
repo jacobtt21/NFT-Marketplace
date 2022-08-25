@@ -243,8 +243,8 @@ export default function About() {
               Oustro
             </div>  
             <div className='com'>
-              <Image
-                src="https://logosarchive.com/wp-content/uploads/2022/02/OpenSea-icon.svg"
+              <img
+                src="https://storage.googleapis.com/opensea-static/Logomark/Logomark-Blue.png"
                 width="50" 
                 height="50" 
                 alt="logo fo another" 
@@ -570,14 +570,14 @@ export default function About() {
             </h5>
             <h5>
               <a 
-              href="/u/0x8c17bB1862B31f302e4c25bf364431f0a39614B1"
+              href="/u/0x898a8b91c2099e4a08983692d3c86f9a95489cfa"
               >
                 Oustro Orginals
               </a>
             </h5>
             <h5>
               <a 
-              href="/u/0x8c17bB1862B31f302e4c25bf364431f0a39614B1"
+              href="/faq#thumbsUp"
               >
                 ThumbsUp&#8482;
               </a>
