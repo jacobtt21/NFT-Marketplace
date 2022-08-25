@@ -304,7 +304,7 @@ const Header = () => {
                   <li>
                     <HoverActivatedTooltip
                       arrow
-                      placement="top"
+                      placement="bottom"
                     >
                       <HoverActivatedTooltip.Anchor>
                         <img
