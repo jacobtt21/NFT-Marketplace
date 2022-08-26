@@ -5,6 +5,7 @@ import Router, { useRouter } from 'next/router';
 import { Icon, MonochromeIcons, TextField, CallToAction, TextButton } from '@magiclabs/ui';
 import Head from 'next/head';
 import Image from 'next/image'
+import Link from 'next/link';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -61,40 +62,51 @@ export default function Login() {
         />
       </Head>
       <div className='align'>
-        <div className="login-container">
-          <div className='form-header'>
-            <img src='/oustro_s_logo.svg' className='logo' />
-            <h3>Login / Sign up</h3>
-          </div>
-          <br />
-          <TextField
-            type="email"
-            name="email"
-            placeholder='you@example.com'
-            label="Your Email"
-            required="required"
-            prefix={<Icon inline type={MonochromeIcons.Envelope} size={22} />}
-            onChange={handleInputOnChange}
-            disabled={isLoggingIn}
-          />
-          <br />
-          <CallToAction
-            leadingIcon={MonochromeIcons.PaperPlane}
-            color="primary"
-            size="sm"
-            onClick={login}
-            disabled={isLoggingIn}
-          >
-            Let's go
-          </CallToAction>
-          <br />
-          {isLoggingIn && (
-            <div className='dis2'>
-              <p>Please wait while we get you set up...</p>
+        <div>
+          <div className="login-container">
+            <div className='form-header'>
+              <img src='/oustro_s_logo.svg' className='logo' />
+              <h3>Login / Sign up</h3>
             </div>
-          )}
-          <div className='dis'>
-            <h6>By signing up, you agree to our Terms & Privacy Policy.</h6>
+            <br />
+            <TextField
+              type="email"
+              name="email"
+              placeholder='you@example.com'
+              label="Your Email"
+              required="required"
+              prefix={<Icon inline type={MonochromeIcons.Envelope} size={22} />}
+              onChange={handleInputOnChange}
+              disabled={isLoggingIn}
+            />
+            <br />
+            <CallToAction
+              leadingIcon={MonochromeIcons.PaperPlane}
+              color="primary"
+              size="sm"
+              onClick={login}
+              disabled={isLoggingIn}
+            >
+              Let's go
+            </CallToAction>
+            <br />
+            {isLoggingIn && (
+              <div className='dis2'>
+                <p>Please wait while we get you set up...</p>
+              </div>
+            )}
+            <div className='dis'>
+              <h6>By signing up, you agree to our Terms & Privacy Policy.</h6>
+            </div>
+          </div>
+          <div className='btn'>
+            <Link
+            href="/faq#magic"
+            >
+              <TextButton>
+                Learn how our login works &rarr;
+              </TextButton>
+            </Link>
           </div>
         </div>
         <div>
@@ -142,6 +154,10 @@ export default function Login() {
 
         .logo {
           max-width: 110px;
+        }
+        
+        .btn {
+          margin-top: 15px;
         }
 
         .align {

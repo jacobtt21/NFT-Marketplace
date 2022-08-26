@@ -427,6 +427,33 @@ export default function About() {
             </div>       
           </div>
         </div>
+        <div
+        style={{
+          margin: 20
+        }}
+        >
+          <Link
+          href="/about"
+          >
+            <CallToAction
+            style={{
+              margin: 20
+            }}
+            size='lg'
+            >
+              Learn More About Us
+            </CallToAction>
+          </Link>
+          <Link
+          href="/about#safety"
+          >
+            <CallToAction
+            size='lg'
+            >
+              Learn How We Protect You
+            </CallToAction>
+          </Link>
+        </div>
         <div className='Logos'>
           <h4>Oustro is Proud to be Featured in</h4>
           <div className='Inv'>
