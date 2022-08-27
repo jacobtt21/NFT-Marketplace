@@ -65,7 +65,7 @@ export default function Login() {
         Your safety on Oustro is our #1 priority, and that's why we secure your account with the same enterprise-level security used at Google, Microsoft, and more.
         <br />
         <Link
-        href="/faq#magic"
+        href="/safety"
         >
           <TextButton>
             Learn more about how our login and security works &rarr;
