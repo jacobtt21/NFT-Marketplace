@@ -61,6 +61,17 @@ export default function Login() {
           key="canonical"
         />
       </Head>
+      <div className='btn'>
+        Your safety on Oustro is our #1 priority, and that's why we secure your account with the same enterprise-level security used at Google, Microsoft, and more.
+        <br />
+        <Link
+        href="/faq#magic"
+        >
+          <TextButton>
+            Learn more about how our login and security works &rarr;
+          </TextButton>
+        </Link>
+      </div>
       <div className='align'>
         <div>
           <div className="login-container">
@@ -98,15 +109,6 @@ export default function Login() {
             <div className='dis'>
               <h6>By signing up, you agree to our Terms & Privacy Policy.</h6>
             </div>
-          </div>
-          <div className='btn'>
-            <Link
-            href="/faq#magic"
-            >
-              <TextButton>
-                Learn how our login works &rarr;
-              </TextButton>
-            </Link>
           </div>
         </div>
         <div>
@@ -157,7 +159,11 @@ export default function Login() {
         }
         
         .btn {
-          margin-top: 15px;
+          text-align: center;
+          margin: 0 auto;
+          margin-top: 40px;
+          font-size: 20px;
+          line-height: 1.2;
         }
 
         .align {
@@ -166,7 +172,7 @@ export default function Login() {
           grid-gap: 20px;
           grid-template-columns: 1fr 1fr;
           margin-bottom: 10px;
-          margin-top: 70px;
+          margin-top: 50px;
           align-items: center;
           text-align: center;
         }
