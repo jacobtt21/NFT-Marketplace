@@ -123,7 +123,34 @@ export default function About() {
             </CallToAction>
           </Link>
         </div> 
-        <div className='align'>
+        <div
+        style={{
+          margin: -140
+        }}
+        >
+          <Link
+          href="/about"
+          >
+            <CallToAction
+            style={{
+              margin: 20
+            }}
+            size='lg'
+            >
+              Learn More About Us
+            </CallToAction>
+          </Link>
+          <Link
+          href="/about#safety"
+          >
+            <CallToAction
+            size='lg'
+            >
+              Learn How We Protect You
+            </CallToAction>
+          </Link>
+        </div>
+        <div className='align90'>
           <div>
             <h4>Share Your Voice, Your Way</h4> 
             <h6>
@@ -152,56 +179,6 @@ export default function About() {
         <div className='align'>
           <div>
             <Image
-              src="https://raw.githubusercontent.com/Oustro/OustroImages/e36c2a3c46529c2498d84ac81697dd2265d0896c/1.svg"
-              width="500"
-              priority
-              height="500" 
-              alt="sitting on couch" 
-            /> 
-          </div>  
-          <div>
-            <h4>Buy What Moves You</h4> 
-            <h6>
-            Unlike previous NFT marketplaces, creators may now sell exclusive rights to various content aside from images. 
-            Furthermore, creators may choose to share royalties earned from their works.
-            </h6>
-            <br />
-            <Link href="/login?id=library">
-              <CallToAction
-              >
-                See What's Available
-              </CallToAction>
-            </Link>
-          </div>        
-        </div>
-        <div className='align'>
-          <div>
-            <h4>Support Dream(er)s</h4> 
-            <h6>
-            Help fund creators on Oustro by donating directly to their public Polygon address or 
-            through ThumbsUp&#8482;, Oustro's reward-feedback system.
-            </h6>
-            <br />
-            <Link href="/login">
-              <CallToAction
-              >
-                Help Bring Dreams to Life
-              </CallToAction>
-            </Link>
-          </div> 
-          <div>
-            <Image
-              src="https://raw.githubusercontent.com/Oustro/OustroImages/c95e01491d100885b3345971c7fa21bff73aeaef/3.svg"
-              height="500"
-              priority
-              width="500" 
-              alt="person with kite" 
-            /> 
-          </div>         
-        </div>
-        <div className='align'>
-          <div>
-            <Image
               src="https://raw.githubusercontent.com/Oustro/OustroImages/3bd7a8deee3f0995d0e3b1f7a1fb5135ad91395d/2.svg"
               width="500"
               priority
@@ -223,6 +200,85 @@ export default function About() {
               </CallToAction>
             </Link>
           </div>        
+        </div>
+        <div className='align'>
+          <div>
+            <h4>Help Push the NFT industry to a</h4>
+            <h4
+            style={{
+              color: '#299617'
+            }}
+            >Greener Solution</h4> 
+            <h6>
+            Unlike our competitors, Oustro’s NFTs are all carbon-negative, thanks to the innovation of the Polygon Blockchain. Support us on our mission toward making NFTs environmentally friendly. 
+            </h6>
+            <br />
+            <Link href="/login">
+              <CallToAction
+              >
+                Go Greener with Oustro
+              </CallToAction>
+            </Link>
+          </div> 
+          <div>
+            <Image
+              src="https://raw.githubusercontent.com/Oustro/OustroImages/1c654a960363966e7b10372b31b2ec34a39b937e/20.svg"
+              height="600"
+              priority
+              width="600" 
+              alt="person with kite" 
+            /> 
+          </div>         
+        </div>
+        <div className='align'>
+          <div>
+            <Image
+              src="https://raw.githubusercontent.com/Oustro/OustroImages/c95e01491d100885b3345971c7fa21bff73aeaef/3.svg"
+              height="500"
+              priority
+              width="500" 
+              alt="person with kite" 
+            /> 
+          </div> 
+          <div>
+            <h4>Support Dream(er)s</h4> 
+            <h6>
+            Help fund creators on Oustro by donating directly to their public Polygon address or 
+            through ThumbsUp&#8482;, Oustro's reward-feedback system.
+            </h6>
+            <br />
+            <Link href="/login">
+              <CallToAction
+              >
+                Help Bring Dreams to Life
+              </CallToAction>
+            </Link>
+          </div>         
+        </div>
+        <div className='align'>  
+          <div>
+            <h4>Buy What Moves You</h4> 
+            <h6>
+            Unlike previous NFT marketplaces, creators may now sell exclusive rights to various content aside from images. 
+            Furthermore, creators may choose to share royalties earned from their works.
+            </h6>
+            <br />
+            <Link href="/login?id=library">
+              <CallToAction
+              >
+                See What's Available
+              </CallToAction>
+            </Link>
+          </div>
+          <div>
+            <Image
+              src="https://raw.githubusercontent.com/Oustro/OustroImages/e36c2a3c46529c2498d84ac81697dd2265d0896c/1.svg"
+              width="500"
+              priority
+              height="500" 
+              alt="sitting on couch" 
+            /> 
+          </div>       
         </div>
         <div className='compare' id="why">
           <h4>Why Oustro?</h4>
@@ -426,33 +482,6 @@ export default function About() {
             <div className='com'>
             </div>       
           </div>
-        </div>
-        <div
-        style={{
-          margin: 20
-        }}
-        >
-          <Link
-          href="/about"
-          >
-            <CallToAction
-            style={{
-              margin: 20
-            }}
-            size='lg'
-            >
-              Learn More About Us
-            </CallToAction>
-          </Link>
-          <Link
-          href="/about#safety"
-          >
-            <CallToAction
-            size='lg'
-            >
-              Learn How We Protect You
-            </CallToAction>
-          </Link>
         </div>
         <div className='Logos'>
           <h4>Oustro is Proud to be Featured in</h4>
@@ -694,6 +723,15 @@ export default function About() {
           text-align:center; 
           font-size: 17px;
           text-align: center;
+        }
+        .align90 {
+          padding: 20px;
+          display: grid;
+          grid-gap: 20px;
+          grid-template-columns: 1fr 1fr;
+          margin-bottom: 30px;
+          margin-top: 160px;
+          align-items: center;
         }
         .align {
           padding: 20px;

@@ -237,6 +237,28 @@ const Header = () => {
                   </li>
                 </div>
                 <div className="nav-div">
+                <li>
+                    <HoverActivatedTooltip
+                      arrow
+                      placement="bottom"
+                      appearance='none'
+                    >
+                      <HoverActivatedTooltip.Anchor>
+                        <TextButton 
+                        size="lg"
+                        leadingIcon={MonochromeIcons.Info}
+                        trailingIcon={MonochromeIcons.CaretDown}
+                        >
+                          FAQ
+                        </TextButton>
+                      </HoverActivatedTooltip.Anchor>
+                      <HoverActivatedTooltip.Content>
+                        <div>
+                          Why is Oustro safe
+                        </div>
+                      </HoverActivatedTooltip.Content>
+                    </HoverActivatedTooltip>
+                  </li>
                   <li>
                     <HoverActivatedTooltip
                       arrow
