@@ -123,34 +123,7 @@ export default function About() {
             </CallToAction>
           </Link>
         </div> 
-        <div
-        style={{
-          margin: -140
-        }}
-        >
-          <Link
-          href="/about"
-          >
-            <CallToAction
-            style={{
-              margin: 20
-            }}
-            size='lg'
-            >
-              Learn More About Us
-            </CallToAction>
-          </Link>
-          <Link
-          href="/about#safety"
-          >
-            <CallToAction
-            size='lg'
-            >
-              Learn How We Protect You
-            </CallToAction>
-          </Link>
-        </div>
-        <div className='align90'>
+        <div className='align'>
           <div>
             <h4>Share Your Voice, Your Way</h4> 
             <h6>
@@ -201,7 +174,7 @@ export default function About() {
             </Link>
           </div>        
         </div>
-        <div className='align'>
+        <div className='align90'>
           <div>
             <h4>Help Push the NFT industry to a</h4>
             <h4
@@ -730,7 +703,7 @@ export default function About() {
           grid-gap: 20px;
           grid-template-columns: 1fr 1fr;
           margin-bottom: 30px;
-          margin-top: 160px;
+          margin-top: -50px;
           align-items: center;
         }
         .align {

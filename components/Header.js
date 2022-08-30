@@ -10,6 +10,11 @@ import { CallToAction, TextButton, useToast, HoverActivatedTooltip, MonochromeIc
 const Header = () => {
   const [user, setUser] = useContext(UserContext);
   const [balance, setBalance] = useState('0');
+  const [switcher, setSwitcher] = useState(false);
+  const [switcher1, setSwitcher1] = useState(false);
+  const [switcher2, setSwitcher2] = useState(false);
+  const [switcher3, setSwitcher3] = useState(false);
+  const [switcher4, setSwitcher4] = useState(false);
   const [dp, setDP] = useState('');
   const [what, setWhat] = useState('Explore')
   const [link, setLink] = useState('/')
@@ -95,12 +100,35 @@ const Header = () => {
                 </div>
                 <div className="nav-div">
                   <li>
+                    <Link href="/about">
+                      <CallToAction
+                        color={
+                          router.pathname === '/about' ? 'primary' : 'secondary'
+                        }
+                        size="sm"
+                      >
+                        About Us
+                      </CallToAction>
+                    </Link>
+                  </li>
+                  <li>
+                    <CallToAction
+                      color='secondary'
+                      size="sm"
+                      trailingIcon={switcher ? MonochromeIcons.CaretDown : MonochromeIcons.CaretRight}
+                      onMouseOver={() => setSwitcher(true)}
+                      onMouseLeave={() => setSwitcher(false)}
+                    >
+                      Docs
+                    </CallToAction>
+                  </li>
+                  <li>
                     <Link href="/login">
                       <CallToAction
                         outline={
                           router.pathname !== '/login' ? true : false
                         }
-                        size="sm"
+                        size="md"
                       >
                         Login / Sign Up
                       </CallToAction>
@@ -117,6 +145,8 @@ const Header = () => {
                   <HoverActivatedTooltip
                     arrow
                     placement="top"
+                    onMouseOver={() => setSwitcher(true)}
+                    onMouseLeave={() => setSwitcher(false)}
                   >
                     <HoverActivatedTooltip.Anchor>
                       <Link href={link}>
@@ -126,7 +156,9 @@ const Header = () => {
                               ? 'primary'
                               : 'secondary'
                           }
-                          trailingIcon={MonochromeIcons.CaretDown}
+                          trailingIcon={switcher ? MonochromeIcons.CaretDown : MonochromeIcons.CaretRight}
+                          onMouseOver={() => setSwitcher(true)}
+                          onMouseLeave={() => setSwitcher(false)}
                           size="sm"
                         >
                           {what}
@@ -162,11 +194,15 @@ const Header = () => {
                     <HoverActivatedTooltip
                       arrow
                       placement="top"
+                      onMouseOver={() => setSwitcher1(true)}
+                      onMouseLeave={() => setSwitcher1(false)}
                     >
                       <HoverActivatedTooltip.Anchor>
                         <Link href={linkC}>
                           <CallToAction
-                            trailingIcon={MonochromeIcons.CaretDown}
+                            trailingIcon={switcher1 ? MonochromeIcons.CaretDown : MonochromeIcons.CaretRight}
+                            onMouseOver={() => setSwitcher1(true)}
+                            onMouseLeave={() => setSwitcher1(false)}
                             color={
                               router.pathname === '/community' || 
                               router.pathname === '/community/all' || 
@@ -242,14 +278,18 @@ const Header = () => {
                       arrow
                       placement="bottom"
                       appearance='none'
+                      onMouseOver={() => setSwitcher2(true)}
+                      onMouseLeave={() => setSwitcher2(false)}
                     >
                       <HoverActivatedTooltip.Anchor>
                         <TextButton 
                         size="lg"
                         leadingIcon={MonochromeIcons.Info}
-                        trailingIcon={MonochromeIcons.CaretDown}
+                        trailingIcon={switcher2 ? MonochromeIcons.CaretDown : MonochromeIcons.CaretRight}
+                        onMouseOver={() => setSwitcher2(true)}
+                        onMouseLeave={() => setSwitcher2(false)}
                         >
-                          FAQ
+                          Docs
                         </TextButton>
                       </HoverActivatedTooltip.Anchor>
                       <HoverActivatedTooltip.Content>
@@ -264,12 +304,16 @@ const Header = () => {
                       arrow
                       placement="top"
                       appearance='none'
+                      onMouseOver={() => setSwitcher3(true)}
+                      onMouseLeave={() => setSwitcher3(false)}
                     >
                       <HoverActivatedTooltip.Anchor>
                         <TextButton 
                         color="tertiary" 
                         size="sm"
-                        trailingIcon={MonochromeIcons.CaretDown}
+                        trailingIcon={switcher3 ? MonochromeIcons.CaretDown : MonochromeIcons.CaretRight}
+                        onMouseOver={() => setSwitcher3(true)}
+                        onMouseLeave={() => setSwitcher3(false)}
                         >
                             <img className="image-logo" src="/p2.svg" />
                             {balance.substring(0, 6)} MATIC
@@ -293,6 +337,8 @@ const Header = () => {
                     <HoverActivatedTooltip
                       arrow
                       placement="top"
+                      onMouseOver={() => setSwitcher4(true)}
+                      onMouseLeave={() => setSwitcher4(false)}
                     >
                       <HoverActivatedTooltip.Anchor>
                         <CallToAction
@@ -300,7 +346,9 @@ const Header = () => {
                           size="sm"
                           outline="none"
                           leadingIcon={MonochromeIcons.Copy}
-                          trailingIcon={MonochromeIcons.CaretDown}
+                          trailingIcon={switcher4 ? MonochromeIcons.CaretDown : MonochromeIcons.CaretRight}
+                          onMouseOver={() => setSwitcher4(true)}
+                          onMouseLeave={() => setSwitcher4(false)}
                           onPress={copyAddress}
                         >
                           {user.publicAddress.substring(0, 6)}...
