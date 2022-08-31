@@ -40,16 +40,18 @@ export default function NFTCard({ nft, going }) {
         </Link>
       <style>{`
         .card {
-          border-radius: 20px;
-          padding: 15px;
-          box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 16px,
-            rgba(0, 0, 0, 0.05) 0px 0px 16px;
+          // border-radius: 20px;
+          // padding: 15px;
+          // box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 16px,
+          //   rgba(0, 0, 0, 0.05) 0px 0px 16px;
           transition: 0.2s;
         }
 
-        .card:hover {
+        .nft-img:hover {
+          -webkit-filter: brightness(87%);
           box-shadow: rgba(0, 0, 0, 0.29) 0px 0px 16px,
-            rgba(0, 0, 0, 0.1) 0px 0px 16px;
+          rgba(0, 0, 0, 0.1) 0px 0px 16px;
+          transition: 0.2s;
         }
 
         .nft-img-container {
@@ -62,14 +64,14 @@ export default function NFTCard({ nft, going }) {
         }
 
         .nft-img {
-          max-width: 200px;
-          max-height: 200px;
+          max-width: 300px;
+          max-height: 300px;
           cursor: pointer;
           border-radius: 15px;
         }
 
         .name {
-          margin-top: 10px;
+          margin-top: 3px;
           text-align: center;
         }
       `}</style>
