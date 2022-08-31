@@ -1,43 +1,60 @@
 import Link from 'next/link';
-import { TextButton, MonochromeIcons } from '@magiclabs/ui';
+import { TextButton, MonochromeIcons, useToast } from '@magiclabs/ui';
+import next from 'next';
 
 
 export default function NFTCard({ nft, going }) {
+  const { createToast } = useToast();
+
+  const nextWeek = async () => {
+    createToast({
+      message: 'Comeback next week to check out these NFTs!',
+      type: 'success',
+      lifespan: 2000,
+    });
+  };
+
+  const nextWeek2 = async () => {
+    
+  };
+
+
   return (
     <>
-      <Link href={going ? {pathname: "/s/[id]", query: { id: nft.tokenID }} : "/showcase"}>
-          <div className="card">
-            <div className="nft-img-container">
-              <img
-              src={nft.image}
-              width={300}
-              className="nft-img"
-              onError={(e) => (e.target.src = '/fallback.jpeg')}
-              alt={nft.name}
-              />
-            </div>
-              <div className="name">
-                <Link href={{pathname: "/s/[id]", query: { id: nft.tokenID }}}>
-                  <TextButton
-                  color="tertiary"
-                  outline="none"
-                  >
-                    {nft.name}
-                  </TextButton>
-                </Link>
-              </div>
-            <div className="name">
-              <Link href={{pathname: "/s/[id]", query: { id: nft.tokenID }}}>
-                <TextButton
-                trailingIcon={MonochromeIcons.SuccessFilled}
-                outline="none"
-                >
-                  {nft.creator}
-                </TextButton>
-              </Link>
-            </div>
+      <Link href={going ? {pathname: "/s/[id]", query: { id: nft.tokenID }} : "#"}>
+        <div className="card">
+          <div className="nft-img-container">
+            <img
+            src={nft.image}
+            width={300}
+            className="nft-img"
+            onError={(e) => (e.target.src = '/fallback.jpeg')}
+            alt={nft.name}
+            onClick={!going ? nextWeek : nextWeek2}
+            />
           </div>
-        </Link>
+          <div className="name">
+            <Link href={{pathname: "/s/[id]", query: { id: nft.tokenID }}}>
+              <TextButton
+              color="tertiary"
+              outline="none"
+              >
+                {nft.name}
+              </TextButton>
+            </Link>
+          </div>
+          <div className="name">
+            <Link href={{pathname: "/s/[id]", query: { id: nft.tokenID }}}>
+              <TextButton
+              trailingIcon={MonochromeIcons.SuccessFilled}
+              outline="none"
+              >
+                {nft.creator}
+              </TextButton>
+            </Link>
+          </div>
+        </div>
+      </Link>
       <style>{`
         .card {
           // border-radius: 20px;
@@ -68,6 +85,7 @@ export default function NFTCard({ nft, going }) {
           max-height: 300px;
           cursor: pointer;
           border-radius: 15px;
+          transition: 0.2s;
         }
 
         .name {
