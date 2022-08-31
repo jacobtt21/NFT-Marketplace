@@ -4,9 +4,11 @@ import Link from 'next/link'
 import { web3 } from '../lib/magic';
 import { abi } from '../contracts/abi';
 import { abiU } from '../contracts/abiU';
-import { TextField, CallToAction, TextButton, MonochromeIcons, useToast } from '@magiclabs/ui';
+import { TextField, CallToAction, TextButton, MonochromeIcons, useToast, HoverActivatedTooltip } from '@magiclabs/ui';
 import { useRouter } from 'next/router'
 
+//types indicates whether or not it is a regular nft card on the index page or owned card on collection
+// status refers to whether or not the NFT is for sale
 
 export default function NFTCard({ nft, price, status, types, star, num, check, going, take }) {
   const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
@@ -138,352 +140,209 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
 
   return (
     <>
-      {take ? (
-        <Link href={{pathname: path, query: { id: nft.tokenID }}}>
-          <div className="card">
-            {going ? (
-              <div className="name">
-                <Link href={{pathname: '/[id]', query: { id: nft.tokenID }}}>
-                  <CallToAction>
-                    { star } / 5
-                  </CallToAction>
-                </Link> from { num } ratings
-              </div>
-            ) : (
-              <div className="name">
-                <CallToAction
-                color="primary"
-                size="sm"
-                outline="none">
-                  { star } / 5 
-                </CallToAction> from { num } ratings
-              </div>
-            )}
-            <div className="nft-img-container">
-              <img
-              src={nft.image}
-              width={300}
-              className="nft-img"
-              onError={(e) => (e.target.src = '/fallback.jpeg')}
-              />
-            </div>
-            {check === '0' || check === '1' ? (
-              <div className='name'>
-              <TextButton
-              color="tertiary"
-              outline="none"
-              >
-                {nft.name}
-              </TextButton>
-            </div>
-            ) : check === "2" ? (
-              <div className="name">
-                <TextButton
-                leadingIcon={MonochromeIcons.AsteriskBold}
-                color="warning"
-                outline="none"
-                >
-                  {nft.name}
-                </TextButton>
-              </div> 
-            ) : (
-              <div className="name">
-                <TextButton
-                leadingIcon={MonochromeIcons.Exclaim}
-                color="error"
-                outline="none"
-                >
-                  {nft.name}
-                </TextButton>
-              </div> 
-            )}
-            {changed ? (
-              <div className="name">
-                <Link href={{pathname: '/u/[user]', query: { user: nft.creator }}}>
-                  <TextButton
-                  trailingIcon={userVerify && (MonochromeIcons.SuccessFilled)}
-                  >
-                    {creator}
-                  </TextButton>
-                </Link>
-              </div>
-            ) : (
-              <div className="name">
-                <Link href={{pathname: '/u/[user]', query: { user: nft.creator }}}>
-                  <TextButton
-                  trailingIcon={userVerify && (MonochromeIcons.SuccessFilled)}
-                  >
-                    {creator.substring(0, 6)}...{creator.substring(38)}
-                  </TextButton>
-                </Link>
-              </div>
-            )}
-            <br />
-            {types ? (
-              <>
-                {status && (
-                  <>
-                    <div className="name">
-                      <CallToAction
-                      color="primary"
-                      size="sm"
-                      outline="none"
-                      >
-                        <img className="image-logo" src="/p2.svg" />
-                        { web3.utils.fromWei(price) } MATIC
-                      </CallToAction>
-                    </div>
-                  </>
-                )}
-              </>
-            ) : (
-              <>
-                <div className="name">
-                  current price: { web3.utils.fromWei(price) } MATIC
-                </div>
-                <div className="name">
-                  <TextField
-                  disabled={disabled}
-                  placeholder="New Price"
-                  type="number"
-                  onChange={(e) => setNewPrice(e.target.value)}
-                  value={newPrice}
-                  />
-                  <br />
-                  <TextButton
-                  disabled={disabled}
-                  color="primary"
-                  size="sm"
-                  onClick={changePrice}
-                  >
-                    Change Price
-                  </TextButton>
-                  <br />
-                  <br />
-                </div>
-                { price === 0 ? ( 
-                  <>
-                  yee
-                  </>
-                ) : (
-                  <>
-                  </>
-                )}
-                {status ? (
-                  <>
-                    <div className="name">
-                      <CallToAction
-                      disabled={disabled}
-                      color="primary"
-                      size="sm"
-                      onClick={changeStatus}
-                      >
-                        Take Off Market
-                      </CallToAction>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div className="name">
-                      <CallToAction
-                      disabled={disabled}
-                      color="primary"
-                      size="sm"
-                      onClick={changeStatus}
-                      >
-                        Put On Market
-                      </CallToAction>
-                    </div>
-                  </>
-                )}
-              </>
-            )}
-          </div>
-        </Link>
-      ) : (
-        <div className="card">
-          {going ? (
-            <div className="name">
-              <Link href={{pathname: '/[id]', query: { id: nft.tokenID }}}>
-                <CallToAction>
-                  { star } / 5
-                </CallToAction>
-              </Link> from { num } ratings
-            </div>
-          ) : (
-            <div className="name">
-              <CallToAction
-              color="primary"
-              size="sm"
-              outline="none">
-                { star } / 5 
-              </CallToAction> from { num } ratings
-            </div>
-          )}
-          <div className='comms'>
-            {nft.comm && (
-              <Link href={{pathname: '/community/[cname]', query: { cname: nft.comm }}}>
-                <CallToAction
-                size='sm'
-                outline
-                disabled={disabled}
-                >
-                  {nft.comm} &rarr;
-                </CallToAction>
-              </Link>
-            )}
-          </div>
-          <div className="nft-img-container">
+      <div className="card">
+        <div className="name">
+          <Link href={{pathname: '/[id]', query: { id: nft.tokenID }}}>
+            <CallToAction>
+              { star } / 5
+            </CallToAction>
+          </Link> from { num } ratings
+        </div>
+        <div className="nft-img-container">
+          <Link href={{pathname: '/[id]', query: { id: nft.tokenID }}}>
             <img
             src={nft.image}
-            width={300}
+            width={400}
             className="nft-img"
             onError={(e) => (e.target.src = '/fallback.jpeg')}
             />
-          </div>
-          {check === '0' || check === '1' ? (
-            <div className='name'>
+          </Link>
+        </div>
+        {check === '0' || check === '1' ? (
+          <div className='name'>
+            <Link href={{pathname: path, query: { id: nft.tokenID }}}>
               <TextButton
               color="tertiary"
               outline="none"
               >
-                {nft.name}
+                {nft.name} &rarr;
               </TextButton>
-            </div>
-          ) : check === "2" ? (
-            <div className="name">
+            </Link>
+          </div>
+        ) : check === "2" ? (
+          <div className="name">
+            <Link href={{pathname: path, query: { id: nft.tokenID }}}>
               <TextButton
               leadingIcon={MonochromeIcons.AsteriskBold}
               color="warning"
               outline="none"
               >
-                {nft.name}
+                {nft.name} &rarr;
               </TextButton>
-            </div> 
-          ) : (
-            <div className="name">
+            </Link>
+          </div> 
+        ) : (
+          <div className="name">
+            <Link href={{pathname: path, query: { id: nft.tokenID }}}>
               <TextButton
               leadingIcon={MonochromeIcons.Exclaim}
               color="error"
               outline="none"
               >
-                {nft.name}
+                {nft.name} &rarr;
               </TextButton>
-            </div> 
-          )}
-          {changed ? (
-            <div className="name">
-              <Link href={{pathname: '/u/[user]', query: { user: nft.creator }}}>
-                <TextButton
-                trailingIcon={userVerify && (MonochromeIcons.SuccessFilled)}
-                disabled={disabled}
-                >
-                  {creator}
-                </TextButton>
-              </Link>
-            </div>
-          ): (
-            <div className="name">
-              <Link href={{pathname: '/u/[user]', query: { user: nft.creator }}}>
-                <TextButton
-                trailingIcon={userVerify && (MonochromeIcons.SuccessFilled)}
-                disabled={disabled}
-                >
-                  {creator.substring(0, 6)}...{creator.substring(38)}
-                </TextButton>
-              </Link>
-            </div>
-          )}
-          <br />
-          {types ? (
-            <>
-              {status && (
-                <>
-                  <div className="name">
-                    <Link href={{pathname: '/[id]', query: { id: nft.tokenID }}}>
-                      <CallToAction
-                      color="primary"
-                      size="sm"
-                      outline="none"
-                      >
-                        { web3.utils.fromWei(price) } MATIC
-                      </CallToAction>
-                    </Link>
-                  </div>
-                </>
-              )}
-            </>
-          ) : (
-            <>
-              <div className="name">
-                current price: { web3.utils.fromWei(price) } MATIC
+            </Link>
+          </div> 
+        )}
+        {changed ? (
+          <div className="name">
+            <Link href={{pathname: '/u/[user]', query: { user: nft.creator }}}>
+              <TextButton
+              trailingIcon={userVerify && (MonochromeIcons.SuccessFilled)}
+              >
+                {creator}
+              </TextButton>
+            </Link>
+          </div>
+        ) : (
+          <div className="name">
+            <Link href={{pathname: '/u/[user]', query: { user: nft.creator }}}>
+              <TextButton
+              trailingIcon={userVerify && (MonochromeIcons.SuccessFilled)}
+              >
+                {creator.substring(0, 6)}...{creator.substring(38)}
+              </TextButton>
+            </Link>
+          </div>
+        )}
+        {types ? (
+          <>
+            {status && (
+              <div className="name1">
+                <HoverActivatedTooltip>
+                  <HoverActivatedTooltip.Anchor>
+                    <CallToAction
+                    color="primary"
+                    size="sm"
+                    outline="none"
+                    >
+                      <img className="image-logo" src="/p2.svg" />
+                      { web3.utils.fromWei(price) } MATIC
+                    </CallToAction>
+                  </HoverActivatedTooltip.Anchor>
+                  <HoverActivatedTooltip.Content>
+                    <div className='name'>
+                      <h6>
+                        This NFT is for sale
+                      </h6>
+                    </div>
+                  </HoverActivatedTooltip.Content>
+                </HoverActivatedTooltip>
               </div>
-              <div className="name">
-                <TextField
-                disabled={disabled}
-                placeholder="New Price"
-                type="number"
-                onChange={(e) => setNewPrice(e.target.value)}
-                value={newPrice}
-                />
-                <br />
-                <TextButton
-                disabled={disabled}
-                color="primary"
-                size="sm"
-                onClick={changePrice}
-                >
-                  Change Price
-                </TextButton>
-                <br />
-                {msg && (
-                  <div className='name'>
-                    Found the eraser, we'll be back real quick
-                  </div>
-                )}
-                <br />
+            )}
+          </>
+        ) : (
+          <>
+            <div className="name3">
+              current price: { web3.utils.fromWei(price) } MATIC
+            </div>
+            <div className="name">
+              <TextField
+              disabled={disabled}
+              placeholder="New Price"
+              type="number"
+              onChange={(e) => setNewPrice(e.target.value)}
+              value={newPrice}
+              />
+              <div className='name3'>
+                <HoverActivatedTooltip>
+                  <HoverActivatedTooltip.Anchor>
+                    <TextButton
+                    disabled={disabled}
+                    color="primary"
+                    size="sm"
+                    onClick={changePrice}
+                    >
+                      Change Price
+                    </TextButton>
+
+                  </HoverActivatedTooltip.Anchor>
+                  <HoverActivatedTooltip.Content>
+                    <div className='name2'>
+                      <h6>
+                        Changing the price will reduce the number of MATIC in your account to pay gas fees
+                      </h6>
+                    </div>
+                  </HoverActivatedTooltip.Content>
+                </HoverActivatedTooltip>
               </div>
-              {price !== '0' && (
-                <>
-                  {status ? (
-                    <>
-                      <div className="name">
-                        <CallToAction
-                        disabled={disabled}
-                        color="primary"
-                        size="sm"
-                        onClick={changeStatus}
-                        >
-                          Take Off Market
-                        </CallToAction>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div className="name">
-                        <CallToAction
-                        disabled={disabled}
-                        color="primary"
-                        size="sm"
-                        onClick={changeStatus}
-                        >
-                          Put On Market
-                        </CallToAction>
-                      </div>
-                      <br />
-                    </>
-                  )}
-                </>
-              )}
-              {msg1 && (
+              {msg && (
                 <div className='name'>
-                  We're going to the market, need anything?
+                  Found the eraser, we'll be back real quick
                 </div>
               )}
-            </>
-          )}
-        </div>
-      )}
+            </div>
+            {price !== '0' && (
+              <>
+                {status ? (
+                  <>
+                    <div className="name3">
+                      <HoverActivatedTooltip>
+                        <HoverActivatedTooltip.Anchor>
+                          <CallToAction
+                          disabled={disabled}
+                          color="primary"
+                          size="sm"
+                          onClick={changeStatus}
+                          >
+                            Take Off Market
+                          </CallToAction>
+                        </HoverActivatedTooltip.Anchor>
+                        <HoverActivatedTooltip.Content>
+                          <div className='name2'>
+                            <h6>
+                              This action requires gas fees to perform
+                            </h6>
+                          </div>
+                        </HoverActivatedTooltip.Content>
+                      </HoverActivatedTooltip>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="name1">
+                      <HoverActivatedTooltip>
+                        <HoverActivatedTooltip.Anchor>
+                          <CallToAction
+                          disabled={disabled}
+                          color="primary"
+                          size="sm"
+                          onClick={changeStatus}
+                          >
+                            Put On Market
+                          </CallToAction>
+                        </HoverActivatedTooltip.Anchor>
+                        <HoverActivatedTooltip.Content>
+                          <div className='name2'>
+                            <h6>
+                              This action requires gas fees to perform
+                            </h6>
+                          </div>
+                        </HoverActivatedTooltip.Content>
+                      </HoverActivatedTooltip>
+                    </div>
+                  </>
+                )}
+              </>
+            )}
+            {msg1 && (
+              <div className='name'>
+                We're going to the market, need anything?
+              </div>
+            )}
+          </>
+        )}
+      </div>
       <style>{`
         .image-logo {
           margin-right: 5px;
@@ -492,34 +351,32 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
         .card {
           border-radius: 20px;
           padding: 10px;
-          box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 16px, rgba(0, 0, 0, 0.05) 0px 0px 16px;
+          // box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 16px, rgba(0, 0, 0, 0.05) 0px 0px 16px;
+          // transition: 0.2s;
+        }
+
+        .nft-img:hover {
+          -webkit-filter: brightness(87%);
+          box-shadow: rgba(0, 0, 0, 0.29) 0px 0px 16px,
+          rgba(0, 0, 0, 0.1) 0px 0px 16px;
           transition: 0.2s;
         }
 
-        .verify-img {
-          display: inline
-          vertical-align: middle
-        }
-
-        .card:hover {
-          box-shadow: rgba(0, 0, 0, 0.29) 0px 0px 16px,
-            rgba(0, 0, 0, 0.1) 0px 0px 16px;
-        }
-
         .nft-img-container {
-          margin-top: 10px;
-          min-width: 200px;
-          min-height: 200px;
+          margin-top: 5px;
+          min-width: 250px;
+          min-height: 250px;
           display: flex;
           align-items: center;
           justify-content: center;
         }
 
         .nft-img {
-          max-width: 200px;
-          max-height: 200px;
+          max-width: 250px;
+          max-height: 250px;
           cursor: pointer;
           border-radius: 15px;
+          transition: 0.2s;
         }
 
         .comms {
@@ -529,8 +386,27 @@ export default function NFTCard({ nft, price, status, types, star, num, check, g
         }
 
         .name {
-          margin-top: 10px;
+          margin-top: 3px;
           text-align: center;
+        }
+        .name2 {
+          width: 280px;
+          text-align: center;
+        }
+        .name1 {
+          margin-top: 3px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .name3 {
+          margin-top: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        h6 {
+          font-size: 17px;
         }
       `}</style>
     </>
