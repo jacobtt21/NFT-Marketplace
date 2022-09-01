@@ -58,6 +58,9 @@ function MyApp({ Component, pageProps }) {
           else if (router.pathname === '/code') {
             
           }
+          else if (router.pathname === '/sustainability') {
+            
+          }
           else if (router.pathname === '/legal') {
             
           }
