@@ -186,7 +186,7 @@ export default function About() {
             Unlike our competitors, Oustro’s NFTs are all carbon-negative, thanks to the innovation of the Polygon Blockchain. Support us on our mission toward making NFTs environmentally friendly. 
             </h6>
             <br />
-            <Link href="/login">
+            <Link href="/sustainability">
               <CallToAction
               >
                 Go Greener with Oustro
