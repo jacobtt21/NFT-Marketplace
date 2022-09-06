@@ -380,6 +380,7 @@ const Header = () => {
                         <img
                         src={dp ? dp : "/default.png"}
                         width={50}
+                        height={50}
                         className="nft-img-profile-pic"
                         onError={(e) => (e.target.src = '/fallback.jpeg')}
                         />
