@@ -25,10 +25,8 @@ contract Oustro is ERC721URIStorage {
 
     constructor() ERC721("Oustro", "OUSTRO") {}
 
-    function createNFT(string memory uri, uint price, bool goingtoShow) public returns (uint) {
+    function createNFT(string memory uri, uint price, bool goingtoShow, uint256 newTokenId) public returns (uint) {
         // Mint NFT
-        count = count + 1;
-        uint256 newTokenId = count;
         _safeMint(msg.sender, newTokenId);
         _setTokenURI(newTokenId, uri);
         nfts.push(
@@ -57,7 +55,12 @@ contract Oustro is ERC721URIStorage {
     }
 
     function getNFTbyId(uint Id) external view returns (MarketItem memory) {
-        return nfts[Id - 1];
+        for (uint i = 0; i < nfts.length; ++i) {
+            if (nfts[i].ID == Id) {
+                return nfts[i];
+            }
+        }
+        return nfts[nfts.length - 1];
     }
 
     function getNFTsByOwner(address _owner) external view returns (MarketItem [] memory) {
@@ -78,56 +81,94 @@ contract Oustro is ERC721URIStorage {
         return items;
     }
 
-    function getIndex() external view returns (uint) {
-        return count + 1;
+    event IDEvent(uint id);
+
+    function getIndex() public returns (uint) {
+        count = count + 1;
+        emit IDEvent(count);
+        return count;
     }
 
     function changeMarketStatus(uint Id, address _currentOwner) public returns (uint) {
-        if (nfts[Id - 1].owner == _currentOwner) {
-            bool newStatus = !nfts[Id - 1].onMarket;
+        uint indexPos = nfts.length;
+        for (uint i = 0; i < nfts.length; ++i) {
+            if (nfts[i].ID == Id) {
+                indexPos = i;
+            }
+        }
+        if (nfts[indexPos].owner == _currentOwner) {
+            bool newStatus = !nfts[indexPos].onMarket;
             if (newStatus == true) {
                 _transfer(msg.sender, address(this), Id);
             }
             else {
                 _transfer(address(this), _currentOwner, Id);
             }
-            nfts[Id - 1].onMarket = newStatus;
+            nfts[indexPos].onMarket = newStatus;
         }
-
         return Id;
     }
 
     function transfer(address _newOwner, uint Id, address _currentOwner) external {
-        if (nfts[Id - 1].owner == _currentOwner) {
-            nfts[Id - 1].owner = _newOwner;
-            nfts[Id - 1].onMarket = false;
+        uint indexPos = nfts.length;
+        for (uint i = 0; i < nfts.length; ++i) {
+            if (nfts[i].ID == Id) {
+                indexPos = i;
+            }
+        }
+        if (nfts[indexPos].owner == _currentOwner) {
+            nfts[indexPos].owner = _newOwner;
+            nfts[indexPos].onMarket = false;
             _transfer(address(this), msg.sender, Id);
         }
     }
 
     function changePrice(uint Id, uint newPrice, address _currentOwner) public returns (uint) {
-        if (nfts[Id - 1].owner == _currentOwner) {
-            nfts[Id - 1].price = newPrice;
+        uint indexPos = nfts.length;
+        for (uint i = 0; i < nfts.length; ++i) {
+            if (nfts[i].ID == Id) {
+                indexPos = i;
+            }
         }
-
+        if (nfts[indexPos].owner == _currentOwner) {
+            nfts[indexPos].price = newPrice;
+        }
         return newPrice;
     }
 
     function rateNFT(uint Id, uint newRating) public returns (uint) {
-        uint currentRating = nfts[Id - 1].rating;
-        uint currentRaters = nfts[Id - 1].raters;
-        nfts[Id - 1].rating = ((currentRating * currentRaters) + newRating) / (currentRaters + 1);
-        nfts[Id - 1].raters = currentRaters + 1;
+        uint indexPos = nfts.length;
+        for (uint i = 0; i < nfts.length; ++i) {
+            if (nfts[i].ID == Id) {
+                indexPos = i;
+            }
+        }
+        uint currentRating = nfts[indexPos].rating;
+        uint currentRaters = nfts[indexPos].raters;
+        nfts[indexPos].rating = ((currentRating * currentRaters) + newRating) / (currentRaters + 1);
+        nfts[indexPos].raters = currentRaters + 1;
         return newRating;
     }
 
     function changeVerify(uint Id, uint newVerify) public returns (uint) {
-        nfts[Id - 1].verify = newVerify;
+        uint indexPos = nfts.length;
+        for (uint i = 0; i < nfts.length; ++i) {
+            if (nfts[i].ID == Id) {
+                indexPos = i;
+            }
+        }
+        nfts[indexPos].verify = newVerify;
         return newVerify;
     }
 
     function changeShow(uint Id) public returns (uint) {
-        nfts[Id - 1].show = !nfts[Id - 1].show;
+        uint indexPos = nfts.length;
+        for (uint i = 0; i < nfts.length; ++i) {
+            if (nfts[i].ID == Id) {
+                indexPos = i;
+            }
+        }
+        nfts[indexPos].show = !nfts[indexPos].show;
         return Id;
     }
 }

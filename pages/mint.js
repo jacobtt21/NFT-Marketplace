@@ -36,20 +36,6 @@ function Mint() {
   const commAddress = process.env.NEXT_PUBLIC_COMM_ADDRESS;
   const contractComm = new web3.eth.Contract(abiC, commAddress);
 
-  // const projectId = '2DAwV2eIqTyQ6muzlX4wWX01j9S';
-  // const projectSecret = '89dd32cf0b2ac60c594b4d94344825fa';
-  // const auth = 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
-
-  // const client = create({
-  //   host: 'ipfs.infura.io',
-  //   port: 5001,
-  //   protocol: 'https',
-  //   apiPath: '/api/v0',
-  //   headers: {
-  //     Authorization: auth,
-  //   },
-  // });
-
   const searchClient = algoliasearch(
     process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
     process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_ADMIN_KEY,
@@ -61,9 +47,6 @@ function Mint() {
   async function onImageUpload(e) {
     const file = e.target.files[0];
     try {
-      // const ipfsData = await client.add(file);
-      // const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
-      // setIpfsImageUrl(url);
       const formData = new FormData();
       formData.append("file", file);
       const res = await fetch('https://ipfs-upload-oustro.herokuapp.com/', {
@@ -82,9 +65,6 @@ function Mint() {
   async function onWorkUpload(e) {
     const file = e.target.files[0];
     try {
-      // const ipfsData = await client.add(file);
-      // const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
-      // setIpfsWorkUrl(url);
       const formData = new FormData();
       formData.append("file", file);
       const res = await fetch('https://ipfs-upload-oustro.herokuapp.com/', {
@@ -146,9 +126,16 @@ function Mint() {
         }
       }
       setMintStatus("Getting Fees")
-      const tIndex = await contract.methods.getIndex().call();
       const response = await fetch('https://gasstation-mainnet.matic.network/v2');
       const next = await response.json();
+      const tIndex2 = await contract.methods
+      .getIndex()
+      .send({ 
+        from: user.publicAddress,
+        gas: 1000000,
+        maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
+      });
+      const tIndex = parseInt(tIndex2.events.IDEvent.returnValues.id)
       var data;
       if (router.query.comm) {
         setMintStatus("Connecting with Community")
@@ -193,7 +180,7 @@ function Mint() {
       setMintStatus("Publishing In Progress")
 
       const receipt = await contract.methods
-      .createNFT(url, web3.utils.toWei(costo), show)
+      .createNFT(url, web3.utils.toWei(costo), show, tIndex)
       .send({ 
         from: user.publicAddress,
         gas: 1000000,
@@ -573,7 +560,7 @@ function Mint() {
                 Publish (3 MATIC)
               </CallToAction>
               <div style={{ marginTop: '30px' }}>
-                {txPending && (
+                {mintStatus && (
                   <>
                     <div>{mintStatus}</div>
                   </>

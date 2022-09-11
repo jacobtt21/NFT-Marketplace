@@ -47,7 +47,7 @@ export default function Index() {
   const contractUser = new web3.eth.Contract(abiU, userAddress);
 
   const getMyNFT = async () => {
-    const nft = await contract.methods.getNFTbyId(parseInt(router.query.id)).call();
+    const nft = await contract.methods.getNFTbyId(router.query.id).call();
     const response = await fetch(nft[0]);
     const data = await response.json();
     setTheNFT(data);

@@ -184,6 +184,11 @@ export const abi = [
 				"internalType": "bool",
 				"name": "goingtoShow",
 				"type": "bool"
+			},
+			{
+				"internalType": "uint256",
+				"name": "newTokenId",
+				"type": "uint256"
 			}
 		],
 		"name": "createNFT",
@@ -196,6 +201,32 @@ export const abi = [
 		],
 		"stateMutability": "nonpayable",
 		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getIndex",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			}
+		],
+		"name": "IDEvent",
+		"type": "event"
 	},
 	{
 		"inputs": [
@@ -454,19 +485,6 @@ export const abi = [
 				"internalType": "struct Oustro.MarketItem[]",
 				"name": "",
 				"type": "tuple[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getIndex",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
