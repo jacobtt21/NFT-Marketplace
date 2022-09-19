@@ -37,6 +37,7 @@ export default function Index() {
     }
     getMyNFTs();
   }, [user]);
+  
 
   const getMyNFTs = async () => {
     setLoading(true);
