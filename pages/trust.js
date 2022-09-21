@@ -6,7 +6,7 @@ export default function About() {
   return (
     <>
       <Head>
-        <title>Safety on Oustro | Oustro</title>
+        <title>Trust | Oustro</title>
         <link
           rel="canonical"
           href="https://www.oustro.xyz/about"
@@ -27,7 +27,7 @@ export default function About() {
             </h6>
           </div>
           <div>
-            <h1>Why you should feel safe on Oustro</h1>
+            <h1>Trust on Oustro</h1>
             <h2 id="intro">Intro</h2>
             <h3>Hang tight, we're working on this!</h3>
           </div>

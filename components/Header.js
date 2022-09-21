@@ -112,15 +112,82 @@ const Header = () => {
                     </Link>
                   </li>
                   <li>
-                    <CallToAction
-                      color='secondary'
-                      size="sm"
-                      trailingIcon={switcher ? MonochromeIcons.CaretDown : MonochromeIcons.CaretRight}
+                    <HoverActivatedTooltip
+                      arrow
+                      placement="top"
                       onMouseOver={() => setSwitcher(true)}
                       onMouseLeave={() => setSwitcher(false)}
                     >
-                      Docs
-                    </CallToAction>
+                      <HoverActivatedTooltip.Anchor>
+                        <CallToAction
+                          color='secondary'
+                          size="sm"
+                          trailingIcon={switcher ? MonochromeIcons.CaretDown : MonochromeIcons.CaretRight}
+                          onMouseOver={() => setSwitcher(true)}
+                          onMouseLeave={() => setSwitcher(false)}
+                        >
+                          FAQs
+                        </CallToAction>
+                      </HoverActivatedTooltip.Anchor>
+                      <HoverActivatedTooltip.Content>
+                        <div>
+                          <Link
+                          href="/faq"
+                          >
+                            <TextButton
+                            leadingIcon={MonochromeIcons.QuestionFilled}
+                            >
+                              General Questions
+                            </TextButton> 
+                          </Link>
+                          <p>The one stop shop for all questions regarding Oustro.</p>
+                          <br />
+                          <Link
+                          href="/faq"
+                          >
+                            <TextButton
+                            leadingIcon={MonochromeIcons.SocialShare}
+                            >
+                              Blog
+                            </TextButton> 
+                          </Link>
+                          <p>Read about what we're up do and stay update on all things web3 and NFT.</p>
+                          <br />
+                          <Link
+                          href="/code"
+                          >
+                            <TextButton
+                            leadingIcon={MonochromeIcons.Document}
+                            >
+                              Code of Conduct
+                            </TextButton> 
+                          </Link>
+                          <p>Learn the do's and don'ts of Oustro.</p>
+                          <br />
+                          <Link
+                          href="/legal"
+                          >
+                            <TextButton
+                            leadingIcon={MonochromeIcons.EyeOpen}
+                            >
+                              Legal
+                            </TextButton> 
+                          </Link>
+                          <p>Somethings our lawyers said we needed to have.</p>
+                          <br />
+                          <Link
+                          href="/trust"
+                          >
+                            <TextButton
+                            leadingIcon={MonochromeIcons.Profile}
+                            >
+                              Trust
+                            </TextButton> 
+                          </Link>
+                          <p>Learn what we've done to make sure your experience on Oustro is a safe one.</p>
+                        </div>
+                      </HoverActivatedTooltip.Content>
+                    </HoverActivatedTooltip>
                   </li>
                   <li>
                     <Link href="/login">

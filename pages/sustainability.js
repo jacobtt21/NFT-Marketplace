@@ -21,43 +21,16 @@ export default function About() {
               href="#intro"
               >
                 <TextButton>
-                  Intro
+                  Sustainability
                 </TextButton>
               </Link>
             </h6>
             <h6>
               <Link
-              href="#rules"
+              href="#links"
               >
                 <TextButton>
-                  Rules
-                </TextButton>
-              </Link>
-            </h6>
-            <h6>
-              <Link
-              href="#how"
-              >
-                <TextButton>
-                  How you can help
-                </TextButton>
-              </Link>
-            </h6>
-            <h6>
-              <Link
-              href="#after"
-              >
-                <TextButton>
-                  What happens after
-                </TextButton>
-              </Link>
-            </h6>
-            <h6>
-              <Link
-              href="#conclusion"
-              >
-                <TextButton>
-                  Conclusion
+                  Links                 
                 </TextButton>
               </Link>
             </h6>
@@ -72,7 +45,7 @@ export default function About() {
             <br />
             <h3>We won’t bore you with the technical details on this page. Still, we encourage our users to check out our extensive links below if they are interested in learning more about how the Polygon solution is environmentally friendly!</h3>
             <br />
-            <h3>Links:</h3>
+            <h3 id="links">Links:</h3>
             <h3>
               <Link href="https://blog.polygon.technology/polygon-is-going-carbon-negative-in-2022-with-a-20-million-pledge/">
                 <TextButton
