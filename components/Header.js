@@ -140,7 +140,7 @@ const Header = () => {
                               General Questions
                             </TextButton> 
                           </Link>
-                          <p>The one stop shop for all questions regarding Oustro.</p>
+                          <p>The one-stop shop for all questions regarding Oustro.</p>
                           <br />
                           <Link
                           href="/faq"
@@ -151,7 +151,7 @@ const Header = () => {
                               Blog
                             </TextButton> 
                           </Link>
-                          <p>Read about what we're up do and stay update on all things web3 and NFT.</p>
+                          <p>Read about what we're up to and stay updated on all things web3 and NFT.</p>
                           <br />
                           <Link
                           href="/code"
@@ -184,7 +184,18 @@ const Header = () => {
                               Trust
                             </TextButton> 
                           </Link>
-                          <p>Learn what we've done to make sure your experience on Oustro is a safe one.</p>
+                          <p>Learn what we've done to ensure your experience on Oustro is safe.</p>
+                          <br />
+                          <Link
+                          href="/sustainability"
+                          >
+                            <TextButton
+                            leadingIcon={MonochromeIcons.Lightbulb}
+                            >
+                              Sustainability
+                            </TextButton> 
+                          </Link>
+                          <p>Find out how Oustro is pioneering greener NFTs.</p>
                         </div>
                       </HoverActivatedTooltip.Content>
                     </HoverActivatedTooltip>
@@ -344,7 +355,6 @@ const Header = () => {
                     <HoverActivatedTooltip
                       arrow
                       placement="bottom"
-                      appearance='none'
                       onMouseOver={() => setSwitcher2(true)}
                       onMouseLeave={() => setSwitcher2(false)}
                     >
@@ -356,12 +366,43 @@ const Header = () => {
                         onMouseOver={() => setSwitcher2(true)}
                         onMouseLeave={() => setSwitcher2(false)}
                         >
-                          Docs
+                          FAQs
                         </TextButton>
                       </HoverActivatedTooltip.Anchor>
                       <HoverActivatedTooltip.Content>
-                        <div>
-                          Why is Oustro safe
+                      <div>
+                          <Link
+                          href="/faq"
+                          >
+                            <TextButton
+                            leadingIcon={MonochromeIcons.QuestionFilled}
+                            >
+                              General Questions
+                            </TextButton> 
+                          </Link>
+                          <p>The one-stop shop for all questions regarding Oustro.</p>
+                          <br />
+                          <Link
+                          href="/contact"
+                          >
+                            <TextButton
+                            leadingIcon={MonochromeIcons.SocialShare}
+                            >
+                              Contact
+                            </TextButton> 
+                          </Link>
+                          <p>Let's work together and make Oustro even better!</p>
+                          <br />
+                          <Link
+                          href="/code"
+                          >
+                            <TextButton
+                            leadingIcon={MonochromeIcons.Document}
+                            >
+                              Code of Conduct
+                            </TextButton> 
+                          </Link>
+                          <p>Learn the do's and don'ts of Oustro.</p>
                         </div>
                       </HoverActivatedTooltip.Content>
                     </HoverActivatedTooltip>
