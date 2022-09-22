@@ -93,7 +93,7 @@ export default function About() {
         }
         h3 {
           font-size: 20px;
-          line-height: 1.2;
+          line-height: 1.6;
           margin-left: 40px;
         }
         h6 {

@@ -124,6 +124,7 @@ export default function About() {
           margin-bottom: 15px;
         }
         h3 {
+          line-height: 1.6;
           font-size: 20px;
           margin-left: 40px;
         }
