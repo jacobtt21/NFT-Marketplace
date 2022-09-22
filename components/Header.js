@@ -296,7 +296,7 @@ const Header = () => {
                         <div>
                           <Link href="/community/">
                             <TextButton
-                              leadingIcon={MonochromeIcons.Comment}
+                              leadingIcon={MonochromeIcons.CaretUp}
                               size="sm"
                               onClick={() => changeDirectioncomm("Community Leaderboard")}
                             >
@@ -361,7 +361,6 @@ const Header = () => {
                       <HoverActivatedTooltip.Anchor>
                         <TextButton 
                         size="lg"
-                        leadingIcon={MonochromeIcons.Info}
                         trailingIcon={switcher2 ? MonochromeIcons.CaretDown : MonochromeIcons.CaretRight}
                         onMouseOver={() => setSwitcher2(true)}
                         onMouseLeave={() => setSwitcher2(false)}
@@ -380,19 +379,24 @@ const Header = () => {
                               General Questions
                             </TextButton> 
                           </Link>
-                          <p>The one-stop shop for all questions regarding Oustro.</p>
-                          <br />
                           <Link
                           href="/contact"
                           >
                             <TextButton
-                            leadingIcon={MonochromeIcons.SocialShare}
+                            leadingIcon={MonochromeIcons.Comment}
                             >
-                              Contact
+                              Give Feedback
                             </TextButton> 
                           </Link>
-                          <p>Let's work together and make Oustro even better!</p>
-                          <br />
+                          <Link
+                          href="/contact"
+                          >
+                            <TextButton
+                            leadingIcon={MonochromeIcons.Key}
+                            >
+                              Get Support
+                            </TextButton> 
+                          </Link>
                           <Link
                           href="/code"
                           >
@@ -402,7 +406,6 @@ const Header = () => {
                               Code of Conduct
                             </TextButton> 
                           </Link>
-                          <p>Learn the do's and don'ts of Oustro.</p>
                         </div>
                       </HoverActivatedTooltip.Content>
                     </HoverActivatedTooltip>

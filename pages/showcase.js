@@ -166,7 +166,7 @@ export default function About() {
             around ideas, stories, and much more.
             </h6>
             <br />
-            <Link href="/login">
+            <Link href="/login?id=community/all">
               <CallToAction
               >
                 Find Your People
