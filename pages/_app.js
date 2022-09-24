@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }) {
       return;
     }
     if (isMobile) {
-      window.location.href = "https://mobile.oustro.xyz" + router.asPath;
+      window.location.href = "https://you.oustro.xyz" + router.asPath;
     }
     magic.user.isLoggedIn().then((isLoggedIn) => {
       if (isLoggedIn) {
@@ -38,6 +38,9 @@ function MyApp({ Component, pageProps }) {
             Router.push('/showcase');
           }
           else if (router.pathname === '/showcase') {
+            
+          }
+          else if (router.pathname === '/preview') {
             
           }
           else if (router.pathname === '/faq') {

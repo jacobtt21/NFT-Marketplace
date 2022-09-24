@@ -115,11 +115,11 @@ export default function About() {
           </div>  
         </div>       
         <div className='Imagine'>
-          <Link href="/login">
+          <Link href="/preview">
             <CallToAction
             size='lg'
             >
-              Feeling inspired?
+              See More Like These &rarr;
             </CallToAction>
           </Link>
         </div> 
