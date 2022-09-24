@@ -201,7 +201,7 @@ const Header = () => {
                     </HoverActivatedTooltip>
                   </li>
                   <li>
-                    <Link href="/login?id=contact">
+                    <Link href="/login?id=mint">
                       <TextButton
                         trailingIcon={MonochromeIcons.Add}
                         outline
