@@ -204,7 +204,7 @@ const Header = () => {
                     <Link href="/login?id=mint">
                       <TextButton
                         trailingIcon={MonochromeIcons.Add}
-                        outline
+                        outline="true"
                         color='primary'
                         size="sm"
                       >
