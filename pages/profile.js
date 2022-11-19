@@ -179,7 +179,6 @@ export default function Index() {
         gas: 1000000,
         maxPriorityFeePerGas: web3.utils.toWei((parseInt(next.fast.maxPriorityFee)).toString(), "Gwei")
       });
-      console.log(receipt)
       setDisabled1(false);
       setWaiting(false);
       router.reload(window.location.pathname);
@@ -325,6 +324,10 @@ export default function Index() {
     }
   }
 
+  const chooseDiff = async () => {
+    setIpfsImageUrl('')
+  }
+
   return user ? (
     <div>
       <Head>
@@ -354,22 +357,22 @@ export default function Index() {
                 Verified Account
               </TextButton>
             )}
-          <h2>
+          <div className='bio'>
             {bio ? (
-            <>
-              {bio}
-            </>
+              <>
+                {bio}
+              </>
             ) : (
               <>
-                Set up your profile by giving yourself a username and profile picture!
+                I'm new here!
               </>
             )}
-          </h2>
+          </div>
         </div>
         <div>
           {userName ? (
             <div className='change-img'>
-              <div className='newName'>
+              <div className='newInputs'>
                 <p>Set your new Username</p>
                 <TextField
                 disabled={disabled1}
@@ -391,25 +394,61 @@ export default function Index() {
                   Change username
                 </CallToAction>
               </div>
-              <div className='newName'>
+              <div className='newInputs'>
                 <p>Set your new profile picture</p>
-                <p>(500 x 500px)</p>
-                <input
-                  type="file"
-                  onChange={onImageUpload}
-                  ref={imageInputRef}
-                  disabled={disabled1}
-                  accept="image/*"
-                  required="required"
-                >
-                </input>
-                {ipfsImageUrl && (
+                {ipfsImageUrl ? (
                   <>
+                    <div className='grey-bg'>
+                      <img className="dp-preview" src={ipfsImageUrl} />
+                    </div>
                     <br />
+                    <CallToAction
+                    disabled={disabled1}
+                    color="primary"
+                    size="md"
+                    style={{
+                      marginTop: 10
+                    }}
+                    onClick={changeProfile}
+                    >
+                      Change profile picture
+                    </CallToAction>
                     <br />
-                    <img className="dp-preview" src={ipfsImageUrl} />
+                    <TextButton
+                    disabled={disabled1}
+                    color="tertiary"
+                    size="md"
+                    style={{
+                      marginTop: 10
+                    }}
+                    onClick={chooseDiff}
+                    >
+                      &larr; Choose a different image
+                    </TextButton>
                   </>
+                ) : (
+                  <label for="images" class="drop-container">
+                    <span class="drop-title">Drop files here (500px x 500px)</span>
+                    or
+                    <input 
+                    type="file"
+                    onChange={onImageUpload}
+                    ref={imageInputRef}
+                    disabled={disabled1}
+                    accept="image/*" />
+                  </label>
                 )}
+              </div>
+              <div className='newInputs'>
+                <p>Change your bio</p>
+                <textarea
+                disabled={disabled1}
+                aria-label="update Bio"
+                placeholder='This bio is all about you, add whatever you want!'
+                onChange={(e) => setNewBio(e.target.value)}
+                value={newBio}
+                >
+                </textarea>
                 <br />
                 <CallToAction
                 disabled={disabled1}
@@ -418,41 +457,12 @@ export default function Index() {
                 style={{
                   marginTop: 10
                 }}
-                onClick={changeProfile}
+                onClick={changeBio}
                 >
-                  Change profile picture
+                  Update bio
                 </CallToAction>
               </div>
-              <p>Change your bio</p>
-              <textarea
-              disabled={disabled1}
-              aria-label="update Bio"
-              placeholder='This bio is all about you, add whatever you want!'
-              onChange={(e) => setNewBio(e.target.value)}
-              value={newBio}
-              >
-              </textarea>
-              <CallToAction
-              disabled={disabled1}
-              color="primary"
-              size="md"
-              style={{
-                marginTop: 10
-              }}
-              onClick={changeBio}
-              >
-                Update bio
-              </CallToAction>
-              <h1>
-                <TextButton
-                disabled={userVerify ? true : disabled1}
-                onClick={reqVerificatio}
-                >
-                  Request Verification
-                </TextButton>
-              </h1>
-            </div>
-            
+          </div>
           ) : (
             <div className='change-img'>
               <div className='newName'>
@@ -509,12 +519,29 @@ export default function Index() {
         </div>
       </div>
       <style>{`
-        .newName {
+        .newInputs {
           padding: 30px;
           border-bottom:2px solid #f0f0f0;
+          text-align: center;
         }
-        .newName2 {
+        p {
+          margin-bottom: 10px;
+          font-size: 20px;
+        }
+        h1 {
+          margin-bottom: 10px;
+          font-size: 40px;
+        }
+        .dp-preview {
+          border-radius: 100px;
+          max-width: 200px;
+          max-height: 200px;
+          border-style: solid;
+        }
+        .grey-bg {
+          background: #f0f0f0;
           padding: 30px;
+          border-radius: 20px;
         }
         .align {
           padding: 20px;
@@ -547,46 +574,77 @@ export default function Index() {
           border: 1px solid #6851FF;
           box-shadow: 0 0 1px 2px #6851FF; 
         }
-        h1 {
-          margin-top: 30px;
-          font-weight: bold;
-          font-size: 28px;
-          margin-bottom: 30px;
-          text-align: center;
-        }
-        h2 {
-          margin-top: 30px;
-          text-align: center;
-          font-weight: bold;
-          font-size: 18px;
-        }
-        .profile-change {
-          text-align: center;
-          width: 500px;
-          margin: auto;
-        }
-        p {
-          margin-top: 15px;
-          margin-bottom: 15px;
-        }
-        .profile-container {
-          margin-right: 20px;
+        .bio {
+          margin: 30px auto;
+          background: #f0f0f0;
+          font-size: 20px;
+          padding: 30px;
+          border-radius: 20px;
         }
         .profile {
           text-align: center;
+          position: sticky;
         }
-        .change-img {
-          width: 380px;
+        .drop-container {
+          position: relative;
+          display: flex;
+          gap: 10px;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 200px;
+          padding: 20px;
+          border-radius: 10px;
+          border: 2px dashed #E5E5E5;
+          color: #444;
+          cursor: pointer;
+          transition: background .2s ease-in-out, border .2s ease-in-out;
+        }
+        .drop-container:hover {
+          background: #E5E5E5;
+          border-color: #6851FF;;
+        }
+        
+        .drop-container:hover .drop-title {
+          color: #222;
+        }
+        
+        .drop-title {
+          color: #444;
+          font-size: 20px;
+          font-weight: bold;
           text-align: center;
-          margin: auto;
+          transition: color .2s ease-in-out;
         }
+
         .profile-img {
           border-radius: 200px;
+          margin-bottom: 30px;
         }
-        .dp-preview {
-          border-radius: 150px;
-          max-width: 200px;
-          max-height: 200px;
+        
+        input[type=file] {
+          width: 350px;
+          max-width: 100%;
+          color: #444;
+          padding: 5px;
+          background: #fff;
+          border-radius: 20px;
+          border: 1px solid #E5E5E5;
+        }
+        
+        input[type=file]::file-selector-button {
+          margin-right: 20px;
+          border: none;
+          background: #6851FF;
+          padding: 10px 20px;
+          border-radius: 20px;
+          color: #fff;
+          cursor: pointer;
+          transition: background .2s ease-in-out;
+        }
+        
+        input[type=file]::file-selector-button:hover {
+          background: #0d45a5;
         }
       `}</style>
     </div>

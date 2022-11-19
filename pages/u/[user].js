@@ -106,7 +106,7 @@ export default function Index() {
           onError={(e) => (e.target.src = '/fallback.jpeg')}
         />
         <h1>
-          @{userName}
+          {userName}
         </h1>
       {userVerify && (
         <TextButton
