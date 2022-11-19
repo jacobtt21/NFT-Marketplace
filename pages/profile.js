@@ -373,7 +373,7 @@ export default function Index() {
           {userName ? (
             <div className='change-img'>
               <div className='newInputs'>
-                <p>Set your new Username</p>
+                <p>Change your username</p>
                 <TextField
                 disabled={disabled1}
                 placeholder="Change New Username (A-z, 0-9)"
@@ -395,7 +395,7 @@ export default function Index() {
                 </CallToAction>
               </div>
               <div className='newInputs'>
-                <p>Set your new profile picture</p>
+                <p>Change your profile picture</p>
                 {ipfsImageUrl ? (
                   <>
                     <div className='grey-bg'>
