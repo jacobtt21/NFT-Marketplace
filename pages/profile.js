@@ -346,12 +346,14 @@ export default function Index() {
           />
           <h1>
             {userName ? (userName) : (user.publicAddress)}
-            {userVerify && (
+          </h1>
+          {userVerify && (
               <TextButton
               leadingIcon={MonochromeIcons.SuccessFilled}
-              ></TextButton>
+              >
+                Verified Account
+              </TextButton>
             )}
-          </h1>
           <h2>
             {bio ? (
             <>
