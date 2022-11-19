@@ -98,60 +98,56 @@ export default function Index() {
   return myStars ? (
     <div>
       <div className='profile'>
-      <img
-        src={dp ? dp : "/default.png"}
-        width={200}
-        height={200}
-        className="profile-img"
-        onError={(e) => (e.target.src = '/fallback.jpeg')}
-      />
-      <h1>
-        {userName}
-        {userVerify && (
-          <TextButton
-          leadingIcon={MonochromeIcons.SuccessFilled}
-          ></TextButton>
-        )}
-      </h1>
-      <h2>
+        <img
+          src={dp ? dp : "/default.png"}
+          width={300}
+          height={300}
+          className="profile-img"
+          onError={(e) => (e.target.src = '/fallback.jpeg')}
+        />
+        <h1>
+          @{userName}
+        </h1>
+      {userVerify && (
+        <TextButton
+        leadingIcon={MonochromeIcons.SuccessFilled}
+        >
+          Verified Account
+        </TextButton> 
+      )}
+      <div className='bio'>
         {bio ? (
           <>
-          {bio}
+            {bio}
           </>
         ) : (
           <>
             I'm new here!
           </>
         )}
-      </h2>
+      </div>
       </div>
       <Grid loading={loading} nfts={myNFTs} prices={myPrices} statuses={myStatus} type={true} stars={myStars} nums={myNums} checkmark={myVerify} go={route} takeAway={true} />
       <style>{`
-        h1 {
-          font-weight: bold;
-          font-size: 28px;
-          margin-top: 35px;
-          margin-bottom: 25px;
-        }
         .profile-img {
           border-radius: 150px;
         }
         .profile {
           text-align: center;
+          border-bottom: 2px solid #f0f0f0;
         }
-        h2 {
-          font-weight: bold;
-          font-size: 18px;
-          margin-left: 20px;
-          margin-top: 25px;
-          margin-bottom: 25px;
+        h1 {
+          font-size: 40px;
+          margin-top: 10px;
+          margin-bottom: 10px;
         }
-        p {
-          min-height: 28px;
-          font-size: 28px;
-          margin-left: 20px;
-          margin-top: 25px;
-          margin-bottom: 25px;
+        .bio {
+          margin: 30px auto;
+          background: #f0f0f0;
+          font-size: 20px;
+          width: 700px;
+          padding: 30px;
+          border-radius: 20px;
         }
       `}</style>
     </div>
