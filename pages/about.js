@@ -166,7 +166,7 @@ export default function About() {
                 <img src='/oustro_logo.svg' className='logo' />
               </Link>
               <h4>
-                315 Boyett St, College Station, TX 77840
+                Made in Texas
               </h4>
               <br />
               <h4>

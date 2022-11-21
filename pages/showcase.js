@@ -622,7 +622,7 @@ export default function About() {
               />
             </Link>
             <h3>
-              315 Boyett St, Austin, TX 77840
+              Made in Texas
             </h3>
             <br />
             <h3>
