@@ -103,7 +103,7 @@ export default function About() {
               </Link>
             </h6>
             <br />
-            <Link href={{pathname: "/[id]", query: { id: hit.tokenID }}}>
+            <Link href={{pathname: "/s/[id]", query: { id: hit.tokenID }}}>
               <CallToAction
               >
                 Check out &rarr;
