@@ -145,7 +145,7 @@ export default function About() {
       <>
         <form noValidate action="" role="search">
           <TextField
-            placeholder="Explore, search, find, and enjoy"
+            placeholder="🔍 Search, find, enjoy"
             size='lg'
             type="search"
             value={currentRefinement}

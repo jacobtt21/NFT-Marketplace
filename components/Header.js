@@ -100,21 +100,9 @@ const Header = () => {
                 </div>
                 <div className="nav-div">
                   <li>
-                    <Link href="/about">
-                      <CallToAction
-                        color={
-                          router.pathname === '/about' ? 'primary' : 'secondary'
-                        }
-                        size="sm"
-                      >
-                        About Us
-                      </CallToAction>
-                    </Link>
-                  </li>
-                  <li>
                     <HoverActivatedTooltip
                       arrow
-                      placement="top"
+                      placement="bottom"
                       onMouseOver={() => setSwitcher(true)}
                       onMouseLeave={() => setSwitcher(false)}
                     >
@@ -126,76 +114,88 @@ const Header = () => {
                           onMouseOver={() => setSwitcher(true)}
                           onMouseLeave={() => setSwitcher(false)}
                         >
-                          FAQs
+                          Learn More
                         </CallToAction>
                       </HoverActivatedTooltip.Anchor>
                       <HoverActivatedTooltip.Content>
-                        <div>
-                          <Link
-                          href="/faq"
-                          >
-                            <TextButton
-                            leadingIcon={MonochromeIcons.QuestionFilled}
+                        <div className='dropdown'>
+                          <div className='topic'>
+                            <Link
+                            href="/about"
                             >
-                              General Questions
-                            </TextButton> 
-                          </Link>
-                          <p>The one-stop shop for all questions regarding Oustro.</p>
-                          <br />
-                          <Link
-                          href="/faq"
-                          >
-                            <TextButton
-                            leadingIcon={MonochromeIcons.SocialShare}
+                              <TextButton
+                              >
+                                About Us
+                              </TextButton> 
+                            </Link>
+                            <p>Learn the Oustro story and what our mission is.</p>
+                          </div>
+                          <div className='topic'>
+                            <Link
+                            href="/faq"
                             >
-                              Blog
-                            </TextButton> 
-                          </Link>
-                          <p>Read about what we're up to and stay updated on all things web3 and NFT.</p>
-                          <br />
-                          <Link
-                          href="/code"
-                          >
-                            <TextButton
-                            leadingIcon={MonochromeIcons.Document}
+                              <TextButton
+                              >
+                                General Questions
+                              </TextButton> 
+                            </Link>
+                            <p>The one-stop shop for all questions regarding Oustro.</p>
+                          </div>
+                          <div className='topic'>
+                            <Link
+                            href="/faq"
                             >
-                              Code of Conduct
-                            </TextButton> 
-                          </Link>
-                          <p>Learn the do's and don'ts of Oustro.</p>
-                          <br />
-                          <Link
-                          href="/legal"
-                          >
-                            <TextButton
-                            leadingIcon={MonochromeIcons.EyeOpen}
+                              <TextButton
+                              >
+                                Blog
+                              </TextButton> 
+                            </Link>
+                            <p>Read about what we're up to and stay updated on all things web3 and NFT.</p>
+                          </div>
+                          <div className='topic'>
+                            <Link
+                            href="/code"
                             >
-                              Legal
-                            </TextButton> 
-                          </Link>
-                          <p>Somethings our lawyers said we needed to have.</p>
-                          <br />
-                          <Link
-                          href="/trust"
-                          >
-                            <TextButton
-                            leadingIcon={MonochromeIcons.Profile}
+                              <TextButton
+                              >
+                                Code of Conduct
+                              </TextButton> 
+                            </Link>
+                            <p>Learn the do's and don'ts of Oustro.</p>
+                          </div>
+                          <div className='topic'>
+                            <Link
+                            href="/legal"
                             >
-                              Trust
-                            </TextButton> 
-                          </Link>
-                          <p>Learn what we've done to ensure your experience on Oustro is safe.</p>
-                          <br />
-                          <Link
-                          href="/sustainability"
-                          >
-                            <TextButton
-                            leadingIcon={MonochromeIcons.Lightbulb}
+                              <TextButton
+                              >
+                                Legal
+                              </TextButton> 
+                            </Link>
+                            <p>Somethings our lawyers said we needed to have.</p>
+                          </div>
+                          <div className='topic'>
+                            <Link
+                            href="/trust"
                             >
-                              Sustainability
-                            </TextButton> 
-                          </Link>
-                          <p>Find out how Oustro is pioneering greener NFTs.</p>
+                              <TextButton
+                              >
+                                Trust
+                              </TextButton> 
+                            </Link>
+                            <p>Learn what we've done to ensure your experience on Oustro is safe.</p>
+                          </div>
+                          <div className='topic2'>
+                            <Link
+                            href="/sustainability"
+                            >
+                              <TextButton
+                              >
+                                Sustainability
+                              </TextButton> 
+                            </Link>
+                            <p>Find out how Oustro is pioneering greener NFTs.</p>
+                          </div>
                         </div>
                       </HoverActivatedTooltip.Content>
                     </HoverActivatedTooltip>
@@ -257,25 +257,26 @@ const Header = () => {
                     </HoverActivatedTooltip.Anchor>
                     <HoverActivatedTooltip.Content>
                       <div>
-                        <Link href="/">
-                          <TextButton
-                            leadingIcon={MonochromeIcons.Profile}
-                            size="sm"
-                            onClick={() => changeDirectionwork("For You")}
-                          >
-                            For You
-                          </TextButton>
-                        </Link>
-                        <br />
-                        <Link href="/library">
-                          <TextButton
-                            size="sm"
-                            leadingIcon={MonochromeIcons.Lightbulb}
-                            onClick={() => changeDirectionwork("Library")}
-                          >
-                            Library
-                          </TextButton>
-                        </Link>
+                        <div className='topics'>
+                          <Link href="/">
+                            <TextButton
+                              size="md"
+                              onClick={() => changeDirectionwork("For You")}
+                            >
+                              For You
+                            </TextButton>
+                          </Link>
+                        </div>
+                        <div className='topics2'>
+                          <Link href="/library">
+                            <TextButton
+                              size="md"
+                              onClick={() => changeDirectionwork("Library")}
+                            >
+                              Library
+                            </TextButton>
+                          </Link>
+                        </div>
                       </div>
                     </HoverActivatedTooltip.Content>
                   </HoverActivatedTooltip>
@@ -306,35 +307,36 @@ const Header = () => {
                       </HoverActivatedTooltip.Anchor>
                       <HoverActivatedTooltip.Content>
                         <div>
-                          <Link href="/community/">
-                            <TextButton
-                              leadingIcon={MonochromeIcons.CaretUp}
-                              size="sm"
-                              onClick={() => changeDirectioncomm("Community Leaderboard")}
-                            >
-                              Community Learderboard
-                            </TextButton>
-                          </Link>
-                          <br />
-                          <Link href="/community/all">
-                            <TextButton
-                              size="sm"
-                              leadingIcon={MonochromeIcons.Home}
-                              onClick={() => changeDirectioncomm("All Communities")}
-                            >
-                              All Communities
-                            </TextButton>
-                          </Link>
-                          <br />
-                          <Link href="/community/create">
-                            <TextButton
-                              size="sm"
-                              leadingIcon={MonochromeIcons.Add}
-                              onClick={() => changeDirectioncomm("Create a Community")}
-                            >
-                              Create a Community
-                            </TextButton>
-                          </Link>
+                          <div className='topic'>
+                            <Link href="/community/">
+                              <TextButton
+                                size="md"
+                                onClick={() => changeDirectioncomm("Community Leaderboard")}
+                              >
+                                Community Learderboard
+                              </TextButton>
+                            </Link>
+                          </div>
+                          <div className='topic'>
+                            <Link href="/community/all">
+                              <TextButton
+                                size="md"
+                                onClick={() => changeDirectioncomm("All Communities")}
+                              >
+                                All Communities
+                              </TextButton>
+                            </Link>
+                          </div>
+                          <div className='topic2'>
+                            <Link href="/community/create">
+                              <TextButton
+                                size="md"
+                                onClick={() => changeDirectioncomm("Create a Community")}
+                              >
+                                Create a Community
+                              </TextButton>
+                            </Link>
+                          </div>
                         </div>
                       </HoverActivatedTooltip.Content>
                     </HoverActivatedTooltip>
@@ -377,47 +379,51 @@ const Header = () => {
                         onMouseOver={() => setSwitcher2(true)}
                         onMouseLeave={() => setSwitcher2(false)}
                         >
-                          FAQs
+                          Learn More
                         </TextButton>
                       </HoverActivatedTooltip.Anchor>
                       <HoverActivatedTooltip.Content>
-                      <div>
-                          <Link
-                          href="/faq"
-                          >
-                            <TextButton
-                            leadingIcon={MonochromeIcons.QuestionFilled}
+                        <div>
+                          <div className='topic'>
+                            <Link
+                            href="/faq"
                             >
-                              General Questions
-                            </TextButton> 
-                          </Link>
-                          <Link
-                          href="/contact"
-                          >
-                            <TextButton
-                            leadingIcon={MonochromeIcons.Comment}
+                              <TextButton
+                              >
+                                General Questions
+                              </TextButton> 
+                            </Link>
+                          </div>
+                          <div className='topic'>
+                            <Link
+                            href="/contact"
                             >
-                              Give Feedback
-                            </TextButton> 
-                          </Link>
-                          <Link
-                          href="/contact"
-                          >
-                            <TextButton
-                            leadingIcon={MonochromeIcons.Key}
+                              <TextButton
+                              >
+                                Give Feedback
+                              </TextButton> 
+                            </Link>
+                          </div>
+                          <div className='topic'>
+                            <Link
+                            href="/contact"
                             >
-                              Get Support
-                            </TextButton> 
-                          </Link>
-                          <Link
-                          href="/code"
-                          >
-                            <TextButton
-                            leadingIcon={MonochromeIcons.Document}
+                              <TextButton
+                              >
+                                Get Support
+                              </TextButton> 
+                            </Link>
+                          </div>
+                          <div className='topic2'>
+                            <Link
+                            href="/code"
                             >
-                              Code of Conduct
-                            </TextButton> 
-                          </Link>
+                              <TextButton
+                              >
+                                Code of Conduct
+                              </TextButton> 
+                            </Link>
+                          </div>
                         </div>
                       </HoverActivatedTooltip.Content>
                     </HoverActivatedTooltip>
@@ -509,20 +515,24 @@ const Header = () => {
                         />
                       </HoverActivatedTooltip.Anchor>
                       <HoverActivatedTooltip.Content>
-                        <Link href="/profile">
+                        <div className='topics'>
+                          <Link href="/profile">
+                            <TextButton
+                              size="md"
+                            >
+                              Profile
+                            </TextButton>
+                          </Link>
+                        </div>
+                        <div className='topics2'>
                           <TextButton
-                            size="sm"
+                          size="md" 
+                          color='error'
+                          onPress={logout}
                           >
-                            Profile
+                            Logout
                           </TextButton>
-                        </Link>
-                        <TextButton
-                        size="sm" 
-                        color='error'
-                        onPress={logout}
-                        >
-                          Logout
-                        </TextButton>
+                        </div>
                       </HoverActivatedTooltip.Content>
                     </HoverActivatedTooltip>
                   </li>
@@ -550,8 +560,30 @@ const Header = () => {
           min-height: 70px;
         }
 
+        .topic {
+          border-bottom: 2px solid #f0f0f0;
+          padding: 10px;
+        }
+
+        .topics {
+          border-bottom: 2px solid #f0f0f0;
+          padding: 5px;
+        }
+
+        .topics2 {
+          padding: 5px;
+        }
+
+        .topic2 {
+          padding: 10px;
+        }
+
         .nft-img-profile-pic {
           border-radius: 25px;
+        }
+
+        .dropdown {
+          width: 250px;
         }
 
         .image-logo {
