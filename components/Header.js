@@ -561,6 +561,7 @@ const Header = () => {
         }
 
         .logo {
+          cursor: pointer;
           max-width: 250px;
         }
 

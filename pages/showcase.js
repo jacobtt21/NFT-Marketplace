@@ -1,12 +1,18 @@
-import { CallToAction, TextButton, MonochromeIcons } from '@magiclabs/ui';
+import { CallToAction, TextButton, MonochromeIcons, TextField, Icon } from '@magiclabs/ui';
 import { useState } from 'react';
 import Link from "next/link";
 import Grid from '../components/Grid2';
 import Head from 'next/head';
 import Typical from 'react-typical'
 import Image from 'next/image'
+import algoliasearch from 'algoliasearch';
+import { InstantSearch, Hits, connectSearchBox } from "react-instantsearch-dom";
 
 export default function About() {
+    const searchClient = algoliasearch(
+      process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
+      process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY,
+    );
     const [loading, setLoading] = useState(false);
     const allNFTs = [
       {
@@ -69,6 +75,93 @@ export default function About() {
       }
     ]
 
+    const Hit = ({ hit }) => (
+      <>
+        <div className='align'>
+          <div
+          style={{
+            textAlign: 'center'
+          }}
+          >
+            <img 
+              src={hit.image}
+              width="400" 
+              alt="" 
+            /> 
+          </div>  
+          <div
+          style={{
+            textAlign: 'center'
+          }}>
+            <h4>{hit.name}</h4> 
+            <h6>
+              Created by 
+              <Link href={{pathname: "/u/[id]", query: { id: hit.creator }}}>
+                <TextButton>
+                {hit.creator.substring(0, 6)}...{hit.creator.substring(38)}
+                </TextButton>
+              </Link>
+            </h6>
+            <br />
+            <Link href={{pathname: "/[id]", query: { id: hit.tokenID }}}>
+              <CallToAction
+              >
+                Check out &rarr;
+              </CallToAction>
+            </Link>
+          </div> 
+        </div>
+        <style jsx>{`
+          .align {
+            padding: 20px;
+            display: grid;
+            grid-gap: 20px;
+            grid-template-columns: 1fr 1fr;
+            margin-bottom: 30px;
+            margin-top: 0px;
+            align-items: center;
+            border-bottom:1px solid #f0f0f0;
+          }
+  
+          h4 {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 30px;
+          }
+  
+          h6 {
+            font-size: 20px;
+  
+          }
+  
+          img {
+            border-radius: 15px;
+          }
+        `}</style>
+      </>
+    );
+  
+    const SearchBox = ({ currentRefinement, refine }) => (
+      <>
+        <form noValidate action="" role="search">
+          <TextField
+            placeholder="Explore, search, find, and enjoy"
+            size='lg'
+            type="search"
+            value={currentRefinement}
+            onChange={event => refine(event.currentTarget.value)}
+            />
+        </form>
+        {currentRefinement ? (
+          <Hits hitComponent={Hit} />
+        ) : (
+          <></>
+        )}
+      </>
+    );  
+  
+    const CustomSearchBox = connectSearchBox(SearchBox);
+
   return (
     <>
       <Head>
@@ -95,6 +188,11 @@ export default function About() {
         <div className='checkout'>
           Explore the world's first NFT marketplace for more than just images.       
         </div>
+        <div className='search'>
+          <InstantSearch searchClient={searchClient} indexName="Oustro">
+            <CustomSearchBox />
+          </InstantSearch>
+        </div>
         <div className='checkout2'>
           Join the only web3 community for filmmakers, musicians, academics, artists, and more.       
         </div>
@@ -115,7 +213,7 @@ export default function About() {
           </div>  
         </div>       
         <div className='Imagine'>
-          <Link href="/preview">
+          <Link href="/login">
             <CallToAction
             size='lg'
             >
@@ -672,6 +770,10 @@ export default function About() {
           margin-top: 50px;
           font-size: 25px;
           margin-right: auto;
+        }
+        .search {
+          width: 80%;
+          margin: 20px 10%;
         }
         h5 {
           margin-top: 15px;
