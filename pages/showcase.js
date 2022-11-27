@@ -563,7 +563,7 @@ export default function About() {
             }}
             >
               <img
-              src="https://s.gitcoin.co/static/v2/images/presskit/logotype.41fe3e22f370.svg"
+              src="https://d31ygswzsyecnt.cloudfront.net/static/v2/images/new-logos/gc-h-pos.svg"
               width={300}
               className="nft-img"
               onError={(e) => (e.target.src = '/fallback.jpeg')}
