@@ -143,20 +143,47 @@ export default function About() {
   
     const SearchBox = ({ currentRefinement, refine }) => (
       <>
-        <form noValidate action="" role="search">
-          <TextField
-            placeholder="🔍 Search, find, enjoy"
-            size='lg'
-            type="search"
-            value={currentRefinement}
-            onChange={event => refine(event.currentTarget.value)}
-            />
+        <form  
+        noValidate 
+        action="" 
+        role="search"
+        >
+          <input 
+          className="nosubmit" 
+          type="search" 
+          value={currentRefinement}
+          onChange={event => refine(event.currentTarget.value)} 
+          placeholder="Search for an NFT, find something special, and enjoy a new favorite">
+          </input>
         </form>
         {currentRefinement ? (
           <Hits hitComponent={Hit} />
         ) : (
           <></>
         )}
+        <style jsx>{`
+          .nosubmit {
+            border-radius: 10px;
+            border: 1px solid #555;
+            width: 100%;
+            font-size: 18px;
+            transition: 0.2s;
+            border: 1px solid #E5E5E5;
+            height: 30px;
+            padding: 25px 100px 25px 40px;
+            background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat 13px center;
+          }
+          .nosubmit:hover {
+            outline: none !important;
+            border: 1px solid #6851FF;
+          }
+          .nosubmit:focus {
+            transition: 0.2s;
+            outline: none !important;
+            border: 1px solid #6851FF;
+            box-shadow: 0 0 1px 2px #6851FF; 
+          }
+        `}</style>
       </>
     );  
   
