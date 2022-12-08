@@ -747,9 +747,8 @@ export default function About() {
               />
             </Link>
             <h3>
-              Made in Texas
+              Made in Texas 🤠
             </h3>
-            <br />
             <h3>
               We all have a story, tell yours
             </h3>
