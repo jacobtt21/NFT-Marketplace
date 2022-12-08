@@ -166,9 +166,8 @@ export default function About() {
                 <img src='/oustro_logo.svg' className='logo' />
               </Link>
               <h4>
-                Made in Texas
+                Made in Texas 🤠
               </h4>
-              <br />
               <h4>
                 We all have a story, tell yours
               </h4>
