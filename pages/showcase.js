@@ -603,19 +603,6 @@ export default function About() {
             }}
             >
               <img
-              src="https://rawcdn.githack.com/Oustro/OustroImages/2feb41f30f48674078a88786eefa89463c589d83/Magazine.svg?min=1"
-              width={300}
-              className="nft-img"
-              onError={(e) => (e.target.src = '/fallback.jpeg')}
-              alt='daffy magzaine'
-              /> 
-            </div>
-            <div
-            style={{
-              alignText: 'center'
-            }}
-            >
-              <img
               src="https://upload.wikimedia.org/wikipedia/commons/8/89/Product_Hunt_Logo.svg"
               width={300}
               className="nft-img"
@@ -967,7 +954,7 @@ export default function About() {
         .Inv {
           display: grid;
           grid-gap: 20px;
-          grid-template-columns: 1fr 1fr 1fr;
+          grid-template-columns: 1fr 1fr;
           align-items: center;
         }
         .landing {
