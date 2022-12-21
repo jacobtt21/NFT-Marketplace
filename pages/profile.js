@@ -37,7 +37,7 @@ export default function Index() {
       // setIpfsImageUrl(url);
       const formData = new FormData();
       formData.append("file", file);
-      const res = await fetch('https://ipfs-upload-oustro.herokuapp.com/', {
+      const res = await fetch('https://ipfs-upload-58fg.onrender.com', {
         method: "POST",
         body: formData
       })

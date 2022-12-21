@@ -49,7 +49,7 @@ function Mint() {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const res = await fetch('https://ipfs-upload-oustro.herokuapp.com/', {
+      const res = await fetch('https://ipfs-upload-58fg.onrender.com', {
         method: "POST",
         body: formData
       })
@@ -67,7 +67,7 @@ function Mint() {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const res = await fetch('https://ipfs-upload-oustro.herokuapp.com/', {
+      const res = await fetch('https://ipfs-upload-58fg.onrender.com', {
         method: "POST",
         body: formData
       })
@@ -155,7 +155,7 @@ function Mint() {
       // const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
       const formData = new FormData();
       formData.append("data", data);
-      const res = await fetch('https://ipfs-data-upload-oustro.herokuapp.com/', {
+      const res = await fetch('https://ipfs-data-upload.onrender.com', {
         method: "POST",
         body: formData
       })
