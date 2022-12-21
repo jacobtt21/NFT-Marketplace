@@ -528,7 +528,7 @@ export default function Index() {
             </div>
           </div>
           <div className='more-header'>
-            <h2>More works we thing you'd like</h2>
+            <h2>More works we think you'd like</h2>
           </div>
           <Grid loading={loading} nfts={allNFTs} prices={allPrices} statuses={allStatus} type={true} stars={allStars} nums={allNums} go={true} takeAway={true} checkmark={allVerify} />
           <style>{`
