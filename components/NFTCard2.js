@@ -18,6 +18,7 @@ export default function NFTCard({ nft, going }) {
 
   return (
     <>
+      <Link href={{pathname: '/s/[id]', query: { id: nft.tokenID }}}>
         <div className="card">
           <div className="nft-img-container">
             <img
@@ -56,6 +57,7 @@ export default function NFTCard({ nft, going }) {
           </div>
           </div>
         </div>
+      </Link>
       <style>{`
         .nft-img:hover {
           -webkit-filter: brightness(87%);
