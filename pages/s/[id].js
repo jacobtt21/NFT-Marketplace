@@ -5,27 +5,18 @@ import { web3 } from '../../lib/magic';
 import { abi } from '../../contracts/abi';
 import { abiU } from '../../contracts/abiU';
 import Loading from '../../components/Loading';
-import { CallToAction, useToast, TextButton, MonochromeIcons, Linkable, TextField } from '@magiclabs/ui';
+import { CallToAction, TextButton, MonochromeIcons, Linkable } from '@magiclabs/ui';
 import Link from 'next/link'
-import * as Panelbear from "@panelbear/panelbear-js";
-import Head from 'next/head';
-import Popup from 'reactjs-popup';
+import Head from 'next/head';;
 
 
 export default function Index() {
-  const [disabled, setDisabled] = useState(false);
-  const [newPrice, setNewPrice] = useState();
   const [user] = useContext(UserContext);
   const router = useRouter();
   const [theNFT, setTheNFT] = useState();
   const [theData, setTheData] = useState();
-  const [newRating, setNewRating] = useState('--');
-  const [msg, setMsg] = useState(false);
   const [creatorz, setCreatorz] = useState('');
   const [userVerifyz, setUserVerifyz] = useState(false);
-  const [open, setOpen] = useState(false);
-  const closeModal = () => setOpen(false);
-  const { createToast } = useToast();
 
   useEffect(() => {
     if (!router.query.id) {
