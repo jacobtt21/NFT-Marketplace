@@ -17,9 +17,9 @@ function MyApp({ Component, pageProps }) {
     if(!router.isReady) {
       return;
     }
-    // if (isMobile) {
-    //   window.location.href = "https://you.oustro.xyz" + router.asPath;
-    // }
+    if (isMobile) {
+      window.location.href = "https://you.oustro.xyz" + router.asPath;
+    }
     magic.user.isLoggedIn().then((isLoggedIn) => {
       if (isLoggedIn) {
         magic.user.getMetadata().then(setUser);
