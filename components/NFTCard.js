@@ -154,6 +154,7 @@ export default function NFTCard({ nft, price, status, star, check, going }) {
           cursor: pointer;
           border-radius: 15px;
           transition: 0.2s;
+          box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
         }
 
         .name {
