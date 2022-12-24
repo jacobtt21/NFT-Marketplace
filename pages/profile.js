@@ -361,6 +361,7 @@ export default function Index() {
         </div>
         <div className='dpEdit'>
           <CallToAction
+          disabled={disabled1}
           color="primary"
           size="sm"
           onClick={() => setOpen(o => !o)}
