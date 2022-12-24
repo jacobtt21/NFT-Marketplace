@@ -1,7 +1,5 @@
 import Link from 'next/link';
-import { TextButton, MonochromeIcons, useToast } from '@magiclabs/ui';
-import next from 'next';
-
+import { TextButton, MonochromeIcons, useToast, CallToAction } from '@magiclabs/ui';
 
 export default function NFTCard({ nft, going }) {
   const { createToast } = useToast();
@@ -18,10 +16,8 @@ export default function NFTCard({ nft, going }) {
     
   };
 
-
   return (
     <>
-      <Link href={going ? {pathname: "/s/[id]", query: { id: nft.tokenID }} : "#"}>
         <div className="card">
           <div className="nft-img-container">
             <img
@@ -33,37 +29,34 @@ export default function NFTCard({ nft, going }) {
             onClick={!going ? nextWeek : nextWeek2}
             />
           </div>
-          <div className="name">
-            <Link href={{pathname: "/s/[id]", query: { id: nft.tokenID }}}>
-              <TextButton
-              color="tertiary"
-              outline="none"
-              >
-                {nft.name}
-              </TextButton>
-            </Link>
+          <div className='align'>
+            <div>
+              <div className='name'>
+                <h1 className='nameWords'>
+                  {nft.name}
+                </h1>
+              </div>
+              <div className="name">
+                <Link href={{pathname: "/u/[id]", query: { id: nft.creatorAd }}}>
+                  <TextButton
+                  trailingIcon={MonochromeIcons.SuccessFilled}
+                  outline="none"
+                  >
+                    {nft.creator}
+                  </TextButton>
+                </Link>
+              </div>
+            </div>
+            <div className="rating">
+              <Link href={{pathname: '/s/[id]', query: { id: nft.tokenID }}}>
+                <CallToAction>
+                  &rarr;
+                </CallToAction>
+              </Link>
           </div>
-          <div className="name">
-            <Link href={{pathname: "/s/[id]", query: { id: nft.tokenID }}}>
-              <TextButton
-              trailingIcon={MonochromeIcons.SuccessFilled}
-              outline="none"
-              >
-                {nft.creator}
-              </TextButton>
-            </Link>
           </div>
         </div>
-      </Link>
       <style>{`
-        .card {
-          // border-radius: 20px;
-          // padding: 15px;
-          // box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 16px,
-          //   rgba(0, 0, 0, 0.05) 0px 0px 16px;
-          transition: 0.2s;
-        }
-
         .nft-img:hover {
           -webkit-filter: brightness(87%);
           box-shadow: rgba(0, 0, 0, 0.29) 0px 0px 16px,
@@ -72,25 +65,54 @@ export default function NFTCard({ nft, going }) {
         }
 
         .nft-img-container {
-          margin-top: 10px;
-          min-width: 200px;
-          min-height: 200px;
           display: flex;
           align-items: center;
           justify-content: center;
         }
 
+        .card {
+          margin-bottom: 20px;
+        }
+
+        .align {
+          padding: 20px;
+          display: grid;
+          grid-gap: 20px;
+          grid-template-columns: 4fr 1fr;
+          margin-bottom: 30px;
+          margin-top: -10px;
+          align-items: center;
+        }
+
         .nft-img {
-          max-width: 300px;
-          max-height: 300px;
+          width: 300px;
+          height: 300px;
           cursor: pointer;
           border-radius: 15px;
           transition: 0.2s;
         }
 
         .name {
-          margin-top: 3px;
-          text-align: center;
+          margin-top:-20px;
+          text-align: left;
+        }
+
+        .rating {
+          margin-right: 10px;
+          text-align: right;
+        }
+
+        h1 {
+          font-weight: bold;
+          font-size: 28px;
+          margin: 20px;
+          min-height: 28px;
+        }
+
+        .nameWords {
+          line-height: 1.6;
+          margin-left: 0px;
+          font-size: 15px;
         }
       `}</style>
     </>

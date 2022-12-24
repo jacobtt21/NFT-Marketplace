@@ -167,10 +167,6 @@ export default function Index() {
         />
       </Head>
         <h4 className='what'>
-          <TextButton
-          size='sm'
-          leadingIcon={MonochromeIcons.Astronaut}>
-          </TextButton>
           Oustro Editor's Choice
         </h4>
         <Link href="/3">

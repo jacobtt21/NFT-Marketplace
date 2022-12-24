@@ -37,102 +37,114 @@ function Contact() {
     return (
         <div>
             {user ? (
-                <div>
-                   <h1>Contact Us</h1>
-                   <h2>We read everything you send because we care about the experience you have on Oustro</h2>
-                   <div className='class-container'>
-                       <TextField
-                       placeholder='Name'
-                       onChange={(e) => setName(e.target.value)}
-                       >
-                       </TextField>
-                       <br />
-                       <ComboBox
-                        defaultInputValue=""
-                        menuTrigger="focus"
-                        showMenuButton
-                        size="md"
-                        >
-                            <Item textValue="Press & PR">
-                                Press & PR
-                            </Item>
-                            <Item textValue="Customer Support">
-                                Customer Support
-                            </Item>
-                            <Item textValue="Feedback">
-                                Feedback
-                            </Item>
-                        </ComboBox>
-                        <textarea
-                        aria-label="send email"
-                        placeholder='What do you want to tell us? Please be as detailed as possible.'
-                        onChange={(e) => setMessage(e.target.value)}
-                        value={message}
-                        >
-                        </textarea>
-                        <br />
-                        <br />
-                        <CallToAction
-                        onClick={formSubmit}
-                        >
-                            Send
-                        </CallToAction>
-                        <br />
-                        <br />
-                        {sending && (
-                            <p>
-                                Sending
-                            </p>
-                        )}
-                   </div>
+              <div>
+                <h1>Contact Us</h1>
+                <h2>We read everything you send because we care about the experience you have on Oustro</h2>
+                <div className='class-container'>
+                  <p>Your Name</p>
+                  <TextField
+                  placeholder='Full Name'
+                  onChange={(e) => setName(e.target.value)}
+                  >
+                  </TextField>
+                  <p>Reason For Contact</p>
+                  <ComboBox
+                  defaultInputValue=""
+                  menuTrigger="focus"
+                  showMenuButton
+                  size="md"
+                  >
+                    <Item textValue="Press & PR">
+                        Press & PR
+                    </Item>
+                    <Item textValue="Customer Support">
+                        Customer Support
+                    </Item>
+                    <Item textValue="Feedback">
+                        Feedback
+                    </Item>
+                  </ComboBox>
+                  <p>Message You Want Us to See</p>
+                  <textarea
+                  aria-label="send email"
+                  placeholder='What do you want to tell us? Please be as detailed as possible.'
+                  onChange={(e) => setMessage(e.target.value)}
+                  value={message}
+                  >
+                  </textarea>
+                  <div className='submit'>
+                    <CallToAction
+                    onClick={formSubmit}
+                    >
+                      Send
+                    </CallToAction>
+                  </div>
+                  {sending && (
+                    <div className='submit'>
+                      <CallToAction
+                      outline
+                      size='sm'
+                      >
+                        Please Wait
+                      </CallToAction>
+                    </div>
+                  )}
                 </div>
+              </div>
             ) : (
-                <Loading />
+              <Loading />
             )}
             <style>{`
-                h1 {
-                    font-weight: bold;
-                    font-size: 28px;
-                    margin: 20px;
-                    min-height: 28px;
-                }
-                h2 {
-                    font-size: 16px;
-                    margin: 20px;
-                    min-height: 28px;
-                }
-                .class-container {
-                    max-width: 400px;
-                    margin: 0 auto;
-                    padding: 40px;
-                    border-radius: 8px;
-                    border: 1px solid #f9f9f9;
-                    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 16px;
-                    text-align: center;
-                }
-                textarea {
-                    margin-top: 15px;
-                    min-width: 380px;
-                    min-height: 150px;
-                    border-radius: 10px;
-                    resize: none;
-                    outline: none;
-                    font-family: Verdana;
-                    font-size: 15px;
-                    transition: 0.2s;
-                    border: 1px solid #E5E5E5;
-                    padding: 10px;
-                }
-                textarea:hover {
-                    outline: none !important;
-                    border: 1px solid #6851FF;
-                }
-                textarea:focus {
-                    transition: 0.2s;
-                    outline: none !important;
-                    border: 1px solid #6851FF;
-                    box-shadow: 0 0 1px 2px #6851FF; 
-                }
+              p {
+                text-align: left;
+                margin-bottom: 10px;
+                margin-top: 20px;
+              }
+              h1 {
+                font-weight: bold;
+                font-size: 28px;
+                margin: 20px;
+                min-height: 28px;
+              }
+              .submit {
+                margin-top: 20px;
+              }
+              h2 {
+                font-size: 16px;
+                margin: 20px;
+                min-height: 28px;
+              }
+              .class-container {
+                max-width: 400px;
+                margin: 0 auto;
+                padding: 10px 40px;
+                border-radius: 8px;
+                border: 1px solid #f9f9f9;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 16px;
+                text-align: center;
+              }
+              textarea {
+                min-width: 380px;
+                min-height: 150px;
+                border-radius: 10px;
+                resize: none;
+                outline: none;
+                font-family: Verdana;
+                font-size: 15px;
+                transition: 0.2s;
+                border: 1px solid #E5E5E5;
+                padding: 10px;
+              }
+              textarea:hover {
+                outline: none !important;
+                border: 1px solid #6851FF;
+              }
+              textarea:focus {
+                transition: 0.2s;
+                outline: none !important;
+                border: 1px solid #6851FF;
+                box-shadow: 0 0 1px 2px #6851FF; 
+              }
             `}</style>
         </div>
     );

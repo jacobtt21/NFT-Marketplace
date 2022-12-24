@@ -50,10 +50,10 @@ export default function Grid({ nfts, loading, go }) {
       </div>
       <style>{`
         .grid {
-          padding: 20px;
           display: grid;
-          grid-gap: 20px;
+          grid-gap: 10px;
           grid-template-columns: 1fr;
+          margin-top: 30px;
           margin-bottom: 100px;
         }
 

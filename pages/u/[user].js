@@ -22,7 +22,7 @@ export default function Index() {
   const [myStars, setMyStars] = useState();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  var route = false;
+  const [userLogged, setUserLogged] = useState(false);
 
   const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
   const userAddress = process.env.NEXT_PUBLIC_USER_ADDRESS;
@@ -38,6 +38,9 @@ export default function Index() {
 
   const getMyNFTs = async () => {
     setLoading(true);
+    if (user) {
+      setUserLogged(true)
+    }
 
     // Get array of token URI's stored in contract for given user
     // Each URI is an IPFS url containing json metadata about the NFT, such as image and name
@@ -92,7 +95,6 @@ export default function Index() {
     if ((user.publicAddress).toUpperCase() === (router.query.user).toUpperCase()) {
         router.push('/profile');
     }
-    route = true;
   }
 
   return myStars ? (
@@ -127,19 +129,20 @@ export default function Index() {
         )}
       </div>
       </div>
-      <Grid loading={loading} nfts={myNFTs} prices={myPrices} statuses={myStatus} type={true} stars={myStars} nums={myNums} checkmark={myVerify} go={route} takeAway={true} />
+      <Grid loading={loading} nfts={myNFTs} prices={myPrices} statuses={myStatus} type={true} stars={myStars} nums={myNums} checkmark={myVerify} go={userLogged} takeAway={true} />
       <style>{`
         .profile-img {
           border-radius: 150px;
         }
+        h1 {
+          font-weight: bold;
+          font-size: 28px;
+          margin: 20px;
+          min-height: 28px;
+        }
         .profile {
           text-align: center;
           border-bottom: 2px solid #f0f0f0;
-        }
-        h1 {
-          font-size: 40px;
-          margin-top: 10px;
-          margin-bottom: 10px;
         }
         .bio {
           margin: 30px auto;

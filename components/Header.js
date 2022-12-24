@@ -71,10 +71,7 @@ const Header = () => {
 
   async function changeDirectioncomm(type) {
     setWhatC(type)
-    if (type === "Community Leaderboard") {
-      setLinkC('/community/')
-    }
-    else if (type === "All Communities") {
+    if (type === "All Communities") {
       setLinkC('/community/all')
     }
     else if (type === "Create a Community") {
@@ -281,7 +278,7 @@ const Header = () => {
                     </HoverActivatedTooltip.Content>
                   </HoverActivatedTooltip>
                   </li>
-                  <li>
+                  {/* <li>
                     <HoverActivatedTooltip
                       arrow
                       placement="top"
@@ -295,7 +292,6 @@ const Header = () => {
                             onMouseOver={() => setSwitcher1(true)}
                             onMouseLeave={() => setSwitcher1(false)}
                             color={
-                              router.pathname === '/community' || 
                               router.pathname === '/community/all' || 
                               router.pathname === '/community/create' ? 'primary' : 'secondary'
                             }
@@ -307,16 +303,6 @@ const Header = () => {
                       </HoverActivatedTooltip.Anchor>
                       <HoverActivatedTooltip.Content>
                         <div>
-                          <div className='topic'>
-                            <Link href="/community/">
-                              <TextButton
-                                size="md"
-                                onClick={() => changeDirectioncomm("Community Leaderboard")}
-                              >
-                                Community Learderboard
-                              </TextButton>
-                            </Link>
-                          </div>
                           <div className='topic'>
                             <Link href="/community/all">
                               <TextButton
@@ -340,7 +326,7 @@ const Header = () => {
                         </div>
                       </HoverActivatedTooltip.Content>
                     </HoverActivatedTooltip>
-                  </li>
+                  </li> */}
                   <li>
                     <Link href="/mint">
                       <CallToAction

@@ -17,6 +17,7 @@ export default function About() {
     const allNFTs = [
       {
         creator: "jacob",
+        creatorAd: "0x8c17bB1862B31f302e4c25bf364431f0a39614B1",
         image: "https://oustro.infura-ipfs.io/ipfs/QmeBbjdrebR7VBBtt7QsQymXbvps3k6XasZZoVkZuUQzW3",
         name: "Starlight",
         tokenID: '3',
@@ -24,6 +25,7 @@ export default function About() {
       },
       {
         creator: "Oustro",
+        creatorAd: "0x8c17bB1862B31f302e4c25bf364431f0a39614B1",
         image: "https://oustro.infura-ipfs.io/ipfs/QmeW4tudfHQw5fGfRcBpQW3oSV86GaFXFic3rGoLvNdgYo",
         name: "Daffy",
         tokenID: "5",
@@ -31,6 +33,7 @@ export default function About() {
       },
       {
         creator: "jacob",
+        creatorAd: "0x8c17bB1862B31f302e4c25bf364431f0a39614B1",
         image: "https://oustro.infura-ipfs.io/ipfs/Qmf2btT6oeoESpmJaZu4U4Wg2hnfwBtxoQzkujf5i8s9rM",
         name: "Snake",
         tokenID: "2",
@@ -38,6 +41,7 @@ export default function About() {
       },
       {
         creator: "HRDerrick",
+        creatorAd: "0x8c17bB1862B31f302e4c25bf364431f0a39614B1",
         image: "https://oustro.infura-ipfs.io/ipfs/QmQQFYa2a43aXVuY2sapv4wjp7dFDYEMGL9VKNqF1cMcvS",
         name: "The Bottle",
         tokenID: "6",
@@ -47,6 +51,7 @@ export default function About() {
     const allNFTs2 = [
       {
         creator: "0x944e..1dd1",
+        creatorAd: "0x8c17bB1862B31f302e4c25bf364431f0a39614B1",
         image: "https://raw.githubusercontent.com/Oustro/OustroImages/1c57d1dbdf5d079f453e6d5dfb8c7e6c8c14a77d/9.svg",
         name: "Daffy",
         tokenID: '6',
@@ -54,6 +59,7 @@ export default function About() {
       },
       {
         creator: "0x944e..1dd1",
+        creatorAd: "0x8c17bB1862B31f302e4c25bf364431f0a39614B1",
         image: "https://oustro.infura-ipfs.io/ipfs/QmeJuH7VT55fZEU28jAquKi8h6q4Wsmmv6tCjmiMutFKuS",
         name: "Snake",
         tokenID: "2",
@@ -61,6 +67,7 @@ export default function About() {
       },
       {
         creator: "0x944e..1dd1",
+        creatorAd: "0x8c17bB1862B31f302e4c25bf364431f0a39614B1",
         image: "https://oustro.infura-ipfs.io/ipfs/QmXpVk2JSnWmNKQk8jUfFTGr6AputP13shqufexzXuSauh",
         name: "The Bottle",
         tokenID: "3",
@@ -68,6 +75,7 @@ export default function About() {
       },
       {
         creator: "0x944e..1dd1",
+        creatorAd: "0x8c17bB1862B31f302e4c25bf364431f0a39614B1",
         image: "https://oustro.infura-ipfs.io/ipfs/QmQoYR8oCaUxS2i7Q4utwD38g6iQoDkRGHjfuKA2o3UuQ9",
         name: "Spaceland Synopsis",
         tokenID: "4",
@@ -920,6 +928,7 @@ export default function About() {
         .vlur{
           background: white;
           margin-top: -350px;
+          width: 200%;
           height: 290px;
           opacity: 98%;
           filter: blur(27px);

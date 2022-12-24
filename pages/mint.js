@@ -3,13 +3,14 @@ import { UserContext } from '../lib/UserContext';
 import { web3 } from '../lib/magic';
 import { abi } from '../contracts/abi';
 import { abiC } from '../contracts/abiC';
-// import { create } from 'ipfs-http-client';
 import { TextField, CallToAction, useToast, HoverActivatedTooltip, Linkable, MonochromeIcons } from '@magiclabs/ui';
 import Loading from '../components/Loading';
 import algoliasearch from 'algoliasearch';
 import { useRouter } from 'next/router';
 import * as Panelbear from "@panelbear/panelbear-js";
 import Head from 'next/head';
+import { OpenAIApi, Configuration } from 'openai';
+import Popup from 'reactjs-popup';
 
 function Mint() {
   const [user] = useContext(UserContext);
@@ -18,8 +19,8 @@ function Mint() {
   const [social, setSocial] = useState('');
   const [disabled, setDisabled] = useState(false);
   const [txPending, setTxPending] = useState(false);
-  const [txHash, setTxHash] = useState(false);
-  const [show, setShow] = useState(true);
+  const [txHash, setTxHash] = useState();
+  const [AI, setAI] = useState('');
   const [ipfsImageUrl, setIpfsImageUrl] = useState('');
   const [mintStatus, setMintStatus] = useState('');
   const [ipfsWorkUrl, setIpfsWorkUrl] = useState('');
@@ -30,11 +31,19 @@ function Mint() {
   const { createToast } = useToast();
   const [tokenz, setTokenz] = useState('');
   const router = useRouter();
+  const [open, setOpen] = useState(false);
+  const closeModal = () => setOpen(false);
 
   const contractAddress = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
   const contract = new web3.eth.Contract(abi, contractAddress);
   const commAddress = process.env.NEXT_PUBLIC_COMM_ADDRESS;
   const contractComm = new web3.eth.Contract(abiC, commAddress);
+
+  const configuration = new Configuration({
+    apiKey: process.env.NEXT_PUBLIC_OPEN_AI_KEY,
+  });
+
+  const openai = new OpenAIApi(configuration);
 
   const searchClient = algoliasearch(
     process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
@@ -89,8 +98,14 @@ function Mint() {
     });
   };
 
-  const ChangeVis = async () => {
-    setShow(!show);
+  const genImage = async () => {
+    const response = await openai.createImage({
+      prompt: AI,
+      n: 1,
+      size: "500x500",
+    });
+    image_url = response.data.data[0].url;
+    setIpfsImageUrl(image_url)
   };
 
   // Mint NFT by sending tokenURI (IPFS URL) containing NFT metadata to smart contract
@@ -107,8 +122,6 @@ function Mint() {
       if (price) {
         costo = price;
       }
-      
-      setTxHash();
 
       setMintStatus("Uploading Work to IPFS")
 
@@ -151,8 +164,6 @@ function Mint() {
       else {
         data = JSON.stringify({ name, image: ipfsImageUrl, work: ipfsWorkUrl, share: shareAddress, creator: user.publicAddress, socialLink: social, tokenID: tIndex, genre: genre });
       }
-      // const ipfsData = await client.add(data);
-      // const url = `https://ipfs.infura.io/ipfs/${ipfsData.path}`;
       const formData = new FormData();
       formData.append("data", data);
       const res = await fetch('https://ipfs-data-upload.onrender.com', {
@@ -180,7 +191,7 @@ function Mint() {
       setMintStatus("Publishing In Progress")
 
       const receipt = await contract.methods
-      .createNFT(url, web3.utils.toWei(costo), show, tIndex)
+      .createNFT(url, web3.utils.toWei(costo), true, tIndex)
       .send({ 
         from: user.publicAddress,
         gas: 1000000,
@@ -251,6 +262,15 @@ function Mint() {
     workInputRef.current.value = '';
   };
 
+  const contentStyle = {
+    background: "rgba(255,255,255, 1)",
+    borderRadius: 15,
+    padding: 20,
+    width: 400,
+    border: "none",
+    textAlign: "center"
+  };
+
   return (
     <div>
       {!user ? (
@@ -258,134 +278,113 @@ function Mint() {
       ) : (
         <>
           <Head>
-          <title>Publish | Oustro</title>
-          <link
-            rel="canonical"
-            href="https://www.oustro.xyz/showcase"
-            key="canonical"
-          />
-        </Head>
+            <title>Publish | Oustro</title>
+            <link
+              rel="canonical"
+              href="https://www.oustro.xyz/showcase"
+              key="canonical"
+            />
+          </Head>
           <h1>If only everything were as easy as publishing an NFT on Oustro</h1>
           <h2>Make sure everything is correct. Revisions cannot be done.</h2>
-          <br />
           <div className="mint-container">
-            <TextField
-            disabled={disabled}
-            label="Name"
-            placeholder="Give your work a great name!"
-            type="text"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-            required="required"
-            />
-            <br />
-            <br />
-            <TextField
-            disabled={disabled}
-            label="Social Links for this work (optional)"
-            placeholder="Discord, Reddit, Telegram etc. (Only 1 Link)"
-            type="text"
-            onChange={(e) => setSocial(e.target.value)}
-            value={social}
-            />
-            {show ? (
-              <>
-                <div className='nname'>
-                  <div className='ones'>
-                    <br />
-                    <p>Visability: Public</p>
-                    <br />
-                    <CallToAction
-                    disabled={disabled}
-                    color="primary"
-                    size='sm'
-                    onClick={ChangeVis}
-                    >
-                      Change to Private (Only Accessible by Link)
-                    </CallToAction>
-                    <br />
-                    <br />
-                  </div>
-                </div>
-              </>
-            ) : (
-              <>
-                <div className='nname'>
-                  <br />
-                  <div className='ones'>
-                    <p>Visability: Private</p>
-                    <br />
-                    <CallToAction
-                    disabled={disabled}
-                    color="primary"
-                    size='sm'
-                    onClick={ChangeVis}
-                    >
-                      Change to Public (Open to Everyone)
-                    </CallToAction>
-                    <br />
-                    <br />
-                  </div>
-                </div>
-              </>
-            )}
-            <div className='nname'>
-              <p>Upload an image as a thumbnail for your work! (500 x 500 Pixel works best)</p>
-              <br />
-              <input
+            <div className='name'>
+              <p>NFT Name</p>
+              <TextField
+              disabled={disabled}
+              placeholder="Give your work a great name!"
+              type="text"
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+              />
+            </div>
+            <div className='thumbnail'>
+              <p>Upload Thumbnail (500 x 500)</p>
+              <input 
               type="file"
               onChange={onImageUpload}
               ref={imageInputRef}
               disabled={disabled}
-              accept="image/*"
-              required="required"
+              accept="image/*" />
+              <p className='dalle'>
+                <Linkable>
+                  <a 
+                  onClick={() => setOpen(o => !o)}
+                  disabled={disabled}
+                  >
+                    use AI to develop a thumbnail (Limited)
+                  </a>
+                </Linkable>
+              </p>
+              <Popup
+              open={open}
+              contentStyle={contentStyle}
+              overlayStyle={{ background: "rgba(0, 0, 0, 0.5)" }}
+              closeOnDocumentClick onClose={closeModal}
               >
-              </input>
-              {ipfsImageUrl && (
-                <>
-                  <br />
-                  <img className="image-preview" src={ipfsImageUrl} />
-                </>
-              )}
-              <br />
+                <div className='closePop'>
+                  <CallToAction
+                  onClick={closeModal}
+                  >
+                    X
+                  </CallToAction>
+                </div>
+                <div>
+                  <h1 className='dalleH1'>AI Thumbnail Generation (Coming soon!)</h1>
+                  <div className='AI'>
+                    <p>A Detailed Description of Your Work</p>
+                    <TextField
+                    placeholder="An adventure of 2 space cowboys..."
+                    type="text"
+                    onChange={(e) => setAI(e.target.value)}
+                    value={AI}
+                    />
+                  </div>
+                  <div className='AISumbit'>
+                    <CallToAction
+                    disabled
+                    onClick={genImage}
+                    >
+                      Generate Thumbnail
+                    </CallToAction>
+                  </div>
+                </div>
+              </Popup>
             </div>
-            <div className='nname'>
-              <p>Upload your work! (PDF, HTML, MP4)</p>
-              <br />
-              <input
+            {ipfsImageUrl && (
+              <div className='preview'>
+                <img className="image-preview" src={ipfsImageUrl} />
+              </div>
+            )}
+            <div className='work'>
+              <p>Upload Work (.pdf, .html, .mp4)</p>
+              <input 
               type="file"
               accept=".pdf, .html, .mp4"
               onChange={onWorkUpload} 
               ref={workInputRef}
-              disabled={disabled}
-              required="required"
-              >
-              </input>
-              {ipfsWorkUrl && (
-                <>
-                  <br />
-                  <div className='ones'>
-                    <Linkable>
-                    <a 
-                    href={ipfsWorkUrl}
-                    target="_blank"
-                    >
-                      <CallToAction
-                        color="primary"
-                        size='sm'
-                        >
-                          Check Your Work &rarr;
-                        </CallToAction>
-                      </a>
-                    </Linkable>
-                  </div>
-                </>
-              )}
-              <br />
+              disabled={disabled} 
+              />
             </div>
+            {ipfsWorkUrl && (
+              <div className='preview'>
+                <Linkable>
+                  <a 
+                  href={ipfsWorkUrl}
+                  target="_blank"
+                  >
+                    <CallToAction
+                    color="primary"
+                    size='sm'
+                    >
+                      Check Your Work &rarr;
+                    </CallToAction>
+                  </a>
+                </Linkable>
+              </div>
+            )}
             <div className='nname'>
-              <p>Select Type (Required): </p>
-              <br />
+              <p>Select Type</p>
               <HoverActivatedTooltip
                 arrow
                 placement="right"
@@ -510,32 +509,39 @@ function Mint() {
                 </HoverActivatedTooltip.Content>
               </HoverActivatedTooltip>
             </div>
-            <div className='nname2'>
-              <br />
+            <div className='external'>
+              <p>External Link (Optional)</p>
               <TextField
               disabled={disabled}
-              label="Sales Price in MATIC (optional)"
-              placeholder="If empty, defaults to 0 MATIC"
+              placeholder="https://www.socialmedia.com/your/page"
+              type="text"
+              onChange={(e) => setSocial(e.target.value)}
+              value={social}
+              />
+            </div>
+            <div className='price'>
+              <p>Price in Matic (Optional)</p>
+              <TextField
+              disabled={disabled}
+              placeholder="Defaults to 0 if left empty"
               type="number"
               onChange={(e) => setPrice(e.target.value)}
               value={price}
               />
-              <br />
-              {price != '0' && price && (
-                <>
-                  <TextField
-                  disabled={disabled}
-                  label="Wallet you would like to share royalties with (optional)"
-                  placeholder="0x0.."
-                  type="text"
-                  onChange={(e) => setShare(e.target.value)}
-                  value={sharing}
-                  />
-                  <br />
-                </>
-              )}
             </div>
-            <div className='checkbox'>
+            {price != '0' && price && (
+              <div className='price'>
+                <p>Wallet for Royalty Sharing (Optional)</p>
+                <TextField
+                disabled={disabled}
+                placeholder="0x0.."
+                type="text"
+                onChange={(e) => setShare(e.target.value)}
+                value={sharing}
+                />
+              </div>
+            )}
+            <div className='coc'>
               By publishing, you certify that you have read and understood the&nbsp; 
                 <Linkable>
                   <a 
@@ -546,45 +552,38 @@ function Mint() {
                   </a>
                 </Linkable>
                 &nbsp;for works published on Oustro. 
-                <br />
-                <br />
-                Once published, works cannot be changed.
             </div>
-            <div className='yeet'>
+            <div className='submit'>
               <CallToAction
               color="primary"
-              size="sm"
+              size="md"
               onClick={mintNFT}
               disabled={disabled}
               >
                 Publish (3 MATIC)
               </CallToAction>
-              <div style={{ marginTop: '30px' }}>
-                {mintStatus && (
-                  <>
-                    <div>{mintStatus}</div>
-                  </>
-                )}
-                {txHash && (
-                  <>
-                    <div className='name'>
-                      Thank you for your contribution to the Oustro Library of Work! 
-                    </div>
-                    <br />
-                    <br />
-                    <CallToAction
-                    color="primary"
-                    size="sm"
-                    outline="none"
-                    onPress={copyLink}
-                    leadingIcon={MonochromeIcons.Copy}
-                    >
-                      Share your work using this link
-                    </CallToAction>
-                  </>
-                )}
-              </div>
             </div>
+            {mintStatus && (
+              <div className='mintStatus'>
+                <p>{mintStatus}</p>
+              </div>
+            )}
+            {txHash && (
+              <div className='mintStatus'>
+                <p>Thank you for your contribution to the Oustro Library of Work!</p>
+                <div className='copy'>
+                  <CallToAction
+                  color="primary"
+                  size="sm"
+                  outline="none"
+                  onPress={copyLink}
+                  leadingIcon={MonochromeIcons.Copy}
+                  >
+                    Share your work using this link
+                  </CallToAction>
+                </div>
+              </div>
+            )}
           </div>
         </>
       )}
@@ -601,17 +600,9 @@ function Mint() {
           margin: 20px;
           min-height: 28px;
         }
-        p {
-          line-height: 1.6;
-        }
-        .info {
-          magrin: 20px;
-        }
 
-        .checkbox {
-          text-align: center;
-          margin-bottom: 25px;
-          margin-top: 35px;
+        p {
+          line-height: 1.9;
         }
       
         .mint-container {
@@ -624,43 +615,101 @@ function Mint() {
           box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 16px;
         }
 
-        .yeet {
-          text-align: center;
-        }
-
-        input[type=file], .image-preview {
-          display: block;
-          margin: 5px 5px;
+        .closePop {
+          margin-top: -40px;
+          text-align: right;
+          margin-right: -40px;
         }
 
         .image-preview {
           border-radius: 15px;
-          max-width: 200px;
-          max-height: 200px;
+          width: 200px;
+          height: 200px;
           margin: auto;
         }
 
-        .ones {
+        .preview {
+          margin-top: 20px;
           text-align: center;
         }
 
-        .image-logo {
-          margin-left: 5px;
-          margin-right: 5px;
-          max-width: 30px;
-        }
-
-        .nname {
-          border-bottom: 1px solid #f0f0f0;
-          padding: 15px;
-        }
-        .name {
-          margin-top: 10px;
+        .mintStatus {
+          margin-top: 20px;
           text-align: center;
         }
-        .name3 {
+
+        input[type=file] {
+          width: 350px;
+          width: 98%;
+          color: #444;
+          padding: 5px;
+          background: #fff;
+          border-radius: 10px;
+          border: 1px solid #E5E5E5;
+        }
+        
+        input[type=file]::file-selector-button {
+          margin-right: 20px;
+          border: none;
+          background: #6851FF;
+          padding: 10px 20px;
+          border-radius: 10px;
+          color: #fff;
+          cursor: pointer;
+          width: 50%;
+          transition: background .2s ease-in-out;
+        }
+        
+        input[type=file]::file-selector-button:hover {
+          background: #0d45a5;
+        }
+
+        .dalle {
+          text-align: center;
+          font-size: 13px;
+        }
+
+        .thumbnail {
           margin-top: 40px;
+        }
+
+        .AISumbit {
+          margin-top: 40px;
+        }
+
+        .dalleH1 {
           text-align: center;
+        }
+
+        .external {
+          margin-top: 20px;
+        }
+
+        .price {
+          margin-top: 20px;
+        }
+
+        .coc {
+          margin-top: 40px;
+        }
+
+        .submit {
+          text-align: center;
+          width: 100%;
+          margin-top: 30px;
+        }
+
+        .work {
+          margin-top: 20px;
+          margin-bottom: 25px;
+        }
+
+        .copy {
+          margin-top: 20px;
+        }
+
+        .AI {
+          text-align: left;
         }
       `}</style>
     </div>

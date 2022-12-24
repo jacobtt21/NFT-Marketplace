@@ -30,18 +30,26 @@ export default function Grid({ nfts, prices, statuses, loading, type, stars, num
             );
           })
         ) : (
-          <div>
-           There's nothing here!
+          <div className='nothing'>
+           There's nothing here but oppurtunity!
           </div>
         )}
       </div>
       <style>{`
         .grid {
-          padding: 20px;
           display: grid;
-          grid-gap: 20px;
+          grid-gap: 10px;
           grid-template-columns: 1fr;
+          margin-top: 30px;
           margin-bottom: 100px;
+        }
+
+        .nothing {
+          margin-top: 10px;
+          margin-bottom: 20px;
+          margin-left: 20px;
+          font-size: 20px;
+          width: 100%;
         }
 
         @media (min-width: 660px) {
