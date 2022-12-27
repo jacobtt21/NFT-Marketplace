@@ -600,7 +600,7 @@ export default function About() {
               <img
               src="https://d31ygswzsyecnt.cloudfront.net/static/v2/images/new-logos/gc-h-pos.svg"
               width={300}
-              className="nft-img"
+              className="logo-img"
               onError={(e) => (e.target.src = '/fallback.jpeg')}
               alt='hmsd f'
               /> 
@@ -613,7 +613,7 @@ export default function About() {
               <img
               src="https://upload.wikimedia.org/wikipedia/commons/8/89/Product_Hunt_Logo.svg"
               width={300}
-              className="nft-img"
+              className="logo-img"
               onError={(e) => (e.target.src = '/fallback.jpeg')}
               alt='product hunt'
               />  
