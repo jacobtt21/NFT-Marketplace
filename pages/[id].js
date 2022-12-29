@@ -614,7 +614,7 @@ export default function Index() {
                 )}
               </div>
               {msg && (
-                <div className='message'>
+                <div className='message2'>
                   <CallToAction
                   size='lg'
                   outline
@@ -723,6 +723,11 @@ export default function Index() {
             .message {
               text-align: center;
               margin-top: 20px;
+            }
+
+            .message2 {
+              text-align: center;
+              margin-top: 80px;
             }
 
             h1 {

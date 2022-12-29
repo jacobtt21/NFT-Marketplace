@@ -18,33 +18,33 @@ export default function About() {
       {
         creator: "jacob",
         creatorAd: "0x8c17bB1862B31f302e4c25bf364431f0a39614B1",
-        image: "https://oustro.infura-ipfs.io/ipfs/QmeBbjdrebR7VBBtt7QsQymXbvps3k6XasZZoVkZuUQzW3",
+        image: "https://oustro.infura-ipfs.io/ipfs/QmNjVShc4TVZ7rK1UKBSsu1HrRmr6wN1NLDzfwhvQwNi8v",
         name: "Starlight",
-        tokenID: '3',
+        tokenID: '4',
         work: "https://bafybeie5srm3bac476dokid2sde4xqxxfthfll4uqqz2qfcowsmigw673y.ipfs.infura-ipfs.io/"
       },
       {
         creator: "Oustro",
         creatorAd: "0x8c17bB1862B31f302e4c25bf364431f0a39614B1",
-        image: "https://oustro.infura-ipfs.io/ipfs/QmeW4tudfHQw5fGfRcBpQW3oSV86GaFXFic3rGoLvNdgYo",
+        image: "https://oustro.infura-ipfs.io/ipfs/QmZ2ptqDDEZ3sW7o3q6bEUWJ2nXHJQXCsKhrf3ht9aTV1j",
         name: "Daffy",
-        tokenID: "5",
+        tokenID: "3",
         work: "https://bafybeickkrcva4x6egm3lx3mqdlupnvzh7o6d4zhcqgril4tmo7ebytaxq.ipfs.infura-ipfs.io/"
       },
       {
-        creator: "jacob",
+        creator: "Oustro",
         creatorAd: "0x8c17bB1862B31f302e4c25bf364431f0a39614B1",
-        image: "https://oustro.infura-ipfs.io/ipfs/Qmf2btT6oeoESpmJaZu4U4Wg2hnfwBtxoQzkujf5i8s9rM",
-        name: "Snake",
+        image: "https://oustro.infura-ipfs.io/ipfs/QmdEMNuUqehFmtcrmzyGgcSpxQYjeD4ebPdyE69pr4Asyn",
+        name: "Sunsets, Beach Walks, and a Mystery",
         tokenID: "2",
         work: "https://bafybeiegkxna2cysmky7dlx4vkmrlj5bje6n2k6yoambbmm5vd5xqab3jy.ipfs.infura-ipfs.io/"
       },
       {
-        creator: "HRDerrick",
+        creator: "Oustro",
         creatorAd: "0x8c17bB1862B31f302e4c25bf364431f0a39614B1",
-        image: "https://oustro.infura-ipfs.io/ipfs/QmQQFYa2a43aXVuY2sapv4wjp7dFDYEMGL9VKNqF1cMcvS",
-        name: "The Bottle",
-        tokenID: "6",
+        image: "https://oustro.infura-ipfs.io/ipfs/QmdJ7euXQHDF36Fd9kENhMQu3mSmT1G27dvz4myS5i9iaL",
+        name: "The Snake Game as an NFT",
+        tokenID: "1",
         work: "https://bafybeiakxs65n7vvw6gd4urkoqbjgpji7paf4pabqn4d72rgfmd7z3ftii.ipfs.infura-ipfs.io/"
       }
     ]
@@ -53,8 +53,8 @@ export default function About() {
         creator: "0x944e..1dd1",
         creatorAd: "0x8c17bB1862B31f302e4c25bf364431f0a39614B1",
         image: "https://raw.githubusercontent.com/Oustro/OustroImages/1c57d1dbdf5d079f453e6d5dfb8c7e6c8c14a77d/9.svg",
-        name: "Daffy",
-        tokenID: '6',
+        name: "Hi",
+        tokenID: '1',
         work: "https://bafybeie5srm3bac476dokid2sde4xqxxfthfll4uqqz2qfcowsmigw673y.ipfs.infura-ipfs.io/"
       },
       {
@@ -237,7 +237,7 @@ export default function About() {
           Buy, sell, or browse some of their works below, uniquely created as NFTs and only found on Oustro.
         </div> 
         <Grid loading={loading} nfts={allNFTs} go={true} />
-        <div
+        {/* <div
         style={{
           marginTop: -120
         }}
@@ -246,7 +246,7 @@ export default function About() {
           <div className='vlur'>
             &nbsp;
           </div>  
-        </div>       
+        </div>        */}
         <div className='Imagine'>
           <Link href="/login">
             <CallToAction
@@ -934,7 +934,8 @@ export default function About() {
           filter: blur(27px);
         }
         .Imagine {
-          margin-top:-200px;
+          margin-top: -100px;
+          // margin-top: -200px;
           margin-bottom: 150px;
         }
         img {
