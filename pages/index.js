@@ -169,7 +169,7 @@ export default function Index() {
         <h4 className='what'>
           Oustro Editor's Choice
         </h4>
-        <Link href="/3">
+        <Link href="/4">
           <div className='banner'>
           </div>
         </Link>
@@ -326,6 +326,7 @@ export default function Index() {
             .what {
               margin-top: 20px;
               font-size: 30px;
+              text-align: center;
               margin-bottom: 15px;
             }
             .huhs {
@@ -337,8 +338,11 @@ export default function Index() {
               font-size: 30px;
             }
             .banner {
-              background-image: url('https://raw.githubusercontent.com/Oustro/OustroImages/0d9b2b8c938899bb79657bcad0ed7bdd8715ad99/Banner.svg');
+              background-size: cover;
+              background-image: url('https://oustro.infura-ipfs.io/ipfs/QmYua7pT7hn93N457itNLTaq5xuRx7tXk8ggrJfHQdr1Z9');
               height: 400px;
+              margin: auto;
+              width: 1300px;
               border-radius: 30px;
               transition: 0.2s;
             }
