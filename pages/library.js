@@ -51,14 +51,6 @@ export default function Index() {
           textAlign: 'center'
         }}>
           <h4>{hit.name}</h4> 
-          <h6>
-            Created by 
-            <Link href={{pathname: "/u/[id]", query: { id: hit.creator }}}>
-              <TextButton>
-              {hit.creator.substring(0, 6)}...{hit.creator.substring(38)}
-              </TextButton>
-            </Link>
-          </h6>
           <br />
           <Link href={{pathname: "/[id]", query: { id: hit.tokenID }}}>
             <CallToAction
