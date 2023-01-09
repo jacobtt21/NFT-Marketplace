@@ -171,7 +171,7 @@ export default function About() {
               <h4>
                 We all have a story, tell yours
               </h4>
-              © 2022 Oustro, LLC
+              © 2023 Oustro, LLC
             </div>       
           </div> 
         </div>

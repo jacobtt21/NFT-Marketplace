@@ -489,7 +489,7 @@ export default function About() {
               these Terms. The terms and conditions set forth in these Terms shall be binding upon assignees.
             </h2>
             <h2>
-              10.7 Copyright/Trademark Information. Copyright © 2022 Oustro, LLC. All rights reserved. All trademarks,
+              10.7 Copyright/Trademark Information. Copyright © 2023 Oustro, LLC. All rights reserved. All trademarks,
               logos and service marks (“Marks”) displayed on the Site are our property or the property of other third parties. You
               are not permitted to use these Marks without our prior written consent or the consent of such third party which may
               own the Marks.
