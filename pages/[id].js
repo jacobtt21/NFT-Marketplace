@@ -319,14 +319,16 @@ export default function Index() {
           </Head>
           <div className='aligns'>
             <div className='img-container'>
-              <img
-                src={theNFT.image}
-                width={500}
-                className="nft-img-large"
-                onError={(e) => (e.target.src = '/fallback.jpeg')}
-              /> 
+              <iframe
+                src={theNFT.work}
+                style={{
+                  height: 540,
+                  width: 600,
+                }}
+              >
+              </iframe>
               <div className='view'>
-              {theNFT.socialLink !== "" && (
+              {!theNFT.socialLink !== "" && (
                 <a
                 href={theNFT.socialLink}
                 target="_blank"
@@ -629,6 +631,7 @@ export default function Index() {
             .img-container {
               border-right: 2px solid #f0f0f0;
               text-align: center;
+              padding: 20px;
             }
 
             .creator {
@@ -678,6 +681,7 @@ export default function Index() {
             }
 
             .view {
+              margin-top: 10px;
               text-align: center;
             }
 
